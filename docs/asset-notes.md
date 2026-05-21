@@ -1,6 +1,6 @@
 # Asset Notes
 
-The visual design in this encyclopedia now uses converted Emergency 4 / 911: First Responders DDS UI art as PNG files for a closer menu match.
+The visual design in this encyclopedia now uses a small set of converted Emergency 4 / 911: First Responders DDS UI art as PNG files for a closer menu match.
 
 This is the most authentic option visually, but it has a copyright tradeoff. If this repository is public, avoid uploading original game UI files, converted base-game textures, models, sounds, or other copyrighted assets unless you have permission to distribute them.
 
@@ -13,7 +13,7 @@ This is the most authentic option visually, but it has a copyright tradeoff. If 
 
 ## Private Team Assets
 
-If this encyclopedia is only for a private modding team, you can keep the converted files in `assets/img/em4-ui`. Keep additional file names descriptive:
+If this encyclopedia is only for a private modding team, you can keep the converted files in `assets/img/em4-ui`. Only keep assets the site actually uses so GitHub upload stays manageable. Keep additional file names descriptive:
 
 - `command-menu-example.png`
 - `virtual-object-layout.png`

@@ -30,12 +30,14 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 50% 18%, rgba(22, 91, 128, 0.42), transparent 18rem),
-    radial-gradient(circle at 50% 60%, rgba(255, 179, 63, 0.07), transparent 26rem),
-    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.86), rgba(0,0,0,0.22) 28%, rgba(0,0,0,0.18) 72%, rgba(0,0,0,0.86)),
+    linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.64)),
+    url("../img/em4-ui/Game/MainMenu/mm_background.png"),
+    radial-gradient(ellipse at 50% 18%, rgba(22, 91, 128, 0.52), transparent 24rem),
     linear-gradient(180deg, #080d12, #020304 72%);
-  background-size: auto, auto, 24px 24px, 24px 24px, auto;
+  background-size: auto, auto, cover, auto, auto;
+  background-position: center, center, center top, center, center;
+  background-attachment: fixed;
 }
 
 .shell {
@@ -65,8 +67,11 @@ body {
 .quick-panel {
   border: 1px solid var(--line);
   background:
+    linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.52)),
+    url("../img/em4-ui/Game/BaseWindow/background.png"),
     linear-gradient(180deg, rgba(255,255,255,0.08), transparent 22px),
     linear-gradient(180deg, rgba(20,33,43,0.96), rgba(5,8,11,0.98));
+  background-size: auto, cover, auto, auto;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 16px 34px var(--shadow);
 }
 
@@ -75,9 +80,23 @@ body {
   justify-content: space-between;
   gap: 18px;
   align-items: center;
-  min-height: 88px;
-  padding: 14px 18px;
+  min-height: 112px;
+  padding: 18px 22px;
   border-radius: 0;
+  position: relative;
+}
+
+.topbar::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -19px;
+  width: 420px;
+  height: 18px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #2a3a46, #05080b);
+  border: 1px solid rgba(180,199,212,0.4);
+  border-top: 0;
 }
 
 .brand {
@@ -87,17 +106,47 @@ body {
 }
 
 .brand-mark {
-  width: 84px;
-  height: 58px;
-  display: grid;
-  place-items: center;
+  width: 150px;
+  height: 74px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: #080500;
   font-weight: 900;
   letter-spacing: 0;
-  background: linear-gradient(180deg, #ffe28f, #e5861f 52%, #6b3510);
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.18), transparent 22%, transparent 78%, rgba(0,0,0,0.2)),
+    linear-gradient(180deg, #ffe28f, #e5861f 52%, #6b3510);
   border: 1px solid #ffe0a0;
   transform: skewX(-8deg);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.55), 0 0 18px rgba(255,179,63,0.24);
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-mark img {
+  position: absolute;
+  left: 8px;
+  top: 9px;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.55));
+}
+
+.logo-911 {
+  font-size: 2.35rem;
+  line-height: 0.9;
+  margin-left: 36px;
+}
+
+.logo-first {
+  font-size: 0.58rem;
+  letter-spacing: 0;
+  color: #fff7df;
+  text-shadow: 1px 1px 0 #000;
+  margin-left: 36px;
 }
 
 h1,
@@ -108,7 +157,7 @@ p {
 }
 
 .brand h1 {
-  font-size: clamp(1.45rem, 2.2vw, 2.45rem);
+  font-size: clamp(1.35rem, 2vw, 2.35rem);
   line-height: 1.05;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -132,23 +181,25 @@ p {
 .status-strip span {
   min-width: 104px;
   text-align: center;
-  padding: 12px 12px;
+  padding: 15px 12px 0;
   color: #f6fbff;
   font-weight: 800;
   font-size: 0.78rem;
-  border: 1px solid #788995;
+  height: 43px;
+  border: 0;
   background:
-    linear-gradient(90deg, transparent 0 12px, rgba(255,255,255,0.1) 12px 13px, transparent 13px),
-    linear-gradient(180deg, #304351, #111923 64%, #05080b);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
-  transform: skewX(-10deg);
+    linear-gradient(90deg, rgba(0,0,0,0.16), transparent 18%, transparent 82%, rgba(0,0,0,0.18)),
+    url("../img/em4-ui/Game/MainMenu/mm_btn_freeplay_on.png");
+  background-size: 100% 100%;
+  box-shadow: none;
+  text-shadow: 2px 2px 0 #000;
 }
 
 .layout {
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
+  grid-template-columns: 252px minmax(0, 1fr);
   gap: 32px;
-  margin-top: 28px;
+  margin-top: 42px;
 }
 
 .side-panel,
@@ -162,8 +213,11 @@ p {
   position: sticky;
   top: 18px;
   background:
+    linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.58)),
+    url("../img/em4-ui/Game/BaseWindow/background.png"),
     linear-gradient(90deg, rgba(0,0,0,0.35), transparent 28px),
     linear-gradient(180deg, rgba(25,38,48,0.95), rgba(5,8,11,0.98));
+  background-size: auto, cover, auto, auto;
 }
 
 .panel-title {
@@ -211,13 +265,14 @@ p {
 
 .menu-button,
 .article-title {
-  min-height: 38px;
+  min-height: 43px;
   color: var(--text);
   background:
-    linear-gradient(90deg, rgba(255,179,63,0.12) 0 12px, transparent 12px),
-    linear-gradient(180deg, #344752, #121b24 58%, #05080b);
-  border: 1px solid #87949c;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.17), inset 0 -1px 0 rgba(0,0,0,0.85);
+    linear-gradient(90deg, rgba(0,0,0,0.12), transparent 22%, transparent 78%, rgba(0,0,0,0.16)),
+    url("../img/em4-ui/Game/MainMenu/mm_btn_modifications_on.png");
+  background-size: 100% 100%;
+  border: 0;
+  box-shadow: none;
   cursor: pointer;
   text-align: left;
   font-weight: 800;
@@ -227,19 +282,27 @@ p {
 
 .menu-button {
   width: 100%;
-  padding: 0 12px 0 22px;
-  transform: skewX(-8deg);
+  padding: 0 34px 0 16px;
+  text-align: right;
+  text-shadow: 2px 2px 0 #000;
 }
 
 .menu-button:hover,
 .menu-button.active,
 .article-title:hover {
   color: #07090a;
-  border-color: #ffdf99;
   background:
-    linear-gradient(90deg, #fff0b8 0 10px, transparent 10px),
-    linear-gradient(180deg, #ffe197, #e88620 54%, #8a4615);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 0 20px rgba(255,179,63,0.18);
+    linear-gradient(90deg, rgba(255,255,255,0.16), transparent 22%, transparent 78%, rgba(0,0,0,0.12)),
+    url("../img/em4-ui/Game/MainMenu/mm_btn_modifications_ov.png");
+  background-size: 100% 100%;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.28);
+}
+
+.menu-button.active {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.2), transparent 22%, transparent 78%, rgba(0,0,0,0.16)),
+    url("../img/em4-ui/Game/MainMenu/mm_btn_modifications_cl.png");
+  background-size: 100% 100%;
 }
 
 .quick-panel {
@@ -267,7 +330,18 @@ p {
   padding: 16px;
   background:
     linear-gradient(90deg, rgba(255,179,63,0.08), transparent 8px, transparent calc(100% - 8px), rgba(107,251,255,0.08)),
+    url("../img/em4-ui/Game/BaseWindow/background.png"),
     linear-gradient(180deg, rgba(20,31,40,0.96), rgba(4,7,10,0.98));
+  background-size: auto, cover, auto;
+  position: relative;
+}
+
+.content-panel::before {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  pointer-events: none;
+  border: 1px solid rgba(107,251,255,0.12);
 }
 
 .content-header {
@@ -296,6 +370,8 @@ p {
   display: grid;
   gap: 12px;
   margin-top: 14px;
+  position: relative;
+  z-index: 1;
 }
 
 .article-card {
@@ -306,9 +382,14 @@ p {
 
 .article-title {
   width: 100%;
-  padding: 12px;
+  padding: 12px 14px;
   font-size: 1rem;
   color: #f8fbff;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.18), transparent 22%, transparent 78%, rgba(0,0,0,0.18)),
+    url("../img/em4-ui/Game/BaseWindow/toggle_on.png");
+  background-size: 100% 100%;
+  text-shadow: 2px 2px 0 #000;
 }
 
 .article-body {
@@ -318,6 +399,33 @@ p {
   color: #d2dfe7;
   background: linear-gradient(180deg, rgba(8,12,16,0.96), rgba(11,16,21,0.96));
   border-top: 1px solid rgba(255,179,63,0.22);
+}
+
+.article-body h3 {
+  color: var(--cyan);
+  margin: 16px 0 8px;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.article-body th,
+.article-body td {
+  border: 1px solid rgba(180,199,212,0.25);
+  padding: 8px;
+  vertical-align: top;
+}
+
+.article-body th {
+  color: var(--cyan);
+  background: rgba(107,251,255,0.08);
+  text-align: left;
 }
 
 .article-card.open .article-body {

@@ -23,6 +23,6 @@ Useful observations:
 
 ## Public Repository Safety
 
-The site now uses converted PNG versions of the base game's DDS UI files for a closer 911: First Responders / EM4 menu match. It also keeps CSS fallback styling for layout, text, and responsiveness.
+The site now uses a small set of converted PNG versions of the base game's DDS UI files for a closer 911: First Responders / EM4 menu match. It also keeps CSS fallback styling for layout, text, and responsiveness.
 
 This is visually more accurate, but less safe for a public GitHub repository. If the repo is public, only publish the converted game UI assets if you are comfortable with the copyright risk or have permission.

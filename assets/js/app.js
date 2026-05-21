@@ -10,6 +10,45 @@ const articles = [
   },
   {
     category: "Start Here",
+    title: "What Emergency 4 / 911: First Responders Is",
+    tags: ["history", "game overview", "incident command"],
+    body: `
+      <p><code>Emergency 4: Global Fighters for Life</code>, known in North America as <code>911: First Responders</code>, is a real-time emergency management game about commanding police, fire, EMS, and technical rescue units at incidents. The player is not one firefighter or one officer. The player is the incident commander directing units, vehicles, equipment, rescue, stabilization, arrests, evacuation, and transport.</p>
+      <p>The base game includes campaign missions, freeplay, multiplayer, and a moddable file structure. Its long life comes from the editor, script system, prototype system, and community-made modifications that turned the game into local fire departments, police agencies, EMS systems, custom maps, and detailed roleplay environments.</p>
+      <p>For modding, the important mindset is this: EM4 is not a modern sandbox engine. It is an older game with strict file paths, picky scripts, fragile UI assets, and a surprisingly powerful command/action system once you learn its rules.</p>
+    `
+  },
+  {
+    category: "Start Here",
+    title: "Short History and Community Context",
+    tags: ["history", "community mods", "timeline"],
+    body: `
+      <p><code>Emergency 4</code> released in Europe in 2006, while <code>911: First Responders</code> became the North American title in 2007. The Deluxe version added extra content and voice-command support. The game became a long-running modding platform because it allowed custom vehicles, personnel, maps, missions, UI, sounds, commands, and freeplay systems.</p>
+      <p>Community history matters because many modern EM4 ideas came from famous mods. The Los Angeles Mod brought a large American freeplay experience with stations, hospital, police station, new equipment, new commands, sirens, missions, and more than 50 playable units. Other well-known projects in the wider scene include Winterberg, London Mod, Manhattan Mod, Montana Mod, West Falls Township, West Lampeter, and Bieberfelde Multiplayer.</p>
+      <p>This encyclopedia should teach the base game first, then show how large mods build layered roleplay systems on top of it.</p>
+    `
+  },
+  {
+    category: "Start Here",
+    title: "How the Game Is Put Together",
+    tags: ["mental model", "architecture", "beginner"],
+    body: `
+      <p>Most EM4 modding problems become easier once you understand the layers.</p>
+      <table>
+        <thead><tr><th>Layer</th><th>What It Does</th><th>Example Problem</th></tr></thead>
+        <tbody>
+          <tr><td>Map</td><td>Places roads, paths, VOs, objects, fire objects, exits, and spawn points.</td><td>A unit cannot find its station bay or a callout spawns inside a building.</td></tr>
+          <tr><td>Prototype</td><td>Defines what an entity is, what model it uses, its commands, lights, doors, physics, and traits.</td><td>A command does not show or a vehicle has the wrong crew capacity.</td></tr>
+          <tr><td>Model/Texture</td><td>Controls what the object looks like.</td><td>A vehicle appears white, invisible, or missing parts.</td></tr>
+          <tr><td>Script</td><td>Controls actions, buttons, timers, callouts, missions, and custom logic.</td><td>A command appears but nothing happens when clicked.</td></tr>
+          <tr><td>Specs/Units</td><td>Controls global XML data, unit browser entries, freeplay tuning, portraits, and metadata.</td><td>A prototype exists but does not appear correctly in the buy menu.</td></tr>
+          <tr><td>UI/Audio</td><td>Controls icons, cursors, menus, sounds, and player feedback.</td><td>A button is a white box, a cursor is missing, or dispatch audio overlaps.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Start Here",
     title: "Recommended Modding Workflow",
     tags: ["testing", "backups", "debugging"],
     body: `
@@ -34,6 +73,23 @@ const articles = [
         <li>A text editor such as Notepad++ for <code>.script</code>, <code>.xml</code>, and notes.</li>
         <li>A DDS-capable image editor or converter for command icons, cursor icons, and textures.</li>
         <li>A folder outside the live mod for backups, experiments, and old working versions.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Getting Started",
+    title: "Beginner Learning Path",
+    tags: ["tutorial flow", "beginner", "learning"],
+    body: `
+      <p>Do not start by writing a huge mission script. Learn EM4 in this order.</p>
+      <ul>
+        <li>Install and load a known working mod.</li>
+        <li>Open the mod in the editor and inspect a vehicle prototype.</li>
+        <li>Find where its commands are assigned.</li>
+        <li>Find the matching command icon and cursor files.</li>
+        <li>Open the matching command script and identify <code>CheckPossible</code>, <code>CheckTarget</code>, and <code>PushActions</code>.</li>
+        <li>Place a virtual object on a test map and reference it from a small script.</li>
+        <li>Only then build larger systems such as stations, alarms, dispatch callouts, traffic stops, or custody workflows.</li>
       </ul>
     `
   },
@@ -112,6 +168,275 @@ const articles = [
     `
   },
   {
+    category: "Editor Manual",
+    title: "Editor Manual Overview",
+    tags: ["editor manual", "workflow", "map editor"],
+    body: `
+      <p>The official editor manual is one of the most important learning sources because it explains how the editor expects modders to work. The editor is not only a map placer. It creates mods, loads mods, edits terrain, places scene objects, edits prototypes, manages paths and streets, places virtual objects, controls map properties, and sets mission conditions.</p>
+      <p>The most important lesson from the manual is that EM4 separates <code>prototype settings</code> from <code>instance settings</code>. Prototype settings affect every object using that prototype. Instance settings affect only the selected placed object and are stored in the map.</p>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Creating a New Mod in the Editor",
+    tags: ["create mod", "modifications", "editor"],
+    body: `
+      <p>The manual's first workflow is creating a new mod from the editor. Use the <code>Modifications</code> menu, create a new mod, name it, then load it through the same menu. Once loaded, changes made for that mod are stored in the new mod folder under the game's <code>Mods</code> directory.</p>
+      <ul>
+        <li>Create the mod before building a mission or map.</li>
+        <li>Load the mod before editing its content.</li>
+        <li>Confirm the switch-mod dialog when changing active mods.</li>
+        <li>Keep base game files untouched whenever possible.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Editing 3D Objects and V3O Files",
+    tags: ["v3o", "models", "pack unpack"],
+    body: `
+      <p>EM4 model files use <code>.v3o</code>. The editor manual explains that these models are normally stored as binary data. To edit a model as text, use the editor's <code>unpack file</code> function from the <code>Modifications</code> menu. After editing, use <code>pack file</code> to convert it back.</p>
+      <p>Important caution: unpacking or packing overwrites the file while keeping the same filename. Always make a backup before touching model files.</p>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Terrain Textures and Height Editing",
+    tags: ["terrain", "textures", "heightmap"],
+    body: `
+      <p>Terrain editing is accessed through <code>Edit / Terrain</code>, function key <code>F2</code>. Existing terrain textures can be loaded from maps, or custom terrain textures can be imported.</p>
+      <ul>
+        <li>Custom terrain texture width and height should be multiples of 512 pixels.</li>
+        <li>The texture should be a 24-bit TGA file.</li>
+        <li>The manual lists the maximum terrain texture size as roughly 8192 by 8192 pixels.</li>
+        <li>The scale is about 12.5 pixels per meter.</li>
+        <li>Height can be edited with terrain brushes or prepared as a black-and-white height map.</li>
+        <li>Masks can protect areas from terrain brush edits or restrict edits to specific areas.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Scene Mode Controls",
+    tags: ["scene mode", "F1", "editor controls"],
+    body: `
+      <p><code>Scene</code> mode is function key <code>F1</code>. This is where you place available objects into the map, edit prototype settings, and edit instance settings.</p>
+      <ul>
+        <li>Left mouse selects, places, or moves objects.</li>
+        <li><code>Alt</code> plus left mouse raises or lowers along the Z axis, depending on placement settings.</li>
+        <li>Right mouse rotates around the local Z axis.</li>
+        <li><code>Shift</code> or <code>Ctrl</code> plus right mouse rotates around world X or Y.</li>
+        <li><code>Pause</code> toggles free-fly camera mode.</li>
+        <li>Copy and paste objects in Scene mode with <code>Ctrl+C</code> and <code>Ctrl+V</code>.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Prototypes vs Instance Properties",
+    tags: ["prototypes", "instances", "properties"],
+    body: `
+      <p>Prototypes are grouped into major classes such as objects, vehicles, persons, and houses. A prototype stores the predefined properties shared by every placed instance of that prototype.</p>
+      <p>Instance properties are different. They are set on a specific placed object and saved into the map. This matters for things like path assignment, object-specific children, lights, or map-only variations.</p>
+      <p>The manual recommends cloning prototypes before editing them. That keeps the original prototype intact and gives the modder a safer working copy.</p>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Physics, Children, Fire Objects, and Lights",
+    tags: ["physics", "children", "fireobjects", "lights"],
+    body: `
+      <table>
+        <thead><tr><th>Editor Feature</th><th>What It Controls</th><th>Why Modders Care</th></tr></thead>
+        <tbody>
+          <tr><td>Physics</td><td>Collision and routefinder geometry.</td><td>Bad physics can block people, trap vehicles, or make deployables unusable.</td></tr>
+          <tr><td>Children</td><td>Attached child objects on a prototype.</td><td>Used for visual variety, doors, wheels, interiors, roofs, equipment, and vehicle details.</td></tr>
+          <tr><td>Fire Objects</td><td>Burnable regions, burn marks, fire effects, and radiation radius.</td><td>Required for buildings or objects that should burn correctly.</td></tr>
+          <tr><td>Lights</td><td>Prototype lights with color, intensity, and behavior.</td><td>Controls emergency lights, special lights, scene lights, and object lighting.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Detail Polygons and Decals",
+    tags: ["detail polygons", "decals", "map art"],
+    body: `
+      <p><code>Detail Polygons</code> add higher-detail textures to terrain areas. They can darken, lighten, or overlay areas depending on mode and are useful for visual map detail beyond the base terrain texture.</p>
+      <p><code>Decals</code> are flat textures placed on the terrain. They are useful for road markings, manhole covers, stains, parking lines, signs painted on pavement, scene markings, and other flat details.</p>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Paths, Streets, and Spawn Points",
+    tags: ["paths", "streets", "spawn points", "traffic"],
+    body: `
+      <p>Paths and streets are separate systems. Paths are primarily for civilians and civilian vehicles. Streets are required for the emergency vehicle routefinder.</p>
+      <ul>
+        <li><code>Paths</code>: function key <code>F7</code>. Used by civilians and civilian cars. Path types include forward, backward, loop, and ping-pong behavior.</li>
+        <li><code>Streets</code>: <code>Shift+F7</code>. Emergency vehicles need a connected street network where they are expected to drive.</li>
+        <li><code>Spawn Points</code>: function key <code>F9</code>. Used to place persons or cars onto paths at fixed intervals with configured groups and probabilities.</li>
+        <li>Vehicles and people drive or walk on the right side, represented by the blue line.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Map Properties, Entries, Exits, and Boundaries",
+    tags: ["map properties", "entries", "exits", "boundaries"],
+    body: `
+      <p><code>Map Properties</code> are accessed with <code>Shift+F9</code>. They control light effects, weather effects, camera start position, entries and exits, level boundaries, travel map roads, mission scoring, budget, and camera positions.</p>
+      <ul>
+        <li>Entry and exit points define how land, air, and water vehicles enter or leave.</li>
+        <li>Level boundaries control where the camera and map limits apply.</li>
+        <li>The travel map controls which roads are treated as usable on the in-game map.</li>
+        <li>Camera locations are mainly for scripted cutscenes.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Water Bodies and Virtual Objects",
+    tags: ["water", "virtual objects", "terrain"],
+    body: `
+      <p><code>Liquid</code> mode is function key <code>F4</code>. Water can be displayed with shader effects, but boat-usable rivers or lakes should be level and paired with virtual objects marked as shallow or deep water.</p>
+      <p><code>Virtual Objects</code> are function key <code>F5</code>. The manual describes them as areas used to control accessibility for moving prototypes such as vehicles, persons, animals, and ships. Terrain settings and <code>Specs/terrain.xml</code> influence how moving prototypes behave in those areas.</p>
+      <p>Virtual objects can overlap, but blocked terrain has priority. In practice, modders also use VOs heavily for stations, parking spots, callouts, markers, panels, staging, and scripted interactions.</p>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Waiting Points, Triggers, Ambient Sounds, and Fire Objects",
+    tags: ["waiting points", "triggers", "ambient sounds", "burning objects"],
+    body: `
+      <table>
+        <thead><tr><th>Tool</th><th>Shortcut</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>Waiting Points</td><td><code>Shift+F3</code></td><td>Used by civilians on paths, with probability, duration, size, type, and line of sight.</td></tr>
+          <tr><td>Triggers</td><td><code>F3</code></td><td>Areas used exclusively for script-controlled events.</td></tr>
+          <tr><td>Ambient Polygons</td><td><code>Shift+F5</code></td><td>Define background sound areas.</td></tr>
+          <tr><td>Additional Burning Objects</td><td><code>F6</code></td><td>Freely placed burning objects used to shape fire spread beyond prototype fire objects.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Mission Conditions and Materials",
+    tags: ["mission conditions", "materials", "fire behavior"],
+    body: `
+      <p><code>Mission Conditions</code> define positive or negative conditions for mission success or failure. They can track objects, persons, civilians, emergency resources, drowning persons, gangsters, animals, vehicles, houses, burning objects, dead persons, injured persons, contaminated persons, and casualty counts.</p>
+      <p><code>Materials</code> control fire behavior. Burnable objects need a material. Important material values include combustion, burn time, maximum temperature, charge time, cooling, resistance, blast force, blast radius, and whether the material explodes or burns when its combustion threshold is reached.</p>
+    `
+  },
+  {
+    category: "Editor Manual",
+    title: "Loading, Saving, and Radar Maps",
+    tags: ["maps", "e4m", "radar map"],
+    body: `
+      <p>Maps are loaded and saved through the top menu. Map-specific data is stored in an <code>.e4m</code> file. The map file references the floor texture but does not store the full texture view itself.</p>
+      <p>The manual also describes creating radar maps by preparing the editor view, disabling clutter, positioning the free camera overhead, taking a screenshot, processing the image externally, and saving it as a DDS radar map. This explains why minimap/radar art is usually a separate asset workflow from normal map editing.</p>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Creating a New Mod Safely",
+    tags: ["new mod", "workflow", "editor"],
+    body: `
+      <p>A new EM4 mod should begin as a clean mod folder, not as random edits to base game files. The safest approach is to create a mod, copy only what you need, and keep the base game untouched.</p>
+      <ul>
+        <li>Create or install a mod folder under <code>Mods</code>.</li>
+        <li>Mirror the base folder structure only where needed: <code>Scripts</code>, <code>Prototypes</code>, <code>Models</code>, <code>Specs</code>, <code>UI</code>, <code>Audio</code>, and <code>Units</code>.</li>
+        <li>Load the mod in the editor before editing prototypes or maps.</li>
+        <li>Keep a clean original backup and a working backup.</li>
+        <li>Do not rename base command scripts unless you understand which prototypes call them.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Adding a Vehicle",
+    tags: ["vehicles", "prototype", "units"],
+    body: `
+      <p>A vehicle is not only a model. It is a chain of assets and configuration.</p>
+      <table>
+        <thead><tr><th>Step</th><th>Folder</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>Model and texture</td><td><code>Models</code></td><td>Visual vehicle mesh and paint.</td></tr>
+          <tr><td>Prototype</td><td><code>Prototypes/Vehicles</code></td><td>Vehicle type, physics, doors, lights, passengers, transports, commands.</td></tr>
+          <tr><td>Unit entry</td><td><code>Units/Vehicles</code></td><td>Buy menu and vehicle browser presentation.</td></tr>
+          <tr><td>Specs</td><td><code>Specs</code></td><td>Vehicle metadata, portraits, and related global configuration.</td></tr>
+          <tr><td>Commands</td><td><code>Scripts/Game/Command</code></td><td>Move, siren, get equipment, return to station, deploy tools, roleplay actions.</td></tr>
+          <tr><td>Icons</td><td><code>UI/Game/Icons</code></td><td>Command buttons and cursors.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Adding a Person",
+    tags: ["persons", "prototype", "commands"],
+    body: `
+      <p>A person prototype controls more than appearance. It determines what the unit can do, what equipment they can carry, whether they can arrest, heal, stabilize, use hoses, enter vehicles, or interact with custom systems.</p>
+      <ul>
+        <li>Place the visual files under <code>Models/Persons</code> or the mod's chosen model folder.</li>
+        <li>Create or copy a prototype under <code>Prototypes/Persons</code>.</li>
+        <li>Assign commands in the editor, not only in script.</li>
+        <li>Confirm equipment commands pair correctly with drop/remove equipment commands.</li>
+        <li>Test entering vehicles, exiting vehicles, picking up equipment, and restoring normal commands.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Adding Equipment or Deployables",
+    tags: ["equipment", "deployable", "commands"],
+    body: `
+      <p>Equipment can be a carried item, a vehicle-carried object, or a deployable object placed on the map. Deployables are often easier to control if they are vehicle prototypes, because selectable vehicle prototypes can hold rotate, remove, and special commands more reliably.</p>
+      <ul>
+        <li>Create the deployed prototype.</li>
+        <li>Create the person command that places it.</li>
+        <li>Add rotate/remove commands to the deployed object if needed.</li>
+        <li>If it stores tools, make sure get-equipment scripts treat it like a valid equipment source.</li>
+        <li>Always test whether the person gets stuck inside the deployed object.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Building a Custom Callout",
+    tags: ["callouts", "freeplay", "mission script"],
+    body: `
+      <p>A serious custom callout is a state machine. It should know what stage it is in and what must happen next.</p>
+      <ul>
+        <li>Dispatch stage: choose text, audio, location, marker, and spawned objects.</li>
+        <li>Arrival stage: player reaches scene, discovers patient, hazard, suspect, or alarm panel.</li>
+        <li>Investigation stage: player uses a command or unit to progress the incident.</li>
+        <li>Resolution stage: victim transported, suspect jailed, hazard cleared, fire extinguished, or panel reset.</li>
+        <li>Cleanup stage: remove markers, clear dummy commands, stop timers, and allow the next callout.</li>
+      </ul>
+      <p>Use command scripts for player interactions and mission/freeplay scripts for the timer/state logic.</p>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Which Layer Is Broken?",
+    tags: ["debugging", "workflow", "troubleshooting"],
+    body: `
+      <table>
+        <thead><tr><th>Symptom</th><th>Likely Layer</th><th>First Check</th></tr></thead>
+        <tbody>
+          <tr><td>Command does not show</td><td>Prototype or command visibility</td><td>Command assigned? <code>CheckPossible</code> returns true? Icon exists?</td></tr>
+          <tr><td>Command shows with red X</td><td>Targeting restrictions</td><td><code>CheckTarget</code>, command restrictions, caller/target type.</td></tr>
+          <tr><td>Command clicks but nothing happens</td><td>Action queue or invalid target</td><td><code>PushActions</code>, dummy command names, action order.</td></tr>
+          <tr><td>Crash on mod load</td><td>Script parse, XML, or UI asset</td><td>Newest script, missing symbol, DDS/TGA format, missing cursor.</td></tr>
+          <tr><td>Vehicle will not move</td><td>Map, physics, or blocked path</td><td>Spawn position, collision, gates, pathing, stuck objects.</td></tr>
+          <tr><td>Unit cannot enter vehicle</td><td>Command state or vehicle capacity</td><td>Normal commands restored? Vehicle type correct? Seats available?</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
     category: "Getting Started",
     title: "First Safe Edit to Practice",
     tags: ["practice", "commands", "testing"],
@@ -169,6 +494,85 @@ const articles = [
         <li><code>UI/Game/Icons/Commands</code>: command icons.</li>
         <li><code>UI/Game/Icons/Cursor</code>: cursor icons shown when a command targets something.</li>
         <li><code>Audio/FX</code>: short wav effects and dispatch audio.</li>
+      </ul>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "What the SDK Folder Is",
+    tags: ["SDK", "scripting", "reference"],
+    body: `
+      <p>The SDK folder is the script API reference. It tells you which classes, enums, and functions EM4 exposes to scripts. It does not teach gameplay by itself, but it explains what functions are available when writing command or mission scripts.</p>
+      <p>Your SDK folder contains 25 reference scripts: <code>Actor</code>, <code>GameObject</code>, <code>Person</code>, <code>Vehicle</code>, <code>Game</code>, <code>Command</code>, <code>Mission</code>, <code>Interface</code>, <code>Audio</code>, <code>Camera</code>, <code>Spawn</code>, <code>Path</code>, <code>List</code>, <code>XMLGui</code>, and supporting enum/math/system files.</p>
+      <p>When a script fails because a function does not exist, the SDK is where you verify the real function name and signature.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Core SDK Classes",
+    tags: ["Actor", "GameObject", "Person", "Vehicle"],
+    body: `
+      <table>
+        <thead><tr><th>SDK File</th><th>Purpose</th><th>Common Use</th></tr></thead>
+        <tbody>
+          <tr><td><code>Actor.script</code></td><td>Base class for things placed in the world.</td><td>Positions, rotations, names, actor types, and map references.</td></tr>
+          <tr><td><code>GameObject.script</code></td><td>Base gameplay object class. Persons and vehicles inherit from it.</td><td>Commands, actions, lights, physics, flags, burning, distance, carried objects, action queues.</td></tr>
+          <tr><td><code>Person.script</code></td><td>Person-specific behavior.</td><td>Injury state, arrest state, carrying persons, person roles, equipment, animation, linked persons.</td></tr>
+          <tr><td><code>Vehicle.script</code></td><td>Vehicle-specific behavior.</td><td>Passengers, transports, doors, sirens/lights, vehicle type, return to base, unload checks.</td></tr>
+          <tr><td><code>FireObject.script</code></td><td>Burning object interface.</td><td>Checking or controlling fire object state in scripted fire/alarm systems.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "CommandScript and MissionScript",
+    tags: ["CommandScript", "MissionScript", "scripts"],
+    body: `
+      <p><code>Command.script</code> defines <code>CommandScript</code>, restrictions, command groups, move modes, and command behavior. This is the reference for person, vehicle, and object buttons.</p>
+      <p><code>Mission.script</code> defines <code>MissionScript</code>, mission states, scoring, mission time, objectives, mission results, and callback behavior. This is the reference for larger scenario logic.</p>
+      <p>Use command scripts when the player presses a button. Use mission/freeplay scripts when the world needs to run logic by itself: timers, callout schedulers, objectives, mission completion, or global event state.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Game, Lists, Spawns, and Paths",
+    tags: ["Game", "List", "Spawn", "Path"],
+    body: `
+      <p><code>Game.script</code> is one of the most important SDK files. It exposes creation functions such as <code>CreateObject</code>, <code>CreatePerson</code>, and <code>CreateVehicle</code>, object searches, command execution, map checks, and free-position helpers.</p>
+      <p><code>List.script</code> defines <code>GameObjectList</code>, <code>PersonList</code>, <code>VehicleList</code>, <code>PathList</code>, and <code>SpawnPointList</code>. These are how scripts loop through matching world objects.</p>
+      <p><code>Spawn.script</code> and <code>Path.script</code> matter for callouts, traffic, escape routes, and map-driven behavior. Use these when a script needs to spawn or move objects based on map data.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Interface, Audio, Camera, and XMLGui",
+    tags: ["Interface", "Audio", "Camera", "XMLGui"],
+    body: `
+      <table>
+        <thead><tr><th>SDK File</th><th>Why It Matters</th></tr></thead>
+        <tbody>
+          <tr><td><code>Interface.script</code></td><td>Vehicle browser, message ticker, tutorial instructions, UI control, blinking order buttons, and player-facing notices.</td></tr>
+          <tr><td><code>Audio.script</code></td><td>Sound playback references for effects, dispatch, and command feedback.</td></tr>
+          <tr><td><code>Camera.script</code></td><td>Camera movement, following targets, looking at targets, and cinematic mission/tutorial control.</td></tr>
+          <tr><td><code>XMLGui.script</code></td><td>Custom game dialog support. Useful when exploring advanced UI, though freeplay UI support can be limited and finicky.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Enums and Support Files",
+    tags: ["enums", "equipment", "math"],
+    body: `
+      <p>Small SDK files are still important. They define the exact constants scripts expect.</p>
+      <ul>
+        <li><code>ActionInsertModes.script</code>: action queue insert modes like new list or append.</li>
+        <li><code>EActions.script</code>: action callback results.</li>
+        <li><code>EquipmentNames.script</code>: equipment type constants.</li>
+        <li><code>Vector.script</code> and <code>Math.script</code>: coordinates, directions, distance math, and helper calculations.</li>
+        <li><code>Weather.script</code>: weather control or checks.</li>
+        <li><code>ScriptSerializer.script</code>: saving and restoring script object references.</li>
       </ul>
     `
   },
