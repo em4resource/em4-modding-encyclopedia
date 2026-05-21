@@ -8,6 +8,8 @@ A GitHub Pages-ready encyclopedia for Emergency 4 modding. It is designed to fee
 - `assets/css/styles.css`: EM4-inspired menu styling.
 - `assets/js/app.js`: searchable article database and navigation.
 - `docs/getting-started.md`: beginner setup, installing mods, editor loading, and safe first edits.
+- `docs/base-game-folder-reference.md`: folder-by-folder explanation of the base game data structure.
+- `docs/site-design-notes.md`: explains how the site imitates the EM4 menu feel without redistributing game assets.
 - `docs/github-pages.md`: how to publish it on GitHub.
 - `docs/content-style.md`: how to add clean articles.
 - `docs/asset-notes.md`: how to handle EM4 screenshots and menu assets safely.

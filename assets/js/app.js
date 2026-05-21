@@ -69,6 +69,50 @@ const articles = [
   },
   {
     category: "Getting Started",
+    title: "Emergency 4 Editor Basics",
+    tags: ["editor", "beginner", "tools"],
+    body: `
+      <p>The editor is where most non-script modding happens. You use it to place map objects, create virtual objects, edit prototypes, assign commands, configure lights, add children, and save map changes.</p>
+      <ul>
+        <li>Prototype editing controls what an object is and what commands it has.</li>
+        <li>Map editing controls where objects, virtual objects, paths, spawn points, and streets exist.</li>
+        <li>Light editing controls vehicle lights, special lights, coronas, and scene lighting.</li>
+        <li>Child objects are attached props or equipment pieces that move with a parent prototype.</li>
+        <li>Fire objects define parts of a building or object that can burn.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Getting Started",
+    title: "Common Mod Install Problems",
+    tags: ["install", "troubleshooting", "mods"],
+    body: `
+      <ul>
+        <li>The mod folder is nested twice. The game cannot find <code>Specs</code>, <code>Scripts</code>, or <code>Prototypes</code> where it expects them.</li>
+        <li>The mod was installed for Emergency 4 Deluxe but you are using non-Deluxe, or the reverse.</li>
+        <li>A required patcher or dependency was not installed.</li>
+        <li>The game was installed in a protected folder and cannot write settings or save files.</li>
+        <li>A bad DDS/TGA icon or broken script causes the mod to crash while loading.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Getting Started",
+    title: "How to Ask for Help Effectively",
+    tags: ["support", "logfile", "community"],
+    body: `
+      <p>Good support posts save everyone time. Include what you changed, what you expected, what happened, and the relevant log lines.</p>
+      <ul>
+        <li>Say whether the issue happens in the editor, on mod load, or during gameplay.</li>
+        <li>Paste the exact script error and line number.</li>
+        <li>Mention the command, prototype, VO, or map object involved.</li>
+        <li>Say what you changed immediately before the bug started.</li>
+        <li>Do not only say "it crashes." The log and last changed file matter.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Getting Started",
     title: "First Safe Edit to Practice",
     tags: ["practice", "commands", "testing"],
     body: `
@@ -126,6 +170,133 @@ const articles = [
         <li><code>UI/Game/Icons/Cursor</code>: cursor icons shown when a command targets something.</li>
         <li><code>Audio/FX</code>: short wav effects and dispatch audio.</li>
       </ul>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "Base Game Data Folder Map",
+    tags: ["base game", "data", "folders"],
+    body: `
+      <p>The base game <code>Data</code> directory is the best map of how EM4 thinks. Your mod mirrors parts of this structure. If a file exists in the mod with the same path, the mod version can override or extend the base behavior.</p>
+      <ul>
+        <li><code>Audio</code>: base sounds, music, effects, sirens, screams, and UI clicks.</li>
+        <li><code>basedata</code>: lower-level game data used by the engine.</li>
+        <li><code>Emitters</code>: particle emitters such as smoke, fire, water, sparks, foam, and effects.</li>
+        <li><code>Fonts</code>: bitmap fonts and font definitions used by UI XML.</li>
+        <li><code>Lang</code>: translated strings, help text, UI labels, mission text, and language-specific XML.</li>
+        <li><code>Maps</code>: playable maps, editor map data, paths, spawn points, and map properties.</li>
+        <li><code>Models</code>: model geometry and texture references for persons, vehicles, objects, houses, and equipment.</li>
+        <li><code>Prototypes</code>: the actual editable entities the game spawns and the editor displays.</li>
+        <li><code>Scripts</code>: command scripts, mission scripts, editor tools, and startup logic.</li>
+        <li><code>Specs</code>: XML configuration for vehicles, portraits, materials, campaign, freeplay, controls, and parameters.</li>
+        <li><code>Textures</code>: shared map, terrain, object, and effect textures.</li>
+        <li><code>UI</code>: XML layouts, button states, icons, menus, minimap markers, and in-game windows.</li>
+        <li><code>Units</code>: unit browser entries, buy menu icons, equipment entries, portraits, and unit metadata.</li>
+        <li><code>Video</code>: menu and campaign video assets.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "Audio Folder Deep Dive",
+    tags: ["audio", "wav", "sirens"],
+    body: `
+      <p><code>Data/Audio</code> contains the game's sound world. Mods commonly add files under <code>Audio/FX</code> for dispatch clips, command sounds, sirens, UI confirmations, body camera beeps, tones, and roleplay radio traffic.</p>
+      <p>Use short, clearly named WAV files. Scripts should reference them with a mod path such as <code>mod:Audio/FX/EM4Resource/Dispatch_First_Alarm.wav</code>. If audio overlaps, combine the line into one WAV or add script delays before the next transmission.</p>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "Emitters Folder Deep Dive",
+    tags: ["emitters", "particles", "effects"],
+    body: `
+      <p><code>Data/Emitters</code> stores particle effect definitions. These are used for fire, smoke, explosions, sparks, water effects, foam, contamination, and visual atmosphere. When making hazmat, fire alarm, power outage, or explosion callouts, emitters are often the visible layer that sells the event.</p>
+      <p>Most modders do not start here. First learn prototypes and scripts, then come back when you need a custom visual effect.</p>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "Fonts and Language Files",
+    tags: ["fonts", "lang", "strings"],
+    body: `
+      <p><code>Data/Fonts</code> and <code>Data/Lang</code> control how text appears and what labels the game displays. EM4 uses bitmap font definitions, so the UI is much less flexible than a web page.</p>
+      <p>Language XML can hold command names, mission text, UI labels, help text, and descriptions. Hard-coded script text is faster for testing, but language files are cleaner when a project gets large or needs translation.</p>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "Maps Folder Deep Dive",
+    tags: ["maps", "paths", "spawnpoints", "VO"],
+    body: `
+      <p><code>Data/Maps</code> is where map files live. A map is more than terrain. It contains paths, streets, spawn points, entry and exit logic, virtual objects, object placement, fire objects, traffic lights, and editor metadata.</p>
+      <ul>
+        <li>Use paths for civilian traffic and scripted movement patterns.</li>
+        <li>Use spawn points and map exits for traffic and returning vehicles.</li>
+        <li>Use virtual objects for stations, callouts, search areas, parking spots, alarm zones, and control panels.</li>
+        <li>Use turn-to VOs when vehicles must face a specific direction.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "Models vs Prototypes",
+    tags: ["models", "prototypes", "e4p", "v3o"],
+    body: `
+      <p>A model is the visual asset. A prototype is the game object that uses the model. This distinction matters constantly.</p>
+      <ul>
+        <li><code>Models</code> usually holds visual geometry and texture references.</li>
+        <li><code>Prototypes</code> holds gameplay traits: commands, lights, doors, physics, child objects, unit type, and behavior.</li>
+        <li>If a vehicle looks wrong, inspect the model and texture.</li>
+        <li>If a vehicle behaves wrong, inspect the prototype and scripts.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "Specs Folder Deep Dive",
+    tags: ["specs", "xml", "configuration"],
+    body: `
+      <p><code>Data/Specs</code> is where many global rules live. The base game includes files for freeplay parameters, campaign parameters, vehicles, portraits, materials, keys, audio commands, and unit metadata.</p>
+      <ul>
+        <li><code>freeplayparameters.xml</code> and <code>fp_params_*.xml</code>: event timing, freeplay values, and event balancing.</li>
+        <li><code>vehicles.xml</code>: vehicle-related metadata used by unit systems.</li>
+        <li><code>portraits.xml</code>: portrait assignments.</li>
+        <li><code>materials.xml</code>: material behavior, resistance, and interaction values.</li>
+        <li><code>audiocommands.xml</code>: audio command definitions.</li>
+        <li><code>keys.xml</code>: key bindings.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "UI Folder Deep Dive",
+    tags: ["UI", "XML", "menus"],
+    body: `
+      <p><code>Data/UI</code> is where EM4's interface is built. The main menu uses XML layouts and DDS button states. The base main menu uses a 1024 by 768 dialog, cyan title text, compact font definitions, and button images with separate normal, hover, pressed, and disabled states.</p>
+      <p>Important naming pattern: <code>_on</code> is normal, <code>_ov</code> is hover, <code>_cl</code> is clicked or pressed, and <code>_dis</code> is disabled. This encyclopedia now follows that same idea in CSS instead of copying base-game images.</p>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "Units Folder Deep Dive",
+    tags: ["units", "browser", "equipment"],
+    body: `
+      <p><code>Data/Units</code> controls the unit browser presentation: icons, big images, portraits, and <code>unit.xml</code> files for personnel, vehicles, and equipment. This is separate from the prototype itself.</p>
+      <p>If a unit exists as a prototype but does not appear correctly in the buy menu, unit browser, or equipment menu, inspect <code>Units</code> and related specs rather than only the prototype.</p>
+    `
+  },
+  {
+    category: "Folder Structure",
+    title: "Scripts Folder Deep Dive",
+    tags: ["scripts", "command", "mission"],
+    body: `
+      <p><code>Data/Scripts</code> is split into editor scripts and game scripts. Game scripts are usually the ones modders edit.</p>
+      <ul>
+        <li><code>Scripts/Game/Command</code>: commands attached to prototypes, such as move, arrest, heal, enter car, get equipment, deploy objects, sirens, and custom roleplay actions.</li>
+        <li><code>Scripts/Game/Mission</code>: mission files, tutorial logic, numbered campaign missions, and freeplay startup/control scripts.</li>
+        <li><code>Scripts/startup.script</code>: startup logic loaded by the game.</li>
+      </ul>
+      <p>Command scripts are best for buttons. Mission/freeplay scripts are best for timers, global state, callouts, objectives, and startup behavior.</p>
     `
   },
   {
@@ -243,8 +414,23 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     title: "EM4 Menu Look",
     tags: ["design", "menu", "github pages"],
     body: `
-      <p>The base UI uses compact panels, beveled buttons, dark blue-grey surfaces, orange command highlights, and small dense typography. This encyclopedia recreates that feel with original CSS so it can be published publicly without redistributing base-game UI artwork.</p>
+      <p>The base UI uses compact panels, bevelled button images, cyan headers, white text, tight spacing, and separate button-state assets. Main menu buttons are arranged in opposing columns around the center of a 1024 by 768 layout. This encyclopedia recreates that feel with original CSS so it can be published publicly without redistributing base-game UI artwork.</p>
       <p>If this is for a private team repo, you can add your own screenshots or legally usable images later in <code>assets/img</code>.</p>
+    `
+  },
+  {
+    category: "UI and Icons",
+    title: "Base UI Files Used as Design Reference",
+    tags: ["main menu", "base UI", "design"],
+    body: `
+      <p>The encyclopedia style is based on the structure of the base game UI files, especially <code>Data/UI/Game/MainMenu/mainmenu.xml</code>, <code>mainmenu_templates.xml</code>, and <code>Data/UI/Game/BaseWindow/basewindow.xml</code>.</p>
+      <ul>
+        <li>The main menu dialog is built for <code>1024x768</code>.</li>
+        <li>Main menu buttons use separate image states: normal, hover, pressed, and disabled.</li>
+        <li>The base title color is a bright cyan tone.</li>
+        <li>Menu text uses tight spacing and compact Arial/Arial Black bitmap fonts.</li>
+        <li>Base windows use tabs, objective rows, toggle buttons, and dense text blocks.</li>
+      </ul>
     `
   },
   {
