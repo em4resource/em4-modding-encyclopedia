@@ -49,6 +49,29 @@ const articles = [
   },
   {
     category: "Start Here",
+    title: "Full Encyclopedia Roadmap",
+    tags: ["roadmap", "sections", "learning path"],
+    body: `
+      <p>This encyclopedia is organized so a new modder can move from basic context to actual creation work without needing to already know EM4 vocabulary.</p>
+      <table>
+        <thead><tr><th>Section</th><th>What It Teaches</th></tr></thead>
+        <tbody>
+          <tr><td>Start Here</td><td>What the game is, why it matters, history, community mods, and the core mental model.</td></tr>
+          <tr><td>Getting Started</td><td>Installing mods, loading the editor, reading logs, first safe edits, and beginner support habits.</td></tr>
+          <tr><td>Editor Manual</td><td>Official editor workflows: scene mode, terrain, prototypes, paths, streets, spawn points, VOs, triggers, materials, radar maps.</td></tr>
+          <tr><td>Mod Creation</td><td>How to build vehicles, persons, deployables, equipment, custom callouts, and debug which layer broke.</td></tr>
+          <tr><td>Folder Structure</td><td>What every major base game <code>Data</code> folder does and how mods mirror or override those folders.</td></tr>
+          <tr><td>SDK Reference</td><td>What the SDK files expose to scripts: <code>GameObject</code>, <code>Person</code>, <code>Vehicle</code>, <code>CommandScript</code>, <code>MissionScript</code>, UI, audio, camera, paths, and lists.</td></tr>
+          <tr><td>Scripting</td><td>Command anatomy, parser limits, action queues, dummy commands, and timing.</td></tr>
+          <tr><td>Maps</td><td>Virtual objects, paths, spawn points, exits, callout placement, and movement behavior.</td></tr>
+          <tr><td>UI and Icons</td><td>Command icons, cursors, DDS problems, and the base menu file structure.</td></tr>
+          <tr><td>Case Studies</td><td>Real examples such as fuel, water, MDT traffic stops, custody, alarms, and callout systems.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Start Here",
     title: "Recommended Modding Workflow",
     tags: ["testing", "backups", "debugging"],
     body: `
@@ -946,6 +969,24 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
 
 const categories = ["All", ...Array.from(new Set(articles.map(article => article.category)))];
 let activeCategory = "All";
+const categorySkins = {
+  "All": "menu-skin-campaign",
+  "Start Here": "menu-skin-campaign",
+  "Getting Started": "menu-skin-freeplay",
+  "Editor Manual": "menu-skin-multiplayer",
+  "Mod Creation": "menu-skin-mods",
+  "Folder Structure": "menu-skin-options",
+  "SDK Reference": "menu-skin-loadsave",
+  "Scripting": "menu-skin-credits",
+  "Maps": "menu-skin-exit",
+  "Prototypes": "menu-skin-campaign",
+  "UI and Icons": "menu-skin-freeplay",
+  "Audio": "menu-skin-multiplayer",
+  "Freeplay and Missions": "menu-skin-mods",
+  "Case Studies": "menu-skin-options",
+  "Troubleshooting": "menu-skin-loadsave",
+  "GitHub": "menu-skin-credits"
+};
 
 const categoryList = document.getElementById("categoryList");
 const articleGrid = document.getElementById("articleGrid");
@@ -978,7 +1019,7 @@ function renderCategories() {
   categories.forEach(category => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = `menu-button${category === activeCategory ? " active" : ""}`;
+    button.className = `menu-button ${categorySkins[category] || "menu-skin-mods"}${category === activeCategory ? " active" : ""}`;
     button.textContent = category;
     button.addEventListener("click", () => {
       activeCategory = category;
