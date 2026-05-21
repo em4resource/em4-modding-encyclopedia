@@ -13,6 +13,7 @@ A GitHub Pages-ready encyclopedia for Emergency 4 modding. It is designed to fee
 - `docs/editor-manual-reference.md`: official editor manual concepts summarized into practical modding notes.
 - `docs/base-game-folder-reference.md`: folder-by-folder explanation of the base game data structure.
 - `docs/sdk-reference.md`: explanation of the SDK files and major script API classes.
+- `docs/sdk-deep-dive.md`: practical SDK usage guide for GameObject, Person, Vehicle, Game, Mission, Interface, and action queues.
 - `docs/history-and-community.md`: game history and important community mod context.
 - `docs/site-design-notes.md`: explains how the site imitates the EM4 menu feel without redistributing game assets.
 - `docs/github-pages.md`: how to publish it on GitHub.

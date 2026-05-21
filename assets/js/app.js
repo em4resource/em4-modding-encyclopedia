@@ -1,11 +1,12 @@
 const articles = [
   {
     category: "Start Here",
-    title: "What This Encyclopedia Is For",
-    tags: ["workflow", "beginner", "reference"],
+    title: "Command Briefing",
+    tags: ["game overview", "beginner", "encyclopedia"],
     body: `
-      <p>This project is a practical Emergency 4 modding reference. It is meant to explain how EM4 thinks: prototypes define things, maps place things, scripts command things, specs tune systems, and UI/audio make the player understand what happened.</p>
-      <p>The site is built as plain HTML, CSS, and JavaScript so it works on GitHub Pages without a build step. Open <code>index.html</code> locally or publish this folder as a repository.</p>
+      <p><code>Emergency 4</code>, released in North America as <code>911: First Responders</code>, is a real-time incident command game. You dispatch and coordinate fire, police, EMS, and technical rescue resources across structure fires, medical emergencies, traffic accidents, criminal incidents, disasters, hazardous materials, rescues, and scripted campaign events.</p>
+      <p>This encyclopedia is built for people who want to understand how the game works under the hood and create their own modifications. It explains the editor, base game folder structure, prototypes, maps, scripts, the SDK, command icons, audio, callouts, stations, freeplay systems, and common crash patterns.</p>
+      <p>Use the menu on the left like the in-game modification menu. Start with the editor and folder structure if you are new. Use the SDK and scripting sections when you are ready to create commands, missions, callouts, or deeper roleplay systems.</p>
     `
   },
   {
@@ -49,29 +50,6 @@ const articles = [
   },
   {
     category: "Start Here",
-    title: "Full Encyclopedia Roadmap",
-    tags: ["roadmap", "sections", "learning path"],
-    body: `
-      <p>This encyclopedia is organized so a new modder can move from basic context to actual creation work without needing to already know EM4 vocabulary.</p>
-      <table>
-        <thead><tr><th>Section</th><th>What It Teaches</th></tr></thead>
-        <tbody>
-          <tr><td>Start Here</td><td>What the game is, why it matters, history, community mods, and the core mental model.</td></tr>
-          <tr><td>Getting Started</td><td>Installing mods, loading the editor, reading logs, first safe edits, and beginner support habits.</td></tr>
-          <tr><td>Editor Manual</td><td>Official editor workflows: scene mode, terrain, prototypes, paths, streets, spawn points, VOs, triggers, materials, radar maps.</td></tr>
-          <tr><td>Mod Creation</td><td>How to build vehicles, persons, deployables, equipment, custom callouts, and debug which layer broke.</td></tr>
-          <tr><td>Folder Structure</td><td>What every major base game <code>Data</code> folder does and how mods mirror or override those folders.</td></tr>
-          <tr><td>SDK Reference</td><td>What the SDK files expose to scripts: <code>GameObject</code>, <code>Person</code>, <code>Vehicle</code>, <code>CommandScript</code>, <code>MissionScript</code>, UI, audio, camera, paths, and lists.</td></tr>
-          <tr><td>Scripting</td><td>Command anatomy, parser limits, action queues, dummy commands, and timing.</td></tr>
-          <tr><td>Maps</td><td>Virtual objects, paths, spawn points, exits, callout placement, and movement behavior.</td></tr>
-          <tr><td>UI and Icons</td><td>Command icons, cursors, DDS problems, and the base menu file structure.</td></tr>
-          <tr><td>Case Studies</td><td>Real examples such as fuel, water, MDT traffic stops, custody, alarms, and callout systems.</td></tr>
-        </tbody>
-      </table>
-    `
-  },
-  {
-    category: "Start Here",
     title: "Recommended Modding Workflow",
     tags: ["testing", "backups", "debugging"],
     body: `
@@ -82,6 +60,25 @@ const articles = [
         <li>If the game crashes with no useful error, temporarily remove the newest DDS/TGA icons and the newest script first.</li>
         <li>When a script works, save a clean backup before adding more features.</li>
       </ul>
+    `
+  },
+  {
+    category: "Start Here",
+    title: "Encyclopedia Sections",
+    tags: ["roadmap", "sections", "learning path"],
+    body: `
+      <p>The encyclopedia is organized so you can open only the area you need from the left menu.</p>
+      <table>
+        <thead><tr><th>Section</th><th>Use It For</th></tr></thead>
+        <tbody>
+          <tr><td>Getting Started</td><td>Installing mods, loading the editor, reading logs, first safe edits, and beginner workflow.</td></tr>
+          <tr><td>Editor Manual</td><td>Scene mode, terrain, prototypes, paths, streets, spawn points, VOs, triggers, materials, radar maps.</td></tr>
+          <tr><td>Mod Creation</td><td>Building vehicles, persons, deployables, equipment, custom callouts, and debugging broken layers.</td></tr>
+          <tr><td>Folder Structure</td><td>What every major base game <code>Data</code> folder does and how mods mirror those folders.</td></tr>
+          <tr><td>SDK Reference</td><td>What the SDK exposes to scripts: objects, persons, vehicles, commands, missions, UI, audio, camera, paths, and lists.</td></tr>
+          <tr><td>Scripting</td><td>Command anatomy, parser limits, action queues, dummy commands, and timing.</td></tr>
+        </tbody>
+      </table>
     `
   },
   {
@@ -532,6 +529,22 @@ const articles = [
   },
   {
     category: "SDK Reference",
+    title: "SDK Reading Strategy",
+    tags: ["SDK", "workflow", "how to read"],
+    body: `
+      <p>The SDK files are not tutorials. They are declarations: they show names, parameters, return types, enums, and class relationships. Read them like a map of what scripts are allowed to call.</p>
+      <ul>
+        <li>Use <code>Command.script</code> when a button will not appear or target correctly.</li>
+        <li>Use <code>GameObject.script</code> when you need movement, actions, lights, flags, equipment, fire, physics, or command assignment.</li>
+        <li>Use <code>Person.script</code> for health, arrest, behavior, contamination, equipment location, dogs, and person roles.</li>
+        <li>Use <code>Vehicle.script</code> for passengers, transports, doors, lights, sirens, vehicle type, hose connectors, and return behavior.</li>
+        <li>Use <code>Game.script</code> for creating objects, finding objects, checking VOs/triggers, and global game state.</li>
+        <li>Use <code>Mission.script</code> for timers, objectives, cutscenes, comments, hints, counters, and mission success/failure logic.</li>
+      </ul>
+    `
+  },
+  {
+    category: "SDK Reference",
     title: "Core SDK Classes",
     tags: ["Actor", "GameObject", "Person", "Vehicle"],
     body: `
@@ -549,12 +562,148 @@ const articles = [
   },
   {
     category: "SDK Reference",
+    title: "GameObject: The Main Workhorse",
+    tags: ["GameObject", "actions", "commands"],
+    body: `
+      <p><code>GameObject</code> is the base gameplay class for most things you touch in scripts. It handles command assignment, placement, position, rotation, equipment, flags, fire, particle effects, physics, lights, children, range checks, and action queues.</p>
+      <h3>Common categories</h3>
+      <ul>
+        <li>Commands: <code>AssignCommand</code>, <code>RemoveCommand</code>, <code>EnableCommand</code>, <code>DisableAllCommands</code>, <code>HasCommand</code>, <code>SetCommandable</code>.</li>
+        <li>Position and rotation: <code>SetPosition</code>, <code>GetPosition</code>, <code>SetRotation</code>, <code>GetRotation</code>, <code>SetLookatDir</code>.</li>
+        <li>Equipment: <code>SetEquipment</code>, <code>GetEquipment</code>, <code>RemoveEquipment</code>.</li>
+        <li>Fire: <code>Burn</code>, <code>StopBurning</code>, <code>IsBurning</code>, <code>SetFireObjectBurning</code>, <code>GetFireChild</code>.</li>
+        <li>Lights: <code>EnableBlueLights</code>, <code>EnableHeadLights</code>, <code>EnableSpecialLights</code>, <code>EnableTrafficLight</code>, <code>EnableBlinker</code>.</li>
+        <li>Children: <code>HasChild</code>, <code>SetChildEnabled</code>, <code>IsChildEnabled</code>, <code>GetChildPosition</code>.</li>
+        <li>Triggers and VOs: <code>IsCollidingWithTrigger</code>, <code>IsCollidingWithVirtualObject</code>, <code>ActivateTrigger</code>, <code>DeactivateTrigger</code>.</li>
+      </ul>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "GameObject Flags",
+    tags: ["flags", "equipment", "objects"],
+    body: `
+      <p>Flags are bit values stored on objects. They define behavior and available equipment. Many base commands rely on flags and command restrictions matching each other.</p>
+      <table>
+        <thead><tr><th>Flag</th><th>Meaning</th><th>Common Use</th></tr></thead>
+        <tbody>
+          <tr><td><code>OF_USABLE</code></td><td>Object can be used.</td><td>Special-use objects, panels, bomb targets.</td></tr>
+          <tr><td><code>OF_ACCESSIBLE</code></td><td>Object can be entered.</td><td>Houses and enterable objects.</td></tr>
+          <tr><td><code>OF_COOLABLE</code></td><td>Object can be cooled.</td><td>Firefighting and exposure protection.</td></tr>
+          <tr><td><code>OF_SHOOTABLE</code></td><td>Object can be shot at.</td><td>Police weapon logic.</td></tr>
+          <tr><td><code>OF_HAS_SHEARS</code></td><td>Object carries jaws of life.</td><td>Rescue vehicles or tool tarps.</td></tr>
+          <tr><td><code>OF_HAS_CHAINSAW</code></td><td>Object carries chainsaws.</td><td>Fire/rescue equipment sources.</td></tr>
+          <tr><td><code>OF_HAS_HOSE</code></td><td>Object carries fire hoses.</td><td>Engines and hose equipment.</td></tr>
+          <tr><td><code>OF_HAS_FIREAXE</code></td><td>Object carries axes.</td><td>Firefighter equipment source.</td></tr>
+          <tr><td><code>OF_HIDDEN</code></td><td>Object is invisible.</td><td>Hidden patients, staged logic, markers.</td></tr>
+          <tr><td><code>OF_BLOCKED</code></td><td>No interaction with object.</td><td>Temporarily disabling interaction.</td></tr>
+        </tbody>
+      </table>
+      <p>Useful methods include <code>IsFlagSet</code>, <code>SetFlag</code>, <code>ClearFlag</code>, <code>ToggleFlag</code>, <code>GetFlags</code>, and <code>SetFlags</code>.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Action Queue Fundamentals",
+    tags: ["actions", "PushAction", "timing"],
+    body: `
+      <p>Most EM4 behavior is an action queue. Scripts do not usually teleport through a whole sequence at once. They push a chain of actions onto a person, vehicle, or object.</p>
+      <ul>
+        <li><code>ACTION_NEWLIST</code> clears the current queue and starts over.</li>
+        <li><code>ACTION_APPEND</code> adds a step after existing queued steps.</li>
+        <li><code>ClearActions</code> stops the current queue.</li>
+        <li><code>PushActionWait</code> is essential for timing animations, audio, vehicle loading, and staged roleplay.</li>
+        <li><code>PushActionExecuteCommand</code> lets a dummy command run later after movement or waiting finishes.</li>
+      </ul>
+      <pre><code>p.PushActionMove(ACTION_NEWLIST, TargetPos);
+p.PushActionTurnTo(ACTION_APPEND, Target);
+p.PushActionWait(ACTION_APPEND, 2.5f);
+p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", Target, 0, false);</code></pre>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Common PushAction Families",
+    tags: ["PushAction", "movement", "equipment"],
+    body: `
+      <table>
+        <thead><tr><th>Family</th><th>Methods</th><th>Use Cases</th></tr></thead>
+        <tbody>
+          <tr><td>Movement</td><td><code>PushActionMove</code>, <code>PushActionMoveFollow</code>, <code>PushActionUsePath</code>, <code>PushActionReturnToBase</code></td><td>Move units, follow targets, use paths, leave map.</td></tr>
+          <tr><td>Vehicle entry</td><td><code>PushActionEnterCar</code>, <code>PushActionLeaveCar</code>, <code>PushActionPutInCar</code></td><td>Loading crews, unloading officers, transporting suspects.</td></tr>
+          <tr><td>Equipment</td><td><code>PushActionGetEquipment</code>, <code>PushActionRemoveEquipment</code>, <code>PushActionUseEquipment</code></td><td>Shears, chainsaw, spineboard-like flows, tool use animations.</td></tr>
+          <tr><td>Fire/EMS</td><td><code>PushActionExtinguish</code>, <code>PushActionCool</code>, <code>PushActionHeal</code>, <code>PushActionCannonExtinguish</code></td><td>Suppression, cooling, treatment, water cannon logic.</td></tr>
+          <tr><td>Police</td><td><code>PushActionArrest</code>, <code>PushActionAim</code>, <code>PushActionShoot</code>, <code>PushActionRelease</code></td><td>Arrest, weapon aiming, shooting, release.</td></tr>
+          <tr><td>Special units</td><td><code>PushActionInstall</code>, <code>PushActionDeinstall</code>, <code>PushActionFlyTo</code>, <code>PushActionDogSearch</code></td><td>Deployables, helicopters, rescue dog searches.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "SDK Reference",
     title: "CommandScript and MissionScript",
     tags: ["CommandScript", "MissionScript", "scripts"],
     body: `
       <p><code>Command.script</code> defines <code>CommandScript</code>, restrictions, command groups, move modes, and command behavior. This is the reference for person, vehicle, and object buttons.</p>
       <p><code>Mission.script</code> defines <code>MissionScript</code>, mission states, scoring, mission time, objectives, mission results, and callback behavior. This is the reference for larger scenario logic.</p>
       <p>Use command scripts when the player presses a button. Use mission/freeplay scripts when the world needs to run logic by itself: timers, callout schedulers, objectives, mission completion, or global event state.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "CommandScript Restrictions and Visibility",
+    tags: ["CommandScript", "restrictions", "buttons"],
+    body: `
+      <p><code>CommandScript</code> controls how a command appears, what it can target, and how it behaves in the command menu. The SDK exposes restrictions, possible callers, possible world conditions, groups, priority, icons, and cursors.</p>
+      <ul>
+        <li><code>SetIcon</code> and <code>SetCursor</code> must match files in the UI icon folders.</li>
+        <li><code>SetRestrictions</code> and <code>AddRestriction</code> connect a command to target state, such as injured, arrested, usable, burning, accessible, or self-execute.</li>
+        <li><code>SetPossibleCallers</code> narrows which actor types can use the command.</li>
+        <li><code>SetValidTargets</code> narrows target actor types.</li>
+        <li><code>SetPriority</code> influences which command the game prefers when multiple commands can target the same object.</li>
+        <li><code>SetGroupID</code> and <code>SetGroupLeader</code> are used to organize command menus.</li>
+      </ul>
+      <p>If a command appears first when it should not, check priority, restrictions, and whether its target checks are too broad.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Person SDK Deep Dive",
+    tags: ["Person", "health", "police", "EMS"],
+    body: `
+      <p><code>Person</code> controls health, injury, contamination, arrest, behavior, equipment, dogs, messages, houses, and person type.</p>
+      <table>
+        <thead><tr><th>Category</th><th>Methods / Enums</th><th>Example Use</th></tr></thead>
+        <tbody>
+          <tr><td>Health</td><td><code>GetLife</code>, <code>SetLife</code>, <code>Heal</code>, <code>Injure</code>, <code>Kill</code>, <code>Revive</code></td><td>Patient care, CPR, comatose state, death, recovery.</td></tr>
+          <tr><td>State checks</td><td><code>IsInjured</code>, <code>IsComatose</code>, <code>IsDead</code>, <code>GetState</code></td><td>Decide what treatment or coroner logic is allowed.</td></tr>
+          <tr><td>Arrest</td><td><code>Arrested</code>, <code>IsArrested</code>, <code>GetArrested</code></td><td>Custody, suspect transport, handcuff states.</td></tr>
+          <tr><td>Behavior</td><td><code>SetBehaviour</code>, <code>SetFleeing</code>, <code>SetCivilsFleeing</code></td><td>Suspects, panic civilians, traffic stop occupants.</td></tr>
+          <tr><td>Roles/types</td><td><code>GetRole</code>, <code>SetRole</code>, <code>GetPersonType</code>, <code>IsDoctor</code>, <code>IsEngineer</code></td><td>Restrict commands to police, firefighters, medics, engineers.</td></tr>
+          <tr><td>Equipment visuals</td><td><code>PlaceObjectInRightHand</code>, <code>RemoveObjectInRightHand</code>, <code>SetObjectToEquipmentLocation</code></td><td>Long gun, radio, tool, frisk animation props.</td></tr>
+          <tr><td>Dogs</td><td><code>IsRescueDog</code>, <code>SetFoundByDog</code>, <code>PushActionDogSearch</code></td><td>Missing person and search callouts.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Vehicle SDK Deep Dive",
+    tags: ["Vehicle", "passengers", "transports"],
+    body: `
+      <p><code>Vehicle</code> controls vehicle energy, damage, passengers, transported patients/suspects, doors, vehicle type, landing logic, hose connectors, vehicle categories, and siren files.</p>
+      <table>
+        <thead><tr><th>Category</th><th>Methods</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>Passengers</td><td><code>GetPassengers</code>, <code>AddPassenger</code>, <code>RemovePassenger</code>, <code>GetFreePassengers</code></td><td>Crew spawning, occupied checks, deploy officer commands.</td></tr>
+          <tr><td>Transports</td><td><code>GetTransports</code>, <code>AddTransport</code>, <code>RemoveTransport</code>, <code>GetFreeTransports</code></td><td>Ambulance patients, arrested suspects, coroner transport.</td></tr>
+          <tr><td>Vehicle type</td><td><code>GetVehicleType</code>, <code>SetVehicleRole</code>, <code>IsPolice</code>, <code>IsFirefighter</code>, <code>IsAmbulance</code></td><td>Command availability and special behavior.</td></tr>
+          <tr><td>Doors</td><td><code>PlayAnimOpenDoor</code>, <code>PlayAnimCloseDoor</code></td><td>Equipment doors, person doors, visual polish.</td></tr>
+          <tr><td>Connectors</td><td><code>IsConnectorFree</code>, <code>GetUsedConnectorPosition</code>, <code>IsUsingConnector</code></td><td>Fire hose and tanker/engine water supply logic.</td></tr>
+          <tr><td>Damage</td><td><code>SetEnergy</code>, <code>GetEnergy</code>, <code>Damage</code>, <code>Destroy</code>, <code>SetSmoking</code></td><td>Crashes, fires, vehicle hazards.</td></tr>
+          <tr><td>Special</td><td><code>FindReachablePosition</code>, <code>CheckUnloadPossible</code>, <code>SetSirenFile</code></td><td>Safe unloading, siren customization, pathing decisions.</td></tr>
+        </tbody>
+      </table>
     `
   },
   {
@@ -569,6 +718,56 @@ const articles = [
   },
   {
     category: "SDK Reference",
+    title: "Game Namespace Deep Dive",
+    tags: ["Game", "global functions", "VO"],
+    body: `
+      <p>The <code>Game</code> namespace is the global toolbox. It creates objects, finds objects, executes commands, checks map areas, controls triggers, manages time, and queries game mode.</p>
+      <ul>
+        <li>Creation: <code>CreateObject</code>, <code>CreatePerson</code>, <code>CreateVehicle</code>, <code>RemoveGameObject</code>.</li>
+        <li>Search: <code>GetGameObjects</code>, <code>GetGameObjectsWithPrefix</code>, <code>GetSelectedGameObjects</code>, <code>GetActors</code>.</li>
+        <li>Command execution: <code>ExecuteCommand</code>.</li>
+        <li>Area checks: <code>CollectObstaclesOnVirtualObject</code>, <code>IsSquadInVirtualObject</code>, <code>IsCivilianInVirtualObject</code>, <code>IsBurningObjectInVirtualObject</code>.</li>
+        <li>Positioning: <code>FindFreePosition</code>, <code>FindAvailablePosition</code>, <code>GetGroundHeight</code>.</li>
+        <li>Triggers and liquids: <code>ActivateTrigger</code>, <code>DeactivateTrigger</code>, <code>ActivateLiquid</code>, <code>DeactivateLiquid</code>.</li>
+        <li>Mode checks: <code>IsFreeplay</code>, <code>IsMultiplayer</code>, <code>IsCampaign</code>, <code>IsMission</code>.</li>
+      </ul>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Lists and Safe Iteration",
+    tags: ["lists", "iteration", "objects"],
+    body: `
+      <p>EM4 list classes wrap groups of actors. You usually get a count, loop from zero, then pull each object pointer.</p>
+      <pre><code>GameObjectList l = Game::GetGameObjectsWithPrefix("homicide_lead");
+for (int i = 0; i &lt; l.GetNumObjects(); i++)
+{
+    GameObject *obj = l.GetObject(i);
+    if (!obj || !obj-&gt;IsValid())
+        continue;
+    // use obj safely here
+}</code></pre>
+      <p>Important list classes include <code>ActorList</code>, <code>GameObjectList</code>, <code>PersonList</code>, <code>VehicleList</code>, <code>FireObjectList</code>, <code>PathList</code>, and <code>SpawnPointList</code>.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Mission Namespace Deep Dive",
+    tags: ["Mission", "timers", "objectives"],
+    body: `
+      <p><code>Mission</code> is where mission/freeplay scenario control becomes possible. It exposes objectives, timers, counters, cutscenes, comments, hints, ticker text, money, countdowns, and mission scoring.</p>
+      <ul>
+        <li>Objectives: <code>AddObjective</code>, <code>RemoveObjective</code>, <code>SetObjectiveAccomplished</code>, <code>AllObjectivesAccomplished</code>.</li>
+        <li>Timers: <code>StartSingleTimer</code>, <code>StartIntervalTimer</code>, <code>StopTimer</code>, <code>TimerIsStarted</code>.</li>
+        <li>Counters: <code>GetCounter</code>, <code>IncCounter</code>, <code>SetCounter</code>, <code>ResetCounters</code>.</li>
+        <li>Cutscenes: <code>StartCutScene</code>, <code>EndCutScene</code>, <code>ShowBlackBars</code>, <code>HideBlackBars</code>.</li>
+        <li>Player feedback: <code>PlayHint</code>, <code>ShowMessageTickerText</code>, <code>PlayComment</code>.</li>
+      </ul>
+      <p>Custom callouts should usually use timers and counters instead of running heavy checks constantly.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
     title: "Interface, Audio, Camera, and XMLGui",
     tags: ["Interface", "Audio", "Camera", "XMLGui"],
     body: `
@@ -579,6 +778,52 @@ const articles = [
           <tr><td><code>Audio.script</code></td><td>Sound playback references for effects, dispatch, and command feedback.</td></tr>
           <tr><td><code>Camera.script</code></td><td>Camera movement, following targets, looking at targets, and cinematic mission/tutorial control.</td></tr>
           <tr><td><code>XMLGui.script</code></td><td>Custom game dialog support. Useful when exploring advanced UI, though freeplay UI support can be limited and finicky.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "ScriptInterface Deep Dive",
+    tags: ["Interface", "ticker", "UI"],
+    body: `
+      <p><code>ScriptInterface</code> controls in-game interface pieces: map, radar, navigator, info bar, vehicle browser, briefing, tips, action bar, objectives, tutorial overlays, notices, blinking buttons, current commands, ticker text, and radar texture.</p>
+      <p>For roleplay scripts, the most useful functions are usually <code>ShowMessageTickerTextForAll</code>, <code>ShowMessageTickerTextForSinglePlayer</code>, <code>BlinkPopupMenuCommand</code>, <code>SetCurrentCommand</code>, and vehicle browser controls.</p>
+      <p>Use <code>Mission::ShowMessageTickerText</code> or <code>ScriptInterface::ShowMessageTickerTextForAll</code> when the player needs a persistent top-bar style update. Use <code>Game::ShowHelpTextWindow</code> when the player needs white on-screen text.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "Light and Visual Control",
+    tags: ["lights", "effects", "visuals"],
+    body: `
+      <p>Light functions are on <code>GameObject</code>, which means they can apply to vehicles and many objects.</p>
+      <ul>
+        <li><code>EnableBlueLights</code>: emergency warning lights.</li>
+        <li><code>EnableHeadLights</code>: headlights.</li>
+        <li><code>EnableBrakeLights</code>: brake lights.</li>
+        <li><code>EnableSpecialLights</code>: special prototype lights, useful for deployable lights, alarm panels, drones, or scene objects.</li>
+        <li><code>EnableTrafficLight</code>: can force traffic light behavior such as red, yellow, or green.</li>
+        <li><code>EnableBlinker</code>: left, right, or both blinkers.</li>
+        <li><code>SetLightEnabled</code>: toggles a specific light by ID.</li>
+      </ul>
+      <p>For power outage, alarm, roadside light, and station scripts, special lights are usually the cleanest visual toggle.</p>
+    `
+  },
+  {
+    category: "SDK Reference",
+    title: "SDK Patterns Used by Roleplay Scripts",
+    tags: ["patterns", "roleplay", "examples"],
+    body: `
+      <table>
+        <thead><tr><th>Roleplay Feature</th><th>SDK Tools</th></tr></thead>
+        <tbody>
+          <tr><td>Traffic stop</td><td><code>Vehicle</code> passengers/transports, <code>GameObject</code> lights/actions, <code>Game</code> commands, <code>Mission</code> ticker.</td></tr>
+          <tr><td>Advanced custody</td><td>Dummy commands as state markers, <code>PushActionEnterCar</code>, <code>PushActionPutInCar</code>, <code>PushActionReturnToBase</code>, VOs.</td></tr>
+          <tr><td>Homicide callout</td><td><code>CreatePerson</code>, <code>CreateObject</code>, <code>SetBloodPuddle</code>, timers, objectives, detective command.</td></tr>
+          <tr><td>Fire alarm panel</td><td>VO object searches, <code>EnableSpecialLights</code>, separate acknowledge/silence commands, burning object checks.</td></tr>
+          <tr><td>Fuel/water systems</td><td>Dummy state commands, command restrictions, vehicle checks, help text, ticker updates.</td></tr>
+          <tr><td>Deployable equipment</td><td><code>CreateObject</code> or <code>CreateVehicle</code>, <code>FindFreePosition</code>, rotate/remove commands, equipment flags.</td></tr>
         </tbody>
       </table>
     `
@@ -968,25 +1213,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
 ];
 
 const categories = ["All", ...Array.from(new Set(articles.map(article => article.category)))];
-let activeCategory = "All";
-const categorySkins = {
-  "All": "menu-skin-campaign",
-  "Start Here": "menu-skin-campaign",
-  "Getting Started": "menu-skin-freeplay",
-  "Editor Manual": "menu-skin-multiplayer",
-  "Mod Creation": "menu-skin-mods",
-  "Folder Structure": "menu-skin-options",
-  "SDK Reference": "menu-skin-loadsave",
-  "Scripting": "menu-skin-credits",
-  "Maps": "menu-skin-exit",
-  "Prototypes": "menu-skin-campaign",
-  "UI and Icons": "menu-skin-freeplay",
-  "Audio": "menu-skin-multiplayer",
-  "Freeplay and Missions": "menu-skin-mods",
-  "Case Studies": "menu-skin-options",
-  "Troubleshooting": "menu-skin-loadsave",
-  "GitHub": "menu-skin-credits"
-};
+let activeCategory = "Start Here";
 
 const categoryList = document.getElementById("categoryList");
 const articleGrid = document.getElementById("articleGrid");
@@ -1019,7 +1246,7 @@ function renderCategories() {
   categories.forEach(category => {
     const button = document.createElement("button");
     button.type = "button";
-    button.className = `menu-button ${categorySkins[category] || "menu-skin-mods"}${category === activeCategory ? " active" : ""}`;
+    button.className = `menu-button${category === activeCategory ? " active" : ""}`;
     button.textContent = category;
     button.addEventListener("click", () => {
       activeCategory = category;
