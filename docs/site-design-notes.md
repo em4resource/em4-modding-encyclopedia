@@ -19,9 +19,10 @@ Useful observations:
 - Button file names commonly use `_on`, `_ov`, `_cl`, and `_dis`.
 - Text is dense, with tight spacing.
 - Base windows use compact tabs, objective rows, toggles, and scrollable content.
+- The menu presentation feels like an in-game terminal or command interface rather than a modern documentation website.
 
 ## Public Repository Safety
 
-The site imitates the EM4 menu style with original CSS. It does not include the base game's DDS menu files.
+The site now uses converted PNG versions of the base game's DDS UI files for a closer 911: First Responders / EM4 menu match. It also keeps CSS fallback styling for layout, text, and responsiveness.
 
-That makes it safer to publish publicly on GitHub. If you want screenshots or original game art in the future, only add assets you have permission to publish.
+This is visually more accurate, but less safe for a public GitHub repository. If the repo is public, only publish the converted game UI assets if you are comfortable with the copyright risk or have permission.
