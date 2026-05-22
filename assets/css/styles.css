@@ -242,7 +242,7 @@ body {
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  margin-top: 16px;
+  margin-bottom: 16px;
   border: 1px solid #aeb9ff;
   border-radius: 999px 18px 18px 999px;
   padding: 12px 13px;
