@@ -238,6 +238,65 @@ body {
   background: #91171b;
 }
 
+.discord-bubble {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 16px;
+  border: 1px solid #aeb9ff;
+  border-radius: 999px 18px 18px 999px;
+  padding: 12px 13px;
+  background: linear-gradient(135deg, #eef1ff 0%, #f8f9ff 54%, #e9edff 100%);
+  box-shadow: 0 10px 24px rgba(88, 101, 242, 0.18);
+}
+
+.discord-bubble-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #5865f2;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 900;
+  box-shadow: 0 6px 14px rgba(88, 101, 242, 0.28);
+}
+
+.discord-bubble h2 {
+  margin: 0;
+  color: #2430a8;
+  font-size: 0.92rem;
+  line-height: 1.2;
+}
+
+.discord-bubble p {
+  margin: 5px 0 0;
+  color: #374064;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.discord-bubble a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  margin-top: 9px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #5865f2;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.discord-bubble a:hover {
+  background: #4752c4;
+}
+
 .content-panel {
   min-height: calc(100vh - 150px);
   border: 1px solid var(--border);
