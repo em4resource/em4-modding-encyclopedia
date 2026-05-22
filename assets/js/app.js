@@ -4,39 +4,33 @@ const articles = [
     title: "Command Briefing",
     tags: ["game overview", "beginner", "encyclopedia"],
     body: `
-      <p><code>Emergency 4</code>, released in North America as <code>911: First Responders</code>, is a real-time incident command game. You dispatch and coordinate fire, police, EMS, and technical rescue resources across structure fires, medical emergencies, traffic accidents, criminal incidents, disasters, hazardous materials, rescues, and scripted campaign events.</p>
-      <p>This encyclopedia is built for people who want to understand how the game works under the hood and create their own modifications. It explains the editor, base game folder structure, prototypes, maps, scripts, the SDK, command icons, audio, callouts, stations, freeplay systems, and common crash patterns.</p>
-      <p>Use the menu on the left like the in-game modification menu. Start with the editor and folder structure if you are new. Use the SDK and scripting sections when you are ready to create commands, missions, callouts, or deeper roleplay systems.</p>
-    `
-  },
-  {
-    category: "Start Here",
-    title: "What Emergency 4 / 911: First Responders Is",
-    tags: ["history", "game overview", "incident command"],
-    body: `
-      <p><code>Emergency 4: Global Fighters for Life</code>, known in North America as <code>911: First Responders</code>, is a real-time emergency management game about commanding police, fire, EMS, and technical rescue units at incidents. The player is not one firefighter or one officer. The player is the incident commander directing units, vehicles, equipment, rescue, stabilization, arrests, evacuation, and transport.</p>
-      <p>The base game includes campaign missions, freeplay, multiplayer, and a moddable file structure. Its long life comes from the editor, script system, prototype system, and community-made modifications that turned the game into local fire departments, police agencies, EMS systems, custom maps, and detailed roleplay environments.</p>
-      <p>For modding, the important mindset is this: EM4 is not a modern sandbox engine. It is an older game with strict file paths, picky scripts, fragile UI assets, and a surprisingly powerful command/action system once you learn its rules.</p>
-    `
-  },
-  {
-    category: "Start Here",
-    title: "Short History and Community Context",
-    tags: ["history", "community mods", "timeline"],
-    body: `
-      <p><code>Emergency 4</code> released in Europe in 2006, while <code>911: First Responders</code> became the North American title in 2007. The Deluxe version added extra content and voice-command support. The game became a long-running modding platform because it allowed custom vehicles, personnel, maps, missions, UI, sounds, commands, and freeplay systems.</p>
-      <p>Community history matters because many modern EM4 ideas came from famous mods. The Los Angeles Mod brought a large American freeplay experience with stations, hospital, police station, new equipment, new commands, sirens, missions, and more than 50 playable units. Other well-known projects in the wider scene include Winterberg, London Mod, Manhattan Mod, Montana Mod, West Falls Township, West Lampeter, and Bieberfelde Multiplayer.</p>
-      <p>This encyclopedia should teach the base game first, then show how large mods build layered roleplay systems on top of it.</p>
+      <p><code>Emergency 4: Global Fighters for Life</code>, released in North America as <code>911: First Responders</code>, is a real-time emergency management game about commanding fire, EMS, police, and technical rescue resources. The player coordinates units, vehicles, equipment, rescues, arrests, evacuation, treatment, transport, and incident resolution from an overhead command view.</p>
+      <p>The game remains active because its editor, prototype system, map tools, script system, UI files, audio folders, and mod structure allow players to build local departments, custom maps, new missions, roleplay systems, and full conversions.</p>
+      <p>This encyclopedia documents installation, editor use, assets, maps, prototypes, scripting, SDK behavior, troubleshooting, and case studies from real Emergency 4 scripts.</p>
     `
   },
   {
     category: "EM4 History",
-    title: "Why Community History Matters",
-    tags: ["history", "community", "modding culture"],
+    title: "Game and Mod Release Timeline",
+    tags: ["history", "mods", "timeline", "downloads"],
     body: `
-      <p>Emergency 4 modding is not only a file structure. It is also a long-running community culture built around forums, downloads, tutorials, private teams, released mods, abandoned concepts, and people helping each other solve strange script errors years after the game released.</p>
-      <p>The game itself gave players the editor, prototypes, missions, freeplay, and scripts. The community turned those tools into recognizable local departments, dispatch systems, station scripts, custom maps, equipment packs, multiplayer roleplay, and deep scenario design. Many things modern EM4 modders treat as normal, such as station parking scripts, limited water, callout staging, custom command menus, siren controls, and map-specific roleplay systems, became common because forum communities shared examples and slowly improved them.</p>
-      <p>This section documents the main community hubs by public record. Some exact dates, ownership changes, and internal decisions are not always published, so this encyclopedia separates clearly visible facts from community interpretation.</p>
+      <p><code>Emergency 4</code> released in Europe in 2006, and <code>911: First Responders</code> followed as the North American title in 2007. The Deluxe edition added additional content and voice-command support. The editor and mod folder structure turned the game into a long-running platform for custom departments, maps, scripts, and roleplay projects.</p>
+      <p>Public community filebases show how the scene continued long after release. The dates below are download-page publication or version dates where visible publicly, not necessarily the original start date of each project.</p>
+      <table>
+        <thead><tr><th>Date</th><th>Release or event</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>2006</td><td><code>Emergency 4</code> European release.</td><td>Established the editor, map, prototype, mission, and script base used by later mods.</td></tr>
+          <tr><td>2007</td><td><code>911: First Responders</code> North American release.</td><td>Brought the game to a wider English-speaking audience and modding community.</td></tr>
+          <tr><td>2012</td><td>Bieberfelde Multiplayer origin, according to its public EM-Hub filebase description.</td><td>Shows early development of multiplayer-focused roleplay concepts.</td></tr>
+          <tr><td>2015</td><td>Bieberfelde Multiplayer concept referenced by Fuchsburg as a foundation for its multiplayer design.</td><td>Represents a major shift toward organized multiplayer and realistic service workflows.</td></tr>
+          <tr><td>17 Nov 2023</td><td>Bieberfelde Multiplayer 1.2 published on EM-Hub.</td><td>Public filebase entry describes it as an Emergency 4 multiplayer modification for up to four players.</td></tr>
+          <tr><td>5 Mar 2024</td><td>Bieberfelde RetroFitting v1.0.3 final published on EM-Hub.</td><td>Large modern release with new objects, buildings, scripts, stations, vehicle concepts, alarm behavior, and performance improvements.</td></tr>
+          <tr><td>21 Oct 2024 / 26 Apr 2025</td><td>SDIS Em4 Mod public filebase page and version 4.5 entry.</td><td>Example of international Emergency 4 development outside German/English-only scenes.</td></tr>
+          <tr><td>10 May 2025</td><td>Bieberfelde Submod Bayern 2.0 published on EM-Hub.</td><td>Shows the continuing submod culture around established projects.</td></tr>
+          <tr><td>27 Aug 2025</td><td>Leszno Modification 1.0.0 published on EM-Hub.</td><td>Example of regional multiplayer projects continuing into the mid-2020s.</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Sources:</strong> <a href="https://em-hub.de/filebase/" target="_blank" rel="noreferrer">EM-Hub filebase</a>, <a href="https://em-hub.de/filebase/file/344-bieberfelde-multiplayer/" target="_blank" rel="noreferrer">Bieberfelde Multiplayer</a>, <a href="https://em-hub.de/filebase/file/61-bieberfelde-retrofitting-v1-0-3-final/" target="_blank" rel="noreferrer">Bieberfelde RetroFitting</a>, <a href="https://em-hub.de/filebase/file/580-sdis-em4-mod/" target="_blank" rel="noreferrer">SDIS Em4 Mod</a>, <a href="https://em-hub.de/filebase/file/650-emergency-4-bieberfelde-submod-bayern-2-0/" target="_blank" rel="noreferrer">Bieberfelde Submod Bayern</a>, <a href="https://em-hub.de/filebase/file/676-leszno-modificattion-emergency-4-deluxe/" target="_blank" rel="noreferrer">Leszno Modification</a>.</p>
     `
   },
   {
@@ -47,7 +41,7 @@ const articles = [
       <p>Emergency Planet is one of the most important English-language homes for Emergency 4 and 911: First Responders modding. Public forum records show long-running sections for Emergency 4 general discussion, multiplayer, technical support, mission support, modding support, European modding, downloads, tutorials, galleries, and dedicated mod areas.</p>
       <p>Its importance comes from being both a help forum and an archive. A player could find troubleshooting threads, download released mods, follow work-in-progress projects, ask script questions, and learn from older discussions. The Los Angeles Mod area is especially important historically because LA Mod became one of the reference points for American-style EM4 modding, station scripting, custom commands, and freeplay roleplay.</p>
       <p>Emergency Planet also reflects the aging of the community. The forum still shows active Emergency 4 sections, but discussion volume is smaller than the peak years. That is normal for a 2006-era game. The important point for modders is that older Emergency Planet threads often preserve the reasoning behind fixes: why a command needs a prototype flag, why <code>fp_freeplay.script</code> is used as a startup script, why icons fail, or why a script loads but the command stays hidden.</p>
-      <h3>What to use it for</h3>
+      <h3>Public archive role</h3>
       <ul>
         <li>Finding old support answers and modding patterns.</li>
         <li>Studying how major English-language mods were released and supported.</li>
@@ -70,7 +64,7 @@ const articles = [
         <li>Many German and European modding ideas spread through forum posts rather than formal documentation.</li>
         <li>Old model, texture, and script credits may point back to Emergency-Forum.de threads.</li>
         <li>The loss or partial loss of forum access is a reminder to preserve documentation locally and credit authors clearly.</li>
-        <li>Modern guides should explain techniques directly instead of assuming old forum links will always work.</li>
+        <li>Modern guides need direct explanations because old forum links do not always remain available.</li>
       </ul>
       <p><strong>Public reference:</strong> <a href="https://emergency-forum.de.usitestat.com/" target="_blank" rel="noreferrer">public site record for emergency-forum.de</a>.</p>
     `
@@ -82,7 +76,7 @@ const articles = [
     body: `
       <p>EM4Resource represents a newer style of Emergency 4 community space: less like a single old forum thread archive, and more like a focused support, wiki, Discord, and resource hub. Its public homepage describes EM4Resource as a place for Emergency 4 mods, tutorials, and support, with ongoing wiki updates and community help.</p>
       <p>Historically, this matters because newer EM4 players often arrive after the old forum era. They may not know where LA Mod support threads were, what German forums existed, or why certain scripts are copied from older mods. A resource site can bridge that gap by turning scattered knowledge into articles, downloads, tutorials, and more direct explanations.</p>
-      <p>For this encyclopedia, EM4Resource is a model for the kind of preservation EM4 needs: practical guides, clear SDK explanations, roleplay script documentation, and troubleshooting notes that do not depend on one person remembering an old forum post from 2011.</p>
+      <p>Its focus is preservation through practical guides, SDK explanations, roleplay script documentation, troubleshooting notes, support, and modding resources that remain easier to find than old scattered forum posts.</p>
       <h3>What it is useful for</h3>
       <ul>
         <li>Modern tutorials and wiki-style documentation.</li>
@@ -101,9 +95,9 @@ const articles = [
       <p>EM-Hub.de is a modern German-language community project for the EMERGENCY scene. Public pages describe it as a community project by known faces from the EMERGENCY scene, including former forum members, modders, and streamers. Its slogan is community-focused, and its visible structure includes boards for Emergency Hub news/support, the EMERGENCY series, Emergency 4, Emergency 5/2016/2017/20, modding, showrooms, support, files, and a lexicon.</p>
       <p>Its Emergency 4 area matters because it continues the German tradition of detailed modding discussion while using a newer platform. Public board data shows active sections for general Emergency 4 discussion, support, modding, showrooms, and modding teams. That makes it one of the modern places where players can still ask how to install mods, repair errors, discuss prototypes, find tools, or showcase projects.</p>
       <p>EM-Hub also shows how the community evolved after older forums became less central. Instead of relying only on long forum threads, modern hubs often combine forums, filebases, lexicons, Discord-style community behavior, project showcases, and support posts.</p>
-      <h3>What to learn from it</h3>
+      <h3>Modern hub role</h3>
       <ul>
-        <li>Modern EM4 documentation should be easier to search than old forum threads.</li>
+        <li>Modern EM4 documentation is most useful when it is searchable, stable, and organized by topic.</li>
         <li>Lexicon/wiki articles are valuable because they turn repeated support answers into stable references.</li>
         <li>Showroom and team areas help keep modding visible even when full releases are rare.</li>
         <li>Community continuity matters: newer hubs often inherit people, practices, and lessons from older forums.</li>
@@ -171,25 +165,27 @@ const articles = [
     title: "What You Need Before Modding",
     tags: ["beginner", "tools", "setup"],
     body: `
-      <p>Emergency 4 modding is mostly file management, editor work, and script testing. You do not need a modern game engine workflow, but you do need patience and clean backups.</p>
+      <p>Emergency 4 modding is mostly file management, editor work, image editing, model preparation, and script editing. A small set of reliable tools is better than a large tool folder nobody understands.</p>
       <ul>
         <li>A working Emergency 4 or 911: First Responders install.</li>
-        <li>The Emergency 4 editor, usually launched from the game directory.</li>
-        <li>A text editor such as Notepad++ for <code>.script</code>, <code>.xml</code>, and notes.</li>
-        <li>A DDS-capable image editor or converter for command icons, cursor icons, and textures.</li>
+        <li>The Emergency 4 editor, usually launched from the game directory with the editor parameter.</li>
+        <li><strong>Notepad++</strong> for <code>.script</code>, <code>.xml</code>, readme files, notes, and logfile review.</li>
+        <li><strong>DXTBmp</strong> for DDS inspection/conversion, especially older EM4 texture workflows.</li>
+        <li><strong>Adobe Photoshop</strong>, Paint.NET, or GIMP for texture and icon editing. Photoshop is common in older workflows when paired with DDS support.</li>
+        <li><strong>Blender</strong> for model work, plus a compatible EM4/V3O import-export addon where available.</li>
+        <li>A DDS-capable workflow for command icons, cursor icons, skins, alpha channels, and UI assets.</li>
         <li>A folder outside the live mod for backups, experiments, and old working versions.</li>
       </ul>
     `
   },
   {
-    category: "Getting Started",
-    title: "Beginner Learning Path",
+    category: "Scripting",
+    title: "Beginner Scripting Learning Path",
     tags: ["tutorial flow", "beginner", "learning"],
     body: `
-      <p>Do not start by writing a huge mission script. Learn EM4 in this order.</p>
+      <p>This is a scripting learning path, not the first-install path. Use it after the game, editor, and at least one working mod are already installed.</p>
       <ul>
-        <li>Install and load a known working mod.</li>
-        <li>Open the mod in the editor and inspect a vehicle prototype.</li>
+        <li>Open a known working mod in the editor and inspect a vehicle prototype.</li>
         <li>Find where its commands are assigned.</li>
         <li>Find the matching command icon and cursor files.</li>
         <li>Open the matching command script and identify <code>CheckPossible</code>, <code>CheckTarget</code>, and <code>PushActions</code>.</li>
@@ -542,7 +538,7 @@ const articles = [
     `
   },
   {
-    category: "Getting Started",
+    category: "Mod Creation",
     title: "First Safe Edit to Practice",
     tags: ["practice", "commands", "testing"],
     body: `
@@ -556,7 +552,7 @@ const articles = [
     `
   },
   {
-    category: "Getting Started",
+    category: "Troubleshooting",
     title: "How to Read logfile.txt",
     tags: ["logfile", "errors", "crashes"],
     body: `
@@ -571,7 +567,7 @@ const articles = [
     `
   },
   {
-    category: "Getting Started",
+    category: "Troubleshooting",
     title: "Backup Strategy That Saves Hours",
     tags: ["backup", "versions", "safe workflow"],
     body: `
@@ -1306,6 +1302,34 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
   },
   {
     category: "Maps",
+    title: "Map Editor Tabs and Modes",
+    tags: ["editor", "maps", "function keys", "tabs"],
+    body: `
+      <p>The map editor is not one tool. It is a group of modes for terrain, objects, water, virtual objects, paths, streets, spawns, fires, triggers, conditions, and map metadata. New modders usually get lost because they try to solve a path problem in a prototype window or a script problem in a terrain tool.</p>
+      <table>
+        <thead><tr><th>Editor area</th><th>Shortcut or area</th><th>What it controls</th></tr></thead>
+        <tbody>
+          <tr><td>Scene / object placement</td><td>Scene mode</td><td>Placed objects, houses, vehicles, persons, and map props.</td></tr>
+          <tr><td>Terrain height</td><td>Terrain tools</td><td>Ground elevation, terrain shaping, slopes, and height-map style work.</td></tr>
+          <tr><td>Terrain texture</td><td>Texture tools</td><td>Base terrain painting, ground surface appearance, roadsides, grass, dirt, and blended map art.</td></tr>
+          <tr><td>Liquid</td><td><code>F4</code></td><td>Water surfaces. Boat-usable water should be paired with correct water VOs and terrain settings.</td></tr>
+          <tr><td>Virtual Objects</td><td><code>F5</code></td><td>Invisible named zones used by scripts, water areas, station bays, search areas, alarm zones, and parking spots.</td></tr>
+          <tr><td>Additional burning objects</td><td><code>F6</code></td><td>Freely placed burn points for fire behavior beyond prototype fire objects.</td></tr>
+          <tr><td>Paths</td><td><code>F7</code></td><td>Civilian and civilian vehicle movement paths.</td></tr>
+          <tr><td>Streets</td><td><code>Shift+F7</code></td><td>Emergency vehicle routefinder network.</td></tr>
+          <tr><td>Spawn points</td><td><code>F9</code></td><td>Civilian/person/vehicle spawning tied to paths and map activity.</td></tr>
+          <tr><td>Map properties</td><td><code>Shift+F9</code></td><td>Entries, exits, boundaries, weather/light effects, camera starts, and map-wide settings.</td></tr>
+          <tr><td>Waiting points</td><td><code>Shift+F3</code></td><td>Where civilians pause along paths and how long they wait.</td></tr>
+          <tr><td>Triggers</td><td>Trigger tools</td><td>Areas used by mission logic or scripted checks.</td></tr>
+          <tr><td>Ambient sounds</td><td>Ambient sound tools</td><td>Placed sound sources for background map atmosphere.</td></tr>
+          <tr><td>Mission conditions</td><td>Mission condition tools</td><td>Success/failure checks for missions and scripted scenarios.</td></tr>
+          <tr><td>Materials</td><td>Material settings</td><td>Surface and fire behavior settings used by the engine.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Maps",
     title: "Virtual Objects",
     tags: ["VO", "map", "placement"],
     body: `
@@ -1325,6 +1349,43 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     body: `
       <p>Traffic and returning units depend on map paths and entry/exit definitions. For player-controlled vehicles leaving the map, EM4's native <code>PushActionReturnToBase</code> is often safer than trying to manually route to a guessed exit VO.</p>
       <p>If a civilian or suspect vehicle must leave after a traffic stop, convert it into a role that can exit, clear its current queue, and let the engine use the map's return logic.</p>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Map Performance and Poly Budget",
+    tags: ["performance", "polygons", "models", "maps"],
+    body: `
+      <p>Emergency 4 does not publish one simple universal polygon cap for every mod asset. EM4Resource uses <strong>around 15,000 polygons</strong> as a practical upper working target for a detailed vehicle model. Lower counts are still preferred when the same detail can be handled cleanly with textures.</p>
+      <p>Older community discussion often referenced 5,000 polygons as a conservative recommendation, not a hard rule. Modern systems can handle more, but polygon count still matters when several detailed vehicles, civilians, lights, particles, and map objects are visible at once. Very high counts can be wasteful in EM4 because the game is usually played from an overhead camera and strong texture work often sells detail better than extra geometry.</p>
+      <h3>Practical map budget rules</h3>
+      <ul>
+        <li>Use textures for small detail like door handles, panel seams, labels, and vents where possible.</li>
+        <li>Spend polygons where silhouette matters: ladders, lightbars, equipment bodies, curved cabs, aircraft, and unique shapes.</li>
+        <li>Avoid placing many high-poly decorative objects in one camera view.</li>
+        <li>Watch performance around stations because parked units, personnel, doors, lights, and scripts often stack there.</li>
+        <li>Test at night with lights on, during fires, and with several vehicles moving. Daytime editor view is not enough.</li>
+      </ul>
+      <p><strong>Rule of thumb:</strong> if the detail is only visible in a close-up screenshot, it probably belongs in the texture instead of the mesh.</p>
+      <p><strong>Source:</strong> <a href="https://www.emergency-planet.com/topic/16893-poly-count-on-apparatus/" target="_blank" rel="noreferrer">Emergency Planet poly count discussion</a>.</p>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Roads, Streets, and Civilian Traffic",
+    tags: ["roads", "streets", "traffic", "paths"],
+    body: `
+      <p>EM4 separates civilian path movement from emergency vehicle routing. This is one of the most important map concepts because many route problems are caused by editing the wrong system.</p>
+      <table>
+        <thead><tr><th>System</th><th>Used by</th><th>Common failure</th></tr></thead>
+        <tbody>
+          <tr><td>Paths</td><td>Civilian pedestrians and civilian vehicles.</td><td>Civilians stop spawning, walk through bad areas, or civilian cars block a road.</td></tr>
+          <tr><td>Streets</td><td>Emergency vehicle routefinder.</td><td>Player units cannot find the target, take strange routes, or refuse to enter a driveway.</td></tr>
+          <tr><td>Spawn points</td><td>Traffic and civilian creation.</td><td>Log reports blocked spawn points or cars spawn into objects.</td></tr>
+          <tr><td>Entries/exits</td><td>Vehicles entering/leaving the map.</td><td>Return-to-base or off-map response does not work correctly.</td></tr>
+        </tbody>
+      </table>
+      <p>When a custom script tells a vehicle to leave the map, it is usually better to use native return/exit behavior than to manually guess a far-away VO. The map already knows its entries and exits through map properties.</p>
     `
   },
   {
@@ -1432,132 +1493,6 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
       <h3>What the extracted tables mean</h3>
       <p>The tables are not a replacement for reading code. They are a guided map. They show what the script touches so a beginner knows where to look first. If a command does not appear, start with command assignment and restrictions. If it appears but does nothing, start with target checks and action queues. If the game crashes, start with the logfile and the newest script or DDS file.</p>
       <p>When you are learning, open one script case study at a time. Pick a small script first, such as an equipment command, before trying a large station or callout system.</p>
-    `
-  },
-  {
-    category: "Case Studies",
-    title: "Fuel and Water Supply Systems",
-    tags: ["fuel", "water", "resource systems"],
-    body: `
-      <p>This case study explains a common roleplay upgrade: vehicles should not have unlimited resources. In the base game, many vehicles can move or operate without tracking fuel, water, or similar supply limits. A custom resource system adds consequences, feedback, and support tasks for the player.</p>
-      <h3>What the player sees</h3>
-      <p>The player clicks a command on a vehicle to check its level. The game shows a clear top ticker and white on-screen message such as <code>Fuel Level: 20%. Refuel vehicle at nearest gas station.</code> If the vehicle runs too low, movement can be blocked or the player can be warned before committing the unit to another incident.</p>
-      <h3>How the script thinks</h3>
-      <ol>
-        <li>The vehicle stores its current resource state. EM4 scripts often do this with dummy commands, user data, or a small set of threshold commands.</li>
-        <li>The check command reads that state and converts it into plain player text.</li>
-        <li>The move command or equipment command checks the state before allowing the action.</li>
-        <li>A refill command looks for an allowed map object or virtual object, sends the vehicle there, waits, and restores the state.</li>
-      </ol>
-      <h3>Why thresholds are easier than exact numbers</h3>
-      <p>EM4 is old and finicky. A simple threshold system such as <code>0%</code>, <code>20%</code>, <code>40%</code>, <code>60%</code>, <code>80%</code>, and <code>100%</code> is often more reliable than trying to display constantly changing decimals. The player gets useful information without the script needing heavy update loops that can cause stutter.</p>
-      <h3>Water supply comparison</h3>
-      <p>A water supply script follows the same pattern, but the resource is tied to fire suppression rather than movement. The command checks whether a truck can use water, whether it is connected to a hydrant/tanker/engine, and whether the tank has enough supply to continue. The lesson is the same: display clear feedback, block only the action that should be blocked, and provide a practical way to refill.</p>
-      <h3>Beginner debugging checklist</h3>
-      <ul>
-        <li>If the command does not show, check that the prototype has the command assigned and the icon/cursor exists.</li>
-        <li>If the command shows but gives no message, check the notification function and any dummy state names.</li>
-        <li>If refill does nothing, verify the gas station/hydrant/tanker object names or VOs on the map.</li>
-        <li>If movement is blocked forever, make sure the script removes or updates the empty-state command after refueling.</li>
-      </ul>
-    `
-  },
-  {
-    category: "Case Studies",
-    title: "Advanced Custody and Court Processing",
-    tags: ["police", "custody", "court"],
-    body: `
-      <p>This case study turns a simple arrest into a multi-step police roleplay chain. Instead of every suspect disappearing at the police station, the script can process a suspect through booking, courthouse arraignment, judicial decision, release, or county jail intake.</p>
-      <h3>Normal arrest flow</h3>
-      <p>The base-style flow is simple: officer arrests suspect, places suspect in a police vehicle, vehicle returns to the police station, and the suspect is removed. That works for fast gameplay, but it does not create much roleplay.</p>
-      <h3>Advanced custody flow</h3>
-      <ol>
-        <li><strong>Arrest:</strong> suspect is handcuffed and marked as being in custody.</li>
-        <li><strong>Transport to station:</strong> the police vehicle drives to a booking parking spot and turns toward a direction VO.</li>
-        <li><strong>Booking:</strong> officer and suspect enter a building VO, disappear for a timed processing step, then return to the vehicle.</li>
-        <li><strong>Courthouse:</strong> the vehicle drives to court, officer and suspect walk through an entry point, then reach courtroom VOs.</li>
-        <li><strong>Judge decision:</strong> script randomly chooses a realistic outcome such as held for court, bail set, or released on recognizance with court date.</li>
-        <li><strong>Final stage:</strong> suspect is either released to a safe VO or transported to county jail.</li>
-      </ol>
-      <h3>How the script remembers the case</h3>
-      <p>EM4 does not have a modern database. Scripts usually store state by assigning dummy commands to the suspect or vehicle. For example, a homicide suspect, jail escapee, or MDT traffic-stop arrest can carry different dummy markers so the custody script knows what kind of case it is processing.</p>
-      <h3>Multiple suspects</h3>
-      <p>If a police vehicle can carry two suspects, the script must decide whether both suspects go through the same process together or whether the vehicle only processes one active suspect at a time. The safest beginner design is to detect how many suspects are transported and show clear text: <code>Two detainees transported for booking.</code> Then process them together through the same route, with enough delays for both to exit and enter the vehicle.</p>
-      <h3>Beginner debugging checklist</h3>
-      <ul>
-        <li>If the command does not appear on the vehicle, check the vehicle prototype and command restrictions.</li>
-        <li>If the suspect exits as a driver, inspect whether the script uses suspect transport actions instead of normal passenger entry.</li>
-        <li>If the vehicle drives away empty, increase delay and confirm both officer and suspect have entered.</li>
-        <li>If the suspect stands at court, check courtroom VOs, walk-in VOs, and the return-to-vehicle action chain.</li>
-      </ul>
-    `
-  },
-  {
-    category: "Case Studies",
-    title: "Traffic Stops and MDT Roleplay",
-    tags: ["MDT", "traffic stop", "police"],
-    body: `
-      <p>This case study explains how a traffic stop can become a full roleplay system instead of one button that magically stops a car. The goal is to give the player choices while keeping the script reliable.</p>
-      <h3>Traffic stop stages</h3>
-      <ol>
-        <li><strong>Initiate stop:</strong> the police vehicle targets a civilian vehicle and activates emergency lights.</li>
-        <li><strong>Position cruiser:</strong> the police vehicle moves behind or near the target before radio traffic plays.</li>
-        <li><strong>Radio plate:</strong> the script generates or retrieves a saved license plate and gives a short realistic transmission.</li>
-        <li><strong>Officer approach:</strong> the officer walks to the driver-side window and collects license/registration/insurance information.</li>
-        <li><strong>MDT check:</strong> the player can run plate, driver, warrant, insurance, registration, or BOLO-style checks.</li>
-        <li><strong>Decision:</strong> the player can cite, warn, release, tow, request step-out, frisk, arrest, or escalate.</li>
-      </ol>
-      <h3>Why saved data matters</h3>
-      <p>If a plate check gives a different result every time the player clicks, the roleplay breaks. The script should generate plate/driver data once, store it on the target vehicle with dummy commands or user data, and reuse the same result for later checks.</p>
-      <h3>Traffic stop versus parked vehicle check</h3>
-      <p>These should be related but not identical. A parked vehicle MDT check can run plate information without stopping a moving path vehicle. A traffic stop command needs the chase/stop behavior first, then the MDT data stage once the police vehicle is actually positioned.</p>
-      <h3>Player choices</h3>
-      <table>
-        <thead><tr><th>Choice</th><th>Script result</th><th>Roleplay value</th></tr></thead>
-        <tbody>
-          <tr><td>Warning</td><td>Driver returns or stays in vehicle, stop clears.</td><td>Low-severity call resolution.</td></tr>
-          <tr><td>Citation</td><td>Notification/audio confirms citation, then vehicle is released.</td><td>Routine traffic enforcement.</td></tr>
-          <tr><td>Step out</td><td>Officer approaches, driver exits after delay.</td><td>Creates a transition into frisk, field interview, or arrest.</td></tr>
-          <tr><td>Tow</td><td>Tow unit is spawned or requested.</td><td>Handles suspended registration, disabled vehicles, or impounds.</td></tr>
-          <tr><td>Arrest</td><td>Suspect is handcuffed and can enter normal or advanced custody processing.</td><td>Connects traffic stops to the larger police roleplay system.</td></tr>
-        </tbody>
-      </table>
-      <h3>Beginner debugging checklist</h3>
-      <ul>
-        <li>If the radio transmission plays too early, delay it until the cruiser reaches position.</li>
-        <li>If the driver exits too early, make the officer approach first and execute a dummy command after arrival.</li>
-        <li>If released vehicles sit forever, use return-to-base/exit behavior rather than leaving them as stopped civilians.</li>
-        <li>If the menu gets cluttered, use MDT mode to hide normal commands and show only MDT actions.</li>
-      </ul>
-    `
-  },
-  {
-    category: "Case Studies",
-    title: "Fire Alarms and Building Panels",
-    tags: ["alarms", "panels", "objects"],
-    body: `
-      <p>This case study explains a building fire alarm roleplay system. The point is not only to make noise. The system should create a small investigation and control-panel task for the player.</p>
-      <h3>Basic alarm flow</h3>
-      <ol>
-        <li>The system checks whether a fire object is burning in an alarm zone or starts a random alarm event.</li>
-        <li>Alarm objects around the building activate special lights and local alarm audio.</li>
-        <li>The player receives a dispatch-style notification that an alarm is active.</li>
-        <li>A chief or assigned unit must reach the correct panel.</li>
-        <li>The player can acknowledge the alarm, then silence it once the panel interaction is valid.</li>
-      </ol>
-      <h3>Panel-to-alarm pairing</h3>
-      <p>The clean naming pattern is one panel tied to one alarm object or alarm set. For example, <code>EM4ResourceFireAlarmPanel1</code> can control <code>EM4ResourceFireAlarm1</code>. A script can loop through numbered names and process each pair without hard-coding every object separately.</p>
-      <h3>Acknowledge versus silence</h3>
-      <p>Acknowledge and silence should be separate commands. Acknowledge means the player found the panel and accepted the alarm. Silence means the alarm sound/lights are shut off. Keeping them separate creates better roleplay and prevents one accidental click from clearing the whole event.</p>
-      <h3>Escalation</h3>
-      <p>If the alarm is caused by an active fire object, dispatch can escalate from alarm investigation to confirmed fire. If no fire is found, the system can resolve as false alarm, system malfunction, keyholder contacted, or reset required.</p>
-      <h3>Beginner debugging checklist</h3>
-      <ul>
-        <li>If nothing activates, verify the exact panel and alarm object names on the map.</li>
-        <li>If lights stay on forever, check that the silence/reset command loops through every alarm object.</li>
-        <li>If the wrong panel clears the alarm, inspect the number pairing logic.</li>
-        <li>If the game stutters, avoid scanning every object too often; use timers and limited prefix searches.</li>
-      </ul>
     `
   },
   {
