@@ -1212,7 +1212,12 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
   }
 ];
 
-const categories = ["All", ...Array.from(new Set(articles.map(article => article.category)))];
+if (typeof scriptCaseStudies !== "undefined") {
+  articles.push(...scriptCaseStudies);
+}
+
+const categories = Array.from(new Set(articles.map(article => article.category)))
+  .filter(category => category !== "GitHub");
 let activeCategory = "Start Here";
 
 const categoryList = document.getElementById("categoryList");
@@ -1223,7 +1228,11 @@ const searchBox = document.getElementById("searchBox");
 const template = document.getElementById("articleTemplate");
 
 function articleMatches(article, query) {
-  if (activeCategory !== "All" && article.category !== activeCategory) {
+  if (article.category === "GitHub") {
+    return false;
+  }
+
+  if (!query && article.category !== activeCategory) {
     return false;
   }
 
@@ -1262,7 +1271,7 @@ function renderArticles() {
   const visible = articles.filter(article => articleMatches(article, query));
 
   articleGrid.innerHTML = "";
-  articleTitle.textContent = activeCategory === "All" ? "All Entries" : activeCategory;
+  articleTitle.textContent = query ? "Search Results" : activeCategory;
   articleCounter.textContent = `${visible.length} entr${visible.length === 1 ? "y" : "ies"}`;
 
   visible.forEach((article, index) => {

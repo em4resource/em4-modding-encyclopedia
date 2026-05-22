@@ -5,9 +5,10 @@ A GitHub Pages-ready encyclopedia for Emergency 4 modding. It is designed to fee
 ## What Is Included
 
 - `index.html`: the encyclopedia page.
-- `assets/css/styles.css`: EM4-inspired menu styling.
+- `assets/css/styles.css`: clean encyclopedia styling.
 - `assets/js/app.js`: searchable article database and navigation.
-- `assets/img/em4-ui`: a minimal converted background asset used to give the site subtle EM4/911:FR atmosphere.
+- `assets/js/script-case-studies.js`: generated case-study database covering the scripts from the workspace `Scripts` folder.
+- `reference/script-source-snapshot.md`: combined copied source snapshot used for documentation review, so the live scripts remain untouched.
 - `docs/getting-started.md`: beginner setup, installing mods, editor loading, and safe first edits.
 - `docs/mod-creation-workflow.md`: practical workflow for vehicles, persons, deployables, and callouts.
 - `docs/editor-manual-reference.md`: official editor manual concepts summarized into practical modding notes.
@@ -54,3 +55,9 @@ Keep entries practical. The most useful EM4 article explains:
 - Which commands, icons, audio, prototypes, and VOs are needed.
 - How to test it.
 - What errors commonly happen.
+
+## Script Case Studies
+
+The `Script Case Studies` section is generated separately in `assets/js/script-case-studies.js`. It analyzes copied script text and lists each script's command classes, icons, cursors, assigned commands, action queues, SDK calls, prototypes, audio paths, virtual object references, and integration notes.
+
+Do not edit live mod scripts just to update documentation. Regenerate or update the copied case-study data instead.
