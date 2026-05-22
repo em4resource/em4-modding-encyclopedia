@@ -158,7 +158,9 @@ const articles = [
           <tr><td>Editor Manual</td><td>Scene mode, terrain, prototypes, paths, streets, spawn points, VOs, triggers, materials, radar maps.</td></tr>
           <tr><td>Mod Creation</td><td>Building vehicles, persons, deployables, equipment, custom callouts, and debugging broken layers.</td></tr>
           <tr><td>Folder Structure</td><td>What every major base game <code>Data</code> folder does and how mods mirror those folders.</td></tr>
+          <tr><td>Asset Workshop</td><td>File formats, skinning, Blender prep, lighting, glass standards, RAL colors, and OpenHouse workflow.</td></tr>
           <tr><td>SDK Reference</td><td>What the SDK exposes to scripts: objects, persons, vehicles, commands, missions, UI, audio, camera, paths, and lists.</td></tr>
+          <tr><td>SDK Glossary</td><td>Short searchable explanations of common SDK files and classes.</td></tr>
           <tr><td>Scripting</td><td>Command anatomy, parser limits, action queues, dummy commands, and timing.</td></tr>
         </tbody>
       </table>
@@ -598,6 +600,195 @@ const articles = [
         <li><code>UI/Game/Icons/Cursor</code>: cursor icons shown when a command targets something.</li>
         <li><code>Audio/FX</code>: short wav effects and dispatch audio.</li>
       </ul>
+    `
+  },
+  {
+    category: "Asset Workshop",
+    title: "Emergency 4 File Formats",
+    tags: ["file formats", "v3o", "e4p", "dds", "xml"],
+    body: `
+      <p>Before editing anything, learn what each file type is responsible for. Most broken mods are not broken because one file is bad. They are broken because the model, texture, prototype, unit entry, script, or UI file does not agree with the others.</p>
+      <table>
+        <thead><tr><th>File type</th><th>What it is</th><th>Beginner warning</th></tr></thead>
+        <tbody>
+          <tr><td><code>.v3o</code></td><td>Vision model file used for vehicles, persons, equipment, houses, and objects.</td><td>If the texture path inside the model is wrong, the model may appear white or missing textures.</td></tr>
+          <tr><td><code>.dds</code></td><td>DirectDraw Surface texture. Common for skins, icons, cursors, UI, and model textures.</td><td>Bad compression, missing alpha, or wrong dimensions can cause white boxes or crashes.</td></tr>
+          <tr><td><code>.png</code></td><td>Image format sometimes used for textures or documentation assets.</td><td>EM4 generally prefers DDS/TGA style game assets; PNG may not behave consistently everywhere.</td></tr>
+          <tr><td><code>.e4p</code></td><td>Prototype file. Stores gameplay setup: model path, lights, physics, child objects, commands, vehicle/person traits.</td><td>A perfect model will not work in game until the prototype is configured correctly.</td></tr>
+          <tr><td><code>.e4m</code></td><td>Map file. Stores terrain, placed objects, paths, virtual objects, streets, fire objects, and map settings.</td><td>Map edits must be saved in the editor. Script VOs must match the exact map names.</td></tr>
+          <tr><td><code>.eft</code></td><td>Terrain texture file used by the editor/map system.</td><td>Terrain art is a separate workflow from normal vehicle skins.</td></tr>
+          <tr><td><code>.script</code></td><td>EM4 script file for commands, missions, freeplay controllers, and editor helpers.</td><td>The parser is picky. One missing return, duplicate variable, or long statement can stop the file from loading.</td></tr>
+          <tr><td><code>.xml</code></td><td>Configuration file used by specs, UI, language, units, and other systems.</td><td>XML structure must stay valid. One missing closing tag can break a whole config file.</td></tr>
+          <tr><td><code>.vmo</code></td><td>Animation file for model movement and character/object animations.</td><td>Animations must match the model skeleton or object setup expected by the game.</td></tr>
+          <tr><td><code>.info</code></td><td>Text/info file used for mod descriptions shown in the game.</td><td>Useful for presentation, but it does not control gameplay.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Asset Workshop",
+    title: "Skinning and Texture Workflow",
+    tags: ["skinning", "textures", "dds", "alpha"],
+    body: `
+      <p>A skin is the painted texture applied to a model. In EM4, skinning is usually the first visual modding skill because you can change a vehicle or person without creating a new model from scratch.</p>
+      <h3>Beginner workflow</h3>
+      <ol>
+        <li>Find the model's texture path by opening the model or checking the prototype/model folder.</li>
+        <li>Make a backup of the original texture.</li>
+        <li>Edit a copy in GIMP, Paint.NET, Photoshop, Affinity, or another DDS-capable workflow.</li>
+        <li>Keep the image dimensions the same unless you know the model's UV map supports the change.</li>
+        <li>Export to the format the model expects, usually DDS or TGA depending on the original asset.</li>
+        <li>Test in the editor first, then in game under real lighting.</li>
+      </ol>
+      <p>Alpha channels are important. They may control transparency, reflections, or other material behavior depending on how the model and texture are set up. If a vehicle looks too glossy, too flat, or has strange black/white areas, inspect the alpha channel before assuming the model is broken.</p>
+      <p><strong>Common beginner mistake:</strong> editing a texture but saving it with a different filename or format, then forgetting the model still points to the original texture path.</p>
+    `
+  },
+  {
+    category: "Asset Workshop",
+    title: "Blender and Model Preparation",
+    tags: ["Blender", "models", "v3o", "UV mapping"],
+    body: `
+      <p>Blender is useful for creating or editing models, but EM4 does not behave like a modern engine. A clean model workflow matters because the game expects simple geometry, sane scale, clean UVs, and correctly referenced textures.</p>
+      <h3>What to check before export</h3>
+      <ul>
+        <li><strong>Scale:</strong> compare against an existing EM4 vehicle, person, or object before exporting.</li>
+        <li><strong>Origin and orientation:</strong> vehicles and deployables should face the direction the game expects.</li>
+        <li><strong>UV mapping:</strong> the texture must line up with the model faces. A good skin cannot fix a bad UV map.</li>
+        <li><strong>Material count:</strong> keep materials organized and avoid unnecessary complexity.</li>
+        <li><strong>Smoothing:</strong> use smoothing where curves should look smooth, but keep hard edges where doors, panels, and equipment need definition.</li>
+        <li><strong>Texture paths:</strong> after export, confirm the model references the correct texture filenames.</li>
+      </ul>
+      <p>The usual beginner trap is treating model export as the finish line. In EM4, export is only the visual part. You still need a prototype, physics, lights, doors, commands, children, and often a unit entry.</p>
+    `
+  },
+  {
+    category: "Asset Workshop",
+    title: "Vehicle Asset Pipeline",
+    tags: ["vehicles", "model", "prototype", "units"],
+    body: `
+      <p>A playable vehicle is a chain of files. If one link is missing, the vehicle may appear in the editor but fail in game, or it may spawn but lack commands, lights, doors, crew, or buy-menu data.</p>
+      <table>
+        <thead><tr><th>Step</th><th>What you do</th><th>What breaks if skipped</th></tr></thead>
+        <tbody>
+          <tr><td>Model</td><td>Create or install the <code>.v3o</code> and textures.</td><td>Vehicle appears invisible, white, or visually wrong.</td></tr>
+          <tr><td>Prototype</td><td>Create <code>.e4p</code>, assign model, physics, lights, doors, children, and commands.</td><td>Vehicle exists but cannot behave like a proper unit.</td></tr>
+          <tr><td>Lights</td><td>Add coronas, blue lights, headlights, special lights, traffic lights, and blinkers as needed.</td><td>Siren scripts may work but vehicle has no convincing light behavior.</td></tr>
+          <tr><td>Specs</td><td>Update vehicle/unit specs when the mod uses buy menus or browser entries.</td><td>Vehicle may not appear in the right menu or may have wrong metadata.</td></tr>
+          <tr><td>Units</td><td>Add unit icon/portrait and unit XML where needed.</td><td>Vehicle may be playable by script but missing from normal unit selection.</td></tr>
+          <tr><td>Script integration</td><td>Assign commands and confirm scripts know the prototype or vehicle type.</td><td>Buttons do not show, show first when they should not, or do nothing.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Asset Workshop",
+    title: "Glass Norm and RAL Colors",
+    tags: ["Scheibennorm", "RAL", "vehicle colors", "standards"],
+    body: `
+      <p>The German EM4 community developed visual standards so vehicles from different creators could still look consistent together. Two useful ideas are glass color consistency and RAL color references.</p>
+      <h3>Glass norm</h3>
+      <p>The glass norm, often called <code>Scheibennorm</code>, is a community convention for vehicle window coloring. The usual idea is a gradient where the upper part of the window is darker and the lower part is lighter. This helps vehicles from different authors look like they belong in the same game world.</p>
+      <h3>RAL colors</h3>
+      <p>RAL references are useful when skinning European-style fire, police, EMS, and technical rescue vehicles. Even for American-style mods, the concept matters: use consistent color references across your fleet so vehicles do not look randomly painted.</p>
+      <table>
+        <thead><tr><th>Use</th><th>Example color idea</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Fire apparatus</td><td>Fire red, bright red, lime/yellow accents.</td><td>Keeps engines, tankers, ladders, and rescues visually unified.</td></tr>
+          <tr><td>Police</td><td>Blue, black/white, green/white, or agency-specific palette.</td><td>Prevents every patrol car from looking like a different department by accident.</td></tr>
+          <tr><td>EMS</td><td>White/red, white/orange, yellow/green, or local ambulance livery.</td><td>Helps players identify medical units quickly.</td></tr>
+          <tr><td>Tech/rescue</td><td>Orange, blue, white, or local public works colors.</td><td>Separates technical units from fire suppression units.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Asset Workshop",
+    title: "Vehicle and Object Lighting",
+    tags: ["lighting", "coronas", "special lights", "editor"],
+    body: `
+      <p>Lighting is one of the biggest differences between a rough prototype and a finished EM4 unit. Lights are configured in the prototype editor, but scripts can later toggle them with functions such as <code>EnableBlueLights</code>, <code>EnableHeadLights</code>, <code>EnableSpecialLights</code>, and <code>EnableTrafficLight</code>.</p>
+      <h3>Light types to understand</h3>
+      <ul>
+        <li><strong>Blue lights:</strong> emergency lightbar, grille, mirror, side, and rear warning lights.</li>
+        <li><strong>Headlights:</strong> normal driving lights, often controlled by time of day or scripts.</li>
+        <li><strong>Special lights:</strong> scene lights, deployable lights, alarm lights, drone lights, work lights, or object-specific lighting.</li>
+        <li><strong>Traffic lights:</strong> special red/yellow/green light states that scripts can use for directional warning or white-light behavior.</li>
+      </ul>
+      <p>When debugging lights, separate the problem: if the light never appears in the editor, the prototype light setup is wrong. If it appears in the editor but not during gameplay, the script toggle or command state is probably wrong.</p>
+    `
+  },
+  {
+    category: "Asset Workshop",
+    title: "OpenHouse Workflow",
+    tags: ["OpenHouse", "buildings", "interiors", "prototypes"],
+    body: `
+      <p>An OpenHouse is a building setup that can expose interior gameplay. It is more complicated than placing a normal static building because the game needs model pieces, prototype organization, floors/interiors, entry logic, and often pathing that makes sense for units.</p>
+      <h3>Beginner mental model</h3>
+      <p>A normal house is mostly a visual object with fire/interaction properties. An OpenHouse is a building prepared so the player can interact with interior space. That means it has to be organized carefully in both model folders and prototype folders.</p>
+      <h3>Typical setup checklist</h3>
+      <ul>
+        <li>Keep OpenHouse model files in a clear model folder such as <code>Models/OpenHouses/BuildingName</code>.</li>
+        <li>Create matching prototype folders under the mod's prototype structure.</li>
+        <li>Use the editor's house/open-house tools to create and configure the prototype.</li>
+        <li>Check roof, interior, floors, doors, windows, fire objects, and usable paths.</li>
+        <li>Test responders entering, leaving, treating, arresting, and carrying persons before using it in a mission.</li>
+      </ul>
+      <p>OpenHouse work is worth documenting carefully because one missing path, wrong prototype class, or bad collision area can make units refuse to enter or trap them inside.</p>
+    `
+  },
+  {
+    category: "SDK Glossary",
+    title: "Actor",
+    tags: ["SDK", "Actor", "targets"],
+    body: `
+      <p><code>Actor</code> is the broad target type behind many things the player can click. In command scripts, <code>CheckTarget(GameObject *Caller, Actor *Target, int childID)</code> receives an <code>Actor</code> because the target might be a person, vehicle, object, house, or another clickable entity.</p>
+      <p>Beginner rule: treat <code>Actor</code> as the generic clicked thing. Before using person-only or vehicle-only functions, convert it safely to <code>Person</code>, <code>Vehicle</code>, or <code>GameObject</code> and check validity.</p>
+    `
+  },
+  {
+    category: "SDK Glossary",
+    title: "Command",
+    tags: ["SDK", "CommandScript", "commands"],
+    body: `
+      <p><code>Command.script</code> defines how command scripts are shaped. A command is usually a button assigned to a prototype. EM4 checks whether the command can appear, whether the clicked target is valid, and then runs the action queue.</p>
+      <p>The three beginner functions to recognize are <code>CheckPossible</code>, <code>CheckTarget</code>, and <code>PushActions</code>. If a command is missing, start with prototype assignment and <code>CheckPossible</code>. If it shows a red X, inspect <code>CheckTarget</code> and restrictions. If it starts but stops halfway, inspect <code>PushActions</code>.</p>
+    `
+  },
+  {
+    category: "SDK Glossary",
+    title: "FireObject",
+    tags: ["SDK", "FireObject", "fire"],
+    body: `
+      <p><code>FireObject</code> represents fire behavior attached to objects, houses, or map elements. Fire-related scripts may check burning state, active fire childs, cooling, extinguishing, and whether an object can be treated as a fire target.</p>
+      <p>For custom fire roleplay, the map and prototype matter as much as the script. If an object cannot burn, cannot be cooled, or cannot be targeted by the expected command, inspect the fire objects and prototype setup before rewriting the command.</p>
+    `
+  },
+  {
+    category: "SDK Glossary",
+    title: "Input",
+    tags: ["SDK", "Input", "hotkeys"],
+    body: `
+      <p><code>Input</code> lets scripts react to player key state, such as priority keys or modifier keys. Older EM4 scripts often use this to change command priority or trigger a shortcut-style behavior.</p>
+      <p>Use input checks sparingly. They are useful for advanced command behavior, but they can make scripts harder for beginners to understand because the same button may behave differently depending on a key press.</p>
+    `
+  },
+  {
+    category: "SDK Glossary",
+    title: "OpenHouse",
+    tags: ["SDK", "OpenHouse", "buildings"],
+    body: `
+      <p><code>OpenHouse</code> is the script/API side of buildings with playable or visible interiors. It connects to the editor OpenHouse workflow and matters when units need to enter, leave, treat victims, arrest suspects, or interact with fire inside a building.</p>
+      <p>When OpenHouse behavior fails, check the model/prototype setup, entrance points, floor/interior configuration, pathing, and command targeting. The script may only be exposing a problem created in the building setup.</p>
+    `
+  },
+  {
+    category: "SDK Glossary",
+    title: "SpawnPoint",
+    tags: ["SDK", "SpawnPoint", "paths"],
+    body: `
+      <p><code>SpawnPoint</code> is used for controlled spawning, especially traffic and civilians tied to map paths. Spawn points can be blocked, assigned to paths, and configured with groups or probabilities depending on editor setup.</p>
+      <p>If the log says a spawn point is blocked, the script may be innocent. The map path, object placement, traffic density, or spawn point position may be preventing the engine from placing the actor.</p>
     `
   },
   {
@@ -1225,11 +1416,50 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
   },
   {
     category: "Case Studies",
+    title: "How to Read a Script Case Study",
+    tags: ["scripts", "beginner", "case studies"],
+    body: `
+      <p>The generated script case studies are meant for someone opening an EM4 script for the first time. Each article includes the full copied source, but you should not start by reading every line from top to bottom.</p>
+      <h3>Use this order</h3>
+      <ol>
+        <li><strong>Purpose:</strong> read the first paragraph to understand what kind of gameplay the script controls.</li>
+        <li><strong>Script map:</strong> find the script objects and whether they inherit from <code>CommandScript</code>, <code>MissionScript</code>, or another base.</li>
+        <li><strong>Command lifecycle:</strong> for commands, identify <code>CheckPossible</code>, <code>CheckTarget</code>, and <code>PushActions</code>.</li>
+        <li><strong>Constants:</strong> check command names, prototype paths, audio paths, VO names, and dummy state names.</li>
+        <li><strong>Action queue:</strong> follow what the person, vehicle, or object does over time.</li>
+        <li><strong>Dependencies:</strong> confirm the icons, cursors, prototypes, audio files, and map names actually exist in the mod.</li>
+      </ol>
+      <h3>What the extracted tables mean</h3>
+      <p>The tables are not a replacement for reading code. They are a guided map. They show what the script touches so a beginner knows where to look first. If a command does not appear, start with command assignment and restrictions. If it appears but does nothing, start with target checks and action queues. If the game crashes, start with the logfile and the newest script or DDS file.</p>
+      <p>When you are learning, open one script case study at a time. Pick a small script first, such as an equipment command, before trying a large station or callout system.</p>
+    `
+  },
+  {
+    category: "Case Studies",
     title: "Fuel and Water Supply Systems",
     tags: ["fuel", "water", "resource systems"],
     body: `
-      <p>Resource systems add value by blocking or warning player actions when a vehicle lacks fuel, water, or another supply. The clean pattern is a command to check level, a dummy state to track thresholds, and a refill action tied to known map objects or VOs.</p>
-      <p>Good notifications are immediate, capitalized, and actionable: <code>Fuel Level: 20%. Refuel vehicle at nearest gas station.</code></p>
+      <p>This case study explains a common roleplay upgrade: vehicles should not have unlimited resources. In the base game, many vehicles can move or operate without tracking fuel, water, or similar supply limits. A custom resource system adds consequences, feedback, and support tasks for the player.</p>
+      <h3>What the player sees</h3>
+      <p>The player clicks a command on a vehicle to check its level. The game shows a clear top ticker and white on-screen message such as <code>Fuel Level: 20%. Refuel vehicle at nearest gas station.</code> If the vehicle runs too low, movement can be blocked or the player can be warned before committing the unit to another incident.</p>
+      <h3>How the script thinks</h3>
+      <ol>
+        <li>The vehicle stores its current resource state. EM4 scripts often do this with dummy commands, user data, or a small set of threshold commands.</li>
+        <li>The check command reads that state and converts it into plain player text.</li>
+        <li>The move command or equipment command checks the state before allowing the action.</li>
+        <li>A refill command looks for an allowed map object or virtual object, sends the vehicle there, waits, and restores the state.</li>
+      </ol>
+      <h3>Why thresholds are easier than exact numbers</h3>
+      <p>EM4 is old and finicky. A simple threshold system such as <code>0%</code>, <code>20%</code>, <code>40%</code>, <code>60%</code>, <code>80%</code>, and <code>100%</code> is often more reliable than trying to display constantly changing decimals. The player gets useful information without the script needing heavy update loops that can cause stutter.</p>
+      <h3>Water supply comparison</h3>
+      <p>A water supply script follows the same pattern, but the resource is tied to fire suppression rather than movement. The command checks whether a truck can use water, whether it is connected to a hydrant/tanker/engine, and whether the tank has enough supply to continue. The lesson is the same: display clear feedback, block only the action that should be blocked, and provide a practical way to refill.</p>
+      <h3>Beginner debugging checklist</h3>
+      <ul>
+        <li>If the command does not show, check that the prototype has the command assigned and the icon/cursor exists.</li>
+        <li>If the command shows but gives no message, check the notification function and any dummy state names.</li>
+        <li>If refill does nothing, verify the gas station/hydrant/tanker object names or VOs on the map.</li>
+        <li>If movement is blocked forever, make sure the script removes or updates the empty-state command after refueling.</li>
+      </ul>
     `
   },
   {
@@ -1237,7 +1467,29 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     title: "Advanced Custody and Court Processing",
     tags: ["police", "custody", "court"],
     body: `
-      <p>A multi-stop custody script can turn a simple arrest into a roleplay chain: booking at the station, transport to courthouse, judge decision, release or jail intake. The key is storing charges and status on the suspect with dummy commands so later scripts know what happened earlier.</p>
+      <p>This case study turns a simple arrest into a multi-step police roleplay chain. Instead of every suspect disappearing at the police station, the script can process a suspect through booking, courthouse arraignment, judicial decision, release, or county jail intake.</p>
+      <h3>Normal arrest flow</h3>
+      <p>The base-style flow is simple: officer arrests suspect, places suspect in a police vehicle, vehicle returns to the police station, and the suspect is removed. That works for fast gameplay, but it does not create much roleplay.</p>
+      <h3>Advanced custody flow</h3>
+      <ol>
+        <li><strong>Arrest:</strong> suspect is handcuffed and marked as being in custody.</li>
+        <li><strong>Transport to station:</strong> the police vehicle drives to a booking parking spot and turns toward a direction VO.</li>
+        <li><strong>Booking:</strong> officer and suspect enter a building VO, disappear for a timed processing step, then return to the vehicle.</li>
+        <li><strong>Courthouse:</strong> the vehicle drives to court, officer and suspect walk through an entry point, then reach courtroom VOs.</li>
+        <li><strong>Judge decision:</strong> script randomly chooses a realistic outcome such as held for court, bail set, or released on recognizance with court date.</li>
+        <li><strong>Final stage:</strong> suspect is either released to a safe VO or transported to county jail.</li>
+      </ol>
+      <h3>How the script remembers the case</h3>
+      <p>EM4 does not have a modern database. Scripts usually store state by assigning dummy commands to the suspect or vehicle. For example, a homicide suspect, jail escapee, or MDT traffic-stop arrest can carry different dummy markers so the custody script knows what kind of case it is processing.</p>
+      <h3>Multiple suspects</h3>
+      <p>If a police vehicle can carry two suspects, the script must decide whether both suspects go through the same process together or whether the vehicle only processes one active suspect at a time. The safest beginner design is to detect how many suspects are transported and show clear text: <code>Two detainees transported for booking.</code> Then process them together through the same route, with enough delays for both to exit and enter the vehicle.</p>
+      <h3>Beginner debugging checklist</h3>
+      <ul>
+        <li>If the command does not appear on the vehicle, check the vehicle prototype and command restrictions.</li>
+        <li>If the suspect exits as a driver, inspect whether the script uses suspect transport actions instead of normal passenger entry.</li>
+        <li>If the vehicle drives away empty, increase delay and confirm both officer and suspect have entered.</li>
+        <li>If the suspect stands at court, check courtroom VOs, walk-in VOs, and the return-to-vehicle action chain.</li>
+      </ul>
     `
   },
   {
@@ -1245,7 +1497,38 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     title: "Traffic Stops and MDT Roleplay",
     tags: ["MDT", "traffic stop", "police"],
     body: `
-      <p>An MDT system should save generated plate, driver, warrant, and stop data on the target vehicle so repeated checks are consistent. Traffic stops work best as staged action chains: stop vehicle, position cruiser, radio plate, officer approaches window, then player chooses citation, step-out, tow, release, or arrest.</p>
+      <p>This case study explains how a traffic stop can become a full roleplay system instead of one button that magically stops a car. The goal is to give the player choices while keeping the script reliable.</p>
+      <h3>Traffic stop stages</h3>
+      <ol>
+        <li><strong>Initiate stop:</strong> the police vehicle targets a civilian vehicle and activates emergency lights.</li>
+        <li><strong>Position cruiser:</strong> the police vehicle moves behind or near the target before radio traffic plays.</li>
+        <li><strong>Radio plate:</strong> the script generates or retrieves a saved license plate and gives a short realistic transmission.</li>
+        <li><strong>Officer approach:</strong> the officer walks to the driver-side window and collects license/registration/insurance information.</li>
+        <li><strong>MDT check:</strong> the player can run plate, driver, warrant, insurance, registration, or BOLO-style checks.</li>
+        <li><strong>Decision:</strong> the player can cite, warn, release, tow, request step-out, frisk, arrest, or escalate.</li>
+      </ol>
+      <h3>Why saved data matters</h3>
+      <p>If a plate check gives a different result every time the player clicks, the roleplay breaks. The script should generate plate/driver data once, store it on the target vehicle with dummy commands or user data, and reuse the same result for later checks.</p>
+      <h3>Traffic stop versus parked vehicle check</h3>
+      <p>These should be related but not identical. A parked vehicle MDT check can run plate information without stopping a moving path vehicle. A traffic stop command needs the chase/stop behavior first, then the MDT data stage once the police vehicle is actually positioned.</p>
+      <h3>Player choices</h3>
+      <table>
+        <thead><tr><th>Choice</th><th>Script result</th><th>Roleplay value</th></tr></thead>
+        <tbody>
+          <tr><td>Warning</td><td>Driver returns or stays in vehicle, stop clears.</td><td>Low-severity call resolution.</td></tr>
+          <tr><td>Citation</td><td>Notification/audio confirms citation, then vehicle is released.</td><td>Routine traffic enforcement.</td></tr>
+          <tr><td>Step out</td><td>Officer approaches, driver exits after delay.</td><td>Creates a transition into frisk, field interview, or arrest.</td></tr>
+          <tr><td>Tow</td><td>Tow unit is spawned or requested.</td><td>Handles suspended registration, disabled vehicles, or impounds.</td></tr>
+          <tr><td>Arrest</td><td>Suspect is handcuffed and can enter normal or advanced custody processing.</td><td>Connects traffic stops to the larger police roleplay system.</td></tr>
+        </tbody>
+      </table>
+      <h3>Beginner debugging checklist</h3>
+      <ul>
+        <li>If the radio transmission plays too early, delay it until the cruiser reaches position.</li>
+        <li>If the driver exits too early, make the officer approach first and execute a dummy command after arrival.</li>
+        <li>If released vehicles sit forever, use return-to-base/exit behavior rather than leaving them as stopped civilians.</li>
+        <li>If the menu gets cluttered, use MDT mode to hide normal commands and show only MDT actions.</li>
+      </ul>
     `
   },
   {
@@ -1253,7 +1536,28 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     title: "Fire Alarms and Building Panels",
     tags: ["alarms", "panels", "objects"],
     body: `
-      <p>Alarm systems become immersive when each panel is tied to specific alarm objects, lights, zones, and separate acknowledge/silence commands. The player should need the right unit near the right panel before the system quiets down.</p>
+      <p>This case study explains a building fire alarm roleplay system. The point is not only to make noise. The system should create a small investigation and control-panel task for the player.</p>
+      <h3>Basic alarm flow</h3>
+      <ol>
+        <li>The system checks whether a fire object is burning in an alarm zone or starts a random alarm event.</li>
+        <li>Alarm objects around the building activate special lights and local alarm audio.</li>
+        <li>The player receives a dispatch-style notification that an alarm is active.</li>
+        <li>A chief or assigned unit must reach the correct panel.</li>
+        <li>The player can acknowledge the alarm, then silence it once the panel interaction is valid.</li>
+      </ol>
+      <h3>Panel-to-alarm pairing</h3>
+      <p>The clean naming pattern is one panel tied to one alarm object or alarm set. For example, <code>EM4ResourceFireAlarmPanel1</code> can control <code>EM4ResourceFireAlarm1</code>. A script can loop through numbered names and process each pair without hard-coding every object separately.</p>
+      <h3>Acknowledge versus silence</h3>
+      <p>Acknowledge and silence should be separate commands. Acknowledge means the player found the panel and accepted the alarm. Silence means the alarm sound/lights are shut off. Keeping them separate creates better roleplay and prevents one accidental click from clearing the whole event.</p>
+      <h3>Escalation</h3>
+      <p>If the alarm is caused by an active fire object, dispatch can escalate from alarm investigation to confirmed fire. If no fire is found, the system can resolve as false alarm, system malfunction, keyholder contacted, or reset required.</p>
+      <h3>Beginner debugging checklist</h3>
+      <ul>
+        <li>If nothing activates, verify the exact panel and alarm object names on the map.</li>
+        <li>If lights stay on forever, check that the silence/reset command loops through every alarm object.</li>
+        <li>If the wrong panel clears the alarm, inspect the number pairing logic.</li>
+        <li>If the game stutters, avoid scanning every object too often; use timers and limited prefix searches.</li>
+      </ul>
     `
   },
   {

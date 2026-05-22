@@ -11,6 +11,8 @@ A GitHub Pages-ready encyclopedia for Emergency 4 modding. It is designed to fee
 - `reference/script-source-snapshot.md`: combined copied source snapshot used for documentation review, so the live scripts remain untouched.
 - `docs/getting-started.md`: beginner setup, installing mods, editor loading, and safe first edits.
 - `EM4 History` section in `assets/js/app.js`: community history covering Emergency Planet, Emergency-Forum.de, EM4Resource, and EM-Hub.de.
+- `Asset Workshop` section in `assets/js/app.js`: beginner articles for file formats, skinning, Blender/model prep, vehicle pipeline, lighting, OpenHouse, glass standards, and colors.
+- `SDK Glossary` section in `assets/js/app.js`: short searchable explanations of SDK classes/files that beginners will see in scripts.
 - `docs/mod-creation-workflow.md`: practical workflow for vehicles, persons, deployables, and callouts.
 - `docs/editor-manual-reference.md`: official editor manual concepts summarized into practical modding notes.
 - `docs/base-game-folder-reference.md`: folder-by-folder explanation of the base game data structure.
