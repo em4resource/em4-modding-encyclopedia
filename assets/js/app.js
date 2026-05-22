@@ -1481,6 +1481,85 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
+    category: "Freeplay and Missions",
+    title: "Creating New Freeplay Events",
+    tags: ["freeplay", "events", "callouts", "fp_params", "freeplayparameters"],
+    body: `
+      <p>This article explains how native freeplay events are generated in Emergency 4 / 911: First Responders, and what map conditions must exist before the game can spawn those events.</p>
+
+      <h3>Freeplay Parameters File</h3>
+      <p>Freeplay event behavior is controlled by the freeplay parameters file in the mod's <code>Specs</code> folder. Many mods use a path like <code>Mods/Mod Name/Specs/freeplay_endless_param.xml</code>. The base game also uses files such as <code>freeplayparameters.xml</code>, <code>fp_params_endless.xml</code>, and challenge or multiplayer variants.</p>
+      <p>The XML file can make an event possible, more frequent, less frequent, harder, or easier, but the map still has to contain the required conditions. If the required map objects, names, paths, traits, or persons are missing, the event will not spawn correctly.</p>
+
+      <h3>Basic medical events</h3>
+      <table>
+        <thead><tr><th>Event</th><th>Type</th><th>Required map condition</th></tr></thead>
+        <tbody>
+          <tr><td>Fall</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
+          <tr><td>Shock</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
+          <tr><td>Circulatory Collapse</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
+          <tr><td>Food Poisoning</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
+          <tr><td>Heart Attack</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
+          <tr><td>Stroke</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
+          <tr><td>Flash Strike</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Basic fire events</h3>
+      <table>
+        <thead><tr><th>Event</th><th>Type</th><th>Required map condition</th></tr></thead>
+        <tbody>
+          <tr><td>Random Fire</td><td>Fire</td><td>At least one object on the map with the <code>Fire</code> trait fully enabled in the traits menu.</td></tr>
+          <tr><td>Cigarette</td><td>Fire</td><td>At least one object on the map with the <code>Fire</code> trait fully enabled in the traits menu.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Shoplifting event</h3>
+      <p>Shoplifting is a randomly generated police event. It needs a person, a shop, and an escape path.</p>
+      <ul>
+        <li>Place at least one person on the map.</li>
+        <li>Designate a house as a shop by naming the house object <code>shop</code>. The name should be lowercase.</li>
+        <li>Create at least one escape path from the shop. Use a path named <code>escapepath01</code>, set speed to about <code>2.4</code>, route it around the map, and set it to delete at end.</li>
+      </ul>
+
+      <h3>Car accident event</h3>
+      <p>Car accidents are randomly generated fire, police, and ambulance events. A map can contain many accident setups, but the naming must be consistent.</p>
+      <ul>
+        <li>Number accident setups in order, starting at <code>1</code> and continuing upward.</li>
+        <li>The first vehicle in each accident must be named <code>ccar_X</code>, where <code>X</code> is the accident number. Only one vehicle in that accident should use <code>ccar_X</code>.</li>
+        <li>Additional crashed vehicles, debris, glass, skid marks, or non-enclosed patients must be named <code>ccard_X</code>.</li>
+        <li>Only trapped persons enclosed inside vehicles should use <code>ccarp_Xa</code>, <code>ccarp_Xb</code>, and so on.</li>
+        <li>Persons outside the vehicle, such as ejected patients, should be named <code>ccard_X</code>, not <code>ccarp_Xa</code>.</li>
+      </ul>
+
+      <h3>Car accident naming key</h3>
+      <table>
+        <thead><tr><th>Part</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>c</code></td><td>Crashed.</td></tr>
+          <tr><td><code>car</code></td><td>Main accident car or vehicle.</td></tr>
+          <tr><td><code>d</code></td><td>Debris, extra vehicles, loose scene objects, or patients not enclosed in vehicles.</td></tr>
+          <tr><td><code>p</code></td><td>Patient enclosed inside a vehicle.</td></tr>
+          <tr><td><code>X</code></td><td>The accident number. Every object in the same accident uses the same number.</td></tr>
+          <tr><td><code>a-z</code></td><td>Letters for multiple enclosed patients in the same accident.</td></tr>
+        </tbody>
+      </table>
+      <p>Example: for accident 26, the main crashed vehicle is <code>ccar_26</code>. Glass, debris, skid marks, extra vehicles, and ejected patients are <code>ccard_26</code>. Trapped patients inside vehicles can be <code>ccarp_26a</code>, <code>ccarp_26b</code>, and so on.</p>
+
+      <h3>Car theft event</h3>
+      <p>Car theft is a randomly generated police event. You can place multiple possible car theft setups across a map.</p>
+      <ul>
+        <li>Place a vehicle on the map named <code>stolenvehicle</code>.</li>
+        <li>Create a path named <code>CarThief01</code>.</li>
+        <li>Additional possible car theft paths should continue upward as <code>CarThief02</code>, <code>CarThief03</code>, <code>CarThief04</code>, and so on.</li>
+        <li>If the event does not spawn despite the vehicle and path being correct, test with a gangster placed nearby. Some setups appear to depend on a nearby gangster, although the exact reason can vary by mod and map.</li>
+      </ul>
+
+      <h3>Native events vs custom scripted callouts</h3>
+      <p>The native freeplay event system is best for events the engine already supports. For a brand-new scenario with custom investigation stages, custom audio, special objectives, or unusual completion logic, use a scripted callout through <code>fp_freeplay.script</code>, an updater object, or a custom call scheduler.</p>
+    `
+  },
+  {
     category: "Case Studies",
     title: "How to Read a Script Case Study",
     tags: ["scripts", "beginner", "case studies"],
