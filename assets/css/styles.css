@@ -47,29 +47,32 @@ body {
 }
 
 .brand {
+  min-width: 0;
+}
+
+.brand-main {
   display: flex;
   align-items: center;
-  gap: 16px;
-  min-width: 0;
+  gap: 12px;
 }
 
 .brand h1 {
   margin: 0;
-  font-size: clamp(1.45rem, 2.1vw, 2.2rem);
+  font-size: clamp(1.35rem, 2vw, 2rem);
   line-height: 1.05;
   letter-spacing: 0;
 }
 
 .site-banner {
   display: block;
-  width: clamp(180px, 24vw, 300px);
+  width: clamp(110px, 14vw, 180px);
   flex: 0 0 auto;
   height: auto;
 }
 
 .brand p {
-  margin: 6px 0 0;
-  max-width: 620px;
+  margin: 8px 0 0;
+  max-width: 760px;
   color: var(--muted);
   font-size: 0.96rem;
   line-height: 1.45;
@@ -182,23 +185,23 @@ body {
 
 .support-panel {
   margin-top: 16px;
-  border: 1px solid #f0b46c;
-  border-left: 4px solid var(--accent);
+  border: 1px solid #df9a9d;
+  border-left: 4px solid #b51f24;
   border-radius: 8px;
   padding: 14px;
-  background: linear-gradient(180deg, #fff7ec 0%, #fff2df 100%);
-  box-shadow: 0 8px 18px rgba(181, 83, 24, 0.12);
+  background: linear-gradient(180deg, #fff3f3 0%, #ffe5e6 100%);
+  box-shadow: 0 8px 18px rgba(181, 31, 36, 0.14);
 }
 
 .support-panel h2 {
   margin: 0;
   font-size: 0.94rem;
-  color: #7a350f;
+  color: #86191d;
 }
 
 .support-panel p {
   margin: 8px 0 0;
-  color: #5f422c;
+  color: #633234;
   line-height: 1.45;
   font-size: 0.88rem;
 }
@@ -211,15 +214,15 @@ body {
   margin-top: 12px;
   padding: 8px 12px;
   border-radius: 6px;
-  background: #b55318;
+  background: #b51f24;
   color: #fff;
   font-weight: 800;
   text-decoration: none;
-  box-shadow: 0 6px 14px rgba(181, 83, 24, 0.22);
+  box-shadow: 0 6px 14px rgba(181, 31, 36, 0.24);
 }
 
 .support-panel a:hover {
-  background: #923f12;
+  background: #91171b;
 }
 
 .content-panel {
@@ -426,9 +429,13 @@ body {
     display: block;
   }
 
+  .brand-main {
+    display: block;
+  }
+
   .site-banner {
-    width: min(260px, 100%);
-    margin-bottom: 12px;
+    width: min(170px, 100%);
+    margin-bottom: 10px;
   }
 
   .header-meta {

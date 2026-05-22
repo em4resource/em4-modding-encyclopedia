@@ -15,7 +15,6 @@ const articles = [
     tags: ["history", "mods", "timeline", "downloads"],
     body: `
       <p><code>Emergency 4</code> released in Europe in 2006, and <code>911: First Responders</code> followed as the North American title in 2007. The Deluxe edition added additional content and voice-command support. The editor and mod folder structure turned the game into a long-running platform for custom departments, maps, scripts, and roleplay projects.</p>
-      <p>Emergency Planet's <code>Big Mods</code> download category is one of the clearest public snapshots of major English-language and international EM4 releases. The dates below are the visible submitted or updated dates on that download category, not necessarily the first private development date for each project.</p>
       <table>
         <thead><tr><th>Date</th><th>Release or event</th><th>Why it matters</th></tr></thead>
         <tbody>
@@ -23,13 +22,18 @@ const articles = [
           <tr><td>2007</td><td><code>911: First Responders</code> North American release.</td><td>Brought the game to a wider English-speaking audience and modding community.</td></tr>
           <tr><td>30 Aug 2010</td><td>Ukraine-Rescue Mod 1.2 updated.</td><td>Early example of a large regional mod with real units, new sirens, scripts, and emergency-service presentation.</td></tr>
           <tr><td>28 Apr 2011</td><td>New York City Modification updated.</td><td>One of the landmark American urban mods, with about 50 vehicles and new realism-focused functions.</td></tr>
+          <tr><td>16 Jul 2011</td><td>Los Angeles Mod 2.1 updated.</td><td>One of the defining EM4 releases: over 50 playable Los Angeles units, a custom freeplay map, missions, sirens, directional lights, fire stations, police station, hospital, weapons, barricades, bomb robots, motorcycles, multiplayer support, and English voices.</td></tr>
+          <tr><td>2010-2014</td><td>Small mods and submods became a major part of the modding scene.</td><td>Lighting packs, supervisor replacements, map edits, translation packs, vehicle add-ons, equipment models, siren/audio packs, and LA Mod submods helped spread practical techniques between projects.</td></tr>
           <tr><td>30 Aug 2012</td><td>Coastal Rescue submitted.</td><td>Example of an asset/resource-heavy release where models, textures, and scripts were shared for credited reuse.</td></tr>
           <tr><td>14 Nov 2012</td><td>Winterberg Mod updated.</td><td>One of the major German modding references, listed on Emergency Planet with strong download interest.</td></tr>
           <tr><td>22 Jan 2013</td><td>Harbor City submitted.</td><td>Large LA Mod-based project with custom map work, stations, lighting, hospital behavior, and roleplay systems.</td></tr>
           <tr><td>16 Oct 2013</td><td>US Army Modification updated.</td><td>Total-conversion style project with a new map, unique units, events, and a development-tree concept.</td></tr>
-          <tr><td>14 Feb 2014</td><td>São Paulo Mod updated.</td><td>International city-based release showing how EM4 modding spread beyond Europe and North America.</td></tr>
+          <tr><td>12 Dec 2013</td><td>Miami Modification Alpha updated.</td><td>Early Miami release with new models, lights, sirens, playable Miami units, and script additions.</td></tr>
+          <tr><td>14 Feb 2014</td><td>Sao Paulo Mod updated.</td><td>International city-based release showing how EM4 modding spread beyond Europe and North America.</td></tr>
           <tr><td>1 May 2014</td><td>Helping Peter updated.</td><td>Danish first-responder concept focused on patient care before ambulance arrival.</td></tr>
+          <tr><td>18 Sep 2014</td><td>Helmond Mod submitted.</td><td>Dutch regional mod entry showing the continued spread of localized departments and vehicle sets.</td></tr>
           <tr><td>29 May 2015</td><td>Bordsund Modifikation 1.0 updated.</td><td>Large German-style mod with altered maps, new sounds, special signaling systems, bases, and many credited community assets.</td></tr>
+          <tr><td>1 Jul 2016</td><td>London Mod updated.</td><td>Major UK release with London emergency-service units, a custom freeplay map, civil traffic, and expanded service coverage.</td></tr>
           <tr><td>24 Jun 2016</td><td>London Multiplayer Mod updated.</td><td>Released multiplayer-focused London project with stations, limited water, automatic fire alarms, gated wye, and parking.</td></tr>
           <tr><td>15 Sep 2016</td><td>Barcelona City Mod submitted.</td><td>Spanish city emergency-services release covering fire, local police, regional police, EMS, national police, and civil guard units.</td></tr>
           <tr><td>8 Nov 2016</td><td>PL MOD v1.0 submitted.</td><td>Large Polish mod with dozens of fire, police, EMS, and technical units plus scripts and map content.</td></tr>
@@ -39,10 +43,84 @@ const articles = [
           <tr><td>22 Mar 2021</td><td>Getxo Mod v1 submitted.</td><td>Basque Country/Spain release showing continued regional emergency-service modding.</td></tr>
           <tr><td>26 Nov 2021</td><td>Emergency 3 MOD updated.</td><td>Converted Emergency 3 vehicles and campaign maps into EM4, preserving earlier series content.</td></tr>
           <tr><td>28 Jun 2023</td><td>Miami Modification updated.</td><td>Large American city-style mod with custom freeplay map, many playable units, limited water, scripts, sirens, aircraft, and UI work.</td></tr>
+          <tr><td>2023-2026</td><td>Emergency Hub became a major modern filebase for EM4 modifications.</td><td>Modern releases and reuploads such as Fuchsburg, Bieberfelde RetroFitting, Stuttgart, Kregen, Sittingen, Rosenburg, Redwood Bay, and Valkeakoski show how active EM4 modding continued long after the original forum era.</td></tr>
           <tr><td>10 Apr 2025</td><td>Montana Modification updated.</td><td>American small-town/Monida Pass release with vehicles, personnel, structures, equipment, and a re-visualized Beaverhead County setting.</td></tr>
         </tbody>
       </table>
-      <p><strong>Source:</strong> <a href="https://www.emergency-planet.com/files/category/38-big-mods/" target="_blank" rel="noreferrer">Emergency Planet Big Mods</a>.</p>
+    `
+  },
+  {
+    category: "EM4 History",
+    title: "Small Mods, Submods, and Add-On Culture",
+    tags: ["history", "small mods", "submods", "assets", "audio", "lighting"],
+    body: `
+      <p>Small mods matter because they show how Emergency 4 modding actually developed day to day. A full conversion may get the attention, but smaller releases often taught the community how to replace UI folders, alter supervisor dispatch audio, relight vehicles, add equipment, adjust maps, translate foreign-language mods, and build focused add-ons for an existing project.</p>
+      <p>The Los Angeles Mod ecosystem is the clearest example. Many small releases were built around LA Mod because it became a common foundation: users made additional-unit packs, freeplay map edits, lighting changes, dispatch replacements, campaign save files, and full themed submods. That pattern helped newer modders learn by changing one controlled part of a working mod instead of building an entire project from nothing.</p>
+      <h3>Historically important small-mod categories</h3>
+      <table>
+        <thead><tr><th>Type</th><th>Examples</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Lighting packs</td><td>E4LM: LA, E4LM: NYC 2013, NYC mod lights, LA light edits.</td><td>Helped make realistic emergency lighting one of the most visible quality markers in EM4 mods.</td></tr>
+          <tr><td>Dispatch and supervisor replacements</td><td>Enhanced Supervisor, MPDS Supervisor, Realistic Dispatch, EM4 Mission Dispatches, tone packs.</td><td>Showed that immersion could come from audio and event presentation, not only vehicles and maps.</td></tr>
+          <tr><td>Map and freeplay edits</td><td>Expanded Freeplay, Los Angeles Map Mod, Squad 55 City Stations.</td><td>Gave players new station layouts, road networks, multiplayer districts, staging areas, and scene variety.</td></tr>
+          <tr><td>LA Mod submods</td><td>Additional Units Submod, Super Freeplay, Project Nostalgia, Better LA Sub-Mod.</td><td>Turned LA Mod into a learning platform and a shared base for American-style changes.</td></tr>
+          <tr><td>Translations and compatibility packs</td><td>RTS translations, Wegberg English pack, EM2-to-EM4 add-ons.</td><td>Made regional mods easier for international players to access and preserved older content after community sites closed.</td></tr>
+          <tr><td>Equipment and model packs</td><td>Better U.S. Firefighters, ATF Package, police vehicle accessories, command post objects.</td><td>Provided reusable assets that let many separate projects improve without every team modeling everything from scratch.</td></tr>
+        </tbody>
+      </table>
+      <h3>What a new modder should learn from them</h3>
+      <ul>
+        <li>A small release can be valuable if it solves one problem clearly.</li>
+        <li>Most practical modding skills are learned by replacing or extending one folder at a time.</li>
+        <li>Readmes, credits, and installation notes are part of the mod because small mods often overwrite base files.</li>
+        <li>Submods can break when the parent mod changes, so version compatibility matters.</li>
+        <li>Many popular role and realism ideas started as small experiments before appearing in larger projects.</li>
+      </ul>
+    `
+  },
+  {
+    category: "EM4 History",
+    title: "Emergency Hub Modification Releases",
+    tags: ["history", "EM-Hub", "modern releases", "European mods", "filebase"],
+    body: `
+      <p>Emergency Hub's EMERGENCY 4 modification filebase is important because it captures a newer phase of the community: reuploads from older sites, modern multiplayer-focused German projects, regional releases, international projects, translation packs, utility-driven mod support, and continued experimentation long after Emergency 4's original release window.</p>
+      <p>The table below focuses on modification releases and major mod-related entries visible through the EM-Hub filebase pages. It is not a rating list. It is a historical reading list for understanding the modern EM4 scene.</p>
+      <table>
+        <thead><tr><th>Date</th><th>Name</th><th>Historical note</th></tr></thead>
+        <tbody>
+          <tr><td>12 Nov 2023</td><td>Fuchsburg</td><td>Modern multiplayer-focused fictional German modification based on the Bieberfelde concept, with later 2.0 and 2.1 updates adding more calls, equipment logic, ladder behavior, outside resources, and fixes.</td></tr>
+          <tr><td>12 Nov 2023</td><td>Bieberfelde RetroFitting v1.0.3 final</td><td>Large Bieberfelde-based rebuild with new objects, buildings, vehicle concepts, dispatch timing, calls, scripts, stations, special units, and performance improvements.</td></tr>
+          <tr><td>30 Nov 2023</td><td>Anfanger Modifikation</td><td>Beginner/tutorial modification designed to teach mod creation step by step, including skinning, mapping, scripts, and editor workflow.</td></tr>
+          <tr><td>1 Dec 2023</td><td>Oudenhout Mod</td><td>Fictional modification release, with a winter version published the same day.</td></tr>
+          <tr><td>1 Dec 2023</td><td>Oudenhout Mod - Winterversion</td><td>Seasonal variant showing how map atmosphere and presentation can change the same fictional project.</td></tr>
+          <tr><td>6 Dec 2023</td><td>Stuttgart Modifikation</td><td>City/regional modification with a Stuttgart inner-city map, new vehicles, calls, functions, and mission-based freeplay implementation.</td></tr>
+          <tr><td>24 Dec 2023</td><td>Brussels Mod V1.0</td><td>Belgian capital-based regional modification release.</td></tr>
+          <tr><td>23 Jan 2024</td><td>Polizei-Modifikation Ellerargen</td><td>Police-centered singleplayer modification with multiplayer add-on and compatibility files preserved after the old Emergency-Forum closure.</td></tr>
+          <tr><td>1 Apr 2024</td><td>Fuchsburg 2.0</td><td>Major Fuchsburg update with additional calls, new ladder logic, new equipment logic, and additional outside units.</td></tr>
+          <tr><td>15 Apr 2024</td><td>Fuchsburg 2.1</td><td>Bugfix-focused Fuchsburg update that helped stabilize the 2.0 branch.</td></tr>
+          <tr><td>17 Oct 2024</td><td>Squadra Volante Submod</td><td>Italian State Police patrol-car submod showing smaller international police-focused add-on work.</td></tr>
+          <tr><td>25 Dec 2024</td><td>Gemeinde Kregen</td><td>Two-player optimized fictional multiplayer modification by OG Experience, split across two villages and built around a slower rural/community fire-rescue concept.</td></tr>
+          <tr><td>3 Mar 2025</td><td>Austria Modifikation Version 1.0</td><td>Simple Austrian regional modification focused on Austrian vehicles with minimal scripting.</td></tr>
+          <tr><td>5 Apr 2025</td><td>Kregen Bugfix</td><td>Patch-style file showing how modern mods often ship follow-up fixes as separate filebase entries.</td></tr>
+          <tr><td>26 Apr 2025</td><td>SDIS Em4 Mod 3.9</td><td>French-themed EM4 modification entry representing another national/regional branch of the community.</td></tr>
+          <tr><td>10 May 2025</td><td>Sittingen V.1.8.1</td><td>Bieberfelde/Sittingen branch entry with strong download interest, part of the modern fictional German multiplayer lineage.</td></tr>
+          <tr><td>10 May 2025</td><td>Emergency 4 Bieberfelde Submod Bayern 2.0</td><td>Bavaria-themed Bieberfelde submod showing continued regionalization of major base concepts.</td></tr>
+          <tr><td>13 May 2025</td><td>Hammerstadt Modifikation</td><td>Fictional modification release from FF NRU and Grisu1996.</td></tr>
+          <tr><td>19 Aug 2025</td><td>Emergency City Modifikation</td><td>VPI modification reupload with notes about driver requirements, bridge limitations, and command quirks.</td></tr>
+          <tr><td>27 Aug 2025</td><td>Leszno Modificattion - Emergency 4 Deluxe</td><td>Polish regional multiplayer modification using Hamachi, showing continued non-German/non-English regional releases.</td></tr>
+          <tr><td>5 Jan 2026</td><td>Redwood Bay Mod</td><td>Fictional US-based modification release on EM-Hub, showing the filebase also supports American-style projects.</td></tr>
+          <tr><td>1 Feb 2026</td><td>Rosenburg 1.1</td><td>Rural fictional German multiplayer modification based on lessons from Bieberfelde and Fuchsburg, with version 1.1 adding fixes and gameplay adjustments.</td></tr>
+          <tr><td>22 Feb 2026</td><td>Valkeakoski Mod 1.1</td><td>Finnish EM4 modification release, useful for showing the geographic spread of modern filebase activity.</td></tr>
+        </tbody>
+      </table>
+      <h3>What this period shows</h3>
+      <ul>
+        <li>Modern EM4 modding is heavily shaped by multiplayer-ready fictional regions.</li>
+        <li>Reuploads preserve projects that might otherwise disappear with old forum closures.</li>
+        <li>Many newer releases are built as branches, submods, or reinterpretations of earlier concepts like Bieberfelde.</li>
+        <li>Translation packs and compatibility notes became part of the preservation process.</li>
+        <li>Even small patches and bugfix entries matter because EM4 mods often depend on fragile script, prototype, and map interactions.</li>
+      </ul>
     `
   },
   {
@@ -60,7 +138,6 @@ const articles = [
         <li>Understanding LA Mod-era scripting conventions that many other American mods inherited.</li>
         <li>Recovering context for older script names, command names, and prototype setups.</li>
       </ul>
-      <p><strong>Public reference:</strong> <a href="https://www.emergency-planet.com/forum/24-emergency-4/" target="_blank" rel="noreferrer">Emergency Planet Emergency 4 forum</a>.</p>
     `
   },
   {
@@ -78,7 +155,6 @@ const articles = [
         <li>The loss or partial loss of forum access is a reminder to preserve documentation locally and credit authors clearly.</li>
         <li>Modern guides need direct explanations because old forum links do not always remain available.</li>
       </ul>
-      <p><strong>Public reference:</strong> <a href="https://emergency-forum.de.usitestat.com/" target="_blank" rel="noreferrer">public site record for emergency-forum.de</a>.</p>
     `
   },
   {
@@ -96,7 +172,6 @@ const articles = [
         <li>Community discussion around mods, scripting, prototypes, icons, audio, and troubleshooting.</li>
         <li>Preserving lessons learned from custom systems such as fuel, water supply, callouts, custody, drones, stations, and MDT-style roleplay.</li>
       </ul>
-      <p><strong>Public reference:</strong> <a href="https://www.em4resource.com/" target="_blank" rel="noreferrer">EM4Resource homepage</a>.</p>
     `
   },
   {
@@ -114,7 +189,6 @@ const articles = [
         <li>Showroom and team areas help keep modding visible even when full releases are rare.</li>
         <li>Community continuity matters: newer hubs often inherit people, practices, and lessons from older forums.</li>
       </ul>
-      <p><strong>Public reference:</strong> <a href="https://em-hub.de/forum/" target="_blank" rel="noreferrer">Emergency Hub forum</a> and <a href="https://em-hub.de/forum/board/30-emergency-4/" target="_blank" rel="noreferrer">Emergency 4 board</a>.</p>
     `
   },
   {
@@ -1379,7 +1453,6 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
         <li>Test at night with lights on, during fires, and with several vehicles moving. Daytime editor view is not enough.</li>
       </ul>
       <p><strong>Rule of thumb:</strong> if the detail is only visible in a close-up screenshot, it probably belongs in the texture instead of the mesh.</p>
-      <p><strong>Source:</strong> <a href="https://www.emergency-planet.com/topic/16893-poly-count-on-apparatus/" target="_blank" rel="noreferrer">Emergency Planet poly count discussion</a>.</p>
     `
   },
   {

@@ -1,68 +1,22 @@
 # Emergency 4 Modding Encyclopedia
 
-A GitHub Pages-ready encyclopedia for Emergency 4 modding. It is designed to feel like an EM4 menu while staying safe to publish publicly by using original CSS instead of redistributing base-game UI assets.
+A public reference site for Emergency 4 / 911: First Responders modding.
 
-## What Is Included
+This encyclopedia covers installation, editor use, mapping, assets, scripting, SDK behavior, troubleshooting, community history, and script case studies. It is built as a static GitHub Pages site and can be opened directly in a browser.
 
-- `index.html`: the encyclopedia page.
-- `assets/css/styles.css`: clean encyclopedia styling.
-- `assets/js/app.js`: searchable article database and navigation.
-- `assets/js/script-case-studies.js`: generated script case-study database merged into the main Case Studies section.
-- `assets/img/em4resource-banner.png`: EM4Resource banner shown in the page header.
-- `reference/script-source-snapshot.md`: combined copied source snapshot used for documentation review, so the live scripts remain untouched.
-- `docs/getting-started.md`: beginner setup, installing mods, editor loading, and safe first edits.
-- `EM4 History` section in `assets/js/app.js`: community history covering Emergency Planet, Emergency-Forum.de, EM4Resource, and EM-Hub.de.
-- `Asset Workshop` section in `assets/js/app.js`: beginner articles for file formats, skinning, Blender/model prep, vehicle pipeline, lighting, OpenHouse, glass standards, and colors.
-- `SDK Glossary` section in `assets/js/app.js`: short searchable explanations of SDK classes/files that beginners will see in scripts.
-- Sidebar support panel: links to the EM4Resource Patreon and explains the free support/wiki/modding work.
-- `docs/mod-creation-workflow.md`: practical workflow for vehicles, persons, deployables, and callouts.
-- `docs/editor-manual-reference.md`: official editor manual concepts summarized into practical modding notes.
-- `docs/base-game-folder-reference.md`: folder-by-folder explanation of the base game data structure.
-- `docs/sdk-reference.md`: explanation of the SDK files and major script API classes.
-- `docs/sdk-deep-dive.md`: practical SDK usage guide for GameObject, Person, Vehicle, Game, Mission, Interface, and action queues.
-- `docs/history-and-community.md`: game history and important community mod context.
-- `docs/site-design-notes.md`: explains how the site imitates the EM4 menu feel without redistributing game assets.
-- `docs/github-pages.md`: how to publish it on GitHub.
-- `docs/content-style.md`: how to add clean articles.
-- `docs/asset-notes.md`: how to handle EM4 screenshots and menu assets safely.
+## Open Locally
 
-## How to Open It
+Open `index.html` in a web browser.
 
-Open `index.html` in a browser. No server or build tool is required.
+## Project Layout
 
-## How to Publish It
+- `index.html` - main encyclopedia page
+- `assets/css/` - site styling
+- `assets/js/` - article database, navigation, and script case studies
+- `assets/img/` - site images
+- `docs/` - supporting reference notes
+- `reference/` - copied documentation source material
 
-1. Create a GitHub repository.
-2. Upload the contents of this folder to the repository root.
-3. In GitHub, open `Settings > Pages`.
-4. Set the source to deploy from the `main` branch and `/root`.
-5. Wait for GitHub to publish the Pages URL.
+## About
 
-## How to Add Articles
-
-Open `assets/js/app.js` and add another object to the `articles` array:
-
-```js
-{
-  category: "Scripting",
-  title: "New Article Title",
-  tags: ["script", "example"],
-  body: `
-    <p>Your article text here.</p>
-  `
-}
-```
-
-Keep entries practical. The most useful EM4 article explains:
-
-- What the feature does.
-- Which files are touched.
-- Which commands, icons, audio, prototypes, and VOs are needed.
-- How to test it.
-- What errors commonly happen.
-
-## Generated Script Articles
-
-The script articles are generated separately in `assets/js/script-case-studies.js`, but they appear under the same `Case Studies` section as the manually written case studies. Each generated entry includes the full copied script source plus beginner-focused explanations of command classes, lifecycle functions, icons, cursors, assigned commands, action queues, SDK calls, prototypes, audio paths, virtual object references, targeting rules, and debugging notes.
-
-Do not edit live mod scripts just to update documentation. Regenerate or update the copied case-study data instead.
+Created for EM4Resource as a beginner-friendly modding reference for the Emergency 4 community.
