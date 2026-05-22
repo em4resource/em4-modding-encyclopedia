@@ -19,4 +19,4 @@ Open `index.html` in a web browser.
 
 ## About
 
-Created for EM4Resource as a beginner-friendly modding reference for the Emergency 4 community.
+Created by EM4Resource as a beginner-friendly modding reference for the Emergency 4 community.
