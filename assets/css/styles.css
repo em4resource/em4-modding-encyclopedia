@@ -41,30 +41,37 @@ body {
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  align-items: flex-start;
+  align-items: center;
   padding: 0 0 18px;
   border-bottom: 1px solid var(--border);
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
 .brand h1 {
   margin: 0;
-  font-size: clamp(1.8rem, 3vw, 3rem);
+  font-size: clamp(1.45rem, 2.1vw, 2.2rem);
   line-height: 1.05;
   letter-spacing: 0;
 }
 
 .site-banner {
   display: block;
-  width: min(520px, 100%);
+  width: clamp(180px, 24vw, 300px);
+  flex: 0 0 auto;
   height: auto;
-  margin: 0 0 14px;
 }
 
 .brand p {
-  margin: 8px 0 0;
-  max-width: 820px;
+  margin: 6px 0 0;
+  max-width: 620px;
   color: var(--muted);
-  font-size: 1.05rem;
+  font-size: 0.96rem;
   line-height: 1.45;
 }
 
@@ -175,19 +182,23 @@ body {
 
 .support-panel {
   margin-top: 16px;
-  border-top: 1px solid var(--border);
-  padding-top: 14px;
+  border: 1px solid #f0b46c;
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px;
+  background: linear-gradient(180deg, #fff7ec 0%, #fff2df 100%);
+  box-shadow: 0 8px 18px rgba(181, 83, 24, 0.12);
 }
 
 .support-panel h2 {
   margin: 0;
-  font-size: 0.9rem;
-  color: var(--text);
+  font-size: 0.94rem;
+  color: #7a350f;
 }
 
 .support-panel p {
   margin: 8px 0 0;
-  color: var(--muted);
+  color: #5f422c;
   line-height: 1.45;
   font-size: 0.88rem;
 }
@@ -200,14 +211,15 @@ body {
   margin-top: 12px;
   padding: 8px 12px;
   border-radius: 6px;
-  background: var(--link);
+  background: #b55318;
   color: #fff;
   font-weight: 800;
   text-decoration: none;
+  box-shadow: 0 6px 14px rgba(181, 83, 24, 0.22);
 }
 
 .support-panel a:hover {
-  background: var(--link-dark);
+  background: #923f12;
 }
 
 .content-panel {
@@ -408,6 +420,15 @@ body {
   .topbar,
   .content-header {
     display: block;
+  }
+
+  .brand {
+    display: block;
+  }
+
+  .site-banner {
+    width: min(260px, 100%);
+    margin-bottom: 12px;
   }
 
   .header-meta {

@@ -1,7 +1,7 @@
 const articles = [
   {
     category: "Start Here",
-    title: "Command Briefing",
+    title: "Emergency 4 Overview",
     tags: ["game overview", "beginner", "encyclopedia"],
     body: `
       <p><code>Emergency 4: Global Fighters for Life</code>, released in North America as <code>911: First Responders</code>, is a real-time emergency management game about commanding fire, EMS, police, and technical rescue resources. The player coordinates units, vehicles, equipment, rescues, arrests, evacuation, treatment, transport, and incident resolution from an overhead command view.</p>
@@ -15,22 +15,34 @@ const articles = [
     tags: ["history", "mods", "timeline", "downloads"],
     body: `
       <p><code>Emergency 4</code> released in Europe in 2006, and <code>911: First Responders</code> followed as the North American title in 2007. The Deluxe edition added additional content and voice-command support. The editor and mod folder structure turned the game into a long-running platform for custom departments, maps, scripts, and roleplay projects.</p>
-      <p>Public community filebases show how the scene continued long after release. The dates below are download-page publication or version dates where visible publicly, not necessarily the original start date of each project.</p>
+      <p>Emergency Planet's <code>Big Mods</code> download category is one of the clearest public snapshots of major English-language and international EM4 releases. The dates below are the visible submitted or updated dates on that download category, not necessarily the first private development date for each project.</p>
       <table>
         <thead><tr><th>Date</th><th>Release or event</th><th>Why it matters</th></tr></thead>
         <tbody>
           <tr><td>2006</td><td><code>Emergency 4</code> European release.</td><td>Established the editor, map, prototype, mission, and script base used by later mods.</td></tr>
           <tr><td>2007</td><td><code>911: First Responders</code> North American release.</td><td>Brought the game to a wider English-speaking audience and modding community.</td></tr>
-          <tr><td>2012</td><td>Bieberfelde Multiplayer origin, according to its public EM-Hub filebase description.</td><td>Shows early development of multiplayer-focused roleplay concepts.</td></tr>
-          <tr><td>2015</td><td>Bieberfelde Multiplayer concept referenced by Fuchsburg as a foundation for its multiplayer design.</td><td>Represents a major shift toward organized multiplayer and realistic service workflows.</td></tr>
-          <tr><td>17 Nov 2023</td><td>Bieberfelde Multiplayer 1.2 published on EM-Hub.</td><td>Public filebase entry describes it as an Emergency 4 multiplayer modification for up to four players.</td></tr>
-          <tr><td>5 Mar 2024</td><td>Bieberfelde RetroFitting v1.0.3 final published on EM-Hub.</td><td>Large modern release with new objects, buildings, scripts, stations, vehicle concepts, alarm behavior, and performance improvements.</td></tr>
-          <tr><td>21 Oct 2024 / 26 Apr 2025</td><td>SDIS Em4 Mod public filebase page and version 4.5 entry.</td><td>Example of international Emergency 4 development outside German/English-only scenes.</td></tr>
-          <tr><td>10 May 2025</td><td>Bieberfelde Submod Bayern 2.0 published on EM-Hub.</td><td>Shows the continuing submod culture around established projects.</td></tr>
-          <tr><td>27 Aug 2025</td><td>Leszno Modification 1.0.0 published on EM-Hub.</td><td>Example of regional multiplayer projects continuing into the mid-2020s.</td></tr>
+          <tr><td>30 Aug 2010</td><td>Ukraine-Rescue Mod 1.2 updated.</td><td>Early example of a large regional mod with real units, new sirens, scripts, and emergency-service presentation.</td></tr>
+          <tr><td>28 Apr 2011</td><td>New York City Modification updated.</td><td>One of the landmark American urban mods, with about 50 vehicles and new realism-focused functions.</td></tr>
+          <tr><td>30 Aug 2012</td><td>Coastal Rescue submitted.</td><td>Example of an asset/resource-heavy release where models, textures, and scripts were shared for credited reuse.</td></tr>
+          <tr><td>14 Nov 2012</td><td>Winterberg Mod updated.</td><td>One of the major German modding references, listed on Emergency Planet with strong download interest.</td></tr>
+          <tr><td>22 Jan 2013</td><td>Harbor City submitted.</td><td>Large LA Mod-based project with custom map work, stations, lighting, hospital behavior, and roleplay systems.</td></tr>
+          <tr><td>16 Oct 2013</td><td>US Army Modification updated.</td><td>Total-conversion style project with a new map, unique units, events, and a development-tree concept.</td></tr>
+          <tr><td>14 Feb 2014</td><td>São Paulo Mod updated.</td><td>International city-based release showing how EM4 modding spread beyond Europe and North America.</td></tr>
+          <tr><td>1 May 2014</td><td>Helping Peter updated.</td><td>Danish first-responder concept focused on patient care before ambulance arrival.</td></tr>
+          <tr><td>29 May 2015</td><td>Bordsund Modifikation 1.0 updated.</td><td>Large German-style mod with altered maps, new sounds, special signaling systems, bases, and many credited community assets.</td></tr>
+          <tr><td>24 Jun 2016</td><td>London Multiplayer Mod updated.</td><td>Released multiplayer-focused London project with stations, limited water, automatic fire alarms, gated wye, and parking.</td></tr>
+          <tr><td>15 Sep 2016</td><td>Barcelona City Mod submitted.</td><td>Spanish city emergency-services release covering fire, local police, regional police, EMS, national police, and civil guard units.</td></tr>
+          <tr><td>8 Nov 2016</td><td>PL MOD v1.0 submitted.</td><td>Large Polish mod with dozens of fire, police, EMS, and technical units plus scripts and map content.</td></tr>
+          <tr><td>31 Mar 2017</td><td>112VenloModification V4.0 submitted.</td><td>Dutch release with station setup, status options, rapid deployment, alarm scripts, arrest transport, and mission/freeplay integration.</td></tr>
+          <tr><td>25 Dec 2018</td><td>Norway Modification Revamped updated.</td><td>Revamped national/regional mod with new skins, fixes, and updated presentation.</td></tr>
+          <tr><td>8 Feb 2019</td><td>Harbor City 5 release date listed in its file description.</td><td>Later Harbor City release with extensive UI, script, station, vehicle, lighting, and hospital improvements.</td></tr>
+          <tr><td>22 Mar 2021</td><td>Getxo Mod v1 submitted.</td><td>Basque Country/Spain release showing continued regional emergency-service modding.</td></tr>
+          <tr><td>26 Nov 2021</td><td>Emergency 3 MOD updated.</td><td>Converted Emergency 3 vehicles and campaign maps into EM4, preserving earlier series content.</td></tr>
+          <tr><td>28 Jun 2023</td><td>Miami Modification updated.</td><td>Large American city-style mod with custom freeplay map, many playable units, limited water, scripts, sirens, aircraft, and UI work.</td></tr>
+          <tr><td>10 Apr 2025</td><td>Montana Modification updated.</td><td>American small-town/Monida Pass release with vehicles, personnel, structures, equipment, and a re-visualized Beaverhead County setting.</td></tr>
         </tbody>
       </table>
-      <p><strong>Sources:</strong> <a href="https://em-hub.de/filebase/" target="_blank" rel="noreferrer">EM-Hub filebase</a>, <a href="https://em-hub.de/filebase/file/344-bieberfelde-multiplayer/" target="_blank" rel="noreferrer">Bieberfelde Multiplayer</a>, <a href="https://em-hub.de/filebase/file/61-bieberfelde-retrofitting-v1-0-3-final/" target="_blank" rel="noreferrer">Bieberfelde RetroFitting</a>, <a href="https://em-hub.de/filebase/file/580-sdis-em4-mod/" target="_blank" rel="noreferrer">SDIS Em4 Mod</a>, <a href="https://em-hub.de/filebase/file/650-emergency-4-bieberfelde-submod-bayern-2-0/" target="_blank" rel="noreferrer">Bieberfelde Submod Bayern</a>, <a href="https://em-hub.de/filebase/file/676-leszno-modificattion-emergency-4-deluxe/" target="_blank" rel="noreferrer">Leszno Modification</a>.</p>
+      <p><strong>Source:</strong> <a href="https://www.emergency-planet.com/files/category/38-big-mods/" target="_blank" rel="noreferrer">Emergency Planet Big Mods</a>.</p>
     `
   },
   {
