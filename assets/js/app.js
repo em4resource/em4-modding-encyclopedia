@@ -1627,6 +1627,25 @@ const categories = Array.from(new Set(articles.map(article => article.category))
   .filter(category => category !== "GitHub");
 let activeCategory = "Start Here";
 
+const categoryGroups = [
+  {
+    title: "Welcome",
+    categories: ["Start Here", "Getting Started", "EM4 History"]
+  },
+  {
+    title: "Editor and Assets",
+    categories: ["Folder Structure", "Editor Manual", "Maps", "Prototypes", "Asset Workshop", "UI and Icons", "Audio"]
+  },
+  {
+    title: "Scripting and SDK",
+    categories: ["Scripting", "SDK Glossary", "SDK Reference", "Freeplay and Missions", "Case Studies", "Troubleshooting"]
+  },
+  {
+    title: "Mod Workflow",
+    categories: ["Mod Creation"]
+  }
+];
+
 const categoryList = document.getElementById("categoryList");
 const articleGrid = document.getElementById("articleGrid");
 const articleTitle = document.getElementById("articleTitle");
@@ -1659,17 +1678,50 @@ function articleMatches(article, query) {
 
 function renderCategories() {
   categoryList.innerHTML = "";
-  categories.forEach(category => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = `menu-button${category === activeCategory ? " active" : ""}`;
-    button.textContent = category;
-    button.addEventListener("click", () => {
-      activeCategory = category;
-      renderCategories();
-      renderArticles();
+
+  categoryGroups.forEach(group => {
+    const visibleCategories = group.categories.filter(category => categories.includes(category));
+    if (visibleCategories.length === 0) {
+      return;
+    }
+
+    const section = document.createElement("div");
+    section.className = "category-group";
+
+    const title = document.createElement("div");
+    title.className = "category-group-title";
+    title.textContent = group.title;
+    section.appendChild(title);
+
+    visibleCategories.forEach(category => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `menu-button${category === activeCategory ? " active" : ""}`;
+      button.textContent = category;
+      button.addEventListener("click", () => {
+        activeCategory = category;
+        renderCategories();
+        renderArticles();
+      });
+      section.appendChild(button);
     });
-    categoryList.appendChild(button);
+
+    categoryList.appendChild(section);
+  });
+
+  categories
+    .filter(category => !categoryGroups.some(group => group.categories.includes(category)))
+    .forEach(category => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `menu-button${category === activeCategory ? " active" : ""}`;
+      button.textContent = category;
+      button.addEventListener("click", () => {
+        activeCategory = category;
+        renderCategories();
+        renderArticles();
+      });
+      categoryList.appendChild(button);
   });
 }
 
