@@ -30,6 +30,88 @@ const articles = [
     `
   },
   {
+    category: "EM4 History",
+    title: "Why Community History Matters",
+    tags: ["history", "community", "modding culture"],
+    body: `
+      <p>Emergency 4 modding is not only a file structure. It is also a long-running community culture built around forums, downloads, tutorials, private teams, released mods, abandoned concepts, and people helping each other solve strange script errors years after the game released.</p>
+      <p>The game itself gave players the editor, prototypes, missions, freeplay, and scripts. The community turned those tools into recognizable local departments, dispatch systems, station scripts, custom maps, equipment packs, multiplayer roleplay, and deep scenario design. Many things modern EM4 modders treat as normal, such as station parking scripts, limited water, callout staging, custom command menus, siren controls, and map-specific roleplay systems, became common because forum communities shared examples and slowly improved them.</p>
+      <p>This section documents the main community hubs by public record. Some exact dates, ownership changes, and internal decisions are not always published, so this encyclopedia separates clearly visible facts from community interpretation.</p>
+    `
+  },
+  {
+    category: "EM4 History",
+    title: "Emergency Planet",
+    tags: ["history", "Emergency Planet", "English community", "downloads"],
+    body: `
+      <p>Emergency Planet is one of the most important English-language homes for Emergency 4 and 911: First Responders modding. Public forum records show long-running sections for Emergency 4 general discussion, multiplayer, technical support, mission support, modding support, European modding, downloads, tutorials, galleries, and dedicated mod areas.</p>
+      <p>Its importance comes from being both a help forum and an archive. A player could find troubleshooting threads, download released mods, follow work-in-progress projects, ask script questions, and learn from older discussions. The Los Angeles Mod area is especially important historically because LA Mod became one of the reference points for American-style EM4 modding, station scripting, custom commands, and freeplay roleplay.</p>
+      <p>Emergency Planet also reflects the aging of the community. The forum still shows active Emergency 4 sections, but discussion volume is smaller than the peak years. That is normal for a 2006-era game. The important point for modders is that older Emergency Planet threads often preserve the reasoning behind fixes: why a command needs a prototype flag, why <code>fp_freeplay.script</code> is used as a startup script, why icons fail, or why a script loads but the command stays hidden.</p>
+      <h3>What to use it for</h3>
+      <ul>
+        <li>Finding old support answers and modding patterns.</li>
+        <li>Studying how major English-language mods were released and supported.</li>
+        <li>Understanding LA Mod-era scripting conventions that many other American mods inherited.</li>
+        <li>Recovering context for older script names, command names, and prototype setups.</li>
+      </ul>
+      <p><strong>Public reference:</strong> <a href="https://www.emergency-planet.com/forum/24-emergency-4/" target="_blank" rel="noreferrer">Emergency Planet Emergency 4 forum</a>.</p>
+    `
+  },
+  {
+    category: "EM4 History",
+    title: "Emergency-Forum.de",
+    tags: ["history", "Emergency-Forum.de", "German community", "archive"],
+    body: `
+      <p>Emergency-Forum.de was a major German-language community hub for the EMERGENCY series, Notruf 112, rescue simulations, and modding. Public search records and site metadata describe it as a fan forum for the EMERGENCY series, with Emergency 4 boards, modification boards, filebase areas, lexicon/FAQ content, and support discussions.</p>
+      <p>For many years, German-speaking EM4 modding was one of the deepest parts of the scene. Large European projects, complex station systems, specialized vehicle scripts, and roleplay-heavy fire/EMS concepts were often discussed or showcased through German forums. Even when individual links disappear, old references to Emergency-Forum.de still appear in mod readmes, YouTube descriptions, download pages, model credits, and support threads.</p>
+      <p>The practical lesson is that Emergency-Forum.de functioned like a memory bank for the German side of the community. When forums close or become hard to access, the community loses more than downloads. It loses tutorials, credits, explanations, bug reports, and the small comments that explain why a script was written a certain way.</p>
+      <h3>Why it matters to modders</h3>
+      <ul>
+        <li>Many German and European modding ideas spread through forum posts rather than formal documentation.</li>
+        <li>Old model, texture, and script credits may point back to Emergency-Forum.de threads.</li>
+        <li>The loss or partial loss of forum access is a reminder to preserve documentation locally and credit authors clearly.</li>
+        <li>Modern guides should explain techniques directly instead of assuming old forum links will always work.</li>
+      </ul>
+      <p><strong>Public reference:</strong> <a href="https://emergency-forum.de.usitestat.com/" target="_blank" rel="noreferrer">public site record for emergency-forum.de</a>.</p>
+    `
+  },
+  {
+    category: "EM4 History",
+    title: "EM4Resource",
+    tags: ["history", "EM4Resource", "wiki", "support"],
+    body: `
+      <p>EM4Resource represents a newer style of Emergency 4 community space: less like a single old forum thread archive, and more like a focused support, wiki, Discord, and resource hub. Its public homepage describes EM4Resource as a place for Emergency 4 mods, tutorials, and support, with ongoing wiki updates and community help.</p>
+      <p>Historically, this matters because newer EM4 players often arrive after the old forum era. They may not know where LA Mod support threads were, what German forums existed, or why certain scripts are copied from older mods. A resource site can bridge that gap by turning scattered knowledge into articles, downloads, tutorials, and more direct explanations.</p>
+      <p>For this encyclopedia, EM4Resource is a model for the kind of preservation EM4 needs: practical guides, clear SDK explanations, roleplay script documentation, and troubleshooting notes that do not depend on one person remembering an old forum post from 2011.</p>
+      <h3>What it is useful for</h3>
+      <ul>
+        <li>Modern tutorials and wiki-style documentation.</li>
+        <li>Game support for current players trying to run EM4 on modern systems.</li>
+        <li>Community discussion around mods, scripting, prototypes, icons, audio, and troubleshooting.</li>
+        <li>Preserving lessons learned from custom systems such as fuel, water supply, callouts, custody, drones, stations, and MDT-style roleplay.</li>
+      </ul>
+      <p><strong>Public reference:</strong> <a href="https://www.em4resource.com/" target="_blank" rel="noreferrer">EM4Resource homepage</a>.</p>
+    `
+  },
+  {
+    category: "EM4 History",
+    title: "EM-Hub.de",
+    tags: ["history", "EM-Hub", "German community", "modern forum"],
+    body: `
+      <p>EM-Hub.de is a modern German-language community project for the EMERGENCY scene. Public pages describe it as a community project by known faces from the EMERGENCY scene, including former forum members, modders, and streamers. Its slogan is community-focused, and its visible structure includes boards for Emergency Hub news/support, the EMERGENCY series, Emergency 4, Emergency 5/2016/2017/20, modding, showrooms, support, files, and a lexicon.</p>
+      <p>Its Emergency 4 area matters because it continues the German tradition of detailed modding discussion while using a newer platform. Public board data shows active sections for general Emergency 4 discussion, support, modding, showrooms, and modding teams. That makes it one of the modern places where players can still ask how to install mods, repair errors, discuss prototypes, find tools, or showcase projects.</p>
+      <p>EM-Hub also shows how the community evolved after older forums became less central. Instead of relying only on long forum threads, modern hubs often combine forums, filebases, lexicons, Discord-style community behavior, project showcases, and support posts.</p>
+      <h3>What to learn from it</h3>
+      <ul>
+        <li>Modern EM4 documentation should be easier to search than old forum threads.</li>
+        <li>Lexicon/wiki articles are valuable because they turn repeated support answers into stable references.</li>
+        <li>Showroom and team areas help keep modding visible even when full releases are rare.</li>
+        <li>Community continuity matters: newer hubs often inherit people, practices, and lessons from older forums.</li>
+      </ul>
+      <p><strong>Public reference:</strong> <a href="https://em-hub.de/forum/" target="_blank" rel="noreferrer">Emergency Hub forum</a> and <a href="https://em-hub.de/forum/board/30-emergency-4/" target="_blank" rel="noreferrer">Emergency 4 board</a>.</p>
+    `
+  },
+  {
     category: "Start Here",
     title: "How the Game Is Put Together",
     tags: ["mental model", "architecture", "beginner"],
@@ -72,6 +154,7 @@ const articles = [
         <thead><tr><th>Section</th><th>Use It For</th></tr></thead>
         <tbody>
           <tr><td>Getting Started</td><td>Installing mods, loading the editor, reading logs, first safe edits, and beginner workflow.</td></tr>
+          <tr><td>EM4 History</td><td>Community history, Emergency Planet, Emergency-Forum.de, EM4Resource, and EM-Hub.de.</td></tr>
           <tr><td>Editor Manual</td><td>Scene mode, terrain, prototypes, paths, streets, spawn points, VOs, triggers, materials, radar maps.</td></tr>
           <tr><td>Mod Creation</td><td>Building vehicles, persons, deployables, equipment, custom callouts, and debugging broken layers.</td></tr>
           <tr><td>Folder Structure</td><td>What every major base game <code>Data</code> folder does and how mods mirror those folders.</td></tr>
