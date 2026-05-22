@@ -1,6 +1,7 @@
-# Script Case Studies Source Snapshot
+# Script Source Snapshot
 
-Generated from the workspace Scripts folder. These are copied here for documentation analysis only. The live files in `Scripts` were not edited.
+Generated from copied workspace scripts for documentation analysis only.
+The live files in `Scripts` were not edited by this snapshot.
 
 ## AimedShot.script
 
@@ -49834,4 +49835,3 @@ object WaterOn : CommandScript
 };
 
 ```
-

@@ -1281,14 +1281,24 @@ function renderArticles() {
     const body = node.querySelector(".article-body");
 
     title.textContent = article.title;
-    body.innerHTML = `${article.body}<div class="tag-row">${article.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}</div>`;
+    const renderBody = () => {
+      if (body.dataset.loaded === "true") {
+        return;
+      }
+      body.innerHTML = `${article.body}<div class="tag-row">${article.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}</div>`;
+      body.dataset.loaded = "true";
+    };
 
     if (index === 0) {
       card.classList.add("open");
+      renderBody();
     }
 
     title.addEventListener("click", () => {
       card.classList.toggle("open");
+      if (card.classList.contains("open")) {
+        renderBody();
+      }
     });
 
     articleGrid.appendChild(node);

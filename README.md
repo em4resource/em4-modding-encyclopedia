@@ -7,7 +7,7 @@ A GitHub Pages-ready encyclopedia for Emergency 4 modding. It is designed to fee
 - `index.html`: the encyclopedia page.
 - `assets/css/styles.css`: clean encyclopedia styling.
 - `assets/js/app.js`: searchable article database and navigation.
-- `assets/js/script-case-studies.js`: generated case-study database covering the scripts from the workspace `Scripts` folder.
+- `assets/js/script-case-studies.js`: generated script case-study database merged into the main Case Studies section.
 - `reference/script-source-snapshot.md`: combined copied source snapshot used for documentation review, so the live scripts remain untouched.
 - `docs/getting-started.md`: beginner setup, installing mods, editor loading, and safe first edits.
 - `docs/mod-creation-workflow.md`: practical workflow for vehicles, persons, deployables, and callouts.
@@ -56,8 +56,8 @@ Keep entries practical. The most useful EM4 article explains:
 - How to test it.
 - What errors commonly happen.
 
-## Script Case Studies
+## Generated Script Articles
 
-The `Script Case Studies` section is generated separately in `assets/js/script-case-studies.js`. It analyzes copied script text and lists each script's command classes, icons, cursors, assigned commands, action queues, SDK calls, prototypes, audio paths, virtual object references, and integration notes.
+The script articles are generated separately in `assets/js/script-case-studies.js`, but they appear under the same `Case Studies` section as the manually written case studies. Each generated entry includes the full copied script source plus beginner-focused explanations of command classes, lifecycle functions, icons, cursors, assigned commands, action queues, SDK calls, prototypes, audio paths, virtual object references, targeting rules, and debugging notes.
 
 Do not edit live mod scripts just to update documentation. Regenerate or update the copied case-study data instead.
