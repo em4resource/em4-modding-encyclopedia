@@ -527,10 +527,29 @@ body {
 .download-card.featured {
   grid-column: 1 / -1;
   min-height: 190px;
-  border-color: #7db6dc;
+  border-color: #b84d72;
   background:
-    linear-gradient(180deg, rgba(239, 249, 255, 0.98), rgba(255, 255, 255, 0.98)),
-    linear-gradient(135deg, #d3efff, #effaf2);
+    linear-gradient(180deg, rgba(255, 247, 250, 0.99), rgba(255, 255, 255, 0.99)),
+    linear-gradient(135deg, #ffd9e6, #fff5dd);
+  box-shadow: 0 16px 34px rgba(117, 38, 71, 0.16);
+}
+
+.download-card.featured::before {
+  height: 5px;
+  background: linear-gradient(90deg, #b81f57, #f2b84b);
+}
+
+.download-card.featured .download-kicker {
+  color: #9c1848;
+}
+
+.download-card.featured a {
+  background: #b81f57;
+  box-shadow: 0 10px 22px rgba(184, 31, 87, 0.22);
+}
+
+.download-card.featured a:hover {
+  background: #941541;
 }
 
 .download-card.archived {

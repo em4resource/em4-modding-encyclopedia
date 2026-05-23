@@ -104,7 +104,7 @@ const articles = [
           <h3>West Falls V1.5 Mod</h3>
           <p>Community-created West Falls Township modification, listed here for community access.</p>
           <div class="download-meta">Released 8 Dec 2023</div>
-          <p class="download-credit">Credits: Itchboy, THVFD, Bama, Goog, E4Lm, NYCERU Mod Team, Hoppah (LA Mod Team), Jamnj88, EmC-Unit, EOC Mod Team, MikeyPI.</p>
+          <p class="download-credit">Credits: Itchboy, THVFD, Bama, Goog, E4Lm, NYCERU Mod Team, Hoppah (LA Mod Team), Jamnj88, EmC-Unit, EOC Mod Team, MikeyPI, SlateDragon.</p>
           <a href="https://mega.nz/file/bHBzXSCB#taLupk_jGCQoIrtn4aL5E_1tLXMddXM8tcjrNBKt9ys" target="_blank" rel="noreferrer">Download</a>
         </article>
 
@@ -201,9 +201,9 @@ const articles = [
           <tr><td>22 Mar 2021</td><td>Getxo Mod v1 submitted.</td><td>Basque Country/Spain release showing continued regional emergency-service modding.</td></tr>
           <tr><td>26 Nov 2021</td><td>Emergency 3 MOD updated.</td><td>Converted Emergency 3 vehicles and campaign maps into EM4, preserving earlier series content.</td></tr>
           <tr><td>28 Jun 2023</td><td>Miami Modification updated.</td><td>Large American city-style mod with custom freeplay map, many playable units, limited water, scripts, sirens, aircraft, and UI work.</td></tr>
-          <tr class="em4resource-release"><td>2023-2026</td><td>Fairbanks Alaska Mod Beta V.5 released.</td><td>EM4Resource release. Alaska-focused modification release, listed here without download links.</td></tr>
-          <tr class="em4resource-release"><td>2023-2026</td><td>Upstate NY Mod Beta V6 released.</td><td>EM4Resource release. Upstate New York-focused modification release, listed here without download links.</td></tr>
-          <tr class="em4resource-release"><td>2023-2026</td><td>NY Mass Border Mod V1 released.</td><td>EM4Resource release. New York / Massachusetts border-area modification release, listed here without download links.</td></tr>
+          <tr class="em4resource-release"><td>2023-2026</td><td>Fairbanks Alaska Mod Beta V.5 released.</td><td>EM4Resource release. Alaska-focused modification release.</td></tr>
+          <tr class="em4resource-release"><td>2023-2026</td><td>Upstate NY Mod Beta V6 released.</td><td>EM4Resource release. Upstate New York-focused modification release.</td></tr>
+          <tr class="em4resource-release"><td>2023-2026</td><td>NY Mass Border Mod V1 released.</td><td>EM4Resource release. New York / Massachusetts border-area modification release.</td></tr>
           <tr><td>12 Nov 2023</td><td>Fuchsburg released.</td><td>Modern multiplayer-focused fictional German modification based on the Bieberfelde concept, later expanded with more calls, equipment logic, ladder behavior, outside resources, and fixes.</td></tr>
           <tr><td>12 Nov 2023</td><td>Bieberfelde RetroFitting v1.0.3 final released.</td><td>Large Bieberfelde-based rebuild with new objects, buildings, vehicle concepts, dispatch timing, calls, scripts, stations, special units, and performance improvements.</td></tr>
           <tr><td>30 Nov 2023</td><td>Anfanger Modifikation released.</td><td>Beginner/tutorial modification designed to teach mod creation step by step, including skinning, mapping, scripts, and editor workflow.</td></tr>
@@ -211,7 +211,7 @@ const articles = [
           <tr><td>6 Dec 2023</td><td>Stuttgart Modifikation released.</td><td>City/regional modification with a Stuttgart inner-city map, new vehicles, calls, functions, and mission-based freeplay implementation.</td></tr>
           <tr class="em4resource-release"><td>2 Dec 2023</td><td>Montana Wilderness Mod released.</td><td>EM4Resource release. Wilderness-focused Montana modification release.</td></tr>
           <tr class="em4resource-release"><td>2 Dec 2023</td><td>Harlem's Test Map released.</td><td>EM4Resource release. Test map release requiring West Falls V1.5 Mod.</td></tr>
-          <tr><td>8 Dec 2023</td><td>West Falls V1.5 Mod released.</td><td>Community modification release listed by EM4Resource. Credits include Itchboy, THVFD, Bama, Goog, E4Lm, NYCERU Mod Team, Hoppah (LA Mod Team), Jamnj88, EmC-Unit, EOC Mod Team, and MikeyPI.</td></tr>
+          <tr><td>8 Dec 2023</td><td>West Falls V1.5 Mod released.</td><td>Community modification release listed by EM4Resource. Credits include Itchboy, THVFD, Bama, Goog, E4Lm, NYCERU Mod Team, Hoppah (LA Mod Team), Jamnj88, EmC-Unit, EOC Mod Team, MikeyPI, and SlateDragon.</td></tr>
           <tr><td>24 Dec 2023</td><td>Brussels Mod V1.0 released.</td><td>Belgian capital-based regional modification release.</td></tr>
           <tr><td>23 Jan 2024</td><td>Polizei-Modifikation Ellerargen released.</td><td>Police-centered singleplayer modification with multiplayer add-on and compatibility files preserved after the old forum era.</td></tr>
           <tr><td>3 Feb 2024</td><td>999 OTF Mod released.</td><td>Community modification release listed by EM4Resource. Credits are included in the original CREDITS.pdf packaged with the mod.</td></tr>
@@ -1690,6 +1690,240 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
+    category: "Script Tutorials",
+    title: "Create Your First Script From Scratch",
+    tags: ["scripts", "beginner", "siren", "commands", "tutorial"],
+    body: `
+      <p>This walkthrough teaches a first Emergency 4 script from a blank file. The example is intentionally small: a vehicle command that toggles a siren. Once you understand this pattern, larger commands such as traffic stops, deployable equipment, fire alarms, station dispatches, and callout systems become easier to read.</p>
+
+      <h3>What you are building</h3>
+      <p>You are making a command button called <code>VcmdTutorialSiren</code>. When the player selects an emergency vehicle and presses the button, the script checks whether the siren is already on. If it is off, the siren turns on. If it is on, the siren turns off.</p>
+      <table>
+        <thead><tr><th>Part</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>Script file</td><td><code>Scripts/Game/Command/VcmdTutorialSiren.script</code></td></tr>
+          <tr><td>Command object</td><td><code>object VcmdTutorialSiren : CommandScript</code></td></tr>
+          <tr><td>Icon/cursor name</td><td><code>VcmdTutorialSiren</code></td></tr>
+          <tr><td>Assigned to</td><td>One test emergency vehicle prototype in the editor</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Step 1: Create the script file</h3>
+      <p>Create a new file in the mod command script folder:</p>
+      <pre><code>Mods/Your Mod/Scripts/Game/Command/VcmdTutorialSiren.script</code></pre>
+      <p>Emergency 4 command scripts are usually stored in <code>Scripts/Game/Command</code>. The filename does not have to match the command object, but beginners should keep them the same because it makes debugging much easier.</p>
+
+      <h3>Step 2: Start with comments and constants</h3>
+      <p>Comments do not affect gameplay. They explain what the script is for. Constants are named text values used later in the script, usually for commands, icons, audio paths, and prototype paths.</p>
+      <pre><code>// Tutorial siren command for learning EM4 scripting.
+// Adds a self-executed button to an emergency vehicle.
+
+const char CMD_TUTORIAL_SIREN[] = "VcmdTutorialSiren";
+const char ICON_TUTORIAL_SIREN[] = "VcmdTutorialSiren";
+const char CURSOR_TUTORIAL_SIREN[] = "VcmdTutorialSiren";</code></pre>
+      <p>The name inside the quotes is the exact command or icon name the engine will look for. A typo here can make a button invisible, show a white box, or produce a missing cursor warning.</p>
+
+      <h3>Step 3: Create the command object</h3>
+      <p>A command button is created with a script object that inherits from <code>CommandScript</code>. The constructor runs when the script is loaded and tells EM4 how the command behaves in the menu.</p>
+      <pre><code>object VcmdTutorialSiren : CommandScript
+{
+    VcmdTutorialSiren()
+    {
+        SetIcon(ICON_TUTORIAL_SIREN);
+        SetCursor(CURSOR_TUTORIAL_SIREN);
+        SetRestrictions(RESTRICT_SELFEXECUTE);
+        SetPossibleCallers(ACTOR_VEHICLE);
+        SetValidTargets(ACTOR_VEHICLE);
+        SetPriority(80);
+    }
+};</code></pre>
+      <table>
+        <thead><tr><th>Line</th><th>What it means</th></tr></thead>
+        <tbody>
+          <tr><td><code>SetIcon</code></td><td>Uses <code>UI/Game/Icons/Commands/VcmdTutorialSiren.dds</code>.</td></tr>
+          <tr><td><code>SetCursor</code></td><td>Uses <code>UI/Game/Icons/Cursor/VcmdTutorialSiren.dds</code>.</td></tr>
+          <tr><td><code>RESTRICT_SELFEXECUTE</code></td><td>The player clicks the vehicle's own button instead of clicking a target on the map.</td></tr>
+          <tr><td><code>SetPossibleCallers</code></td><td>Only vehicles can use this command.</td></tr>
+          <tr><td><code>SetValidTargets</code></td><td>The command target is also a vehicle.</td></tr>
+          <tr><td><code>SetPriority</code></td><td>Controls where the button appears compared with other commands.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Step 4: Add CheckPossible</h3>
+      <p><code>CheckPossible</code> decides whether the command is allowed to appear or be used. For a first script, keep it simple: the caller must exist, must be a vehicle, and should not be destroyed.</p>
+      <pre><code>bool CheckPossible(GameObject *Caller)
+{
+    if (!Caller-&gt;IsValid())
+        return false;
+
+    if (Caller-&gt;GetType() != ACTOR_VEHICLE)
+        return false;
+
+    Vehicle v(Caller);
+    if (v.IsDestroyed())
+        return false;
+
+    return true;
+}</code></pre>
+      <p>This function is one of the most common reasons a command does not show up. If the button is missing, check the prototype has the command assigned, then check <code>CheckPossible</code>.</p>
+
+      <h3>Step 5: Add CheckTarget</h3>
+      <p><code>CheckTarget</code> decides whether the selected target is valid. Because this is a self-executed vehicle command, the caller and target should be the same vehicle.</p>
+      <pre><code>bool CheckTarget(GameObject *Caller, Actor *Target, int childID)
+{
+    if (!Caller-&gt;IsValid() || !Target-&gt;IsValid())
+        return false;
+
+    if (Caller-&gt;GetID() != Target-&gt;GetID())
+        return false;
+
+    return true;
+}</code></pre>
+      <p>Always end target checks with a clear <code>return false;</code> or <code>return true;</code>. EM4's script parser can tolerate some sloppy code, but missing returns often causes strange command behavior.</p>
+
+      <h3>Step 6: Add PushActions</h3>
+      <p><code>PushActions</code> is the part that actually does the work after the player presses the command. For this tutorial, the work is only toggling the siren.</p>
+      <pre><code>void PushActions(GameObject *Caller, Actor *Target, int childID)
+{
+    Vehicle v(Caller);
+
+    if (v.IsSirenEnabled())
+    {
+        v.EnableSiren(false);
+        Mission::PlayHint("Siren off.");
+    }
+    else
+    {
+        v.EnableSiren(true);
+        Mission::PlayHint("Siren on.");
+    }
+}</code></pre>
+      <p>The <code>Mission::PlayHint</code> lines are not required. They are useful while learning because they prove the command is firing. Once the script works, you can remove the hints or replace them with proper audio and roleplay messages.</p>
+
+      <h3>Full beginner script</h3>
+      <p>This is the full script assembled in one piece.</p>
+      <details class="source-details" open>
+        <summary>Open full tutorial siren script</summary>
+        <pre><code>// Tutorial siren command for learning EM4 scripting.
+// Adds a self-executed button to an emergency vehicle.
+
+const char CMD_TUTORIAL_SIREN[] = "VcmdTutorialSiren";
+const char ICON_TUTORIAL_SIREN[] = "VcmdTutorialSiren";
+const char CURSOR_TUTORIAL_SIREN[] = "VcmdTutorialSiren";
+
+object VcmdTutorialSiren : CommandScript
+{
+    VcmdTutorialSiren()
+    {
+        SetIcon(ICON_TUTORIAL_SIREN);
+        SetCursor(CURSOR_TUTORIAL_SIREN);
+        SetRestrictions(RESTRICT_SELFEXECUTE);
+        SetPossibleCallers(ACTOR_VEHICLE);
+        SetValidTargets(ACTOR_VEHICLE);
+        SetPriority(80);
+    }
+
+    bool CheckPossible(GameObject *Caller)
+    {
+        if (!Caller-&gt;IsValid())
+            return false;
+
+        if (Caller-&gt;GetType() != ACTOR_VEHICLE)
+            return false;
+
+        Vehicle v(Caller);
+        if (v.IsDestroyed())
+            return false;
+
+        return true;
+    }
+
+    bool CheckTarget(GameObject *Caller, Actor *Target, int childID)
+    {
+        if (!Caller-&gt;IsValid() || !Target-&gt;IsValid())
+            return false;
+
+        if (Caller-&gt;GetID() != Target-&gt;GetID())
+            return false;
+
+        return true;
+    }
+
+    void PushActions(GameObject *Caller, Actor *Target, int childID)
+    {
+        Vehicle v(Caller);
+
+        if (v.IsSirenEnabled())
+        {
+            v.EnableSiren(false);
+            Mission::PlayHint("Siren off.");
+        }
+        else
+        {
+            v.EnableSiren(true);
+            Mission::PlayHint("Siren on.");
+        }
+    }
+};</code></pre>
+      </details>
+
+      <h3>Step 7: Add icons and cursors</h3>
+      <p>The command will try to load these files:</p>
+      <ul>
+        <li><code>UI/Game/Icons/Commands/VcmdTutorialSiren.dds</code></li>
+        <li><code>UI/Game/Icons/Cursor/VcmdTutorialSiren.dds</code></li>
+      </ul>
+      <p>If the icon is missing or the DDS format is wrong, EM4 may show a white square, a blank icon, a missing cursor warning, or crash during loading. Use the same dimensions, transparency style, and DDS format as known working command icons in your mod.</p>
+
+      <h3>Step 8: Assign the command in the editor</h3>
+      <ol>
+        <li>Open the Emergency 4 editor.</li>
+        <li>Load your mod.</li>
+        <li>Open the prototype for one test emergency vehicle.</li>
+        <li>Add the command <code>VcmdTutorialSiren</code>.</li>
+        <li>Save the prototype.</li>
+        <li>Load freeplay and select that vehicle.</li>
+      </ol>
+      <p>If the command does not show, check the logfile first. A script parse error anywhere in the file can prevent the command from loading.</p>
+
+      <h3>Step 9: Test in small pieces</h3>
+      <p>Do not build a large script all at once. Test one piece, then add one more piece.</p>
+      <table>
+        <thead><tr><th>Test</th><th>Expected result</th><th>If it fails</th></tr></thead>
+        <tbody>
+          <tr><td>Game loads</td><td>No parser error in <code>logfile.txt</code></td><td>Check braces, semicolons, duplicate names, and long statements.</td></tr>
+          <tr><td>Vehicle selected</td><td>Button appears</td><td>Check prototype command assignment, icon name, and <code>CheckPossible</code>.</td></tr>
+          <tr><td>Button clicked</td><td>Siren toggles</td><td>Check <code>CheckTarget</code> and <code>PushActions</code>.</td></tr>
+          <tr><td>Second click</td><td>Siren turns back off</td><td>Check the true/false branch around <code>IsSirenEnabled</code>.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>How this grows into real scripts</h3>
+      <p>This small script has the same skeleton as much larger EM4 scripts:</p>
+      <ul>
+        <li><strong>Constants:</strong> names for commands, icons, audio, prototypes, VOs, and paths.</li>
+        <li><strong>Constructor:</strong> icon, cursor, restrictions, targets, caller type, priority, and menu placement.</li>
+        <li><strong>CheckPossible:</strong> should this command be available right now?</li>
+        <li><strong>CheckTarget:</strong> is the clicked target valid?</li>
+        <li><strong>PushActions:</strong> what happens after the command is accepted?</li>
+      </ul>
+      <p>For a deployable object, <code>PushActions</code> might create a vehicle or object prototype. For a station command, it might find VOs and send units. For a custom callout, it might create victims, play audio, add map notifications, and wait for completion states.</p>
+
+      <h3>Common beginner mistakes</h3>
+      <ul>
+        <li>Adding the script file but forgetting to assign the command to a prototype.</li>
+        <li>Using an icon name in the script that does not match the DDS filename.</li>
+        <li>Putting the script in the wrong folder.</li>
+        <li>Forgetting a final <code>return false;</code> in <code>CheckTarget</code>.</li>
+        <li>Using a command object name that does not match the command assigned in the editor.</li>
+        <li>Editing too many scripts at once, then not knowing which one broke the mod.</li>
+      </ul>
+
+      <h3>Next exercise</h3>
+      <p>After this works, add one feature at a time: play a radio sound when the siren turns on, show a notification, or create two separate buttons for siren on and siren off. That is how simple scripts become full roleplay systems without turning into a debugging nightmare.</p>
+    `
+  },
+  {
     category: "Case Studies",
     title: "How to Read a Script Case Study",
     tags: ["scripts", "beginner", "case studies"],
@@ -1759,7 +1993,7 @@ let activeCategory = "Start Here";
 const categoryGroups = [
   {
     title: "Welcome",
-    categories: ["Start Here", "EM4Resource Downloads", "Getting Started", "EM4 History"]
+    categories: ["Start Here", "Getting Started", "EM4Resource Downloads", "EM4 History"]
   },
   {
     title: "Editor and Assets",
@@ -1767,7 +2001,7 @@ const categoryGroups = [
   },
   {
     title: "Scripting and SDK",
-    categories: ["Scripting", "SDK Glossary", "SDK Reference", "Freeplay and Missions", "Case Studies", "Troubleshooting"]
+    categories: ["Scripting", "SDK Glossary", "SDK Reference", "Freeplay and Missions", "Case Studies", "Script Tutorials", "Troubleshooting"]
   },
   {
     title: "Mod Workflow",
