@@ -57,7 +57,7 @@ const articles = [
         <article class="download-card featured">
           <div class="download-kicker">Featured Release</div>
           <h3>Beaverhead County Modification V1</h3>
-          <p>A Beaverhead County-focused EM4Resource modification release.</p>
+          <p>Normally the player operates in Monida Pass with mutual aid assistance from the Beaverhead County Fire Department. This release reverses that setup: the player covers Beaverhead County territory using the full resources of the Beaverhead County Fire Department.</p>
           <div class="download-meta">Released 5 Feb 2026</div>
           <a href="https://mega.nz/file/ev5EzTSY#TBro-a3t3o8jnnduSZ5Q0NKZOgDJpivCu2w1ffuppzg" target="_blank" rel="noreferrer">Download</a>
         </article>
@@ -1690,7 +1690,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Script Tutorials",
+    category: "Create Your Own Script",
     title: "Create Your First Script From Scratch",
     tags: ["scripts", "beginner", "siren", "commands", "tutorial"],
     body: `
@@ -2001,7 +2001,7 @@ const categoryGroups = [
   },
   {
     title: "Scripting and SDK",
-    categories: ["Scripting", "SDK Glossary", "SDK Reference", "Freeplay and Missions", "Case Studies", "Script Tutorials", "Troubleshooting"]
+    categories: ["Scripting", "SDK Glossary", "SDK Reference", "Freeplay and Missions", "Case Studies", "Create Your Own Script", "Troubleshooting"]
   },
   {
     title: "Mod Workflow",
