@@ -1351,7 +1351,7 @@ for (int i = 0; i &lt; l.GetNumObjects(); i++)
     tags: ["UI", "XML", "menus"],
     body: `
       <p><code>Data/UI</code> is where EM4's interface is built. The main menu uses XML layouts and DDS button states. The base main menu uses a 1024 by 768 dialog, cyan title text, compact font definitions, and button images with separate normal, hover, pressed, and disabled states.</p>
-      <p>Important naming pattern: <code>_on</code> is normal, <code>_ov</code> is hover, <code>_cl</code> is clicked or pressed, and <code>_dis</code> is disabled. This encyclopedia now follows that same idea in CSS instead of copying base-game images.</p>
+      <p>Important naming pattern: <code>_on</code> is normal, <code>_ov</code> is hover, <code>_cl</code> is clicked or pressed, and <code>_dis</code> is disabled. Matching this pattern keeps custom menus predictable when replacing or extending interface assets.</p>
     `
   },
   {
@@ -1549,15 +1549,6 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
         <li>Use transparent padding so the symbol is not cropped in-game.</li>
         <li>If the icon appears white or crashes loading, remake it with a known-good DDS format.</li>
       </ul>
-    `
-  },
-  {
-    category: "UI and Icons",
-    title: "EM4 Menu Look",
-    tags: ["design", "menu", "github pages"],
-    body: `
-      <p>The base UI uses compact panels, bevelled button images, cyan headers, white text, tight spacing, and separate button-state assets. Main menu buttons are arranged in opposing columns around the center of a 1024 by 768 layout. This encyclopedia recreates that feel with original CSS so it can be published publicly without redistributing base-game UI artwork.</p>
-      <p>If this is for a private team repo, you can add your own screenshots or legally usable images later in <code>assets/img</code>.</p>
     `
   },
   {
@@ -1928,7 +1919,7 @@ object VcmdTutorialSiren : CommandScript
     title: "How to Read a Script Case Study",
     tags: ["scripts", "beginner", "case studies"],
     body: `
-      <p>The generated script case studies are meant for someone opening an EM4 script for the first time. Each article includes the full copied source, but you should not start by reading every line from top to bottom.</p>
+      <p>The script case studies are written for someone opening an EM4 script for the first time. Each article includes the full copied source, but you should not start by reading every line from top to bottom.</p>
       <h3>Use this order</h3>
       <ol>
         <li><strong>Purpose:</strong> read the first paragraph to understand what kind of gameplay the script controls.</li>
@@ -1955,29 +1946,6 @@ object VcmdTutorialSiren : CommandScript
         <li><code>cursor ... not found</code>: missing DDS/TGA cursor file or wrong icon name.</li>
         <li><code>global listener object is still registered</code>: often appears during crashes; inspect the newest script and newest DDS first.</li>
       </ul>
-    `
-  },
-  {
-    category: "GitHub",
-    title: "How to Publish This on GitHub Pages",
-    tags: ["github", "pages", "hosting"],
-    body: `
-      <ul>
-        <li>Create a new GitHub repository, for example <code>em4-modding-encyclopedia</code>.</li>
-        <li>Upload this folder's contents to the repository root.</li>
-        <li>Go to repository Settings, then Pages.</li>
-        <li>Set Source to <code>Deploy from a branch</code>, choose <code>main</code>, and choose <code>/root</code>.</li>
-        <li>GitHub will give you a public URL after the first deploy.</li>
-      </ul>
-    `
-  },
-  {
-    category: "GitHub",
-    title: "How to Grow the Encyclopedia",
-    tags: ["articles", "contributing", "structure"],
-    body: `
-      <p>Add new entries in <code>assets/js/app.js</code>. Keep each article focused: one concept, one problem, one pattern, or one case study. Add screenshots only if you own them or have permission to publish them.</p>
-      <p>When documenting a script, include what command it adds, where the command is assigned, what VOs it needs, what audio/icons it uses, and what known failure modes exist.</p>
     `
   }
 ];
