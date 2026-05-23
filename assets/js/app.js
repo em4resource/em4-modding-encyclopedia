@@ -48,6 +48,118 @@ const articles = [
     `
   },
   {
+    category: "EM4Resource Downloads",
+    title: "Modification Downloads",
+    tags: ["EM4Resource", "downloads", "mods", "MEGA"],
+    body: `
+      <p>Official EM4Resource modification and resource downloads are listed below. These releases are provided for the Emergency 4 community and are maintained separately from the base game.</p>
+      <div class="download-grid">
+        <article class="download-card featured">
+          <div class="download-kicker">Featured Release</div>
+          <h3>Beaverhead County Modification V1</h3>
+          <p>A Beaverhead County-focused EM4Resource modification release.</p>
+          <div class="download-meta">Released 5 Feb 2026</div>
+          <a href="https://mega.nz/file/ev5EzTSY#TBro-a3t3o8jnnduSZ5Q0NKZOgDJpivCu2w1ffuppzg" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-kicker">Community Release</div>
+          <h3>Fairbanks Alaska Mod Beta V.5</h3>
+          <p>Alaska-focused EM4Resource modification beta release.</p>
+          <a href="https://mega.nz/file/nqhygZSb#4m2GNreqUoGbT6eVVB9kjSQfU5mXA937XzxQfDCecCE" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-kicker">Community Release</div>
+          <h3>Upstate NY Mod Beta V6</h3>
+          <p>Upstate New York-focused EM4Resource modification beta release.</p>
+          <a href="https://mega.nz/file/erQHhCiR#CoMNAeOaUbrKdbz4IGVp0wBU-0iS-WOd5xOZSPM3VUs" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-kicker">Modification</div>
+          <h3>NY Mass Border Mod V1</h3>
+          <p>New York / Massachusetts border-area modification release.</p>
+          <a href="https://mega.nz/file/qq4VgQIJ#sYJ8EyKl--41XrzyPJz2sNYDwE-yk4LRUkz8Lt9uZic" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-kicker">Modification</div>
+          <h3>Montana Wilderness Mod</h3>
+          <p>Wilderness-focused Montana modification release.</p>
+          <div class="download-meta">Released 2 Dec 2023</div>
+          <a href="https://mega.nz/file/GnIwiJ5Z#WbuSykBR_5qFa3R1kaT4BQyzzQCCFi94yMsmXd_UbWw" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-kicker">Map</div>
+          <h3>Harlem's Test Map</h3>
+          <p>Test map release. Requires West Falls V1.5 Mod.</p>
+          <div class="download-meta">Released 2 Dec 2023</div>
+          <a href="https://mega.nz/file/qrhEwYbA#5_qNKScX5UyEOE3YbCbCJocdZ4qsJfDNyoY3zNiiN70" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card third-party">
+          <div class="download-kicker">Modification</div>
+          <h3>West Falls V1.5 Mod</h3>
+          <p>Community-created West Falls Township modification, listed here for community access.</p>
+          <div class="download-meta">Released 8 Dec 2023</div>
+          <p class="download-credit">Credits: Itchboy, THVFD, Bama, Goog, E4Lm, NYCERU Mod Team, Hoppah (LA Mod Team), Jamnj88, EmC-Unit, EOC Mod Team, MikeyPI.</p>
+          <a href="https://mega.nz/file/bHBzXSCB#taLupk_jGCQoIrtn4aL5E_1tLXMddXM8tcjrNBKt9ys" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card third-party">
+          <div class="download-kicker">Modification</div>
+          <h3>999 OTF Mod</h3>
+          <p>Community-created 999 OTF modification, listed here for community access.</p>
+          <div class="download-meta">Released 3 Feb 2024</div>
+          <p class="download-credit">Credits are included in the original <code>CREDITS.pdf</code> packaged with the mod.</p>
+          <a href="https://mega.nz/file/JDMGnAyY#U8bPWmW2mjKn96mbAWQJ08Xe3LbD7LZvFb4Co37o2pY" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-kicker">Modification</div>
+          <h3>Monida Pass Mod</h3>
+          <p>Monida Pass modification release.</p>
+          <div class="download-meta">Released 30 Jun 2024</div>
+          <a href="https://mega.nz/file/f3g01ASZ#Arwi_td7SyVTFhuQgbYj-cNfV1gp6tlM8HSCnTfzt38" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card compact">
+          <div class="download-kicker">Audio</div>
+          <h3>Realistic Pistol Sound</h3>
+          <p>Small audio release for more realistic pistol sound effects.</p>
+          <div class="download-meta">Released 7 Jul 2024</div>
+          <a href="https://mega.nz/file/O3hHyRaQ#Ahn3S3ZAMkX2PSN2k8mxMhsBxkisQPMyOEDCpFjjyLI" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card archived">
+          <div class="download-kicker">Archived Alpha</div>
+          <h3>Fairbanks Alaska Mod Alpha V.4</h3>
+          <p>Outdated alpha version preserved for historical reference.</p>
+          <div class="download-meta">Released 24 Jul 2024</div>
+          <a href="https://mega.nz/file/DmBjiTgZ#ibnu95LPoid3etSmyMoYNK09RnXingWPQ8PR4WvjjhI" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card archived">
+          <div class="download-kicker">Archived Alpha</div>
+          <h3>Fairbanks Alaska Mod Alpha V.45</h3>
+          <p>Outdated alpha version preserved for historical reference.</p>
+          <div class="download-meta">Released 24 Jul 2024</div>
+          <a href="https://mega.nz/file/W64kxT5Q#JhVlBmfaADqaGadcrRqQ28uGe9y9lOIzWTQiZtDMS6E" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card">
+          <div class="download-kicker">Modification</div>
+          <h3>South Central LA Mod Version 1</h3>
+          <p>South Central Los Angeles modification version 1.</p>
+          <div class="download-meta">Released 4 Jul 2025</div>
+          <a href="https://mega.nz/file/2j4HSLDZ#w4s3OmcuzSKcIXcn0UqQBK4FW37gXV9K6-lUJids-WA" target="_blank" rel="noreferrer">Download</a>
+        </article>
+      </div>
+    `
+  },
+  {
     category: "EM4 History",
     title: "Game and Mod Release Timeline",
     tags: ["history", "mods", "timeline", "downloads"],
@@ -61,19 +173,24 @@ const articles = [
           <tr><td>30 Aug 2010</td><td>Ukraine-Rescue Mod 1.2 updated.</td><td>Early example of a large regional mod with real units, new sirens, scripts, and emergency-service presentation.</td></tr>
           <tr><td>28 Apr 2011</td><td>New York City Modification updated.</td><td>One of the landmark American urban mods, with about 50 vehicles and new realism-focused functions.</td></tr>
           <tr><td>16 Jul 2011</td><td>Los Angeles Mod 2.1 updated.</td><td>One of the defining EM4 releases: over 50 playable Los Angeles units, a custom freeplay map, missions, sirens, directional lights, fire stations, police station, hospital, weapons, barricades, bomb robots, motorcycles, multiplayer support, and English voices.</td></tr>
+          <tr><td>2011</td><td>Manhattan Mod v1.0.0 released.</td><td>New York City-focused modification covering Manhattan, Duane Street, DragonFighters, and Pride of Midtown content.</td></tr>
           <tr><td>2010-2014</td><td>Small mods and submods became a major part of the modding scene.</td><td>Lighting packs, supervisor replacements, map edits, translation packs, vehicle add-ons, equipment models, siren/audio packs, and LA Mod submods helped spread practical techniques between projects.</td></tr>
           <tr><td>2010-2014</td><td>Lighting and visual upgrade releases.</td><td>Projects such as E4LM-style lighting packs, NYC lighting edits, and LA lighting edits helped make realistic emergency lighting one of the most visible quality markers in EM4 mods.</td></tr>
           <tr><td>2010-2014</td><td>Dispatch, supervisor, and audio replacement releases.</td><td>Enhanced Supervisor, MPDS-style supervisor packs, realistic dispatch packs, tone packs, and mission dispatch replacements showed how audio presentation could change the feel of freeplay without rebuilding the entire mod.</td></tr>
           <tr><td>2010-2014</td><td>Map edits and LA Mod submods.</td><td>Expanded Freeplay, Los Angeles map edits, additional-unit submods, Super Freeplay, Project Nostalgia, and similar releases helped players learn by modifying one part of a known working base.</td></tr>
           <tr><td>30 Aug 2012</td><td>Coastal Rescue submitted.</td><td>Example of an asset/resource-heavy release where models, textures, and scripts were shared for credited reuse.</td></tr>
+          <tr><td>11 Sep 2012</td><td>Manhattan Modification v2.0.1 released.</td><td>Moved gameplay away from downtown NYC toward the Upper East Side, Yorkville, Barrio, and Engine 44 setting.</td></tr>
+          <tr><td>7 Oct 2012</td><td>Manhattan Modification v2.0.3 patch released.</td><td>Patch update for v2.0.1 that fixed minor issues and updated the game content.</td></tr>
           <tr><td>14 Nov 2012</td><td>Winterberg Mod updated.</td><td>One of the major German modding references, listed on Emergency Planet with strong download interest.</td></tr>
           <tr><td>22 Jan 2013</td><td>Harbor City submitted.</td><td>Large LA Mod-based project with custom map work, stations, lighting, hospital behavior, and gameplay systems.</td></tr>
           <tr><td>16 Oct 2013</td><td>US Army Modification updated.</td><td>Total-conversion style project with a new map, unique units, events, and a development-tree concept.</td></tr>
           <tr><td>12 Dec 2013</td><td>Miami Modification Alpha updated.</td><td>Early Miami release with new models, lights, sirens, playable Miami units, and script additions.</td></tr>
+          <tr><td>13 Aug 2013</td><td>Manhattan Mod v3.0.0 released.</td><td>Moved the Manhattan gameplay focus to Times Square with Engine 65, Pride of Midtown, Hell's Kitchen, and Rescue 1 content.</td></tr>
           <tr><td>14 Feb 2014</td><td>Sao Paulo Mod updated.</td><td>International city-based release showing how EM4 modding spread beyond Europe and North America.</td></tr>
           <tr><td>1 May 2014</td><td>Helping Peter updated.</td><td>Danish first-responder concept focused on patient care before ambulance arrival.</td></tr>
           <tr><td>18 Sep 2014</td><td>Helmond Mod submitted.</td><td>Dutch regional mod entry showing the continued spread of localized departments and vehicle sets.</td></tr>
           <tr><td>29 May 2015</td><td>Bordsund Modifikation 1.0 updated.</td><td>Large German-style mod with altered maps, new sounds, special signaling systems, bases, and many credited community assets.</td></tr>
+          <tr><td>6 Dec 2015</td><td>Brooklyn: Borough Of Fire v1.5.0 released.</td><td>Brooklyn-focused follow-up to the Manhattan releases, centered on Engine 222, St Johns, Rescue 2, and Nuthouse content.</td></tr>
           <tr><td>1 Jul 2016</td><td>London Mod updated.</td><td>Major UK release with London emergency-service units, a custom freeplay map, civil traffic, and expanded service coverage.</td></tr>
           <tr><td>24 Jun 2016</td><td>London Multiplayer Mod updated.</td><td>Released multiplayer-focused London project with stations, limited water, automatic fire alarms, gated wye, and parking.</td></tr>
           <tr><td>15 Sep 2016</td><td>Barcelona City Mod submitted.</td><td>Spanish city emergency-services release covering fire, local police, regional police, EMS, national police, and civil guard units.</td></tr>
@@ -84,15 +201,26 @@ const articles = [
           <tr><td>22 Mar 2021</td><td>Getxo Mod v1 submitted.</td><td>Basque Country/Spain release showing continued regional emergency-service modding.</td></tr>
           <tr><td>26 Nov 2021</td><td>Emergency 3 MOD updated.</td><td>Converted Emergency 3 vehicles and campaign maps into EM4, preserving earlier series content.</td></tr>
           <tr><td>28 Jun 2023</td><td>Miami Modification updated.</td><td>Large American city-style mod with custom freeplay map, many playable units, limited water, scripts, sirens, aircraft, and UI work.</td></tr>
+          <tr class="em4resource-release"><td>2023-2026</td><td>Fairbanks Alaska Mod Beta V.5 released.</td><td>EM4Resource release. Alaska-focused modification release, listed here without download links.</td></tr>
+          <tr class="em4resource-release"><td>2023-2026</td><td>Upstate NY Mod Beta V6 released.</td><td>EM4Resource release. Upstate New York-focused modification release, listed here without download links.</td></tr>
+          <tr class="em4resource-release"><td>2023-2026</td><td>NY Mass Border Mod V1 released.</td><td>EM4Resource release. New York / Massachusetts border-area modification release, listed here without download links.</td></tr>
           <tr><td>12 Nov 2023</td><td>Fuchsburg released.</td><td>Modern multiplayer-focused fictional German modification based on the Bieberfelde concept, later expanded with more calls, equipment logic, ladder behavior, outside resources, and fixes.</td></tr>
           <tr><td>12 Nov 2023</td><td>Bieberfelde RetroFitting v1.0.3 final released.</td><td>Large Bieberfelde-based rebuild with new objects, buildings, vehicle concepts, dispatch timing, calls, scripts, stations, special units, and performance improvements.</td></tr>
           <tr><td>30 Nov 2023</td><td>Anfanger Modifikation released.</td><td>Beginner/tutorial modification designed to teach mod creation step by step, including skinning, mapping, scripts, and editor workflow.</td></tr>
           <tr><td>1 Dec 2023</td><td>Oudenhout Mod and Oudenhout Winterversion released.</td><td>Fictional modification release with a seasonal winter variant, showing how map atmosphere and presentation can change the same project.</td></tr>
           <tr><td>6 Dec 2023</td><td>Stuttgart Modifikation released.</td><td>City/regional modification with a Stuttgart inner-city map, new vehicles, calls, functions, and mission-based freeplay implementation.</td></tr>
+          <tr class="em4resource-release"><td>2 Dec 2023</td><td>Montana Wilderness Mod released.</td><td>EM4Resource release. Wilderness-focused Montana modification release.</td></tr>
+          <tr class="em4resource-release"><td>2 Dec 2023</td><td>Harlem's Test Map released.</td><td>EM4Resource release. Test map release requiring West Falls V1.5 Mod.</td></tr>
+          <tr><td>8 Dec 2023</td><td>West Falls V1.5 Mod released.</td><td>Community modification release listed by EM4Resource. Credits include Itchboy, THVFD, Bama, Goog, E4Lm, NYCERU Mod Team, Hoppah (LA Mod Team), Jamnj88, EmC-Unit, EOC Mod Team, and MikeyPI.</td></tr>
           <tr><td>24 Dec 2023</td><td>Brussels Mod V1.0 released.</td><td>Belgian capital-based regional modification release.</td></tr>
           <tr><td>23 Jan 2024</td><td>Polizei-Modifikation Ellerargen released.</td><td>Police-centered singleplayer modification with multiplayer add-on and compatibility files preserved after the old forum era.</td></tr>
+          <tr><td>3 Feb 2024</td><td>999 OTF Mod released.</td><td>Community modification release listed by EM4Resource. Credits are included in the original CREDITS.pdf packaged with the mod.</td></tr>
           <tr><td>1 Apr 2024</td><td>Fuchsburg 2.0 released.</td><td>Major Fuchsburg update with additional calls, new ladder logic, new equipment logic, and additional outside units.</td></tr>
           <tr><td>15 Apr 2024</td><td>Fuchsburg 2.1 released.</td><td>Bugfix-focused Fuchsburg update that helped stabilize the 2.0 branch.</td></tr>
+          <tr class="em4resource-release"><td>30 Jun 2024</td><td>Monida Pass Mod released.</td><td>EM4Resource release. Monida Pass modification release.</td></tr>
+          <tr class="em4resource-release"><td>7 Jul 2024</td><td>Realistic Pistol Sound released.</td><td>EM4Resource release. Small audio release for more realistic pistol sound effects.</td></tr>
+          <tr class="em4resource-release"><td>24 Jul 2024</td><td>Fairbanks Alaska Mod Alpha V.4 released.</td><td>EM4Resource release. Outdated alpha version of the Fairbanks Alaska modification.</td></tr>
+          <tr class="em4resource-release"><td>24 Jul 2024</td><td>Fairbanks Alaska Mod Alpha V.45 released.</td><td>EM4Resource release. Outdated alpha version of the Fairbanks Alaska modification.</td></tr>
           <tr><td>17 Oct 2024</td><td>Squadra Volante Submod released.</td><td>Italian State Police patrol-car submod showing smaller international police-focused add-on work.</td></tr>
           <tr><td>25 Dec 2024</td><td>Gemeinde Kregen released.</td><td>Two-player optimized fictional multiplayer modification by OG Experience, split across two villages and built around a slower rural/community fire-rescue concept.</td></tr>
           <tr><td>3 Mar 2025</td><td>Austria Modifikation Version 1.0 released.</td><td>Austrian regional modification focused on Austrian vehicles with minimal scripting.</td></tr>
@@ -102,10 +230,12 @@ const articles = [
           <tr><td>10 May 2025</td><td>Sittingen V.1.8.1 released.</td><td>Bieberfelde/Sittingen branch entry and part of the modern fictional German multiplayer lineage.</td></tr>
           <tr><td>10 May 2025</td><td>Emergency 4 Bieberfelde Submod Bayern 2.0 released.</td><td>Bavaria-themed Bieberfelde submod showing continued regionalization of major base concepts.</td></tr>
           <tr><td>13 May 2025</td><td>Hammerstadt Modifikation released.</td><td>Fictional modification release from FF NRU and Grisu1996.</td></tr>
+          <tr class="em4resource-release"><td>4 Jul 2025</td><td>South Central LA Mod Version 1 released.</td><td>EM4Resource release. South Central Los Angeles modification version 1.</td></tr>
           <tr><td>19 Aug 2025</td><td>Emergency City Modifikation reuploaded.</td><td>VPI modification reupload with notes about driver requirements, bridge limitations, and command quirks.</td></tr>
           <tr><td>27 Aug 2025</td><td>Leszno Modificattion - Emergency 4 Deluxe released.</td><td>Polish regional multiplayer modification using Hamachi, showing continued non-German/non-English regional releases.</td></tr>
           <tr><td>5 Jan 2026</td><td>Redwood Bay Mod released.</td><td>Fictional US-based modification release, showing continued interest in American-style EM4 projects.</td></tr>
           <tr><td>1 Feb 2026</td><td>Rosenburg 1.1 released.</td><td>Rural fictional German multiplayer modification based on lessons from Bieberfelde and Fuchsburg, with version 1.1 adding fixes and gameplay adjustments.</td></tr>
+          <tr class="em4resource-release"><td>5 Feb 2026</td><td>Beaverhead County Modification V1 released.</td><td>EM4Resource release. Beaverhead County modification version 1.</td></tr>
           <tr><td>22 Feb 2026</td><td>Valkeakoski Mod 1.1 released.</td><td>Finnish EM4 modification release showing the geographic spread of modern filebase activity.</td></tr>
         </tbody>
       </table>
@@ -1629,7 +1759,7 @@ let activeCategory = "Start Here";
 const categoryGroups = [
   {
     title: "Welcome",
-    categories: ["Start Here", "Getting Started", "EM4 History"]
+    categories: ["Start Here", "EM4Resource Downloads", "Getting Started", "EM4 History"]
   },
   {
     title: "Editor and Assets",
