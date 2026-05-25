@@ -63,6 +63,14 @@ const articles = [
         </article>
 
         <article class="download-card">
+          <div class="download-kicker">Latest Update</div>
+          <h3>Elisa City Modification Update</h3>
+          <p>Latest Elisa City modification update released by EM4Resource.</p>
+          <div class="download-meta">Released 25 May 2026</div>
+          <a href="https://mega.nz/file/Wj5nRa5A#-EnHb3uzf9vrKRFdmpPzpLIzeSibddV6KqhfVil26_M" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
+        <article class="download-card">
           <div class="download-kicker">Community Release</div>
           <h3>Fairbanks Alaska Mod Beta V.5</h3>
           <p>Alaska-focused EM4Resource modification beta release.</p>
@@ -867,6 +875,236 @@ const articles = [
         <li>Test responders entering, leaving, treating, arresting, and carrying persons before using it in a mission.</li>
       </ul>
       <p>OpenHouse work is worth documenting carefully because one missing path, wrong prototype class, or bad collision area can make units refuse to enter or trap them inside.</p>
+    `
+  },
+  {
+    category: "3D Modeling",
+    title: "Modeling Overview",
+    tags: ["Blender", "3D modeling", "v3o", "beginner"],
+    body: `
+      <p>Emergency 4 models are usually built or edited in Blender, exported as <code>.v3o</code> files, textured with image files, and then connected to playable behavior through <code>.e4p</code> prototypes. A model controls what the unit looks like. The prototype controls how it behaves in the editor and in game.</p>
+      <p>Before creating vehicles, equipment, buildings, or props, learn Blender's basic controls first. Most beginner problems are not EM4 problems yet. They are navigation, selection, object mode, edit mode, origins, transforms, collections, modifiers, normals, UV mapping, and material problems.</p>
+
+      <div class="learning-path">
+        <section>
+          <h3>Recommended workflow</h3>
+          <ol>
+            <li>Learn Blender navigation, selection, object mode, and edit mode.</li>
+            <li>Practice transforms, origins, snapping, pivot points, duplicate objects, and collections.</li>
+            <li>Learn mesh tools: extrude, inset, knife, bevel, edge loops, fill, merge, and normals.</li>
+            <li>Learn UV mapping and basic texture painting.</li>
+            <li>Build a simple prop before building a full emergency vehicle.</li>
+            <li>Export to <code>.v3o</code>, create or edit the <code>.e4p</code> prototype, and test in the EM4 editor.</li>
+          </ol>
+        </section>
+        <section>
+          <h3>Emergency 4 limits</h3>
+          <ul>
+            <li>Keep models efficient. Around <strong>15,000 polygons</strong> is a practical public guideline for EM4 vehicle work.</li>
+            <li>Use clean quads where possible while keeping the model game-ready.</li>
+            <li>Keep texture paths simple and organized in the mod folder.</li>
+            <li>Separate visual work from gameplay work: model first, prototype second, script only when needed.</li>
+          </ul>
+        </section>
+      </div>
+    `
+  },
+  {
+    category: "3D Modeling",
+    title: "Blender Basics Video Path",
+    tags: ["Blender", "tutorials", "required knowledge", "videos"],
+    body: `
+      <p>This video path is meant to give new modelers enough Blender knowledge to follow Emergency 4 modeling tutorials without getting lost in the interface. Watch the basics first, then move into vehicle modeling, UV mapping, topology, and painting.</p>
+      <h3>Blender interface and object basics</h3>
+      <div class="resource-grid">
+        <a class="resource-link" href="https://www.youtube.com/watch?v=RqfSkU-Hp1A" target="_blank" rel="noreferrer"><strong>Interface and Navigation</strong><span>Viewport movement, panels, and beginner controls.</span></a>
+        <a class="resource-link" href="https://youtu.be/_2Rq6PZf4bo" target="_blank" rel="noreferrer"><strong>Selecting Objects</strong><span>Object selection and scene interaction.</span></a>
+        <a class="resource-link" href="https://youtu.be/lLJilYum_lQ" target="_blank" rel="noreferrer"><strong>Transforming Objects</strong><span>Move, rotate, scale, and transformation values.</span></a>
+        <a class="resource-link" href="https://www.youtube.com/watch?v=X-JDL8__baY" target="_blank" rel="noreferrer"><strong>Adding, Deleting, and 3D Cursor</strong><span>Scene object creation and cursor behavior.</span></a>
+        <a class="resource-link" href="https://youtu.be/uwgjDT2TTjM" target="_blank" rel="noreferrer"><strong>Local Space and Parenting</strong><span>Parent-child relationships and local transforms.</span></a>
+        <a class="resource-link" href="https://youtu.be/yxGb3hVGPyk" target="_blank" rel="noreferrer"><strong>Editing Object Data</strong><span>Object data controls and edit preparation.</span></a>
+      </div>
+
+      <h3>Mesh editing fundamentals</h3>
+      <div class="resource-grid">
+        <a class="resource-link" href="https://youtu.be/n1lCK8WH62k" target="_blank" rel="noreferrer"><strong>Edit Mode and Origins</strong><span>Understanding object origins and mesh editing.</span></a>
+        <a class="resource-link" href="https://youtu.be/ENdGhAM3NzA" target="_blank" rel="noreferrer"><strong>Duplicate and Instance Objects</strong><span>Copying geometry safely.</span></a>
+        <a class="resource-link" href="https://youtu.be/BE608WdFNCw" target="_blank" rel="noreferrer"><strong>Pivot, Snapping, Proportional Editing</strong><span>Precise positioning and shaping tools.</span></a>
+        <a class="resource-link" href="https://youtu.be/q67rY_MTJps" target="_blank" rel="noreferrer"><strong>Visibility and Collections</strong><span>Scene organization for multi-part models.</span></a>
+        <a class="resource-link" href="https://www.youtube.com/watch?v=46fIGJ75z-k" target="_blank" rel="noreferrer"><strong>Normals and Smooth Shading</strong><span>Fixing dark faces and smoothing issues.</span></a>
+        <a class="resource-link" href="https://youtu.be/zxrkReD4P1I" target="_blank" rel="noreferrer"><strong>Extrude, Inset, and Knife</strong><span>Core modeling operations.</span></a>
+        <a class="resource-link" href="https://youtu.be/h52NyG7ga7s" target="_blank" rel="noreferrer"><strong>Bevel, Edge Loop, Edge Slide</strong><span>Creating controlled edges and curves.</span></a>
+        <a class="resource-link" href="https://youtu.be/FrphByCCno4" target="_blank" rel="noreferrer"><strong>Subdivide, Fill, and Merge</strong><span>Building and cleaning mesh surfaces.</span></a>
+      </div>
+
+      <h3>Files, materials, lighting, and rendering</h3>
+      <div class="resource-grid">
+        <a class="resource-link" href="https://www.youtube.com/watch?v=o-QcLZcrg0U" target="_blank" rel="noreferrer"><strong>Object Modifiers</strong><span>Using modifiers without ruining export-ready geometry.</span></a>
+        <a class="resource-link" href="https://youtu.be/JZQ7c9X11MU" target="_blank" rel="noreferrer"><strong>Splitting and Joining Editors</strong><span>Workspace organization.</span></a>
+        <a class="resource-link" href="https://www.youtube.com/watch?v=R6j_f-uAH4E" target="_blank" rel="noreferrer"><strong>Working with Blend Files</strong><span>Saving, organizing, and managing Blender files.</span></a>
+        <a class="resource-link" href="https://www.youtube.com/watch?v=263-no3DJYo" target="_blank" rel="noreferrer"><strong>Cameras and Rendering</strong><span>Useful for previews and documentation.</span></a>
+        <a class="resource-link" href="https://youtu.be/oFrX9OjFUko" target="_blank" rel="noreferrer"><strong>Materials and Lighting</strong><span>Material setup before EM4 texture export.</span></a>
+      </div>
+
+      <h3>Vehicle modeling prep</h3>
+      <div class="resource-grid">
+        <a class="resource-link" href="https://youtu.be/bHLT5Xh_tzQ" target="_blank" rel="noreferrer"><strong>Basics of UV Mapping</strong><span>How model surfaces connect to texture images.</span></a>
+        <a class="resource-link" href="https://www.youtube.com/watch?v=HGL6QpVRyXk" target="_blank" rel="noreferrer"><strong>Basics of Topology</strong><span>How clean geometry affects model quality.</span></a>
+        <a class="resource-link" href="https://www.youtube.com/watch?v=SS2KL7Z18D4" target="_blank" rel="noreferrer"><strong>Painting and Color Layers</strong><span>Texture painting concepts in Blender.</span></a>
+        <a class="resource-link" href="https://youtu.be/AnRQhH3fEDY" target="_blank" rel="noreferrer"><strong>Painting and Fast Unwrap Workflow</strong><span>Painting continuation and quick unwrapping.</span></a>
+      </div>
+    `
+  },
+  {
+    category: "3D Modeling",
+    title: "Creating Your First Emergency 4 Vehicle Model",
+    tags: ["vehicle modeling", "Blender", "blueprints", "topology", "reference images"],
+    body: `
+      <p>This walkthrough explains the first vehicle-modeling workflow in plain terms. The goal is not to memorize one exact shape. The goal is to learn how to read a blueprint, create clean guide lines, build surfaces from those lines, and keep the mesh simple enough for Emergency 4.</p>
+
+      <h3>1. Start with real dimensions and reference images</h3>
+      <p>Find a vehicle blueprint or reference image. Blueprint websites can help, but always compare the listed size against real vehicle dimensions where possible. In Blender, create a cube or measurement block that matches the real vehicle length, width, and height. This gives the model a scale target before any detailed modeling starts.</p>
+      <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-01.png" alt="Vehicle dimensions entered in Blender"><figcaption>Set up a simple dimension block so the reference image has something accurate to match.</figcaption></figure>
+      <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-02.png" alt="Vehicle reference image scaled against the dimension block"><figcaption>Scale the side blueprint until it matches the real-size block.</figcaption></figure>
+      <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-03.png" alt="Top and side blueprint alignment"><figcaption>If the blueprint is proportional, the top view should line up after the side view is scaled correctly.</figcaption></figure>
+
+      <h3>2. Create a guide edge</h3>
+      <p>Add a plane, enter edit mode, and delete two vertices so only one edge remains. That edge becomes a guide line for tracing the important shape of the vehicle.</p>
+      <div class="figure-grid">
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-04.png" alt="Plane added in Blender"><figcaption>Add a simple plane.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-05.png" alt="Plane reduced to a single edge"><figcaption>Delete two vertices so the plane becomes a single edge.</figcaption></figure>
+      </div>
+
+      <h3>3. Trace the main vehicle lines</h3>
+      <p>Use the guide edge to follow the strongest lines on the side blueprint. Then adjust that same line against the top view by changing axes. At this stage the shape may look correct from side and top but awkward from another angle. That is normal.</p>
+      <div class="figure-grid">
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-06.png" alt="Guide edge following side view vehicle line"><figcaption>Trace the main side profile.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-07.png" alt="Guide edge adjusted to match top view"><figcaption>Adjust the same line to match the top view.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-08.png" alt="Guide edge looks rough from angled view"><figcaption>A line can match two flat views and still need smoothing from perspective.</figcaption></figure>
+      </div>
+
+      <h3>4. Smooth the profile</h3>
+      <p>Keep vertices evenly spaced. If one segment is much longer than the others, curves will look uneven. Switch between orthographic and perspective views and move points until the line reads smoothly from more than one angle.</p>
+      <div class="figure-grid">
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-09.png" alt="Uneven vertex spacing shown with arrows"><figcaption>Uneven spacing creates rough curves.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-10.png" alt="Switching view modes in Blender"><figcaption>Use orthographic and perspective views to judge the curve.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-11.png" alt="Smoothed profile line in perspective view"><figcaption>Adjust points until the profile looks smooth from perspective.</figcaption></figure>
+      </div>
+
+      <h3>5. Build matching profiles before filling surfaces</h3>
+      <p>When making a surface, create a second profile line with the same number of vertices as the first. Matching vertex counts help create straight quads instead of twisted, uneven faces.</p>
+      <div class="figure-grid">
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-12.png" alt="Front blueprint added"><figcaption>Add the front reference when the surface needs front-view shape.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-13.png" alt="Second profile line added"><figcaption>Create the second profile line the same way as the first.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-14.png" alt="Matching vertex count between profiles"><figcaption>Use the same vertex count so the mesh can form clean quads.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-15.png" alt="Two vehicle profile lines ready for surface filling"><figcaption>Two matching profiles are ready to become a surface.</figcaption></figure>
+      </div>
+
+      <h3>6. Understand surface types</h3>
+      <p>Vehicle surfaces are usually one of three types: flat surfaces, surfaces that bend in one direction, and surfaces that bend in two directions. The more directions a surface bends, the more carefully the mesh needs to be shaped.</p>
+      <div class="figure-grid">
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-16.png" alt="Surface bending in one direction"><figcaption>A surface bending in one direction repeats an arc along a straighter path.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-17.png" alt="Surface bending in two directions"><figcaption>A two-direction surface curves across both red and green guide directions.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-18.png" alt="Complex surface bending in two directions"><figcaption>Curved red and pink lines show another two-direction surface.</figcaption></figure>
+      </div>
+
+      <h3>7. Fill, bevel, and shape the curve</h3>
+      <p>Fill the profile lines with faces, then add a middle edge where the surface needs curvature. Move the middle line to create the bend. Bevel can create extra edges for a smoother curve, but the leftover edges may need manual cleanup and merging.</p>
+      <div class="figure-grid">
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-19.png" alt="Surface filled between profiles"><figcaption>Fill the two profiles to create the first surface.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-20.png" alt="Middle line added to the surface"><figcaption>Add a middle line where the curve needs to form.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-21.png" alt="Middle line moved to form surface curve"><figcaption>Move the middle line to shape the curve.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-22.png" alt="Bevel creates extra curve edges that need cleanup"><figcaption>Bevel can add curve edges, but cleanup is often required.</figcaption></figure>
+        <figure class="modeling-figure"><img src="assets/img/modeling/vehicle-modeling-23.png" alt="Curve adjusted from random view"><figcaption>Use angled views to adjust the arc until it looks natural.</figcaption></figure>
+      </div>
+
+      <h3>Summary checklist</h3>
+      <ul>
+        <li>Identify how the surface curves before filling it.</li>
+        <li>Follow major curves with a string of vertices.</li>
+        <li>Keep matching profiles at the same vertex count.</li>
+        <li>Use quads where possible.</li>
+        <li>Build the front and key body surfaces before detail parts.</li>
+        <li>Keep the finished model efficient for EM4. Around 15,000 polygons is a practical target.</li>
+      </ul>
+
+      <h3>Extra vehicle modeling video help</h3>
+      <div class="resource-grid">
+        <a class="resource-link" href="https://www.youtube.com/watch?v=kbZkH7-LiTo" target="_blank" rel="noreferrer"><strong>Vehicle Modeling Series 1</strong><span>Additional practical modeling workflow.</span></a>
+        <a class="resource-link" href="https://youtu.be/sqMQmzr3ntY" target="_blank" rel="noreferrer"><strong>Vehicle Modeling Series 2</strong><span>More vehicle modeling support.</span></a>
+        <a class="resource-link" href="https://youtu.be/dv222iBgF_w" target="_blank" rel="noreferrer"><strong>Vehicle Modeling Series 3</strong><span>Extra beginner-friendly practice.</span></a>
+      </div>
+    `
+  },
+  {
+    category: "3D Modeling",
+    title: "Blender 4.2 V3O Plugin",
+    tags: ["Blender 4.2", "v3o plugin", "import", "export", "EM-Hub"],
+    body: `
+      <p>The Blender 4.2 V3O plugin allows Blender to import and export Emergency 4 <code>.v3o</code> models. It is especially important because older Blender V3O tools do not work correctly with newer Blender versions.</p>
+      <p>The Blender 4.2 plugin was released by Antiphon on EM-Hub and is listed as version 2.0.0. EM-Hub describes it as a Blender 4 import/export plugin for V3O models, with support for UV maps, normals, smooth and sharp edges, Blender keyframe animations, multi-file export, and bone-animated object import/export for EM4-style persons and animals.</p>
+
+      <h3>Download source</h3>
+      <p>Use the EM-Hub file page for the current download and comments: <a href="https://em-hub.de/filebase/file/567-blender-4-2-v3o-plugin/" target="_blank" rel="noreferrer">Blender 4.2 | v3o-Plugin</a>.</p>
+
+      <h3>Install in Blender</h3>
+      <ol>
+        <li>Download <code>io_scene_v3o.zip</code>.</li>
+        <li>Open Blender.</li>
+        <li>Go to <code>Edit</code> > <code>Preferences</code>.</li>
+        <li>Open the <code>Add-ons</code> tab.</li>
+        <li>Choose <code>Install from Disk...</code>.</li>
+        <li>Select <code>io_scene_v3o.zip</code>.</li>
+        <li>Enable the add-on with the checkbox.</li>
+      </ol>
+      <p>After installation, the export option appears under <code>File</code> > <code>Export</code> > <code>Emergency4 (.v3o)</code>.</p>
+
+      <h3>Important export options</h3>
+      <table>
+        <thead><tr><th>Option</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td><code>Selection Only</code></td><td>Exports only selected objects. Useful when testing one part of a model.</td></tr>
+          <tr><td><code>By Name</code></td><td>Exports multiple V3O files from organized collections. This is useful for vehicles with separate animated doors or equipment compartments.</td></tr>
+          <tr><td><code>Center Objects</code></td><td>Moves exported objects to the center of the V3O file. Best for simple single-object exports.</td></tr>
+          <tr><td><code>Apply Modifiers</code></td><td>Applies Blender modifiers before export. Use carefully and keep backups.</td></tr>
+          <tr><td><code>Scale</code></td><td>Controls export scale. The Blender 4.2 plugin changed the default from 4500 to 6000. EM4 modelers often test values such as 4500, 6000, or 10000 depending on how the model was built.</td></tr>
+          <tr><td><code>Path Mode</code></td><td>Controls how texture paths are written. For modding, simple relative or stripped texture paths are often easier to manage.</td></tr>
+          <tr><td><code>Forward</code> and <code>Up</code></td><td>Controls orientation. If the model exports facing the wrong way, check these before rebuilding the model.</td></tr>
+          <tr><td><code>Frame Time</code> and <code>Frame Step</code></td><td>Controls animation timing during export.</td></tr>
+          <tr><td><code>Add End States</code></td><td>Adds opened and closed animation end states, useful for vehicle doors or compartments.</td></tr>
+          <tr><td><code>Animation Normals</code></td><td>Can help distorted normals on animated objects, but increases vertex count heavily. Avoid unless needed.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Collection naming for multi-file export</h3>
+      <p>When using <code>By Name</code>, organize Blender objects into collections. Prefixes describe the export behavior, and suffixes become file-name extensions.</p>
+      <table>
+        <thead><tr><th>Prefix</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>EX</code></td><td>Static object without animation.</td></tr>
+          <tr><td><code>EXA</code></td><td>Animated object with forward animation named <code>open</code>.</td></tr>
+          <tr><td><code>EXR</code></td><td>Reverse animation named <code>close</code>.</td></tr>
+          <tr><td><code>EXL</code></td><td>Forward and reverse animations named <code>open</code> and <code>close</code>.</td></tr>
+          <tr><td><code>EXC</code></td><td>Object origin is moved to the center of the V3O file.</td></tr>
+        </tbody>
+      </table>
+      <p>Example: exporting <code>truck.v3o</code> with collections named <code>EX</code>, <code>EXL_door01</code>, and <code>EXL_door02</code> can create the base truck model plus separate animated door files.</p>
+
+      <h3>Import options to understand</h3>
+      <ul>
+        <li><code>Scale by 1/</code>: inverse import scale. Use the matching value for the scale used on export.</li>
+        <li><code>Use Existing Materials</code>: reuses existing Blender materials when possible.</li>
+        <li><code>Import Smoothing</code>: imports smooth faces, but results may vary.</li>
+        <li><code>Forward</code> and <code>Up</code>: controls imported model orientation.</li>
+        <li><code>Apply Scaling</code>: decides whether Blender applies scaling on import.</li>
+        <li><code>Merge Vertices</code>: merges matching vertices in the same location.</li>
+      </ul>
+
+      <h3>Known caution</h3>
+      <p>EM-Hub notes that person import currently does not work on Mac and Linux. The plugin page also recommends backing up models because bugs can still happen during import or export.</p>
+
+      <h3>License and credits</h3>
+      <p>The plugin is published under the GNU General Public License 2. It is based on the official Blender OBJ importer/exporter by Campbell Barton and Bastien Montagne, and earlier V3O import/export work for Blender 2.7 by MedicalByte.</p>
     `
   },
   {
@@ -1966,6 +2204,10 @@ const categoryGroups = [
   {
     title: "Editor and Assets",
     categories: ["Folder Structure", "Editor Manual", "Maps", "Prototypes", "Asset Workshop", "UI and Icons", "Audio"]
+  },
+  {
+    title: "3D Modeling",
+    categories: ["3D Modeling"]
   },
   {
     title: "Scripting and SDK",
