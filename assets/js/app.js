@@ -1028,11 +1028,32 @@ const articles = [
         <li>Keep the finished model efficient for EM4. Around 15,000 polygons is a practical target.</li>
       </ul>
 
-      <h3>Extra vehicle modeling video help</h3>
-      <div class="resource-grid">
-        <a class="resource-link" href="https://www.youtube.com/watch?v=kbZkH7-LiTo" target="_blank" rel="noreferrer"><strong>Vehicle Modeling Series 1</strong><span>Additional practical modeling workflow.</span></a>
-        <a class="resource-link" href="https://youtu.be/sqMQmzr3ntY" target="_blank" rel="noreferrer"><strong>Vehicle Modeling Series 2</strong><span>More vehicle modeling support.</span></a>
-        <a class="resource-link" href="https://youtu.be/dv222iBgF_w" target="_blank" rel="noreferrer"><strong>Vehicle Modeling Series 3</strong><span>Extra beginner-friendly practice.</span></a>
+      <div class="important-callout">
+        <h3>Important follow-up videos</h3>
+        <p>The three-part vehicle modeling video series has its own article in this section. Watch it after reading this walkthrough, especially if the line/profile workflow still feels abstract.</p>
+      </div>
+    `
+  },
+  {
+    category: "3D Modeling",
+    title: "Vehicle Modeling Video Series",
+    tags: ["vehicle modeling", "Blender", "video series", "practice"],
+    body: `
+      <p>This three-part video series is one of the most useful follow-ups after the written vehicle modeling walkthrough. It gives new modelers more visual repetition of the same ideas: blocking the shape, reading reference images, building surfaces, and correcting forms from multiple angles.</p>
+      <p>Treat these as required practice before asking advanced vehicle modeling questions. The written guide explains the method, but these videos help make the movement inside Blender easier to understand.</p>
+
+      <div class="priority-resource">
+        <div>
+          <span>Vehicle Modeling Series</span>
+          <h3>Watch these after the first vehicle tutorial</h3>
+          <p>These videos are grouped separately because they are more important than normal reference links. They are meant to reinforce the practical workflow, not just provide optional background.</p>
+        </div>
+      </div>
+
+      <div class="resource-grid featured-resources">
+        <a class="resource-link" href="https://www.youtube.com/watch?v=kbZkH7-LiTo" target="_blank" rel="noreferrer"><strong>Vehicle Modeling Series 1</strong><span>Start here for additional practical modeling workflow.</span></a>
+        <a class="resource-link" href="https://youtu.be/sqMQmzr3ntY" target="_blank" rel="noreferrer"><strong>Vehicle Modeling Series 2</strong><span>Continue here for more vehicle shaping practice.</span></a>
+        <a class="resource-link" href="https://youtu.be/dv222iBgF_w" target="_blank" rel="noreferrer"><strong>Vehicle Modeling Series 3</strong><span>Finish here for extra beginner-friendly practice.</span></a>
       </div>
     `
   },
