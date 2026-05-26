@@ -309,7 +309,7 @@ const articles = [
       <p>These rules apply to the EM4Resource community, including the Discord server and related community spaces. EM4Resource is intended for Emergency 4 content creation, teamwork, support, and conversation.</p>
 
       <h3>Rules List</h3>
-      <table>
+      <table class="rules-table">
         <thead><tr><th>Rule</th><th>Policy</th></tr></thead>
         <tbody>
           <tr><td>Rule #1</td><td><strong>Do not threaten, harass, or bully.</strong><br>Harassment, threats, bullying, intimidation, or abuse are not tolerated. This includes behavior in public posts, comments, usernames, private messages, or chat. EM4Resource is a privilege, not a right; users who cannot participate respectfully may be removed.</td></tr>
@@ -727,6 +727,82 @@ const articles = [
         </tbody>
       </table>
 
+      <h3>Specs files that matter</h3>
+      <p>When a vehicle is copied or created, the <code>Specs</code> folder is often where beginners miss the invisible menu data. These files do not replace the prototype. They tell the game how the prototype appears in purchase menus, portraits, freeplay availability, and campaign/freeplay metadata.</p>
+      <table>
+        <thead><tr><th>Specs file</th><th>What to add or check</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><code>Specs/portraits.xml</code></td><td>Add a <code>&lt;portrait&gt;</code> line for the vehicle prototype.</td><td>Connects the vehicle prototype to a portrait/unit identifier used by the interface.</td></tr>
+          <tr><td><code>Specs/freeplaybase.xml</code></td><td>Add a <code>&lt;vehicle prototype="..." count="..." /&gt;</code> line if the vehicle should be available in base freeplay.</td><td>Controls how many of that vehicle are available from the freeplay base pool.</td></tr>
+          <tr><td><code>Specs/freeplaybase_d.xml</code></td><td>Repeat the freeplay base entry for Deluxe if your mod supports that file.</td><td>Deluxe/freeplay variants can use different base availability files.</td></tr>
+          <tr><td><code>Specs/freeplaybase_mp.xml</code></td><td>Repeat the freeplay base entry for multiplayer if needed.</td><td>Multiplayer can use a separate availability list.</td></tr>
+          <tr><td><code>Specs/vehicles.xml</code></td><td>Add or copy a full <code>&lt;vehicle&gt;</code> block with interface, crew, equipment, price, speed, space, and loadspace.</td><td>Defines how the vehicle is shown in vehicle info/buy menus and which personnel/equipment it can carry in the base menu system.</td></tr>
+          <tr><td><code>Specs/protoprecache.xml</code></td><td>Add the prototype if the mod uses preloaded prototype lists.</td><td>Can help the game preload prototypes that are used frequently or by scripted systems.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>portraits.xml line explained</h3>
+      <pre><code class="language-xml">&lt;portrait prototype="mod:Prototypes/Vehicles/Fire Department/rw.e4p" text="RW" unit="RW"/&gt;</code></pre>
+      <table>
+        <thead><tr><th>Part</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>prototype</code></td><td>The exact vehicle prototype path. If this path is wrong, the portrait will not match the vehicle.</td></tr>
+          <tr><td><code>text</code></td><td>Short display text or identifier used by the portrait system.</td></tr>
+          <tr><td><code>unit</code></td><td>Unit identifier that should line up with the unit/buy menu identity.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>freeplaybase.xml line explained</h3>
+      <pre><code class="language-xml">&lt;vehicle prototype="mod:Prototypes/Vehicles/Fire Department/rw.e4p" count="3" /&gt;</code></pre>
+      <table>
+        <thead><tr><th>Part</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>prototype</code></td><td>The playable vehicle prototype made available to freeplay.</td></tr>
+          <tr><td><code>count</code></td><td>How many of that vehicle are available in the freeplay base pool. <code>0</code> usually means the unit exists but is not normally available from that pool.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>vehicles.xml block explained</h3>
+      <p><code>vehicles.xml</code> is a larger metadata file. A vehicle block can include:</p>
+      <ul>
+        <li><code>name</code>: language key for the unit name, such as <code>ID_NAME_RW</code>.</li>
+        <li><code>prototype</code>: the vehicle prototype path.</li>
+        <li><code>space</code>: crew/personnel capacity used by the menu system.</li>
+        <li><code>loadspace</code>: transport/load capacity, such as patient or cargo capacity depending on vehicle type.</li>
+        <li><code>requires</code>: mission numbers or requirements where the unit is allowed.</li>
+        <li><code>speed</code>: menu/dispatch speed value.</li>
+        <li><code>price</code>: purchase or menu cost value.</li>
+        <li><code>&lt;interface&gt;</code>: image, big image, trivia, purpose, and tooltip language keys.</li>
+        <li><code>&lt;crew&gt;</code>: personnel types the player can staff into that vehicle.</li>
+        <li><code>&lt;equipment&gt;</code>: equipment shown as available from that vehicle.</li>
+      </ul>
+
+      <h3>Units folder and unit.xml</h3>
+      <p>The <code>Units/Vehicles</code> folder contains the actual menu unit entry. Each vehicle folder normally has a <code>unit.xml</code>. This file is what the vehicle browser reads for campaign/freeplay availability, prototype path, price, speed, space, loadspace, personnel, and equipment.</p>
+      <pre><code class="language-xml">&lt;unit id="RW"&gt;
+  &lt;freeplay&gt;
+    &lt;missions value="1 2 3 ... 22"&gt;
+      &lt;prototype name="mod:Prototypes/Vehicles/Fire Department/rw.e4p" /&gt;
+      &lt;price value="1500" /&gt;
+      &lt;speed value="90" /&gt;
+      &lt;space value="3" /&gt;
+      &lt;loadspace value="0" /&gt;
+      &lt;personnel&gt;
+        &lt;unit id="FIREFIGHTER"&gt;
+          &lt;defaultcount value="1" /&gt;
+        &lt;/unit&gt;
+      &lt;/personnel&gt;
+      &lt;equipment&gt;
+        &lt;unit id="FIRE HOSE" /&gt;
+      &lt;/equipment&gt;
+    &lt;/missions&gt;
+  &lt;/freeplay&gt;
+&lt;/unit&gt;</code></pre>
+      <p>The IDs inside <code>&lt;personnel&gt;</code> and <code>&lt;equipment&gt;</code> must match valid unit IDs from person/equipment unit folders. If you add a new vehicle and forget this file, the prototype may work in the editor but not appear correctly in the playable unit menu.</p>
+
+      <h3>Language strings</h3>
+      <p>Vehicle menu names and descriptions usually point to language keys in files such as <code>Lang/us/infotexts.xml</code>. If <code>vehicles.xml</code> or <code>unit.xml</code> references <code>ID_NAME_MYENGINE</code>, that key needs a matching string entry or the game may show blank text, fallback text, or raw IDs.</p>
+
       <h3>Adding a new vehicle from scratch</h3>
       <ol>
         <li>Place the finished model and textures in a clean folder under <code>Models/Vehicles</code>.</li>
@@ -735,8 +811,11 @@ const articles = [
         <li>Set the correct vehicle type. Fire engines, ambulances, police cars, tow trucks, and technical vehicles all rely on type-specific behavior.</li>
         <li>Configure lights, doors, wheels, physics, passengers, transports, and traits.</li>
         <li>Assign required commands in the editor.</li>
-        <li>Create the matching <code>Units/Vehicles</code> entry if the unit should appear in freeplay dispatch/buy menus.</li>
-        <li>Update needed spec files and language entries so the game can display the unit name and metadata.</li>
+        <li>Create the matching <code>Units/Vehicles</code> folder and <code>unit.xml</code>.</li>
+        <li>Add or update the matching <code>portraits.xml</code> line.</li>
+        <li>Add or update the matching <code>freeplaybase.xml</code> entry if the vehicle should be available from the freeplay base.</li>
+        <li>Add or update the matching <code>vehicles.xml</code> vehicle block if the mod uses the base buy/menu metadata system.</li>
+        <li>Add language keys for name, purpose, tooltip, and trivia where needed.</li>
         <li>Test in editor first, then in freeplay.</li>
       </ol>
 
@@ -832,6 +911,66 @@ const articles = [
         </tbody>
       </table>
 
+      <h3>Specs files that matter for people</h3>
+      <table>
+        <thead><tr><th>Specs file</th><th>What to add or check</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><code>Specs/portraits.xml</code></td><td>Add or copy a person <code>&lt;portrait&gt;</code> line for the new prototype.</td><td>Connects the person prototype to portrait art, unit identity, and interface text.</td></tr>
+          <tr><td><code>Specs/vehicles.xml</code></td><td>If the person is crew for a vehicle, add them inside that vehicle's <code>&lt;crew&gt;</code> list.</td><td>Controls which personnel can be loaded through the base vehicle/personnel selection interface.</td></tr>
+          <tr><td><code>Specs/protoprecache.xml</code></td><td>Add the prototype if your mod relies on prototype precaching.</td><td>Useful for persons spawned often by scripts, stations, or dispatch menus.</td></tr>
+          <tr><td><code>Specs/animationinfo.xml</code></td><td>Usually not edited for a simple reskin, but relevant if the person depends on special animations.</td><td>Wrong animation assumptions can make custom persons behave strangely.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Person portraits.xml line explained</h3>
+      <pre><code class="language-xml">&lt;portrait prototype="mod:Prototypes/Persons/Fire Department/firefighternorm.e4p" big="norm" unit="firefighter" text="FWM"/&gt;</code></pre>
+      <table>
+        <thead><tr><th>Part</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>prototype</code></td><td>The exact person prototype path.</td></tr>
+          <tr><td><code>big</code></td><td>Large portrait/image variation identifier used by the interface.</td></tr>
+          <tr><td><code>unit</code></td><td>Unit identity the person belongs to, such as firefighter, doctor, paramedic, or police officer.</td></tr>
+          <tr><td><code>text</code></td><td>Short text/identifier for the portrait entry.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Adding a person as vehicle crew</h3>
+      <p>If the person should appear as a crew option for a vehicle, the vehicle's entry in <code>Specs/vehicles.xml</code> needs a <code>&lt;crew&gt;</code> line pointing to the person prototype.</p>
+      <pre><code class="language-xml">&lt;crew name="ID_NAME_FIREFIGHTER"
+      prototype="mod:Prototypes/Persons/Fire Department/firefighternorm.e4p"
+      space="1"
+      price="25"
+      freeplayprice="25"
+      defaultCount="1"&gt;
+  &lt;interface id="ID_DEFAULT"
+             image="base:UI/Game/personimg/firefighter_small"
+             bigimage="base:UI/Game/personimg/firefighter_big.dds"
+             trivia="ID_TRIVIA_FIREFIGHTER"
+             purpose="ID_PURPOSE_FIREFIGHTER"
+             tooltip="ID_TOOLTIP_FIREFIGHTER" /&gt;
+&lt;/crew&gt;</code></pre>
+      <ul>
+        <li><code>name</code> is the language key for the crew name.</li>
+        <li><code>prototype</code> is the person prototype that will be loaded.</li>
+        <li><code>space</code> is how much seating/crew space the person consumes.</li>
+        <li><code>price</code> and <code>freeplayprice</code> control menu cost values.</li>
+        <li><code>defaultCount</code> controls how many are selected by default when that vehicle is ordered.</li>
+        <li><code>&lt;interface&gt;</code> points to small/big images and language strings for purpose/tooltips.</li>
+      </ul>
+
+      <h3>Units folder and person unit.xml</h3>
+      <p>If the person should be directly selectable, purchasable, or referenced as a personnel unit, they need a matching <code>Units/Persons</code> folder with <code>unit.xml</code>. Vehicle <code>unit.xml</code> files also reference person unit IDs in their <code>&lt;personnel&gt;</code> sections.</p>
+      <pre><code class="language-xml">&lt;personnel&gt;
+  &lt;unit id="FIREFIGHTER"&gt;
+    &lt;defaultcount value="1" /&gt;
+  &lt;/unit&gt;
+  &lt;unit id="FIREFIGHTERMASK" /&gt;
+&lt;/personnel&gt;</code></pre>
+      <p>The <code>id</code> values must match the person unit entries. If a vehicle references <code>FIREFIGHTER</code> but that unit entry is missing or renamed, the vehicle menu may not staff correctly.</p>
+
+      <h3>Language strings for people</h3>
+      <p>Person names, tooltips, and purpose text are usually stored in language files such as <code>Lang/us/infotexts.xml</code>. A person can have a working prototype but still show the wrong menu text if the <code>ID_NAME</code>, <code>ID_PURPOSE</code>, or <code>ID_TOOLTIP</code> strings are missing or copied from the wrong unit.</p>
+
       <h3>Adding a new person from scratch</h3>
       <ol>
         <li>Place model and texture files under <code>Models/Persons</code>.</li>
@@ -839,6 +978,10 @@ const articles = [
         <li>Point the prototype to the correct model.</li>
         <li>Assign the correct command set. Do not overload the first command menu with too many commands.</li>
         <li>Check equipment compatibility. Every get-equipment command needs a way to return, drop, remove, or switch equipment.</li>
+        <li>Add or update the matching <code>portraits.xml</code> entry.</li>
+        <li>Create or update the matching <code>Units/Persons</code> entry if the person is selectable or used by the unit menu.</li>
+        <li>Add the person as <code>&lt;crew&gt;</code> in <code>vehicles.xml</code> for any vehicle that should carry them as a menu staffing option.</li>
+        <li>Add or update language strings for name, purpose, tooltip, and trivia where needed.</li>
         <li>Test vehicle entry and exit with every vehicle type the person should use.</li>
         <li>Test role-specific behavior: arresting, healing, carrying, hose use, technical equipment, or custom roleplay commands.</li>
       </ol>
@@ -2419,12 +2562,50 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     title: "What Prototypes Control",
     tags: ["e4p", "traits", "commands"],
     body: `
+      <p>A prototype is an <code>.e4p</code> file. It is the editable game entity that tells Emergency 4 how an object, person, vehicle, house, or piece of equipment behaves. A model is usually a <code>.v3o</code> file. The model controls what the thing looks like; the prototype controls what the thing is and what it can do.</p>
       <p>A prototype stores object traits, model links, physics, lights, doors, commands, child objects, and unit behavior. If a command never appears, check the prototype first: the script can be perfect and still never show if the command is not assigned.</p>
+      <table>
+        <thead><tr><th>File type</th><th>Folder</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>.e4p</code></td><td><code>Prototypes</code></td><td>Gameplay/editor setup: model path, physics, traits, lights, child objects, doors, wheels, commands, vehicle type, person type, and object behavior.</td></tr>
+          <tr><td><code>.v3o</code></td><td><code>Models</code></td><td>Visual mesh/model data: shape, geometry, UV mapping, material references, and texture paths.</td></tr>
+        </tbody>
+      </table>
       <ul>
         <li>Vehicles need correct vehicle type and role for transport, command, and return logic.</li>
         <li>Persons need the right person type and assigned person commands.</li>
         <li>Deployable equipment is often easier as a vehicle prototype when it needs selectable commands.</li>
       </ul>
+      <p><strong>Beginner rule:</strong> if it looks wrong, inspect the <code>.v3o</code> model and texture. If it behaves wrong, inspect the <code>.e4p</code> prototype first.</p>
+    `
+  },
+  {
+    category: "Models",
+    title: "What Models Control",
+    tags: ["models", "v3o", "textures", "mesh"],
+    body: `
+      <p>A model is usually a <code>.v3o</code> file stored under the <code>Models</code> folder. The model controls the visible shape of a vehicle, person, object, house, equipment item, door, wheel, or child object. It does not decide whether the object is a police car, firefighter, fire extinguisher, or usable command object. That behavior comes from the prototype.</p>
+      <table>
+        <thead><tr><th>Model layer</th><th>What it controls</th><th>Common issue</th></tr></thead>
+        <tbody>
+          <tr><td>Geometry</td><td>The visible shape and polygon mesh.</td><td>Model looks too blocky, too detailed, stretched, or broken.</td></tr>
+          <tr><td>UV map</td><td>How the texture image wraps around the model.</td><td>Texture appears warped, sideways, or placed on the wrong part.</td></tr>
+          <tr><td>Material/texture path</td><td>Which image file the model uses.</td><td>Model appears white because the texture path is wrong or missing.</td></tr>
+          <tr><td>Separate model pieces</td><td>Doors, wheels, lightbars, equipment, and other child models.</td><td>Child object is missing, untextured, or not aligned in the prototype.</td></tr>
+          <tr><td>Animation-related pieces</td><td>Doors, persons, animals, and special moving parts.</td><td>Animation rotates from the wrong point or fails to display correctly.</td></tr>
+        </tbody>
+      </table>
+      <h3>How models connect to prototypes</h3>
+      <p>The <code>.e4p</code> prototype points to a <code>.v3o</code> model. In the editor, you normally open the prototype and assign the model path there. The game then loads the model through the prototype.</p>
+      <pre><code>Prototype (.e4p) -> Model path -> Model (.v3o) -> Texture path -> DDS/PNG/JPG/TGA texture</code></pre>
+      <h3>Models folder examples</h3>
+      <ul>
+        <li><code>Models/Vehicles</code>: vehicle bodies, doors, wheels, lightbars, and vehicle equipment models.</li>
+        <li><code>Models/Persons</code>: person bodies, uniforms, helmets, and special character models.</li>
+        <li><code>Models/Objects</code>: props, equipment, deployables, signs, barrels, panels, and other map objects.</li>
+        <li><code>Models/Houses</code>: buildings and structures.</li>
+      </ul>
+      <p>Editing a model alone will not make it playable. After the <code>.v3o</code> is ready, you still need the matching <code>.e4p</code> prototype, proper textures, child objects, commands, and unit/spec entries if it should appear in game menus.</p>
     `
   },
   {
@@ -3392,6 +3573,7 @@ object VcmdTutorialSiren : CommandScript
     tags: ["unit.xml", "Units folder", "freeplay menu", "vehicles", "persons"],
     body: `
       <p>The <code>unit.xml</code> file tells the game how a playable unit appears in menus. A prototype can exist and work in the editor, but it still may not appear correctly in freeplay if its unit folder or <code>unit.xml</code> is incomplete.</p>
+      <p><strong>Important distinction:</strong> the prototype controls the actual object in game. <code>unit.xml</code> controls how that prototype is presented and selected in campaign/freeplay menus.</p>
       <table>
         <thead><tr><th>Entry</th><th>Purpose</th><th>Common mistake</th></tr></thead>
         <tbody>
@@ -3412,6 +3594,19 @@ object VcmdTutorialSiren : CommandScript
         <li>Replace or update the portrait/menu images.</li>
         <li>Load the mod and confirm the correct prototype spawns.</li>
       </ol>
+      <h3>Vehicle unit.xml sections</h3>
+      <p>A vehicle <code>unit.xml</code> often contains separate <code>&lt;campaign&gt;</code> and <code>&lt;freeplay&gt;</code> sections. Inside each section, <code>&lt;missions value="..."&gt;</code> controls where the unit is available.</p>
+      <ul>
+        <li><code>&lt;prototype name="..." /&gt;</code>: exact prototype path to spawn.</li>
+        <li><code>&lt;price value="..." /&gt;</code>: price/cost value.</li>
+        <li><code>&lt;speed value="..." /&gt;</code>: menu/dispatch speed value.</li>
+        <li><code>&lt;space value="..." /&gt;</code>: personnel capacity used by the menu.</li>
+        <li><code>&lt;loadspace value="..." /&gt;</code>: patient/cargo/transport space depending on vehicle type.</li>
+        <li><code>&lt;personnel&gt;</code>: person unit IDs that can staff the vehicle.</li>
+        <li><code>&lt;equipment&gt;</code>: equipment unit IDs available from the vehicle.</li>
+      </ul>
+      <h3>Person unit.xml sections</h3>
+      <p>A person <code>unit.xml</code> identifies the person as a usable personnel unit. Vehicle unit files can then reference that person by ID inside <code>&lt;personnel&gt;</code>. If a custom person is only spawned by station scripts, they may not need to appear as a buy-menu person, but they still need a clean prototype, correct commands, and correct vehicle compatibility.</p>
     `
   },
   {
@@ -3530,6 +3725,24 @@ object VcmdTutorialSiren : CommandScript
         <li>Fix capitalization, extension, and folder path issues.</li>
       </ol>
     `
+  },
+  {
+    category: "White Map Bug",
+    title: "White Map Bug",
+    tags: ["white map", "white units", "graphics", "shadows", "game details"],
+    body: `
+      <p>The <strong>White Map Bug</strong> is when the entire map appears white, often including units, objects, and terrain. This is different from a single white vehicle or white model. A single white model usually points to a missing texture; a fully white map is usually a graphics/settings issue.</p>
+
+      <h3>Simple fix</h3>
+      <ol>
+        <li>Open the game options menu.</li>
+        <li>Turn down the game detail settings.</li>
+        <li>Turn off all shadows.</li>
+        <li>Apply the settings and restart the game if needed.</li>
+      </ol>
+
+      <p>After lowering details and disabling shadows, the map should render normally again.</p>
+    `
   }
 ];
 
@@ -3548,11 +3761,11 @@ const categoryGroups = [
   },
   {
     title: "Common Issues",
-    categories: ["Cheats and Debugging", "Graphics and Shadows", "Packed and Locked V3O", "White Model Fixes", "Common Issues", "Troubleshooting"]
+    categories: ["Cheats and Debugging", "Graphics and Shadows", "White Map Bug", "Packed and Locked V3O", "White Model Fixes", "Common Issues", "Troubleshooting"]
   },
   {
     title: "Editor and Assets",
-    categories: ["Folder Structure", "Editor Manual", "Maps", "Prototypes", "Asset Workshop", "UI and Icons", "Audio"]
+    categories: ["Folder Structure", "Editor Manual", "Maps", "Models", "Prototypes", "Asset Workshop", "UI and Icons", "Audio"]
   },
   {
     title: "3D Modeling",

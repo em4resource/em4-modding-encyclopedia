@@ -539,6 +539,18 @@ body {
   vertical-align: top;
 }
 
+.article-body .rules-table tbody tr:nth-child(odd) {
+  background: #f8fbff;
+}
+
+.article-body .rules-table tbody tr:nth-child(even) {
+  background: #eef5ff;
+}
+
+.article-body .rules-table tbody tr:hover {
+  background: #e3efff;
+}
+
 .article-body th {
   background: var(--surface-soft);
   text-align: left;
