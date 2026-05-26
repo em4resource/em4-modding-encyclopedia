@@ -870,6 +870,33 @@ const articles = [
         </tbody>
       </table>
 
+      <h3>Specs entries to transfer too</h3>
+      <p>Do not only copy the <code>.e4p</code>. If the source mod added the vehicle to the normal freeplay/buy menu system, it likely also has spec and unit entries that need to be recreated in your mod.</p>
+      <table>
+        <thead><tr><th>File</th><th>What to copy or recreate</th><th>What breaks if missing</th></tr></thead>
+        <tbody>
+          <tr><td><code>Specs/portraits.xml</code></td><td>The matching <code>&lt;portrait prototype="..." text="..." unit="..." /&gt;</code> line.</td><td>The unit may have no correct portrait, wrong label, or mismatched unit identity.</td></tr>
+          <tr><td><code>Specs/freeplaybase.xml</code></td><td>The matching <code>&lt;vehicle prototype="..." count="..." /&gt;</code> line.</td><td>The vehicle may exist but not be available from the freeplay base pool.</td></tr>
+          <tr><td><code>Specs/freeplaybase_d.xml</code></td><td>Deluxe freeplay availability entry, if your mod uses it.</td><td>Deluxe/freeplay variants may not show the vehicle.</td></tr>
+          <tr><td><code>Specs/freeplaybase_mp.xml</code></td><td>Multiplayer freeplay availability entry, if your mod uses it.</td><td>Multiplayer may not make the vehicle available.</td></tr>
+          <tr><td><code>Specs/vehicles.xml</code></td><td>The full vehicle block or a recreated block with correct prototype, interface, crew, equipment, speed, price, space, and loadspace.</td><td>Vehicle menu info, staffing options, equipment list, or buy menu metadata can be wrong or missing.</td></tr>
+          <tr><td><code>Specs/protoprecache.xml</code></td><td>Prototype reference if the source mod precaches it.</td><td>Some scripted or frequently used units may load less reliably depending on the mod's setup.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Units/Vehicles transfer check</h3>
+      <p>Copy or recreate the source vehicle's <code>Units/Vehicles/.../unit.xml</code>. Then verify every value points to your mod's paths and IDs, not the old mod's structure.</p>
+      <ul>
+        <li><code>&lt;unit id="..."&gt;</code> should be unique and match the vehicle identity.</li>
+        <li><code>&lt;prototype name="..." /&gt;</code> must point to the transferred <code>.e4p</code>.</li>
+        <li><code>&lt;personnel&gt;</code> unit IDs must exist in your mod.</li>
+        <li><code>&lt;equipment&gt;</code> unit IDs must exist in your mod.</li>
+        <li><code>price</code>, <code>speed</code>, <code>space</code>, and <code>loadspace</code> should match the intended behavior.</li>
+      </ul>
+
+      <h3>Language and UI transfer check</h3>
+      <p>If the source vehicle uses custom names, purpose text, tooltips, preview images, or icons, copy or recreate those too. Check language files such as <code>Lang/us/infotexts.xml</code>, UI vehicle images, unit portraits, command icons, and cursor icons.</p>
+
       <h3>Safe transfer process</h3>
       <ol>
         <li>Copy model and texture files first.</li>
@@ -877,7 +904,8 @@ const articles = [
         <li>Open the prototype in the editor and fix missing model paths.</li>
         <li>Remove commands that do not exist in your mod, or copy the needed command scripts after reviewing them.</li>
         <li>Create or copy the <code>Units/Vehicles</code> entry.</li>
-        <li>Update spec and language files.</li>
+        <li>Transfer or recreate <code>portraits.xml</code>, <code>freeplaybase.xml</code>, and <code>vehicles.xml</code> entries.</li>
+        <li>Update language files and UI images.</li>
         <li>Load the mod and check <code>logfile.txt</code> for missing icons, scripts, models, or prototypes.</li>
         <li>Test the unit alone before adding it to stations or dispatch systems.</li>
       </ol>
@@ -1016,6 +1044,30 @@ const articles = [
           <tr><td><code>Lang</code></td><td>Name and description text.</td></tr>
         </tbody>
       </table>
+
+      <h3>Specs entries to transfer too</h3>
+      <p>If the person is selectable, used as vehicle crew, or shown in the base personnel interface, the transfer also needs the supporting specs entries. A copied person prototype can spawn in the editor but still fail as a playable personnel option if these are missing.</p>
+      <table>
+        <thead><tr><th>File</th><th>What to copy or recreate</th><th>What breaks if missing</th></tr></thead>
+        <tbody>
+          <tr><td><code>Specs/portraits.xml</code></td><td>The matching person <code>&lt;portrait prototype="..." big="..." unit="..." text="..." /&gt;</code> line.</td><td>The person may have wrong portrait art, missing interface identity, or wrong text.</td></tr>
+          <tr><td><code>Specs/vehicles.xml</code></td><td>Any <code>&lt;crew&gt;</code> entries that allow this person to staff specific vehicles.</td><td>The person may exist but not appear as a crew option for the vehicle.</td></tr>
+          <tr><td><code>Specs/protoprecache.xml</code></td><td>Prototype reference if the source mod precaches the person.</td><td>Scripted/station-spawned persons may behave differently depending on the mod's loading setup.</td></tr>
+          <tr><td><code>Specs/animationinfo.xml</code></td><td>Only needed if the person depends on unusual/custom animations.</td><td>Special animations may not behave as expected.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Units/Persons transfer check</h3>
+      <p>Copy or recreate the matching <code>Units/Persons/.../unit.xml</code> if the person is meant to be selectable or referenced by vehicle staffing. Then check every vehicle <code>unit.xml</code> that should use that person.</p>
+      <ul>
+        <li>The person unit ID must match the IDs used in vehicle <code>&lt;personnel&gt;</code> sections.</li>
+        <li>The person prototype path must point to the transferred <code>.e4p</code>.</li>
+        <li>Any default counts in vehicle unit files should match the intended staffing.</li>
+        <li>If the person replaces an existing role, make sure old vehicle unit files are not still pointing to the old person ID.</li>
+      </ul>
+
+      <h3>Language and UI transfer check</h3>
+      <p>Copy or recreate the person name, purpose, tooltip, trivia, portrait images, command icons, and cursor icons. A person can load correctly but still look unfinished if the menu text or command art is missing.</p>
 
       <h3>Common transfer problems</h3>
       <ul>
