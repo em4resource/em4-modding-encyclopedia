@@ -185,6 +185,25 @@ body {
   font-weight: 700;
 }
 
+.menu-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  margin-right: 8px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.discord-menu-icon {
+  background: #5865f2;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(88, 101, 242, 0.24);
+}
+
 .menu-button:hover {
   background: #eef5ff;
   color: var(--link-dark);

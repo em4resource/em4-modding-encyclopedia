@@ -302,6 +302,53 @@ const articles = [
     `
   },
   {
+    category: "Discord Rules",
+    title: "EM4Resource Rules",
+    tags: ["Discord", "rules", "community", "EM4Resource"],
+    body: `
+      <p>These rules apply to the EM4Resource community, including the Discord server and related community spaces. EM4Resource is intended for Emergency 4 content creation, teamwork, support, and conversation.</p>
+
+      <h3>Rules List</h3>
+      <table>
+        <thead><tr><th>Rule</th><th>Policy</th></tr></thead>
+        <tbody>
+          <tr><td>Rule #1</td><td><strong>Do not threaten, harass, or bully.</strong><br>Harassment, threats, bullying, intimidation, or abuse are not tolerated. This includes behavior in public posts, comments, usernames, private messages, or chat. EM4Resource is a privilege, not a right; users who cannot participate respectfully may be removed.</td></tr>
+          <tr><td>Rule #2</td><td><strong>Do not promote hate based on identity or vulnerability.</strong></td></tr>
+          <tr><td>Rule #3</td><td><strong>Respect the privacy of others. Defamation is not allowed.</strong></td></tr>
+          <tr><td>Rule #4</td><td><strong>Do not engage in or post sexually explicit, offensive, graphic, or illegal content.</strong><br>This includes piracy, torrents, and similar material.</td></tr>
+          <tr><td>Rule #5</td><td><strong>You must be at least 13 years old to use EM4Resource.</strong></td></tr>
+          <tr><td>Rule #6</td><td><strong>Do not break the site or interfere with normal use of EM4Resource.</strong></td></tr>
+          <tr><td>Rule #7</td><td><strong>Do not advertise external communities or post discussions, rants, or drama about them.</strong><br>Links to Emergency 4 modifications, tutorials, or related content are allowed. Do not promote other Discord servers or communities without staff approval. Do not self-promote if you recently joined or are not participating beyond promotion.</td></tr>
+          <tr><td>Rule #8</td><td><strong>Do not involve money in requests.</strong><br>EM4Resource cannot guarantee the validity of transactions. The community is not a place for users, staff, or others to make money outside of the donation function.</td></tr>
+          <tr><td>Rule #9</td><td><strong>Follow EM4Resource's 3D Model Terms of Use.</strong><br>Unauthorized use of EM4Resource 3D models may result in account termination and other penalties, damages, losses, or profits EM4Resource is entitled to under the agreement, law, or equity.</td></tr>
+          <tr><td>Rule #10</td><td><strong>Do not tell users what they can and cannot do.</strong><br>EM4Resource staff actively monitor the website and Discord server. If someone breaks the rules or may cause harm, staff will intervene as soon as possible.</td></tr>
+          <tr><td>Rule #11</td><td><strong>Do not use alternate accounts.</strong></td></tr>
+          <tr><td>Rule #12</td><td><strong>Do not be intentionally rude.</strong><br>Choosing not to be rude improves the community for everyone.</td></tr>
+          <tr><td>Rule #13</td><td><strong>Do not insult others.</strong><br>Insults do not contribute to rational discussion. Constructive criticism is appropriate and encouraged.</td></tr>
+          <tr><td>Rule #14</td><td><strong>Do not spam.</strong></td></tr>
+          <tr><td>Rule #15</td><td><strong>Do not ping, mention, or DM staff or development team members individually.</strong><br>Use the proper support forums, threads, or Discord channels. Someone will respond when available. This includes repeated pings of Admin, Mod, Developer roles, or individual staff names.</td></tr>
+          <tr><td>Rule #16</td><td><strong>Do not repost deleted or removed information.</strong><br>If staff removed content, it should stay removed regardless of what it contained.</td></tr>
+          <tr><td>Rule #17</td><td><strong>Do not like or dislike content based only on who posted it.</strong><br>Vote based on the content, not the username.</td></tr>
+          <tr><td>Rule #18</td><td><strong>Do not use link shorteners to post your content.</strong><br>Hidden links are discouraged because they obscure where users are being sent.</td></tr>
+          <tr><td>Rule #19</td><td><strong>Do not complain about other users reposting or rehosting images, videos, or other content.</strong><br>Users should give credit where appropriate, but if missing credit is not causing harm, do not escalate it publicly. Staff will remove harmful content when needed.</td></tr>
+          <tr><td>Rule #20</td><td><strong>Follow EM4Resource File Upload Guidelines when sharing Emergency 4 files.</strong></td></tr>
+          <tr><td>Rule #21</td><td><strong>Do not post about or create in-game events regarding fictional or non-fictional mass violence events.</strong><br>This includes gameplay screenshots or videos.</td></tr>
+          <tr><td>Rule #22</td><td><strong>Do not send unsolicited messages to other server members.</strong></td></tr>
+          <tr><td>Rule #23</td><td><strong>Do not communicate in languages other than English outside of channels set up for other languages.</strong></td></tr>
+          <tr><td>Rule #24</td><td><strong>Do not post invite links or advertise other Discord servers.</strong><br>Approved Discord servers are listed in the Wiki.</td></tr>
+          <tr><td>Rule #25</td><td><strong>No discussions about politics, social activism, or religion.</strong></td></tr>
+          <tr><td>Rule #26</td><td><strong>No AI depictions of photos, modifications, vehicles, or similar content.</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div class="important-callout">
+        <h3>Terms of This Policy</h3>
+        <p>This policy may be changed at any time without notice.</p>
+        <p><strong>Last Updated:</strong> 01/18/2025</p>
+      </div>
+    `
+  },
+  {
     category: "Start Here",
     title: "How the Game Is Put Together",
     tags: ["mental model", "architecture", "beginner"],
@@ -3497,7 +3544,7 @@ let activeCategory = "Start Here";
 const categoryGroups = [
   {
     title: "Welcome",
-    categories: ["Start Here", "Getting Started", "Installing Mods", "EM4Resource Downloads", "EM4 History", "EM4 Memory Patcher"]
+    categories: ["Start Here", "Getting Started", "Installing Mods", "EM4Resource Downloads", "EM4 History", "EM4 Memory Patcher", "Discord Rules"]
   },
   {
     title: "Common Issues",
@@ -3581,7 +3628,20 @@ function renderCategories() {
       const button = document.createElement("button");
       button.type = "button";
       button.className = `menu-button${category === activeCategory ? " active" : ""}`;
-      button.textContent = category;
+      if (category === "Discord Rules") {
+        const icon = document.createElement("span");
+        icon.className = "menu-icon discord-menu-icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = "D";
+
+        const label = document.createElement("span");
+        label.textContent = category;
+
+        button.appendChild(icon);
+        button.appendChild(label);
+      } else {
+        button.textContent = category;
+      }
       button.addEventListener("click", () => {
         activeCategory = category;
         renderCategories();
