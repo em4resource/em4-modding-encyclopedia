@@ -251,15 +251,16 @@ const articles = [
     `
   },
   {
-    category: "EM4 History",
+    category: "EM4 Memory Patcher",
     title: "EM4 Memory Patcher",
     tags: ["memory patcher", "4gb patch", "crashes", "installation", "Steam", "911 First Responders"],
     body: `
       <p>The <strong>EM4 Memory Patcher</strong> is one of the most important modern setup tools for Emergency 4 / 911: First Responders. Large modern mods use more models, textures, scripts, UI files, audio, and map content than the base game was originally built around. Without a memory patch, players may see crashes while loading a mod, entering freeplay, opening the editor, switching maps, or playing for an extended time.</p>
       <p>EM-Hub describes the tool as a patcher made to address memory-related Emergency 4 crashes, improve executable stability, and increase the amount of data the game can process. The official GitHub release notes for the current version also mention English/German language selection, administrator warnings, Steam-specific 911: First Responders changes, backup overwrite support, and internal backup restoration.</p>
+      <p><strong>Credit:</strong> EM4 Memory Patcher was created by <strong>Sabrina</strong>. The official project repository is hosted on GitHub under <code>annabelsandford/em4_mem_patch</code>, and the EM-Hub filebase page lists Sabrina as the author.</p>
 
       <div class="resource-grid">
-        <a class="resource-link" href="https://github.com/annabelsandford/em4_mem_patch/releases/download/v2.2.0/em4_patcher_v2-2-0.zip" target="_blank" rel="noreferrer"><strong>Direct Download</strong><span>Download EM4 Memory Patcher v2.2.0 ZIP from GitHub.</span></a>
+        <a class="resource-link direct-download" href="https://github.com/annabelsandford/em4_mem_patch/releases/download/v2.2.0/em4_patcher_v2-2-0.zip" target="_blank" rel="noreferrer"><strong>Direct Download</strong><span>Download EM4 Memory Patcher v2.2.0 ZIP from GitHub.</span></a>
         <a class="resource-link" href="https://github.com/annabelsandford/em4_mem_patch/releases" target="_blank" rel="noreferrer"><strong>GitHub Releases</strong><span>Check the official release page for newer versions.</span></a>
         <a class="resource-link" href="https://em-hub.de/filebase/file/303-emergency-4-memory-patcher/" target="_blank" rel="noreferrer"><strong>EM-Hub File Page</strong><span>Community filebase page for the patcher.</span></a>
         <a class="resource-link" href="https://em-hub.de/lexicon/entry/71-installation-4gb-patch/" target="_blank" rel="noreferrer"><strong>Installation Guide</strong><span>EM-Hub written setup guide for the 4GB patch process.</span></a>
@@ -650,7 +651,7 @@ const articles = [
     `
   },
   {
-    category: "Mod Creation",
+    category: "Adding a Vehicle",
     title: "Adding a Vehicle",
     tags: ["vehicles", "prototype", "units"],
     body: `
@@ -705,7 +706,7 @@ const articles = [
     `
   },
   {
-    category: "Mod Creation",
+    category: "Transferring a Vehicle",
     title: "Transferring a Vehicle Between Mods",
     tags: ["vehicle transfer", "mods", "units", "prototypes", "freeplay"],
     body: `
@@ -757,7 +758,7 @@ const articles = [
     `
   },
   {
-    category: "Mod Creation",
+    category: "Adding a Person",
     title: "Adding a Person",
     tags: ["persons", "prototype", "commands"],
     body: `
@@ -806,7 +807,7 @@ const articles = [
     `
   },
   {
-    category: "Mod Creation",
+    category: "Transferring a Person",
     title: "Transferring a Person Between Mods",
     tags: ["person transfer", "prototypes", "commands", "freeplay"],
     body: `
@@ -1520,6 +1521,10 @@ const articles = [
       <h3>When to remove alpha/reflection data</h3>
       <p>Some base game DDS files carry alpha reflection data that is not wanted for a normal repaint. In that case, remove or flatten the alpha channel in DXTBmp before sending the texture back into Photoshop or GIMP. This prevents accidental reflection behavior from carrying into the new skin.</p>
       <p>Do not remove alpha blindly from every texture. Glass, transparent decals, UI icons, and some special materials may need it. The correct choice depends on what the texture controls.</p>
+
+      <h3>Disabling alpha reflections in the editor</h3>
+      <p>Alpha/reflection behavior is not only a texture-editing issue. You can also disable alpha reflections in the EM4 editor on a placed scene object or person. Select the object or person in the scene, open the edit/properties menu for that item, and disable the alpha reflections option there when the object should not use that reflective alpha behavior.</p>
+      <p>This is useful when a specific placed object, person, or prop looks wrong in the map even though the texture itself is otherwise acceptable. Texture cleanup fixes the source asset; the editor option fixes how that placed scene item behaves.</p>
 
       <div class="important-callout">
         <h3>Important</h3>
@@ -3363,7 +3368,7 @@ object VcmdTutorialSiren : CommandScript
     `
   },
   {
-    category: "Common Issues",
+    category: "Cheats and Debugging",
     title: "Cheats and Debugging Commands",
     tags: ["cheats", "debugging", "testing", "support"],
     body: `
@@ -3378,7 +3383,7 @@ object VcmdTutorialSiren : CommandScript
     `
   },
   {
-    category: "Common Issues",
+    category: "Graphics and Shadows",
     title: "Graphics Fixes and No Shadows Issues",
     tags: ["graphics", "shadows", "Steam", "compatibility", "admin"],
     body: `
@@ -3397,7 +3402,7 @@ object VcmdTutorialSiren : CommandScript
     `
   },
   {
-    category: "Common Issues",
+    category: "Installing Mods",
     title: "Installing Mods Through Steam",
     tags: ["Steam", "mod install", "911 First Responders", "e4mod", "Mods folder"],
     body: `
@@ -3438,7 +3443,7 @@ object VcmdTutorialSiren : CommandScript
     `
   },
   {
-    category: "Common Issues",
+    category: "Packed and Locked V3O",
     title: "Packed and Locked V3O Files",
     tags: ["V3O", "packed files", "unpack", "models", "editor"],
     body: `
@@ -3454,7 +3459,7 @@ object VcmdTutorialSiren : CommandScript
     `
   },
   {
-    category: "Common Issues",
+    category: "White Model Fixes",
     title: "White Model and Missing Texture Troubleshooting",
     tags: ["white model", "missing texture", "DDS", "PNG", "V3O"],
     body: `
@@ -3492,11 +3497,11 @@ let activeCategory = "Start Here";
 const categoryGroups = [
   {
     title: "Welcome",
-    categories: ["Start Here", "Getting Started", "EM4Resource Downloads", "EM4 History"]
+    categories: ["Start Here", "Getting Started", "Installing Mods", "EM4Resource Downloads", "EM4 History", "EM4 Memory Patcher"]
   },
   {
     title: "Common Issues",
-    categories: ["Common Issues", "Troubleshooting"]
+    categories: ["Cheats and Debugging", "Graphics and Shadows", "Packed and Locked V3O", "White Model Fixes", "Common Issues", "Troubleshooting"]
   },
   {
     title: "Editor and Assets",
@@ -3520,7 +3525,7 @@ const categoryGroups = [
   },
   {
     title: "Mod Workflow",
-    categories: ["Mod Creation"]
+    categories: ["Mod Creation", "Adding a Vehicle", "Transferring a Vehicle", "Adding a Person", "Transferring a Person"]
   }
 ];
 

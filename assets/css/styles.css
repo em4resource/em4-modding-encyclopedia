@@ -569,6 +569,21 @@ body {
   background: #eef5ff;
 }
 
+.resource-link.direct-download {
+  border-color: #0f8d4a;
+  background: linear-gradient(180deg, #e9fbf0 0%, #d8f4e3 100%);
+  box-shadow: 0 10px 22px rgba(15, 141, 74, 0.16);
+}
+
+.resource-link.direct-download:hover {
+  border-color: #0b6f3a;
+  background: linear-gradient(180deg, #dcf7e7 0%, #c8edd8 100%);
+}
+
+.resource-link.direct-download strong {
+  color: #075f32;
+}
+
 .resource-link strong {
   color: var(--link-dark);
   line-height: 1.25;
