@@ -245,8 +245,59 @@ const articles = [
           <tr><td>1 Feb 2026</td><td>Rosenburg 1.1 released.</td><td>Rural fictional German multiplayer modification based on lessons from Bieberfelde and Fuchsburg, with version 1.1 adding fixes and gameplay adjustments.</td></tr>
           <tr class="em4resource-release"><td>5 Feb 2026</td><td>Beaverhead County Modification V1 released.</td><td>EM4Resource release. Beaverhead County modification version 1.</td></tr>
           <tr><td>22 Feb 2026</td><td>Valkeakoski Mod 1.1 released.</td><td>Finnish EM4 modification release showing the geographic spread of modern filebase activity.</td></tr>
+          <tr class="em4resource-release"><td>25 May 2026</td><td>Elisa City EM4Resource Edit released.</td><td>EM4Resource release. Elisa City modification update and edit release.</td></tr>
         </tbody>
       </table>
+    `
+  },
+  {
+    category: "EM4 History",
+    title: "EM4 Memory Patcher",
+    tags: ["memory patcher", "4gb patch", "crashes", "installation", "Steam", "911 First Responders"],
+    body: `
+      <p>The <strong>EM4 Memory Patcher</strong> is one of the most important modern setup tools for Emergency 4 / 911: First Responders. Large modern mods use more models, textures, scripts, UI files, audio, and map content than the base game was originally built around. Without a memory patch, players may see crashes while loading a mod, entering freeplay, opening the editor, switching maps, or playing for an extended time.</p>
+      <p>EM-Hub describes the tool as a patcher made to address memory-related Emergency 4 crashes, improve executable stability, and increase the amount of data the game can process. The official GitHub release notes for the current version also mention English/German language selection, administrator warnings, Steam-specific 911: First Responders changes, backup overwrite support, and internal backup restoration.</p>
+
+      <div class="resource-grid">
+        <a class="resource-link" href="https://github.com/annabelsandford/em4_mem_patch/releases/download/v2.2.0/em4_patcher_v2-2-0.zip" target="_blank" rel="noreferrer"><strong>Direct Download</strong><span>Download EM4 Memory Patcher v2.2.0 ZIP from GitHub.</span></a>
+        <a class="resource-link" href="https://github.com/annabelsandford/em4_mem_patch/releases" target="_blank" rel="noreferrer"><strong>GitHub Releases</strong><span>Check the official release page for newer versions.</span></a>
+        <a class="resource-link" href="https://em-hub.de/filebase/file/303-emergency-4-memory-patcher/" target="_blank" rel="noreferrer"><strong>EM-Hub File Page</strong><span>Community filebase page for the patcher.</span></a>
+        <a class="resource-link" href="https://em-hub.de/lexicon/entry/71-installation-4gb-patch/" target="_blank" rel="noreferrer"><strong>Installation Guide</strong><span>EM-Hub written setup guide for the 4GB patch process.</span></a>
+      </div>
+
+      <h3>What the patcher does</h3>
+      <ul>
+        <li>Allows the Emergency 4 executable to handle more memory on modern systems.</li>
+        <li>Reduces crashes caused by large mods, high-resolution assets, large maps, and long sessions.</li>
+        <li>Supports both Emergency 4 and 911: First Responders style installations.</li>
+        <li>Includes options for Steam and non-Steam versions.</li>
+        <li>Can create and restore backups depending on the selected workflow.</li>
+      </ul>
+
+      <h3>When players should install it</h3>
+      <p>For modern modding, treat the memory patcher as a normal setup step. It should be installed before troubleshooting random load crashes, editor crashes, crash-to-desktop issues with large mods, and unexplained memory-related instability.</p>
+
+      <h3>Basic installation workflow</h3>
+      <ol>
+        <li>Download the ZIP from the official GitHub release link above.</li>
+        <li>Extract the ZIP completely. Do not run the patcher from inside the compressed file.</li>
+        <li>Right-click <code>EM4P.exe</code> and choose <strong>Run as administrator</strong>.</li>
+        <li>Choose <strong>Patch or Repair (*.EXE)</strong>.</li>
+        <li>Browse to the main Emergency 4 / 911: First Responders installation folder.</li>
+        <li>Select the game executable, usually <code>Em4.exe</code>.</li>
+        <li>Choose whether the install is Steam or non-Steam.</li>
+        <li>Choose whether the game is Emergency 4 / Deluxe or 911: First Responders.</li>
+        <li>Create a backup when prompted, especially before changing a working installation.</li>
+        <li>After patching, launch the game and test the same mod again.</li>
+      </ol>
+
+      <h3>Important notes</h3>
+      <ul>
+        <li>Use the official release page when possible instead of random mirrors.</li>
+        <li>If a patched executable stops working, use the patcher's repair or restore option before reinstalling the whole game.</li>
+        <li>Running as administrator matters because the patcher needs permission to modify the executable.</li>
+        <li>The memory patcher is not a fix for broken scripts, missing prototypes, bad DDS files, or invalid XML. It fixes a different class of crash.</li>
+      </ul>
     `
   },
   {
@@ -603,18 +654,106 @@ const articles = [
     title: "Adding a Vehicle",
     tags: ["vehicles", "prototype", "units"],
     body: `
-      <p>A vehicle is not only a model. It is a chain of assets and configuration.</p>
+      <p>Adding a vehicle to Emergency 4 is a full asset chain, not a single file copy. The model makes it visible, the prototype makes it behave, the unit folder makes it selectable, and the spec/language files make it appear correctly in freeplay menus.</p>
+
+      <div class="workflow-hero">
+        <div>
+          <span>Vehicle Workflow</span>
+          <h3>Model -> Prototype -> Unit -> Specs -> Language -> Freeplay test</h3>
+          <p>When a vehicle is missing from freeplay, one of these layers is usually incomplete.</p>
+        </div>
+      </div>
+
+      <h3>Vehicle file chain</h3>
       <table>
-        <thead><tr><th>Step</th><th>Folder</th><th>Purpose</th></tr></thead>
+        <thead><tr><th>Layer</th><th>Folder / File</th><th>What it controls</th></tr></thead>
         <tbody>
-          <tr><td>Model and texture</td><td><code>Models</code></td><td>Visual vehicle mesh and paint.</td></tr>
-          <tr><td>Prototype</td><td><code>Prototypes/Vehicles</code></td><td>Vehicle type, physics, doors, lights, passengers, transports, commands.</td></tr>
-          <tr><td>Unit entry</td><td><code>Units/Vehicles</code></td><td>Buy menu and vehicle browser presentation.</td></tr>
-          <tr><td>Specs</td><td><code>Specs</code></td><td>Vehicle metadata, portraits, and related global configuration.</td></tr>
-          <tr><td>Commands</td><td><code>Scripts/Game/Command</code></td><td>Move, siren, get equipment, return to station, deploy tools, roleplay actions.</td></tr>
-          <tr><td>Icons</td><td><code>UI/Game/Icons</code></td><td>Command buttons and cursors.</td></tr>
+          <tr><td>Visual model</td><td><code>Models/Vehicles</code></td><td>The <code>.v3o</code> mesh, doors, wheels, child model pieces, and texture references.</td></tr>
+          <tr><td>Texture</td><td><code>Models/Vehicles</code> or nearby texture folders</td><td>Paint, markings, windows, wheels, equipment detail, alpha/reflection data.</td></tr>
+          <tr><td>Vehicle prototype</td><td><code>Prototypes/Vehicles</code></td><td>Vehicle type, commands, physics, doors, lights, passenger capacity, transport capacity, traits, and child objects.</td></tr>
+          <tr><td>Unit folder</td><td><code>Units/Vehicles</code></td><td>The freeplay/unit menu entry, buy menu metadata, preview image, and unit description structure.</td></tr>
+          <tr><td>Specs</td><td><code>Specs</code></td><td>Vehicle metadata, portraits, freeplay availability, and global configuration used by the game.</td></tr>
+          <tr><td>Language</td><td><code>Lang</code></td><td>Display names, descriptions, help text, and readable unit labels.</td></tr>
+          <tr><td>Commands</td><td><code>Scripts/Game/Command</code></td><td>Siren, move, get equipment, return to station, deploy equipment, roleplay systems, and custom behavior.</td></tr>
+          <tr><td>Icons</td><td><code>UI/Game/Icons</code></td><td>Command icons, cursors, unit portraits, and button states.</td></tr>
         </tbody>
       </table>
+
+      <h3>Adding a new vehicle from scratch</h3>
+      <ol>
+        <li>Place the finished model and textures in a clean folder under <code>Models/Vehicles</code>.</li>
+        <li>Create or copy a similar vehicle prototype under <code>Prototypes/Vehicles</code>.</li>
+        <li>Open the prototype in the EM4 editor and point it to the correct model.</li>
+        <li>Set the correct vehicle type. Fire engines, ambulances, police cars, tow trucks, and technical vehicles all rely on type-specific behavior.</li>
+        <li>Configure lights, doors, wheels, physics, passengers, transports, and traits.</li>
+        <li>Assign required commands in the editor.</li>
+        <li>Create the matching <code>Units/Vehicles</code> entry if the unit should appear in freeplay dispatch/buy menus.</li>
+        <li>Update needed spec files and language entries so the game can display the unit name and metadata.</li>
+        <li>Test in editor first, then in freeplay.</li>
+      </ol>
+
+      <h3>Freeplay test checklist</h3>
+      <ul>
+        <li>Does the unit appear in the correct menu?</li>
+        <li>Does the preview image or portrait show correctly?</li>
+        <li>Does the displayed name match the intended unit?</li>
+        <li>Can it enter the map and drive without pathing issues?</li>
+        <li>Do the doors open correctly for passengers and equipment?</li>
+        <li>Do lights, sirens, return-to-base, and station scripts still work?</li>
+        <li>Can the correct personnel enter and exit it?</li>
+      </ul>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Transferring a Vehicle Between Mods",
+    tags: ["vehicle transfer", "mods", "units", "prototypes", "freeplay"],
+    body: `
+      <p>Transferring a vehicle from another mod is one of the most common EM4 tasks, but it is also where beginners miss files. Copying only the prototype is not enough. The prototype usually points to model files, textures, child objects, commands, unit entries, portraits, language text, and spec entries.</p>
+
+      <div class="workflow-steps">
+        <section>
+          <h3>1. Copy the visual files</h3>
+          <p>Copy the vehicle's folder from <code>Models/Vehicles</code>, including <code>.v3o</code> files and every texture it uses.</p>
+        </section>
+        <section>
+          <h3>2. Copy the prototype</h3>
+          <p>Copy the matching <code>.e4p</code> from <code>Prototypes/Vehicles</code>. Keep the folder path organized so future scripts and unit files are easy to read.</p>
+        </section>
+        <section>
+          <h3>3. Check child objects</h3>
+          <p>Open the prototype in the editor and check doors, wheels, lightbars, equipment, and child objects. If any child object references a missing model, copy that model too.</p>
+        </section>
+        <section>
+          <h3>4. Check commands</h3>
+          <p>If the vehicle uses commands from the original mod, copy those scripts only when needed and only after checking that command names do not conflict with your mod.</p>
+        </section>
+      </div>
+
+      <h3>Files often forgotten</h3>
+      <table>
+        <thead><tr><th>File area</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><code>Units/Vehicles</code></td><td>Needed for the unit to appear as a playable freeplay unit.</td></tr>
+          <tr><td><code>Specs</code></td><td>May contain vehicle metadata, portraits, freeplay availability, and related unit references.</td></tr>
+          <tr><td><code>Lang</code></td><td>Needed for proper display names and descriptions.</td></tr>
+          <tr><td><code>UI</code></td><td>Needed for command icons, unit portraits, and menu graphics.</td></tr>
+          <tr><td><code>Scripts/Game/Command</code></td><td>Needed if the vehicle depends on custom commands not already present.</td></tr>
+          <tr><td><code>Audio</code></td><td>Needed if the unit has custom sirens, dispatch audio, or command sounds.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Safe transfer process</h3>
+      <ol>
+        <li>Copy model and texture files first.</li>
+        <li>Copy the vehicle prototype.</li>
+        <li>Open the prototype in the editor and fix missing model paths.</li>
+        <li>Remove commands that do not exist in your mod, or copy the needed command scripts after reviewing them.</li>
+        <li>Create or copy the <code>Units/Vehicles</code> entry.</li>
+        <li>Update spec and language files.</li>
+        <li>Load the mod and check <code>logfile.txt</code> for missing icons, scripts, models, or prototypes.</li>
+        <li>Test the unit alone before adding it to stations or dispatch systems.</li>
+      </ol>
     `
   },
   {
@@ -622,14 +761,185 @@ const articles = [
     title: "Adding a Person",
     tags: ["persons", "prototype", "commands"],
     body: `
-      <p>A person prototype controls more than appearance. It determines what the unit can do, what equipment they can carry, whether they can arrest, heal, stabilize, use hoses, enter vehicles, or interact with custom systems.</p>
+      <p>A person prototype controls appearance, commands, equipment, role, animation behavior, and vehicle compatibility. A firefighter, paramedic, police officer, detective, diver, engineer, and civilian can all look similar in folders but behave very differently in game.</p>
+
+      <div class="workflow-hero">
+        <div>
+          <span>Person Workflow</span>
+          <h3>Model -> Prototype -> Commands -> Unit use -> Vehicle compatibility</h3>
+          <p>A person is usually only useful after their commands, equipment states, and vehicle entry behavior are tested.</p>
+        </div>
+      </div>
+
+      <h3>Person file chain</h3>
+      <table>
+        <thead><tr><th>Layer</th><th>Folder / File</th><th>What it controls</th></tr></thead>
+        <tbody>
+          <tr><td>Visual model</td><td><code>Models/Persons</code></td><td>Body model, head, helmet, gear, and texture references.</td></tr>
+          <tr><td>Texture</td><td><code>Models/Persons</code></td><td>Uniform, skin, gear labels, reflective stripes, turnout gear, vest markings, or civilian clothing.</td></tr>
+          <tr><td>Person prototype</td><td><code>Prototypes/Persons</code></td><td>Commands, traits, animation set, role, equipment ability, and editor behavior.</td></tr>
+          <tr><td>Unit folder</td><td><code>Units/Persons</code></td><td>Needed if the person should be directly purchasable or selectable from unit menus.</td></tr>
+          <tr><td>Language</td><td><code>Lang</code></td><td>Display name, description, and menu text.</td></tr>
+          <tr><td>Scripts</td><td><code>Scripts/Game/Command</code></td><td>Heal, arrest, frisk, stabilize, get equipment, deploy objects, change clothes, and roleplay commands.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Adding a new person from scratch</h3>
+      <ol>
+        <li>Place model and texture files under <code>Models/Persons</code>.</li>
+        <li>Copy a similar person prototype under <code>Prototypes/Persons</code>.</li>
+        <li>Point the prototype to the correct model.</li>
+        <li>Assign the correct command set. Do not overload the first command menu with too many commands.</li>
+        <li>Check equipment compatibility. Every get-equipment command needs a way to return, drop, remove, or switch equipment.</li>
+        <li>Test vehicle entry and exit with every vehicle type the person should use.</li>
+        <li>Test role-specific behavior: arresting, healing, carrying, hose use, technical equipment, or custom roleplay commands.</li>
+      </ol>
+
+      <h3>Command testing checklist</h3>
       <ul>
-        <li>Place the visual files under <code>Models/Persons</code> or the mod's chosen model folder.</li>
-        <li>Create or copy a prototype under <code>Prototypes/Persons</code>.</li>
-        <li>Assign commands in the editor, not only in script.</li>
-        <li>Confirm equipment commands pair correctly with drop/remove equipment commands.</li>
-        <li>Test entering vehicles, exiting vehicles, picking up equipment, and restoring normal commands.</li>
+        <li>Does the command show when the person is selected?</li>
+        <li>Does the command show before and after entering a vehicle?</li>
+        <li>Does the command still show after changing equipment?</li>
+        <li>Can the person drop or return every item they pick up?</li>
+        <li>Can the person enter vehicles after using custom commands?</li>
       </ul>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Transferring a Person Between Mods",
+    tags: ["person transfer", "prototypes", "commands", "freeplay"],
+    body: `
+      <p>When transferring a person from another mod, think beyond the visible uniform. The prototype may depend on commands, equipment models, animation settings, vehicle compatibility, icons, and language entries.</p>
+
+      <h3>Transfer checklist</h3>
+      <table>
+        <thead><tr><th>Copy / check</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><code>Models/Persons</code></td><td>Body model and texture files.</td></tr>
+          <tr><td><code>Prototypes/Persons</code></td><td>The playable or spawnable person prototype.</td></tr>
+          <tr><td><code>Scripts/Game/Command</code></td><td>Commands assigned to the person in the editor.</td></tr>
+          <tr><td><code>UI/Game/Icons</code></td><td>Command icons and cursors used by copied commands.</td></tr>
+          <tr><td><code>Models/Equipment</code> or object folders</td><td>Tools, bags, weapons, spineboards, axes, chainsaws, and other equipment the person can use.</td></tr>
+          <tr><td><code>Units/Persons</code></td><td>Needed if the person appears as a selectable/purchasable freeplay unit.</td></tr>
+          <tr><td><code>Lang</code></td><td>Name and description text.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Common transfer problems</h3>
+      <ul>
+        <li>The person appears but has no commands because the scripts were not copied or the command names changed.</li>
+        <li>The person can pick up equipment but cannot drop it because the matching remove/drop command was missing.</li>
+        <li>The person cannot enter vehicles because the vehicle does not allow that person type or the command state was broken.</li>
+        <li>The command icon is missing, causing white boxes, invisible buttons, or startup crashes.</li>
+        <li>The person uses a script from the source mod that expects different dummy commands, vehicles, or prototypes.</li>
+      </ul>
+
+      <p>After transfer, test the person by spawning them alone, entering and exiting a vehicle, using every assigned command, picking up and dropping equipment, and returning to normal state.</p>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Unit Folder and Freeplay Menu Setup",
+    tags: ["Units", "freeplay menu", "unit.xml", "buy menu", "portraits"],
+    body: `
+      <p>The <code>Units</code> folder is the bridge between a working prototype and a unit the player can actually choose in freeplay. If the prototype exists but the player cannot buy, select, or see the unit correctly, the problem is often in <code>Units</code>, <code>Specs</code>, or <code>Lang</code>.</p>
+
+      <div class="workflow-hero">
+        <div>
+          <span>Freeplay Menu Chain</span>
+          <h3>Prototype path -> Unit XML -> Specs -> Lang -> UI preview</h3>
+          <p>Freeplay setup is a presentation and metadata layer. It does not replace the prototype.</p>
+        </div>
+      </div>
+
+      <h3>Basic setup process</h3>
+      <ol>
+        <li>Create or copy the prototype first and confirm it works in the editor.</li>
+        <li>Create the matching entry under <code>Units/Vehicles</code> or <code>Units/Persons</code>.</li>
+        <li>Point the unit entry to the correct prototype path.</li>
+        <li>Add or update the unit name and description references in <code>Lang</code>.</li>
+        <li>Add or update portrait/preview references in <code>Specs</code> and <code>UI</code> where the mod uses them.</li>
+        <li>Load freeplay and confirm the unit appears in the correct department/menu.</li>
+      </ol>
+
+      <h3>Common symptoms</h3>
+      <table>
+        <thead><tr><th>Symptom</th><th>Likely issue</th></tr></thead>
+        <tbody>
+          <tr><td>Prototype works in editor but not in freeplay menu.</td><td>Missing or wrong <code>Units</code> entry.</td></tr>
+          <tr><td>Unit appears with wrong name.</td><td>Missing or wrong <code>Lang</code> entry.</td></tr>
+          <tr><td>Unit has wrong portrait or preview.</td><td>Wrong <code>Specs</code> or <code>UI</code> image reference.</td></tr>
+          <tr><td>Unit appears in wrong category.</td><td>Wrong unit folder placement or department metadata.</td></tr>
+          <tr><td>Unit loads but crashes when selected.</td><td>Bad prototype path, missing model, missing icon, or broken XML.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Practical Specs File Editing",
+    tags: ["Specs", "XML", "freeplay", "portraits", "materials"],
+    body: `
+      <p>Specs files should be edited slowly and deliberately. They affect broad systems, so one bad XML line can break multiple units, menus, callouts, or materials at once.</p>
+
+      <h3>Safe editing workflow</h3>
+      <ol>
+        <li>Make a backup of the spec file before editing.</li>
+        <li>Change one unit, one event, or one entry at a time.</li>
+        <li>Keep paths exact. EM4 paths are unforgiving.</li>
+        <li>Preserve XML structure, quotes, and closing tags.</li>
+        <li>Load the mod and check <code>logfile.txt</code> immediately after the edit.</li>
+      </ol>
+
+      <h3>Specs files by task</h3>
+      <table>
+        <thead><tr><th>Task</th><th>Specs area to inspect</th></tr></thead>
+        <tbody>
+          <tr><td>Add or fix unit metadata.</td><td><code>vehicles.xml</code>, unit-related spec files, and the matching <code>Units</code> entry.</td></tr>
+          <tr><td>Fix portraits or missing UI images.</td><td><code>portraits.xml</code> and any mod-specific portrait spec files.</td></tr>
+          <tr><td>Disable or tune freeplay events.</td><td><code>fp_params_*.xml</code> and freeplay parameter files.</td></tr>
+          <tr><td>Change fire behavior.</td><td><code>materials.xml</code> and object material settings.</td></tr>
+          <tr><td>Change keyboard controls.</td><td><code>keys.xml</code>.</td></tr>
+          <tr><td>Adjust audio command definitions.</td><td><code>audiocommands.xml</code>.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="important-callout">
+        <h3>Important</h3>
+        <p>Do not use specs files as a dumping ground. If a unit is not appearing, confirm the prototype path, unit folder entry, language text, and portrait references separately.</p>
+      </div>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Language Text and Localization Workflow",
+    tags: ["Lang", "localization", "unit names", "commands", "XML"],
+    body: `
+      <p>The <code>Lang</code> folder is where a mod becomes readable to players. Scripts can display hard-coded text, but polished units, menus, missions, and command descriptions should use consistent language entries where possible.</p>
+
+      <h3>When to use Lang files</h3>
+      <ul>
+        <li>Permanent unit names and descriptions.</li>
+        <li>Command names that should look clean in the UI.</li>
+        <li>Mission objectives and callout text.</li>
+        <li>Help text and tutorial-style explanations.</li>
+        <li>Any text that may later need translation or cleanup.</li>
+      </ul>
+
+      <h3>When hard-coded script text is acceptable</h3>
+      <p>Hard-coded script text is fine for early testing, debug hints, temporary roleplay notifications, or fast prototype work. Once the feature is stable, move important player-facing text into language files or at least standardize it across scripts.</p>
+
+      <h3>Common mistakes</h3>
+      <table>
+        <thead><tr><th>Problem</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Missing language key.</td><td>The game may show a raw key, blank text, or fallback text.</td></tr>
+          <tr><td>Inconsistent unit naming.</td><td>The same unit appears under different names in menu, dispatch, and script text.</td></tr>
+          <tr><td>Broken XML.</td><td>Multiple unrelated text entries may stop loading.</td></tr>
+          <tr><td>Hard-coded text everywhere.</td><td>Large mods become harder to polish, translate, or update.</td></tr>
+        </tbody>
+      </table>
     `
   },
   {
@@ -1129,6 +1439,123 @@ const articles = [
     `
   },
   {
+    category: "Textures",
+    title: "Texture Editing Overview",
+    tags: ["textures", "DDS", "PNG", "Photoshop", "GIMP", "DXTBmp"],
+    body: `
+      <p>Textures are the image files wrapped around EM4 models. They control vehicle liveries, person uniforms, building signs, equipment details, UI graphics, map props, and many small visual details that make a mod feel finished.</p>
+      <p>The model file usually points to a texture by filename or path. The prototype uses the model. That means a texture problem can look like a model problem in game, even when the geometry is fine.</p>
+
+      <h3>Common texture formats</h3>
+      <table>
+        <thead><tr><th>Format</th><th>Where it appears</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><code>.dds</code></td><td>Base game files, older mods, UI icons, some vehicle/object textures.</td><td>Often includes alpha data. Some DDS textures need special handling before editing.</td></tr>
+          <tr><td><code>.png</code></td><td>Modern mod textures, UI art, documentation assets.</td><td>Easy to edit and supports transparency.</td></tr>
+          <tr><td><code>.jpg</code> / <code>.jpeg</code></td><td>Some mod textures and reference images.</td><td>Good for non-transparent images, but compression can reduce quality.</td></tr>
+          <tr><td><code>.tga</code></td><td>Older workflows and some exported texture work.</td><td>Can support alpha channels depending on export settings.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Recommended editing tools</h3>
+      <ul>
+        <li><strong>DXTBmp:</strong> useful for opening DDS files, handling alpha channels, and sending the main image to another editor.</li>
+        <li><strong>Adobe Photoshop:</strong> strong for layered vehicle skins, markings, color correction, and final exports.</li>
+        <li><strong>GIMP:</strong> free alternative for texture editing and layered work.</li>
+        <li><strong>Paint.NET:</strong> lightweight option for quick edits, depending on plugins and format support.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Textures",
+    title: "Where to Find Textures",
+    tags: ["folder structure", "textures", "models", "UI", "DDS"],
+    body: `
+      <p>Textures can be spread through several folders. The easiest way to find the correct texture is to inspect the model path and then check nearby folders.</p>
+
+      <h3>Common locations</h3>
+      <table>
+        <thead><tr><th>Folder</th><th>What to look for</th></tr></thead>
+        <tbody>
+          <tr><td><code>Models/Vehicles</code></td><td>Vehicle body textures, wheels, lightbars, equipment, and vehicle parts.</td></tr>
+          <tr><td><code>Models/Persons</code></td><td>Uniforms, helmets, turnout gear, police officers, medics, civilians, and special personnel.</td></tr>
+          <tr><td><code>Models/Objects</code></td><td>Deployable equipment, props, signs, tools, map objects, and small scene items.</td></tr>
+          <tr><td><code>Models/Houses</code></td><td>Building walls, roofs, storefronts, doors, windows, signs, and OpenHouse pieces.</td></tr>
+          <tr><td><code>UI/Game/Icons</code></td><td>Command icons, cursors, menu icons, unit icons, and in-game interface graphics.</td></tr>
+          <tr><td><code>Textures</code></td><td>Shared game textures, terrain images, effects, and general-use image files.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>How to identify the right file</h3>
+      <ol>
+        <li>Find the prototype in <code>Prototypes</code>.</li>
+        <li>Open the prototype in the editor and check the model it uses.</li>
+        <li>Find the model file in <code>Models</code>.</li>
+        <li>Check the model's folder for matching image files.</li>
+        <li>If the model still points to an old filename, either keep the same texture filename or update the model reference properly.</li>
+      </ol>
+
+      <p><strong>Beginner rule:</strong> when reskinning, keep the original texture filename at first. Once the edit works in game, then rename and reorganize carefully.</p>
+    `
+  },
+  {
+    category: "Textures",
+    title: "DDS Files and Alpha Reflections",
+    tags: ["DDS", "alpha", "reflection", "DXTBmp", "base game"],
+    body: `
+      <p>Many base game textures are <code>.dds</code> files. DDS textures can store more than just the visible color image. They may include an alpha channel that EM4 uses for transparency, reflection strength, glass behavior, shine, or other material-style effects depending on the model and texture setup.</p>
+      <p>This is why a base game texture can look wrong after a simple edit. If the alpha/reflection data is left untouched, stripped incorrectly, or exported in the wrong DDS format, the model may appear too shiny, too transparent, washed out, black, white, or broken in game.</p>
+
+      <h3>Typical DDS workflow</h3>
+      <ol>
+        <li>Open the DDS texture in <strong>DXTBmp</strong>.</li>
+        <li>Check whether it has an alpha channel or reflection-style alpha data.</li>
+        <li>Export or send the main image to Photoshop, GIMP, or another editor.</li>
+        <li>Edit the visible texture: markings, colors, striping, badges, numbers, dirt, labels, or panels.</li>
+        <li>Return the edited image to DXTBmp.</li>
+        <li>Remove, replace, or preserve the alpha channel depending on the texture's purpose.</li>
+        <li>Save back to the correct format and test in the EM4 editor before testing in game.</li>
+      </ol>
+
+      <h3>When to remove alpha/reflection data</h3>
+      <p>Some base game DDS files carry alpha reflection data that is not wanted for a normal repaint. In that case, remove or flatten the alpha channel in DXTBmp before sending the texture back into Photoshop or GIMP. This prevents accidental reflection behavior from carrying into the new skin.</p>
+      <p>Do not remove alpha blindly from every texture. Glass, transparent decals, UI icons, and some special materials may need it. The correct choice depends on what the texture controls.</p>
+
+      <div class="important-callout">
+        <h3>Important</h3>
+        <p>Always keep a backup of the original DDS. If the edited version loses transparency, reflections, or icon shape, compare the alpha channel against the original.</p>
+      </div>
+    `
+  },
+  {
+    category: "Textures",
+    title: "Basic Vehicle Reskin Workflow",
+    tags: ["reskin", "vehicle texture", "Photoshop", "GIMP", "workflow"],
+    body: `
+      <p>A vehicle reskin changes the texture while usually keeping the same model and prototype. This is one of the best first modding tasks because it teaches file structure, texture paths, model references, and in-game testing without requiring a new model.</p>
+
+      <h3>Step-by-step</h3>
+      <ol>
+        <li>Copy the original texture and keep a backup.</li>
+        <li>Open the texture in the correct tool. Use DXTBmp first if it is a DDS with alpha data.</li>
+        <li>Edit in layers when using Photoshop or GIMP. Keep markings, stripes, numbers, dirt, and shading separated where possible.</li>
+        <li>Do not paint over important shadows, seams, handles, vents, lights, or door lines unless you plan to recreate them.</li>
+        <li>Export using the same filename for the first test.</li>
+        <li>Open the unit in the EM4 editor and check the skin from multiple angles.</li>
+        <li>Test in game with lights, doors, damage states, and zoom levels.</li>
+      </ol>
+
+      <h3>Common mistakes</h3>
+      <ul>
+        <li>Saving as the wrong file type while the model still points to the old filename.</li>
+        <li>Breaking the DDS alpha channel.</li>
+        <li>Making markings too small to read at EM4 camera distance.</li>
+        <li>Using pure black or pure white without shading, which can look flat in game.</li>
+        <li>Forgetting that both sides of a vehicle may share mirrored texture space.</li>
+      </ul>
+    `
+  },
+  {
     category: "SDK Glossary",
     title: "Actor",
     tags: ["SDK", "Actor", "targets"],
@@ -1556,8 +1983,28 @@ for (int i = 0; i &lt; l.GetNumObjects(); i++)
     title: "Fonts and Language Files",
     tags: ["fonts", "lang", "strings"],
     body: `
-      <p><code>Data/Fonts</code> and <code>Data/Lang</code> control how text appears and what labels the game displays. EM4 uses bitmap font definitions, so the UI is much less flexible than a web page.</p>
-      <p>Language XML can hold command names, mission text, UI labels, help text, and descriptions. Hard-coded script text is faster for testing, but language files are cleaner when a project gets large or needs translation.</p>
+      <p><code>Data/Fonts</code> and <code>Data/Lang</code> control how text appears and what labels the game displays. EM4 uses bitmap font definitions, so the UI is much less flexible than a web page, but the language files are still one of the main places where a mod becomes polished.</p>
+      <p>Language XML can hold unit names, command names, mission text, UI labels, help text, descriptions, freeplay event text, and other readable strings. Hard-coded script text is faster for testing, but language files are cleaner once a mod is being prepared for release.</p>
+
+      <h3>What belongs in Lang</h3>
+      <table>
+        <thead><tr><th>Text type</th><th>Example use</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Unit names</td><td>Engine 1, Battalion 4, Medic 3, Detective.</td><td>Lets menus and unit descriptions show readable names.</td></tr>
+          <tr><td>Unit descriptions</td><td>Vehicle purpose, staffing, equipment, or department description.</td><td>Makes the freeplay buy menu feel complete.</td></tr>
+          <tr><td>Command labels</td><td>Open MDT, Deploy Drone, Request First Alarm.</td><td>Prevents commands from appearing as raw script names.</td></tr>
+          <tr><td>Mission and event text</td><td>Callout title, objective text, success text, failure text.</td><td>Keeps callouts readable and consistent.</td></tr>
+          <tr><td>Help text</td><td>Short player instructions and command explanations.</td><td>Useful for complex roleplay systems.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Beginner workflow</h3>
+      <ol>
+        <li>Build the unit or command first with temporary script text.</li>
+        <li>Once it works, move permanent player-facing text into language files where practical.</li>
+        <li>Keep names consistent with <code>Units</code>, <code>Specs</code>, and scripts.</li>
+        <li>Test the game menu after every XML edit. A broken XML tag can hide multiple text entries.</li>
+      </ol>
     `
   },
   {
@@ -1593,15 +2040,24 @@ for (int i = 0; i &lt; l.GetNumObjects(); i++)
     title: "Specs Folder Deep Dive",
     tags: ["specs", "xml", "configuration"],
     body: `
-      <p><code>Data/Specs</code> is where many global rules live. The base game includes files for freeplay parameters, campaign parameters, vehicles, portraits, materials, keys, audio commands, and unit metadata.</p>
-      <ul>
-        <li><code>freeplayparameters.xml</code> and <code>fp_params_*.xml</code>: event timing, freeplay values, and event balancing.</li>
-        <li><code>vehicles.xml</code>: vehicle-related metadata used by unit systems.</li>
-        <li><code>portraits.xml</code>: portrait assignments.</li>
-        <li><code>materials.xml</code>: material behavior, resistance, and interaction values.</li>
-        <li><code>audiocommands.xml</code>: audio command definitions.</li>
-        <li><code>keys.xml</code>: key bindings.</li>
-      </ul>
+      <p><code>Data/Specs</code> is where many global rules live. Specs files are usually XML, and they connect the mod's playable units, portraits, materials, event parameters, controls, audio commands, and freeplay behavior.</p>
+
+      <table>
+        <thead><tr><th>Specs file</th><th>Purpose</th><th>Common modding use</th></tr></thead>
+        <tbody>
+          <tr><td><code>fp_params_*.xml</code></td><td>Freeplay event timing, values, event weights, and required conditions.</td><td>Disable broken events, tune call frequency, add/remove base freeplay event behavior.</td></tr>
+          <tr><td><code>freeplayparameters.xml</code></td><td>General freeplay parameters depending on game/mod setup.</td><td>Balance freeplay behavior and global values.</td></tr>
+          <tr><td><code>vehicles.xml</code></td><td>Vehicle metadata used by the unit systems.</td><td>Make sure added vehicles are known to the game where required.</td></tr>
+          <tr><td><code>portraits.xml</code></td><td>Portrait assignments for units and persons.</td><td>Fix missing or wrong portraits in the UI.</td></tr>
+          <tr><td><code>materials.xml</code></td><td>Material behavior, resistance, fire values, and interactions.</td><td>Control fire behavior, cooling, explosion behavior, and object burn characteristics.</td></tr>
+          <tr><td><code>audiocommands.xml</code></td><td>Audio command definitions.</td><td>Connect named audio commands used by the game.</td></tr>
+          <tr><td><code>keys.xml</code></td><td>Keyboard bindings.</td><td>Change or add control shortcuts.</td></tr>
+          <tr><td><code>campaign.xml</code> / mission specs</td><td>Campaign and mission configuration.</td><td>Mission-based mods and tutorial/campaign edits.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Important rule</h3>
+      <p>Specs files are strict. A missing closing tag, wrong quote, bad path, or duplicate ID can affect more than one unit. When editing XML, change one thing at a time and test after saving.</p>
     `
   },
   {
@@ -1618,8 +2074,30 @@ for (int i = 0; i &lt; l.GetNumObjects(); i++)
     title: "Units Folder Deep Dive",
     tags: ["units", "browser", "equipment"],
     body: `
-      <p><code>Data/Units</code> controls the unit browser presentation: icons, big images, portraits, and <code>unit.xml</code> files for personnel, vehicles, and equipment. This is separate from the prototype itself.</p>
-      <p>If a unit exists as a prototype but does not appear correctly in the buy menu, unit browser, or equipment menu, inspect <code>Units</code> and related specs rather than only the prototype.</p>
+      <p><code>Data/Units</code> controls how playable units appear in the unit browser, buy menu, and freeplay selection systems. This is separate from the prototype. A vehicle or person can exist as a valid prototype and still not appear as a playable freeplay unit if the unit folder entry is missing or wrong.</p>
+
+      <h3>What a unit entry usually provides</h3>
+      <ul>
+        <li>The unit's playable menu entry.</li>
+        <li>Links to the prototype path.</li>
+        <li>Unit name and description references.</li>
+        <li>Menu image, portrait, or preview art.</li>
+        <li>Costs, availability, or sorting behavior depending on the mod setup.</li>
+        <li>Personnel/vehicle relationship information depending on the unit type.</li>
+      </ul>
+
+      <h3>Prototype vs unit entry</h3>
+      <table>
+        <thead><tr><th>Layer</th><th>Question it answers</th></tr></thead>
+        <tbody>
+          <tr><td><code>Prototypes</code></td><td>What is this object and how does it behave?</td></tr>
+          <tr><td><code>Units</code></td><td>How does the player buy, select, or view this unit?</td></tr>
+          <tr><td><code>Specs</code></td><td>What global metadata or system rules reference this unit?</td></tr>
+          <tr><td><code>Lang</code></td><td>What readable name and description should the player see?</td></tr>
+        </tbody>
+      </table>
+
+      <p>If a unit appears as a prototype in the editor but not in freeplay, inspect <code>Units</code>, then related <code>Specs</code>, then <code>Lang</code>.</p>
     `
   },
   {
@@ -1725,16 +2203,62 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
   },
   {
     category: "Maps",
+    title: "Map Building Workflow",
+    tags: ["maps", "workflow", "editor", "freeplay"],
+    body: `
+      <p>A good Emergency 4 map is built in layers. Terrain and visual detail matter, but gameplay depends on streets, paths, spawn points, virtual objects, fire objects, entries, exits, and scripts all agreeing with each other.</p>
+
+      <div class="workflow-hero">
+        <div>
+          <span>Map Build Order</span>
+          <h3>Terrain -> Roads -> Objects -> Paths -> VOs -> Events -> Testing</h3>
+          <p>Build the map in passes instead of placing everything first and trying to debug it later.</p>
+        </div>
+      </div>
+
+      <h3>Recommended build sequence</h3>
+      <ol>
+        <li><strong>Plan the playable area:</strong> decide where stations, hospital, police station, industrial areas, neighborhoods, highways, and rural areas belong.</li>
+        <li><strong>Create terrain and road layout:</strong> paint major roads, intersections, parking lots, driveways, water, and off-map entrances.</li>
+        <li><strong>Place major buildings:</strong> stations, hospitals, police buildings, shops, warehouses, homes, open houses, and special incident locations.</li>
+        <li><strong>Add streets:</strong> build the emergency vehicle route network so player units can navigate reliably.</li>
+        <li><strong>Add civilian paths:</strong> create pedestrian and civilian traffic movement separately from emergency streets.</li>
+        <li><strong>Add spawn points and exits:</strong> connect civilian traffic, emergency entries, and return-to-base behavior.</li>
+        <li><strong>Add virtual objects:</strong> station bays, turn-to points, alarm zones, callout zones, search areas, parking spots, and scripted locations.</li>
+        <li><strong>Add fire objects and materials:</strong> set burnable buildings/objects and confirm fire behavior.</li>
+        <li><strong>Add map polish:</strong> lighting, props, signs, ambient sounds, radar/minimap image, and performance cleanup.</li>
+        <li><strong>Test in gameplay:</strong> editor placement is not enough. Test freeplay with multiple units, traffic, fire, EMS, police, and return logic.</li>
+      </ol>
+
+      <h3>Beginner rule</h3>
+      <p>Never build the entire map before testing pathing. Test one district, one station, and one road network early. Pathing problems become much harder to fix after the map is fully decorated.</p>
+    `
+  },
+  {
+    category: "Maps",
     title: "Virtual Objects",
     tags: ["VO", "map", "placement"],
     body: `
-      <p>Virtual objects are invisible named areas placed in the editor. Scripts use them as spawn zones, parking spots, control panels, investigation areas, staging points, and alarm zones.</p>
+      <p>Virtual objects are invisible named areas placed in the editor. Scripts use them as spawn zones, parking spots, control panels, investigation areas, staging points, alarm zones, search areas, and station logic anchors.</p>
       <ul>
         <li>Use clear names like <code>station1_engine4052</code>, <code>station1_engine4052_turnto</code>, or <code>homicide_lead01</code>.</li>
         <li>Use separate VOs for parking and turning when facing direction matters.</li>
         <li>Large search or alarm areas should use multiple markers if minimap behavior is limited.</li>
         <li>Keep spawn VOs away from walls, fences, locked buildings, and tight props.</li>
       </ul>
+
+      <h3>Common VO patterns</h3>
+      <table>
+        <thead><tr><th>Pattern</th><th>Example</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td>Parking VO</td><td><code>fs1_engine4052</code></td><td>Where the vehicle parks.</td></tr>
+          <tr><td>Turn-to VO</td><td><code>fs1_engine4052_turnto</code></td><td>Direction the vehicle faces after parking.</td></tr>
+          <tr><td>Spawn VO</td><td><code>spawn_firedept</code></td><td>Where off-map units enter.</td></tr>
+          <tr><td>Callout VO</td><td><code>hazmat_scene01</code></td><td>Where a scripted event can spawn.</td></tr>
+          <tr><td>Control panel VO/object</td><td><code>fire_alarm_panel01</code></td><td>Links map objects to scripts.</td></tr>
+          <tr><td>Search area</td><td><code>missing_person_area01</code></td><td>Defines a broad search zone.</td></tr>
+        </tbody>
+      </table>
     `
   },
   {
@@ -1742,8 +2266,64 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     title: "Paths, Spawn Points, and Exits",
     tags: ["paths", "traffic", "return to base"],
     body: `
-      <p>Traffic and returning units depend on map paths and entry/exit definitions. For player-controlled vehicles leaving the map, EM4's native <code>PushActionReturnToBase</code> is often safer than trying to manually route to a guessed exit VO.</p>
-      <p>If a civilian or suspect vehicle must leave after a traffic stop, convert it into a role that can exit, clear its current queue, and let the engine use the map's return logic.</p>
+      <p>Traffic, civilians, off-map response, and returning units depend on paths, spawn points, streets, entries, and exits. These systems overlap visually on the map, but they do different jobs.</p>
+
+      <table>
+        <thead><tr><th>System</th><th>Controls</th><th>Important notes</th></tr></thead>
+        <tbody>
+          <tr><td>Pedestrian paths</td><td>Civilians walking around the map.</td><td>Use waiting points for natural pauses.</td></tr>
+          <tr><td>Civilian vehicle paths</td><td>Traffic movement.</td><td>Bad paths can block intersections and spawn points.</td></tr>
+          <tr><td>Streets</td><td>Emergency routefinding.</td><td>Player units rely on this network for normal movement.</td></tr>
+          <tr><td>Spawn points</td><td>Where civilians or traffic enter the map.</td><td>Blocked spawn points create logfile spam and traffic issues.</td></tr>
+          <tr><td>Map exits</td><td>Where vehicles can leave the map.</td><td>Important for return-to-base and transported units.</td></tr>
+        </tbody>
+      </table>
+
+      <p>For player-controlled vehicles leaving the map, EM4's native <code>PushActionReturnToBase</code> is often safer than trying to manually route to a guessed exit VO. If a civilian or suspect vehicle must leave after a traffic stop, clear its current queue and let the engine use the map's exit logic where possible.</p>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Freeplay Event Map Requirements",
+    tags: ["freeplay events", "map conditions", "callouts", "VO"],
+    body: `
+      <p>Many base freeplay events only spawn if the map contains the correct conditions. If the needed objects, names, paths, persons, or fire settings are missing, the event may never appear even when the parameter file says it can.</p>
+
+      <h3>Examples of required conditions</h3>
+      <table>
+        <thead><tr><th>Event type</th><th>Map requirement</th></tr></thead>
+        <tbody>
+          <tr><td>Random medical calls</td><td>At least one valid person on the map.</td></tr>
+          <tr><td>Random fire calls</td><td>Burnable objects with fire traits/material behavior.</td></tr>
+          <tr><td>Shoplifting</td><td>A valid shop object, person setup, and escape path.</td></tr>
+          <tr><td>Car accidents</td><td>Correctly numbered accident objects, debris, victims, and vehicle names.</td></tr>
+          <tr><td>Car theft</td><td>Stolen vehicle object and matching theft path names.</td></tr>
+          <tr><td>Custom roleplay callouts</td><td>Scripted VOs, named objects, markers, spawn points, or map zones expected by the script.</td></tr>
+        </tbody>
+      </table>
+
+      <p>When a callout does not spawn, check the map conditions before rewriting the script. Many callout problems are missing map setup, not broken code.</p>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Map Testing Checklist",
+    tags: ["testing", "maps", "freeplay", "performance"],
+    body: `
+      <p>Map testing should be done in freeplay, not only in the editor. The editor proves that objects are placed. Freeplay proves that gameplay works.</p>
+
+      <h3>Test before release</h3>
+      <ul>
+        <li>Dispatch fire, EMS, police, and technical units to several different areas.</li>
+        <li>Test vehicles entering and leaving the map.</li>
+        <li>Test return-to-station, return-to-hospital, return-to-police-station, and return-to-base behavior.</li>
+        <li>Watch civilian traffic for blocked intersections or repeating spawn warnings.</li>
+        <li>Trigger fire objects and confirm units can reach them.</li>
+        <li>Test night lighting, emergency lights, scene lights, and heavy particle effects.</li>
+        <li>Check stations with all vehicles parked, doors open, and crews moving.</li>
+        <li>Run several freeplay events and make sure markers, objectives, and cleanup work.</li>
+        <li>Read <code>logfile.txt</code> after each test session.</li>
+      </ul>
     `
   },
   {
@@ -1836,6 +2416,484 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
         <li>Avoid overlapping audio by delaying second messages or using one combined audio file.</li>
         <li>Make dispatch wording generic if the event can spawn anywhere.</li>
       </ul>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Mission Making Overview",
+    tags: ["missions", "campaign", "mission scripts", "overview"],
+    body: `
+      <p>Dedicated missions are different from freeplay. Freeplay runs on a shared freeplay map and creates random incidents through freeplay parameters, map conditions, and freeplay scripts. A dedicated mission uses its own map, its own mission script, its own objectives, and its own campaign entry.</p>
+      <p>The base game missions are registered in <code>Data/Specs/campaign.xml</code>. Each mission entry points to a map in <code>Maps</code>, a script in <code>Scripts/Game/Mission</code>, a budget, and often an intro video. The actual gameplay flow is controlled by an object such as <code>object Mission15 : MissionScript</code>.</p>
+
+      <h3>What mission scripts are good for</h3>
+      <ul>
+        <li>Story-driven incidents with a beginning, middle, and end.</li>
+        <li>Scripted camera movements, black-bar cutscenes, staged explosions, timed hazards, and controlled reveals.</li>
+        <li>Objective lists that change as the player progresses.</li>
+        <li>Maps built for one specific incident instead of an open-ended patrol/freeplay environment.</li>
+        <li>Tutorial-style scenarios that restrict camera, unit control, or player actions until a lesson is complete.</li>
+      </ul>
+
+      <h3>Base game references worth studying</h3>
+      <table>
+        <thead><tr><th>Mission</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><code>1.script</code></td><td>Large mission script with named map objects, cutscene timers, collapse events, fire/rescue objectives, and success scoring comments.</td></tr>
+          <tr><td><code>15.script</code></td><td>Cleaner example of objectives, timers, fleeing suspects, fire checks, and standard mission completion logic.</td></tr>
+          <tr><td><code>18.script</code></td><td>Advanced staged mission with hostages, plane logic, bombs, cutscenes, timers, dynamic objectives, and multiple failure risks.</td></tr>
+          <tr><td><code>tutorial.script</code></td><td>Best reference for camera locking, camera transitions, tutorial states, progressive objectives, and guided player instruction.</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Registering a Mission",
+    tags: ["campaign.xml", "missioninfos.xml", "mission registration"],
+    body: `
+      <p>A mission does not become selectable just because a script exists. It needs to be registered in the campaign/spec files. The main file is <code>Specs/campaign.xml</code>.</p>
+
+      <h3>campaign.xml</h3>
+      <p>Each mission entry follows the same basic idea:</p>
+      <pre><code class="language-xml">&lt;mission name="MISSION01"
+         index="1"
+         order="0"
+         hasCampaign="1"
+         budget="7500"
+         map="mod:Maps/m01.e4m"
+         script="mod:Scripts/Game/Mission/1.script"
+         video="base:Video/mission01.mpg"/&gt;</code></pre>
+
+      <table>
+        <thead><tr><th>Attribute</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>name</code></td><td>Internal mission name. This commonly lines up with language keys such as <code>MISSION01</code>.</td></tr>
+          <tr><td><code>index</code></td><td>Unique mission number. This is used by campaign files, mission info files, and language text.</td></tr>
+          <tr><td><code>order</code></td><td>Controls ordering in campaign progression and selection flow.</td></tr>
+          <tr><td><code>hasCampaign</code></td><td>Marks the mission as part of the campaign chain.</td></tr>
+          <tr><td><code>budget</code></td><td>Starting budget when the mission begins.</td></tr>
+          <tr><td><code>map</code></td><td>Mission map path. Dedicated missions usually use their own <code>.e4m</code> file.</td></tr>
+          <tr><td><code>script</code></td><td>Mission script path. This is the file that contains the <code>MissionScript</code> object.</td></tr>
+          <tr><td><code>video</code></td><td>Optional intro video played before the mission. Scripted in-game cutscenes are separate from this.</td></tr>
+          <tr><td><code>tutorial</code></td><td>Used by the tutorial entry.</td></tr>
+          <tr><td><code>final</code></td><td>Used by the final campaign mission.</td></tr>
+          <tr><td><code>transevac</code></td><td>Used by missions with transport/evacuation-style budget behavior.</td></tr>
+          <tr><td><code>specialMission</code></td><td>Used by Deluxe/special missions.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>missioninfos.xml</h3>
+      <p><code>Specs/missioninfos.xml</code> controls the position and clickable region for mission markers on the campaign map. It stores values such as <code>posx</code>, <code>posy</code>, <code>sizex</code>, <code>sizey</code>, <code>pointx</code>, and <code>pointy</code>. If a mission is registered but its selection point feels wrong, this file is one of the first places to check.</p>
+
+      <h3>campaign_params.xml</h3>
+      <p><code>Specs/campaign_params.xml</code> stores campaign budget progression and unlock/check budget values for missions. This matters more for campaign balance than for the moment-to-moment incident scripting.</p>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Mission Script Structure",
+    tags: ["MissionScript", "Start", "OnTimer", "mission skeleton"],
+    body: `
+      <p>Base game mission scripts are built around an object that inherits from <code>MissionScript</code>. The object name usually matches the mission number, such as <code>Mission01</code>, <code>Mission15</code>, or <code>Mission18</code>.</p>
+
+      <pre><code class="language-cpp">object MissionExample : MissionScript
+{
+    MissionExample()
+    {
+        // Constructor: initialize variables and default state.
+    }
+
+    void Start()
+    {
+        // Called when the mission loads.
+        // Find named objects, set initial states, add objectives, start timers.
+    }
+
+    void OnTimer(const char *Timer, float Time)
+    {
+        // Called when a Mission timer fires.
+        // Use timer names to advance mission states.
+    }
+
+    MissionState GetMissionState()
+    {
+        // Return mission success, failure, or running state.
+    }
+}</code></pre>
+
+      <h3>Common sections in base missions</h3>
+      <ul>
+        <li><strong>Constants:</strong> names for objectives, timers, virtual objects, paths, objects, transitions, and important prototypes.</li>
+        <li><strong>Member variables:</strong> cached lists, flags, counters, and story state.</li>
+        <li><strong>Constructor:</strong> initializes default values before the mission starts.</li>
+        <li><strong><code>Start()</code>:</strong> reads the map, prepares the scene, adds objectives, and starts initial timers.</li>
+        <li><strong><code>OnTimer()</code>:</strong> handles delayed story beats, repeated checks, warnings, and cutscene phases.</li>
+        <li><strong>Event callbacks:</strong> respond when objects burn, persons die, units leave the map, or mission-specific events happen.</li>
+        <li><strong>Mission state:</strong> decides whether the mission is still running, completed, or failed.</li>
+      </ul>
+
+      <h3>Why the base scripts use so many names</h3>
+      <p>Mission maps are usually prepared in the editor with named objects, named paths, named virtual objects, and named camera transitions. The script then finds those names at startup with functions such as <code>Game::GetGameObjects("Name")</code>, <code>Game::GetGameObjectsWithPrefix("Name")</code>, and <code>Game::GetActors("Name")</code>.</p>
+      <p>This is why mission scripts are less random than freeplay scripts: the map and script are designed together.</p>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Mission Map Setup",
+    tags: ["mission map", "named objects", "paths", "virtual objects"],
+    body: `
+      <p>A dedicated mission map should be treated like a staged set. The script expects named pieces to exist, and the map provides the physical space where the mission unfolds.</p>
+
+      <h3>Map items a mission script commonly expects</h3>
+      <ul>
+        <li><strong>Named objects:</strong> burning buildings, debris, barrels, vehicles, suspects, hostages, generators, doors, panels, and special props.</li>
+        <li><strong>Named persons:</strong> victims, suspects, civilians, witnesses, workers, or tutorial actors.</li>
+        <li><strong>Virtual objects:</strong> trigger zones, staging zones, search areas, spawn points, rescue zones, camera focus areas, and objective areas.</li>
+        <li><strong>Paths:</strong> escape paths, vehicle paths, walking paths, chase routes, scripted crowd movement, or cutscene movement.</li>
+        <li><strong>Camera transitions:</strong> named camera positions used by <code>Camera::StartTransition</code>.</li>
+        <li><strong>Mission-specific prototypes:</strong> special models and props stored under <code>Models/.../Missionspec</code> and <code>Prototypes/.../Missionspec</code>.</li>
+      </ul>
+
+      <h3>Recommended workflow</h3>
+      <ol>
+        <li>Write a plain-language mission outline first: opening scene, hazards, objectives, failure risks, and completion conditions.</li>
+        <li>Create the mission map or duplicate a test map.</li>
+        <li>Place and name every object the script will need.</li>
+        <li>Create camera transitions for opening shots and major story beats.</li>
+        <li>Add paths for fleeing suspects, scripted civilians, or vehicles.</li>
+        <li>Build the mission script around those map names.</li>
+        <li>Test the mission with missing-object logging before adding complicated story logic.</li>
+      </ol>
+
+      <h3>Beginner warning</h3>
+      <p>If a mission script calls <code>Game::GetGameObjects("BombTruck")</code> but the map object is named <code>bombtruck</code>, the script may silently fail, throw errors later, or leave the mission impossible to complete. Names should be exact, consistent, and documented.</p>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Objectives and Completion Logic",
+    tags: ["objectives", "mission state", "counters", "win loss"],
+    body: `
+      <p>Objectives are the player's official task list. Base missions add objectives through <code>Mission::AddObjective</code> and then mark them complete with <code>Mission::SetObjectiveAccomplished</code>.</p>
+
+      <h3>Objective functions seen in base missions</h3>
+      <table>
+        <thead><tr><th>Function</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td><code>Mission::AddObjective("ID")</code></td><td>Adds an objective to the mission list.</td></tr>
+          <tr><td><code>Mission::RemoveObjective("ID")</code></td><td>Removes an objective when it no longer applies.</td></tr>
+          <tr><td><code>Mission::SetObjectiveAccomplished("ID", true)</code></td><td>Marks an objective complete.</td></tr>
+          <tr><td><code>Mission::IsObjectiveAccomplished("ID")</code></td><td>Checks whether a specific objective is done.</td></tr>
+          <tr><td><code>Mission::HasObjective("ID")</code></td><td>Checks whether an objective exists before changing it.</td></tr>
+          <tr><td><code>Mission::AllObjectivesAccomplished()</code></td><td>Useful final check before mission success.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Default mission logic</h3>
+      <p>The base missions often combine objective checks with default game logic:</p>
+      <ul>
+        <li><code>Mission::IsDefaultLogicPositive()</code> checks whether the normal game systems consider the situation successful.</li>
+        <li><code>Mission::IsDefaultLogicNegative()</code> checks whether the mission should fail due to normal failure conditions.</li>
+        <li><code>Mission::GetCounter(...)</code> can read live counters such as burning objects, burning houses, injured persons, or dead persons.</li>
+      </ul>
+
+      <h3>Simple completion pattern</h3>
+      <pre><code class="language-cpp">MissionState GetMissionState()
+{
+    if (Mission::IsDefaultLogicNegative())
+        return MISSION_FAILED;
+
+    if (Mission::IsDefaultLogicPositive() && Mission::AllObjectivesAccomplished())
+        return MISSION_SUCCEEDED;
+
+    return MISSION_RUNNING;
+}</code></pre>
+
+      <p>More advanced missions do not complete from one check alone. They may require staged flags such as <code>mCutscenePlayed</code>, <code>mSuspectArrested</code>, <code>mVictimsTransported</code>, or <code>mBombDefused</code> before success is allowed.</p>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Timers and State Machines",
+    tags: ["timers", "state machine", "OnTimer", "mission flow"],
+    body: `
+      <p>Mission scripts often feel advanced because they are built as state machines. A state machine is just a controlled flow: the mission starts in one state, waits for something, then moves to the next state.</p>
+
+      <h3>Timer types</h3>
+      <ul>
+        <li><code>Mission::StartSingleTimer("TimerName", 5.0f)</code> fires once after the delay.</li>
+        <li><code>Mission::StartIntervalTimer("TimerName", 2.0f)</code> fires repeatedly every interval.</li>
+        <li><code>Mission::StopTimer("TimerName")</code> stops a timer that is no longer needed.</li>
+        <li><code>Mission::TimerIsStarted("TimerName")</code> checks whether a timer is active.</li>
+      </ul>
+
+      <h3>Single timers</h3>
+      <p>Use single timers for story beats: end a cutscene, trigger an explosion, make suspects flee, start a new warning, or delay the next objective.</p>
+
+      <h3>Interval timers</h3>
+      <p>Use interval timers for repeated checks: whether fires are still burning, whether all injured people are transported, whether a suspect escaped, or whether a scripted object reached a zone.</p>
+
+      <h3>Basic state pattern</h3>
+      <pre><code class="language-cpp">const int STATE_WAITING = 0;
+const int STATE_FIRE_STARTED = 1;
+const int STATE_SEARCH_ACTIVE = 2;
+const int STATE_COMPLETE = 3;
+
+int mState;
+
+void Start()
+{
+    mState = STATE_WAITING;
+    Mission::StartSingleTimer("StartIncident", 10.0f);
+}
+
+void OnTimer(const char *Timer, float Time)
+{
+    switch (Timer)
+    {
+        case "StartIncident":
+            mState = STATE_FIRE_STARTED;
+            Mission::AddObjective("EXTINGUISH_FIRES");
+            Mission::StartIntervalTimer("CheckMission", 2.0f);
+            break;
+
+        case "CheckMission":
+            if (mState == STATE_FIRE_STARTED && Mission::GetCounter("Burning Objects") == 0)
+            {
+                Mission::SetObjectiveAccomplished("EXTINGUISH_FIRES", true);
+                mState = STATE_COMPLETE;
+                Mission::StopTimer("CheckMission");
+            }
+            break;
+    }
+}</code></pre>
+
+      <p>The base tutorial script is the strongest example of this approach. It uses many states and camera transitions to move the player through one lesson at a time.</p>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Cutscenes and Camera Control",
+    tags: ["cutscenes", "camera", "black bars", "transitions"],
+    body: `
+      <p>Emergency 4 uses two different ideas that are easy to confuse: video files and in-game cutscenes. A mission can have an intro video listed in <code>campaign.xml</code>, but many dramatic moments inside the mission are script-driven camera transitions.</p>
+
+      <h3>Intro videos</h3>
+      <p>The <code>video</code> attribute in <code>campaign.xml</code> points to a video such as <code>base:Video/mission01.mpg</code>. This is separate from scripted mission gameplay.</p>
+
+      <h3>Scripted cutscenes</h3>
+      <p>Base scripts use functions like these:</p>
+      <ul>
+        <li><code>Mission::StartCutScene()</code> starts cutscene mode.</li>
+        <li><code>Mission::ShowBlackBars()</code> adds cinematic black bars.</li>
+        <li><code>Camera::StartTransition("CameraName", 1.0f)</code> moves the camera to a named transition.</li>
+        <li><code>Mission::HideBlackBars()</code> removes the cinematic bars.</li>
+        <li><code>Mission::EndCutScene()</code> returns control to normal gameplay.</li>
+      </ul>
+
+      <h3>Tutorial camera controls</h3>
+      <p>The base tutorial script also uses camera restrictions such as disabling movement or rotation, then enabling them again when the player reaches the correct lesson. This is useful for training missions, academy missions, or scripted roleplay intros.</p>
+
+      <h3>Good cutscene practice</h3>
+      <ul>
+        <li>Keep cutscenes short. EM4 players usually want control back quickly.</li>
+        <li>Always end the cutscene with a timer or clear condition.</li>
+        <li>Do not leave camera movement disabled after the lesson or cutscene ends.</li>
+        <li>Use named camera transitions that clearly match the script, for example <code>cs_fire_start</code> or <code>cs_suspect_escape</code>.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Mission Text, Tips, Audio, and Results",
+    tags: ["mission.xml", "missiontips", "missiontitles", "audio", "results"],
+    body: `
+      <p>Mission scripting is only half of the player experience. The mission also needs readable text, useful tips, audio, and clear completion feedback.</p>
+
+      <h3>Language files</h3>
+      <table>
+        <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>Lang/us/mission.xml</code></td><td>Long mission briefings and descriptions.</td></tr>
+          <tr><td><code>Lang/us/missiontitles.xml</code></td><td>Mission title text shown in menus and briefings.</td></tr>
+          <tr><td><code>Lang/us/missiontips.xml</code></td><td>Mission-specific help tips and guidance text.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Hints and comments</h3>
+      <p>Mission scripts can use functions such as <code>Mission::PlayHint</code> and <code>Mission::PlayComment</code> to guide the player. These are most useful when the player has missed something important, such as a hidden victim, a needed piece of equipment, or an objective that is easy to misunderstand.</p>
+
+      <h3>Result screen</h3>
+      <p>The base game has mission result UI files under <code>Data/UI/Game/MissionResult</code>. Mission scripts can also define custom success comments through <code>GetSuccessComment(Mission::MissionScoring *scoring)</code>, which lets the mission react to how well the player performed.</p>
+
+      <h3>Writing mission text well</h3>
+      <ul>
+        <li>The briefing should explain the incident, hazards, and required outcome.</li>
+        <li>Objectives should be short and direct.</li>
+        <li>Hints should solve confusion, not narrate every obvious action.</li>
+        <li>Audio should support the scene without overlapping important gameplay sounds.</li>
+      </ul>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Building a Simple Mission From Scratch",
+    tags: ["tutorial", "from scratch", "mission workflow"],
+    body: `
+      <p>This is a practical beginner path for building a simple dedicated mission. The example is a small warehouse fire with one injured worker and a possible delayed collapse.</p>
+
+      <h3>1. Plan the mission</h3>
+      <ul>
+        <li>Incident: warehouse fire with one injured worker.</li>
+        <li>Objectives: extinguish all fires, treat and transport the worker, prevent firefighter deaths.</li>
+        <li>Scripted event: after 45 seconds, debris falls near the warehouse unless the fire is controlled.</li>
+        <li>Completion: all fires out and injured worker transported.</li>
+      </ul>
+
+      <h3>2. Build the map</h3>
+      <ul>
+        <li>Create or duplicate a mission map, for example <code>Maps/m_custom01.e4m</code>.</li>
+        <li>Place a warehouse object and enable fire traits where needed.</li>
+        <li>Name the burning objects with a clear prefix, such as <code>wh_fire_01</code>, <code>wh_fire_02</code>.</li>
+        <li>Place the injured worker and name them <code>wh_worker_01</code>.</li>
+        <li>Place debris objects hidden or disabled at startup and name them <code>wh_debris_01</code>.</li>
+        <li>Create a camera transition named <code>cs_warehouse_intro</code>.</li>
+      </ul>
+
+      <h3>3. Register the mission</h3>
+      <p>Add an entry to <code>Specs/campaign.xml</code> that points to your map and script. Then add campaign map position data in <code>missioninfos.xml</code> if the mission should be selectable from the campaign screen.</p>
+
+      <h3>4. Create the script</h3>
+      <pre><code class="language-cpp">object MissionCustom01 : MissionScript
+{
+    bool mCollapseTriggered;
+
+    void Start()
+    {
+        mCollapseTriggered = false;
+
+        Mission::AddObjective("EXTINGUISH_FIRES");
+        Mission::AddObjective("TRANSPORT_INJURED");
+
+        Mission::StartCutScene();
+        Mission::ShowBlackBars();
+        Camera::StartTransition("cs_warehouse_intro", 1.5f);
+        Mission::StartSingleTimer("EndIntro", 4.0f);
+
+        Mission::StartIntervalTimer("CheckMission", 2.0f);
+        Mission::StartSingleTimer("CollapseWarning", 45.0f);
+    }
+
+    void OnTimer(const char *Timer, float Time)
+    {
+        switch (Timer)
+        {
+            case "EndIntro":
+                Mission::HideBlackBars();
+                Mission::EndCutScene();
+                break;
+
+            case "CollapseWarning":
+                if (Mission::GetCounter("Burning Objects") > 0)
+                {
+                    mCollapseTriggered = true;
+                    Mission::PlayHint("Structural instability reported at the warehouse.");
+                    // Reveal debris, injure nearby persons, or start another fire here.
+                }
+                break;
+
+            case "CheckMission":
+                if (Mission::GetCounter("Burning Objects") == 0)
+                    Mission::SetObjectiveAccomplished("EXTINGUISH_FIRES", true);
+
+                if (Mission::GetCounter("Injured Persons") == 0)
+                    Mission::SetObjectiveAccomplished("TRANSPORT_INJURED", true);
+                break;
+        }
+    }
+
+    MissionState GetMissionState()
+    {
+        if (Mission::IsDefaultLogicNegative())
+            return MISSION_FAILED;
+
+        if (Mission::IsDefaultLogicPositive() && Mission::AllObjectivesAccomplished())
+            return MISSION_SUCCEEDED;
+
+        return MISSION_RUNNING;
+    }
+}</code></pre>
+
+      <h3>5. Test in layers</h3>
+      <ol>
+        <li>Load the mission with no cutscene first and confirm the script starts.</li>
+        <li>Add objectives and confirm they appear.</li>
+        <li>Add named-object lookups and confirm every expected object exists.</li>
+        <li>Add timers one at a time.</li>
+        <li>Add cutscenes last, because camera lock mistakes can make testing painful.</li>
+      </ol>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Base Mission Patterns to Reuse",
+    tags: ["mission patterns", "base missions", "examples"],
+    body: `
+      <p>The base missions are useful because they show different design patterns. You do not need to copy them directly, but you can learn how the engine expects missions to be structured.</p>
+
+      <h3>Mission 1 pattern: staged disaster with rescue and fire objectives</h3>
+      <p><code>1.script</code> uses many named map objects, an opening cutscene, timers, area lights, hydrants, collapse-related story beats, and standard objectives for fires and injured persons. This is a good reference for a large incident where the environment changes after the player arrives.</p>
+
+      <h3>Mission 15 pattern: clean objective/timer loop</h3>
+      <p><code>15.script</code> is easier to study than some larger scripts. It adds objectives, starts interval timers for mission checks, starts a single timer for suspects fleeing, and uses <code>Mission::IsDefaultLogicPositive()</code> plus <code>Mission::AllObjectivesAccomplished()</code> for success.</p>
+
+      <h3>Mission 18 pattern: complex scripted operation</h3>
+      <p><code>18.script</code> is a high-complexity example with hostages, terrorists, a plane, bombs, multiple cutscenes, repeated guard/plane area updates, and mission-specific failure risks. This is the type of pattern to study after you are comfortable with simpler missions.</p>
+
+      <h3>Tutorial pattern: guided training mission</h3>
+      <p><code>tutorial.script</code> is built around states. It adds one objective at a time, controls camera movement, moves the camera between training areas, and prevents the player from jumping too far ahead. This pattern is useful for academy/training missions or scripted introductions.</p>
+
+      <h3>Good mission-making rule</h3>
+      <p>Start with the Mission 15 style, not Mission 18. Build a clean objective loop first. After that works, add cutscenes, branching events, staged hazards, and special mission-specific objects.</p>
+    `
+  },
+  {
+    category: "Mission Making",
+    title: "Mission Testing Checklist",
+    tags: ["testing", "debugging", "mission checklist"],
+    body: `
+      <p>Mission bugs are usually caused by missing map names, timers that never stop, objectives that never complete, or cutscenes that never return control to the player.</p>
+
+      <h3>Before testing</h3>
+      <ul>
+        <li>Confirm the mission entry exists in <code>campaign.xml</code>.</li>
+        <li>Confirm the <code>map</code> path and <code>script</code> path are correct.</li>
+        <li>Confirm the mission script object name is unique.</li>
+        <li>Confirm all named map objects, paths, VOs, and camera transitions exactly match the script.</li>
+        <li>Confirm mission text exists in the correct language files if the mission needs briefing/title text.</li>
+      </ul>
+
+      <h3>During testing</h3>
+      <ul>
+        <li>Test startup first. If the mission crashes on load, remove cutscene logic and inspect object lookups.</li>
+        <li>Trigger each timer path manually or with short test delays.</li>
+        <li>Complete each objective one by one and watch whether the objective list updates.</li>
+        <li>Fail the mission intentionally to confirm failure logic works.</li>
+        <li>Leave units, victims, and suspects in unusual states to see if completion logic gets stuck.</li>
+      </ul>
+
+      <h3>Common problems</h3>
+      <table>
+        <thead><tr><th>Problem</th><th>Likely cause</th></tr></thead>
+        <tbody>
+          <tr><td>Mission loads but no objective appears.</td><td><code>Start()</code> did not run, objective ID is wrong, or script failed before adding objectives.</td></tr>
+          <tr><td>Mission can never complete.</td><td>An objective is never marked accomplished, or a live counter never reaches the expected value.</td></tr>
+          <tr><td>Camera stays locked.</td><td><code>Mission::EndCutScene()</code> or camera re-enable logic did not run.</td></tr>
+          <tr><td>Script errors after a delay.</td><td>A timer fired and used a missing object, bad variable, or unsupported function call.</td></tr>
+          <tr><td>Objects do not move or spawn correctly.</td><td>Path, VO, prototype, or free-position logic is wrong.</td></tr>
+        </tbody>
+      </table>
     `
   },
   {
@@ -2206,6 +3264,220 @@ object VcmdTutorialSiren : CommandScript
         <li><code>global listener object is still registered</code>: often appears during crashes; inspect the newest script and newest DDS first.</li>
       </ul>
     `
+  },
+  {
+    category: "3D Modeling",
+    title: "Legacy Modeling Tools",
+    tags: ["SketchUp", "ZModeler", "legacy tools", "Blender", "V3O"],
+    body: `
+      <p>Emergency 4 modding has used several modeling workflows over the years. Older tutorials may mention SketchUp, ZModeler, older Blender versions, or older V3O import/export scripts. These tools are part of EM4 modding history, but new projects should understand their limits before building a workflow around them.</p>
+      <table>
+        <thead><tr><th>Tool</th><th>How it was used</th><th>Beginner warning</th></tr></thead>
+        <tbody>
+          <tr><td>SketchUp</td><td>Simple buildings, props, and early vehicle shapes.</td><td>Can create messy geometry, excessive faces, reversed surfaces, and cleanup problems.</td></tr>
+          <tr><td>ZModeler</td><td>Older vehicle and emergency-game modeling workflows.</td><td>Historically important, but less beginner-friendly today.</td></tr>
+          <tr><td>Older Blender scripts</td><td>Blender 2.x V3O import/export.</td><td>Often tied to outdated Blender versions.</td></tr>
+          <tr><td>Blender 4.2 V3O Plugin</td><td>Modern V3O import/export path.</td><td>Preferred for new users because it works with current Blender.</td></tr>
+        </tbody>
+      </table>
+      <p>Legacy tools are still worth knowing about because many old mods and tutorials were made with them. For a new modder, the safest path is Blender 4.2 plus the current V3O plugin.</p>
+    `
+  },
+  {
+    category: "Lighting",
+    title: "Emergency Vehicle Lighting",
+    tags: ["lights", "coronas", "radiation", "polygon lights", "flash patterns"],
+    body: `
+      <p>Lighting is one of the most visible quality markers in an Emergency 4 mod. Good lighting makes a unit feel alive; bad lighting can make a vehicle look unfinished, unrealistic, or extremely performance-heavy.</p>
+      <table>
+        <thead><tr><th>Part</th><th>Purpose</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Coronas</td><td>Visible glowing light sprites.</td><td>Used for lightbars, headlights, brake lights, scene lights, turn signals, and warning lights.</td></tr>
+          <tr><td>Radiation</td><td>Colored light cast onto the surrounding area.</td><td>Looks dramatic, but too much radiation can hurt performance and make scenes visually noisy.</td></tr>
+          <tr><td>Polygon lights</td><td>Flat light planes used to fake larger illuminated surfaces.</td><td>Useful for lightbar glow, LED panels, and directional light effects.</td></tr>
+          <tr><td>Special lights</td><td>Lights toggled by script or special light controls.</td><td>Common for scene lights, floodlights, roadside lights, and command objects.</td></tr>
+          <tr><td>Traffic directors</td><td>Sequenced rear warning lights.</td><td>Useful for police, fire, EMS, tow, and highway units.</td></tr>
+        </tbody>
+      </table>
+      <h3>Flash pattern design</h3>
+      <ul>
+        <li>Use a consistent rhythm across a vehicle. Random flashing everywhere looks messy.</li>
+        <li>Separate front, side, rear, grille, mirror, and rear-warning functions.</li>
+        <li>Use slower patterns for older halogen/rotator vehicles and sharper patterns for modern LED vehicles.</li>
+        <li>Do not make every light use maximum brightness or maximum radiation.</li>
+      </ul>
+      <h3>Performance and readability</h3>
+      <p>Every corona, radiation source, and polygon light adds work for the game. A few well-placed lights usually look better than dozens of overlapping lights. Use radiation sparingly, especially on units that may respond together in large numbers.</p>
+    `
+  },
+  {
+    category: "Freeplay and Missions",
+    title: "Freeplay Files Deep Dive",
+    tags: ["freeplayparameters", "fp_params", "events", "money", "weather"],
+    body: `
+      <p>Freeplay behavior is controlled by several XML files in <code>Specs</code>. These files decide what events can happen, how often they happen, how much money the player has, how difficult events are, and which environment settings are active.</p>
+      <table>
+        <thead><tr><th>File type</th><th>What it controls</th></tr></thead>
+        <tbody>
+          <tr><td>Endless/freeplay parameters</td><td>Normal freeplay event frequency, event difficulty, start money, rewards, penalties, and event settings.</td></tr>
+          <tr><td>Challenge parameters</td><td>Challenge-mode event pacing, scoring pressure, and difficulty values.</td></tr>
+          <tr><td>Multiplayer parameters</td><td>Multiplayer-specific freeplay setup, if the mod supports it.</td></tr>
+          <tr><td>Weather/environment settings</td><td>Weather chances, rain, storm behavior, and other environment values when supported by the file.</td></tr>
+        </tbody>
+      </table>
+      <p>Parameter files only make events possible. The map still needs the correct event conditions. For example, a car theft event still needs the correct stolen vehicle setup and path, and a fire event still needs valid fire objects.</p>
+      <ol>
+        <li>Back up the XML file before editing.</li>
+        <li>Change one event or value at a time.</li>
+        <li>Keep XML tags properly closed.</li>
+        <li>Test in game after each meaningful change.</li>
+      </ol>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "unit.xml Deep Dive",
+    tags: ["unit.xml", "Units folder", "freeplay menu", "vehicles", "persons"],
+    body: `
+      <p>The <code>unit.xml</code> file tells the game how a playable unit appears in menus. A prototype can exist and work in the editor, but it still may not appear correctly in freeplay if its unit folder or <code>unit.xml</code> is incomplete.</p>
+      <table>
+        <thead><tr><th>Entry</th><th>Purpose</th><th>Common mistake</th></tr></thead>
+        <tbody>
+          <tr><td>Unit ID</td><td>Identifies the unit entry.</td><td>Duplicate or wrong IDs can cause menu confusion.</td></tr>
+          <tr><td>Name reference</td><td>Points to a language key for the unit name.</td><td>Missing language key shows blank or raw text.</td></tr>
+          <tr><td>Purpose/tooltip reference</td><td>Points to descriptive text shown in the interface.</td><td>Players cannot tell what the unit is for.</td></tr>
+          <tr><td>Prototype path</td><td>Points to the actual <code>.e4p</code> vehicle or person.</td><td>Wrong path causes missing unit, crash, or failed spawn.</td></tr>
+          <tr><td>Portrait/icon references</td><td>Controls the unit image in the menu.</td><td>White box, blank icon, or wrong unit picture.</td></tr>
+          <tr><td>Costs</td><td>Purchase price, staffing cost, or other menu values depending on setup.</td><td>Unit is too cheap, too expensive, or unbalanced.</td></tr>
+          <tr><td>Category/type</td><td>Places the unit under fire, EMS, police, or tech menus.</td><td>Unit appears in the wrong department or not at all.</td></tr>
+        </tbody>
+      </table>
+      <ol>
+        <li>Copy a working unit folder for the same department and unit type.</li>
+        <li>Rename the folder clearly.</li>
+        <li>Edit <code>unit.xml</code> so the prototype path points to the new prototype.</li>
+        <li>Update the language keys for name and description.</li>
+        <li>Replace or update the portrait/menu images.</li>
+        <li>Load the mod and confirm the correct prototype spawns.</li>
+      </ol>
+    `
+  },
+  {
+    category: "Common Issues",
+    title: "Cheats and Debugging Commands",
+    tags: ["cheats", "debugging", "testing", "support"],
+    body: `
+      <p>Cheats and debug-style commands are not core modding tools, but they can help when testing maps, missions, scripts, and freeplay balance. They are especially useful when a bug only appears after money runs out, time passes, or a specific event starts.</p>
+      <ul>
+        <li>Use cheats only in test saves or development copies.</li>
+        <li>Do not treat a cheat-assisted test as proof that normal gameplay balance works.</li>
+        <li>Write down what was enabled before reporting a bug.</li>
+        <li>Retest without cheats before releasing a mod update.</li>
+      </ul>
+      <p>For serious debugging, <code>logfile.txt</code> is still more important than cheats. Cheats help you reach a test condition; the log explains what broke.</p>
+    `
+  },
+  {
+    category: "Common Issues",
+    title: "Graphics Fixes and No Shadows Issues",
+    tags: ["graphics", "shadows", "Steam", "compatibility", "admin"],
+    body: `
+      <p>Some Emergency 4 problems are not caused by a mod. They come from the age of the engine, modern Windows behavior, GPU driver changes, Steam folder permissions, or old graphics settings.</p>
+      <table>
+        <thead><tr><th>Fix</th><th>What it helps with</th></tr></thead>
+        <tbody>
+          <tr><td>Run as administrator</td><td>Saving configs, loading patched executables, editor access, and protected folders.</td></tr>
+          <tr><td>Compatibility mode</td><td>Older rendering and launch behavior on modern Windows.</td></tr>
+          <tr><td>Install outside heavily protected folders</td><td>Reduces permission problems when editing mods.</td></tr>
+          <tr><td>Check graphics settings</td><td>Confirms shadows, detail, and resolution are actually enabled.</td></tr>
+          <tr><td>Install the EM4 Memory Patcher</td><td>Helps with memory-related crashes in large modern mods.</td></tr>
+        </tbody>
+      </table>
+      <p>If one mod fails but another mod works, compare that mod's scripts, DDS files, prototypes, and specs. If the base game and all mods have the same graphics problem, troubleshoot the install, executable, settings, and driver side first.</p>
+    `
+  },
+  {
+    category: "Common Issues",
+    title: "Installing Mods Through Steam",
+    tags: ["Steam", "mod install", "911 First Responders", "e4mod", "Mods folder"],
+    body: `
+      <p>Steam installs are common for <code>911: First Responders</code>, but beginners often get confused because older tutorials were written for disc installs or European Emergency 4 paths.</p>
+      <h3>Typical Steam path</h3>
+      <pre><code>C:/Program Files (x86)/Steam/steamapps/common/911 First Responders</code></pre>
+      <h3>Manual mod install</h3>
+      <ol>
+        <li>Download the mod archive.</li>
+        <li>Extract it completely.</li>
+        <li>Find the mod folder that contains folders such as <code>Scripts</code>, <code>Prototypes</code>, <code>Models</code>, <code>Specs</code>, or <code>Units</code>.</li>
+        <li>Place that folder inside the game's <code>Mods</code> folder.</li>
+        <li>Launch the game, open Modifications, and load the mod.</li>
+      </ol>
+      <p>Some older mods use <code>.e4mod</code> installers. These can fail if the installer cannot find the Steam path or does not have permission to write to the game folder. Run the installer as administrator or use a manual install when available.</p>
+    `
+  },
+  {
+    category: "Mod Creation",
+    title: "Vehicle Doors, Wheels, and Child Objects",
+    tags: ["vehicles", "doors", "wheels", "child objects", "prototype"],
+    body: `
+      <p>A vehicle prototype is more than the main model. Doors, wheels, equipment, lightbars, pushbars, hose connections, and other visible parts are often child objects. If these are wrong, the vehicle may look fine while parked but fail during animations or gameplay.</p>
+      <h3>Doors</h3>
+      <ul>
+        <li>Door child objects are commonly named with a door-style pattern such as <code>_door##</code>.</li>
+        <li>The door pivot/axis must be placed correctly or the door will rotate from the wrong point.</li>
+        <li>The prototype needs the correct door type so entry/exit animations can find it.</li>
+        <li>Log lines such as <code>no door found for animation with door-type</code> usually mean the vehicle lacks a door setup expected by the animation.</li>
+      </ul>
+      <h3>Wheels</h3>
+      <ul>
+        <li>Wheel child objects are commonly named with a wheel-style pattern such as <code>_wheel##</code>.</li>
+        <li>Wheels should be placed at the correct height and centered on the axle.</li>
+        <li>Incorrect wheel placement makes the vehicle look like it floats, sinks, or slides.</li>
+      </ul>
+      <p>Open the prototype in the editor, check every child object, test door animation, then drive the unit in game to confirm the wheels and doors behave correctly.</p>
+    `
+  },
+  {
+    category: "Common Issues",
+    title: "Packed and Locked V3O Files",
+    tags: ["V3O", "packed files", "unpack", "models", "editor"],
+    body: `
+      <p>Some base Emergency 4 model files may look unreadable when opened in a text editor. Instead of readable material and texture references, the file may appear as symbols or binary-looking data. This usually means the file is packed or locked.</p>
+      <p>The Emergency 4 editor includes an unpack option through the Modifications menu. Use <code>Modifications -> Unpack file</code> when you need to inspect or edit a packed file. Work from a copy in your mod folder instead of modifying base game files directly.</p>
+      <ol>
+        <li>Copy the model into your mod's <code>Models</code> folder.</li>
+        <li>Use the editor unpack option on the copied file.</li>
+        <li>Open the unpacked V3O or import it into Blender if needed.</li>
+        <li>Update texture paths carefully.</li>
+        <li>Test the model in a prototype before using it widely.</li>
+      </ol>
+    `
+  },
+  {
+    category: "Common Issues",
+    title: "White Model and Missing Texture Troubleshooting",
+    tags: ["white model", "missing texture", "DDS", "PNG", "V3O"],
+    body: `
+      <p>The white model problem is one of the most common Emergency 4 modding issues. It usually means the game loaded the model but could not find or apply the correct texture.</p>
+      <table>
+        <thead><tr><th>Cause</th><th>What to check</th></tr></thead>
+        <tbody>
+          <tr><td>Missing texture file</td><td>Confirm the DDS, PNG, JPG, or TGA actually exists in the expected folder.</td></tr>
+          <tr><td>Wrong texture path inside V3O</td><td>Open the V3O and check the material texture reference.</td></tr>
+          <tr><td>Texture renamed but V3O not updated</td><td>The model still points to the old filename.</td></tr>
+          <tr><td>Wrong folder</td><td>The texture is present, but not where the model expects it.</td></tr>
+          <tr><td>Packed V3O</td><td>The texture reference may not be readable until the model is unpacked.</td></tr>
+          <tr><td>Bad texture format</td><td>Re-export the texture using a known-good format and compression.</td></tr>
+        </tbody>
+      </table>
+      <ol>
+        <li>Check <code>logfile.txt</code> for missing texture messages.</li>
+        <li>Open the prototype and confirm it points to the correct model.</li>
+        <li>Open the V3O and inspect the texture filename.</li>
+        <li>Confirm that texture file exists exactly as named.</li>
+        <li>Fix capitalization, extension, and folder path issues.</li>
+      </ol>
+    `
   }
 ];
 
@@ -2223,6 +3495,10 @@ const categoryGroups = [
     categories: ["Start Here", "Getting Started", "EM4Resource Downloads", "EM4 History"]
   },
   {
+    title: "Common Issues",
+    categories: ["Common Issues", "Troubleshooting"]
+  },
+  {
     title: "Editor and Assets",
     categories: ["Folder Structure", "Editor Manual", "Maps", "Prototypes", "Asset Workshop", "UI and Icons", "Audio"]
   },
@@ -2231,8 +3507,16 @@ const categoryGroups = [
     categories: ["3D Modeling"]
   },
   {
+    title: "Textures",
+    categories: ["Textures"]
+  },
+  {
     title: "Scripting and SDK",
-    categories: ["Scripting", "SDK Glossary", "SDK Reference", "Freeplay and Missions", "Case Studies", "Create Your Own Script", "Troubleshooting"]
+    categories: ["Scripting", "SDK Glossary", "SDK Reference", "Freeplay and Missions", "Case Studies", "Create Your Own Script"]
+  },
+  {
+    title: "Mission Making",
+    categories: ["Mission Making"]
   },
   {
     title: "Mod Workflow",
@@ -2246,6 +3530,7 @@ const articleTitle = document.getElementById("articleTitle");
 const articleCounter = document.getElementById("articleCounter");
 const searchBox = document.getElementById("searchBox");
 const template = document.getElementById("articleTemplate");
+let pendingArticleTitle = null;
 
 function articleMatches(article, query) {
   if (article.category === "GitHub") {
@@ -2322,6 +3607,7 @@ function renderCategories() {
 function renderArticles() {
   const query = searchBox.value.trim();
   const visible = articles.filter(article => articleMatches(article, query));
+  let openedPendingArticle = false;
 
   articleGrid.innerHTML = "";
   articleTitle.textContent = query ? "Search Results" : activeCategory;
@@ -2332,6 +3618,7 @@ function renderArticles() {
     const card = node.querySelector(".article-card");
     const title = node.querySelector(".article-title");
     const body = node.querySelector(".article-body");
+    const shouldOpenPending = pendingArticleTitle && article.title === pendingArticleTitle;
 
     title.textContent = article.title;
     const renderBody = () => {
@@ -2342,9 +3629,10 @@ function renderArticles() {
       body.dataset.loaded = "true";
     };
 
-    if (index === 0) {
+    if ((index === 0 && !pendingArticleTitle) || shouldOpenPending) {
       card.classList.add("open");
       renderBody();
+      openedPendingArticle = openedPendingArticle || shouldOpenPending;
     }
 
     title.addEventListener("click", () => {
@@ -2356,9 +3644,30 @@ function renderArticles() {
 
     articleGrid.appendChild(node);
   });
+
+  if (openedPendingArticle) {
+    pendingArticleTitle = null;
+  }
 }
 
 searchBox.addEventListener("input", renderArticles);
+
+document.querySelectorAll("[data-open-article]").forEach(button => {
+  button.addEventListener("click", () => {
+    const targetTitle = button.dataset.openArticle;
+    const targetArticle = articles.find(article => article.title === targetTitle);
+    if (!targetArticle) {
+      return;
+    }
+
+    activeCategory = targetArticle.category;
+    pendingArticleTitle = targetTitle;
+    searchBox.value = "";
+    renderCategories();
+    renderArticles();
+    articleTitle.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
 
 renderCategories();
 renderArticles();
