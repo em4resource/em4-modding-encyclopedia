@@ -2421,7 +2421,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Map Editor Controls and Build Order",
+    category: "Map Basics",
     title: "Map Editor Tabs and Modes",
     tags: ["editor", "maps", "function keys", "tabs"],
     body: `
@@ -2449,7 +2449,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Map Editor Controls and Build Order",
+    category: "Map Basics",
     title: "Map Building Workflow",
     tags: ["maps", "workflow", "editor", "freeplay"],
     body: `
@@ -2482,7 +2482,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Starting a New Freeplay Map",
+    category: "New Freeplay Map",
     title: "Creating a New Freeplay Map",
     tags: ["freeplay map", "fp_freeplay", "required objects", "map setup", "beginner"],
     body: `
@@ -2520,7 +2520,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Flattening Terrain and Removing Old Map Data",
+    category: "Terrain Cleanup",
     title: "Cleaning and Flattening a Base Map",
     tags: ["terrain", "flatten", "editor", "base map", "virtual objects"],
     body: `
@@ -2561,7 +2561,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Ground Texture, TGA, and EFT Files",
+    category: "Ground Texture Files",
     title: "Terrain Texture and EFT Workflow",
     tags: ["terrain texture", "EFT", "TGA", "EFTXplorer", "8192"],
     body: `
@@ -2607,7 +2607,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Drawing Roads, Grass, and Ground Detail",
+    category: "Road and Grass Art",
     title: "Drawing Roads and Ground Textures",
     tags: ["Photoshop", "pattern overlay", "roads", "terrain art", "ground texture"],
     body: `
@@ -2640,7 +2640,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Detail Polygons and Decals",
+    category: "Detail Polygons",
     title: "Detail Polygons and Decals",
     tags: ["detail polygons", "decals", "detailpoly", "blend", "modulate", "detail"],
     body: `
@@ -2680,7 +2680,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Map Entries, Exits, Boundaries, and Camera",
+    category: "Entries and Boundaries",
     title: "Map Properties and Playable Boundaries",
     tags: ["map properties", "entries", "exits", "boundaries", "camera", "radar"],
     body: `
@@ -2702,7 +2702,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Virtual Objects and Script Zones",
+    category: "Virtual Objects",
     title: "Virtual Objects",
     tags: ["VO", "map", "placement"],
     body: `
@@ -2729,7 +2729,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Civilian Paths, Spawn Points, and Map Exits",
+    category: "Civilian Paths",
     title: "Paths, Spawn Points, and Exits",
     tags: ["paths", "traffic", "return to base"],
     body: `
@@ -2750,30 +2750,86 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Freeplay Callout Map Requirements",
+    category: "Freeplay Events",
     title: "Freeplay Event Map Requirements",
-    tags: ["freeplay events", "map conditions", "callouts", "VO"],
+    tags: ["freeplay events", "map conditions", "callouts", "VO", "fp_params"],
     body: `
-      <p>Many base freeplay events only spawn if the map contains the correct conditions. If the needed objects, names, paths, persons, or fire settings are missing, the event may never appear even when the parameter file says it can.</p>
+      <p>Native freeplay events only spawn when two things agree: the <code>Specs</code> parameter files allow the event, and the map contains the required people, objects, names, paths, traits, or accident setups. If either side is missing, the call may never appear even though the mod loads.</p>
 
-      <h3>Examples of required conditions</h3>
+      <h3>Freeplay parameter files</h3>
+      <p>Freeplay event behavior is controlled by XML files in the mod's <code>Specs</code> folder. Common files include <code>freeplayparameters.xml</code>, <code>fp_params_endless.xml</code>, challenge variants, deluxe variants, and multiplayer variants. These files control event frequency, difficulty, money, weather values, and which native events are possible.</p>
+      <p>The XML can make an event possible, but the map still has to provide the event's conditions. Treat the parameter file as the event permission list and the map as the physical setup.</p>
+
+      <h3>Basic medical events</h3>
       <table>
-        <thead><tr><th>Event type</th><th>Map requirement</th></tr></thead>
+        <thead><tr><th>Event</th><th>Type</th><th>Required map condition</th></tr></thead>
         <tbody>
-          <tr><td>Random medical calls</td><td>At least one valid person on the map.</td></tr>
-          <tr><td>Random fire calls</td><td>Burnable objects with fire traits/material behavior.</td></tr>
-          <tr><td>Shoplifting</td><td>A valid shop object, person setup, and escape path.</td></tr>
-          <tr><td>Car accidents</td><td>Correctly numbered accident objects, debris, victims, and vehicle names.</td></tr>
-          <tr><td>Car theft</td><td>Stolen vehicle object and matching theft path names.</td></tr>
-          <tr><td>Custom roleplay callouts</td><td>Scripted VOs, named objects, markers, spawn points, or map zones expected by the script.</td></tr>
+          <tr><td>Fall</td><td>Ambulance</td><td>At least one valid person placed on the map.</td></tr>
+          <tr><td>Shock</td><td>Ambulance</td><td>At least one valid person placed on the map.</td></tr>
+          <tr><td>Circulatory Collapse</td><td>Ambulance</td><td>At least one valid person placed on the map.</td></tr>
+          <tr><td>Food Poisoning</td><td>Ambulance</td><td>At least one valid person placed on the map.</td></tr>
+          <tr><td>Heart Attack</td><td>Ambulance</td><td>At least one valid person placed on the map.</td></tr>
+          <tr><td>Stroke</td><td>Ambulance</td><td>At least one valid person placed on the map.</td></tr>
+          <tr><td>Flash Strike</td><td>Ambulance</td><td>At least one valid person placed on the map.</td></tr>
         </tbody>
       </table>
 
-      <p>When a callout does not spawn, check the map conditions before rewriting the script. Many callout problems are missing map setup, not broken code.</p>
+      <h3>Basic fire events</h3>
+      <table>
+        <thead><tr><th>Event</th><th>Type</th><th>Required map condition</th></tr></thead>
+        <tbody>
+          <tr><td>Random Fire</td><td>Fire</td><td>At least one object on the map with the <code>Fire</code> trait fully enabled in the traits menu.</td></tr>
+          <tr><td>Cigarette</td><td>Fire</td><td>At least one object on the map with the <code>Fire</code> trait fully enabled in the traits menu.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Shoplifting event</h3>
+      <p>Shoplifting is a randomly generated police event. It needs a person, a shop, and an escape path.</p>
+      <ul>
+        <li>Place at least one person on the map.</li>
+        <li>Designate a house as a shop by naming the house object <code>shop</code>. The name should be lowercase.</li>
+        <li>Create at least one escape path from the shop. Use a path named <code>escapepath01</code>, set speed to about <code>2.4</code>, route it around the map, and set it to delete at end.</li>
+      </ul>
+
+      <h3>Car accident event</h3>
+      <p>Car accidents are randomly generated fire, police, and ambulance events. A map can contain many accident setups, but the naming must be consistent.</p>
+      <ul>
+        <li>Number accident setups in order, starting at <code>1</code> and continuing upward.</li>
+        <li>The first vehicle in each accident must be named <code>ccar_X</code>, where <code>X</code> is the accident number. Only one vehicle in that accident should use <code>ccar_X</code>.</li>
+        <li>Additional crashed vehicles, debris, glass, skid marks, or non-enclosed patients must be named <code>ccard_X</code>.</li>
+        <li>Only trapped persons enclosed inside vehicles should use <code>ccarp_Xa</code>, <code>ccarp_Xb</code>, and so on.</li>
+        <li>Persons outside the vehicle, such as ejected patients, should be named <code>ccard_X</code>, not <code>ccarp_Xa</code>.</li>
+      </ul>
+
+      <h3>Car accident naming key</h3>
+      <table>
+        <thead><tr><th>Part</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>c</code></td><td>Crashed.</td></tr>
+          <tr><td><code>car</code></td><td>Main accident car or vehicle.</td></tr>
+          <tr><td><code>d</code></td><td>Debris, extra vehicles, loose scene objects, or patients not enclosed in vehicles.</td></tr>
+          <tr><td><code>p</code></td><td>Patient enclosed inside a vehicle.</td></tr>
+          <tr><td><code>X</code></td><td>The accident number. Every object in the same accident uses the same number.</td></tr>
+          <tr><td><code>a-z</code></td><td>Letters for multiple enclosed patients in the same accident.</td></tr>
+        </tbody>
+      </table>
+      <p>Example: for accident 26, the main crashed vehicle is <code>ccar_26</code>. Glass, debris, skid marks, extra vehicles, and ejected patients are <code>ccard_26</code>. Trapped patients inside vehicles can be <code>ccarp_26a</code>, <code>ccarp_26b</code>, and so on.</p>
+
+      <h3>Car theft event</h3>
+      <p>Car theft is a randomly generated police event. You can place multiple possible car theft setups across a map.</p>
+      <ul>
+        <li>Place a vehicle on the map named <code>stolenvehicle</code>.</li>
+        <li>Create a path named <code>CarThief01</code>.</li>
+        <li>Additional possible car theft paths should continue upward as <code>CarThief02</code>, <code>CarThief03</code>, <code>CarThief04</code>, and so on.</li>
+        <li>If the event does not spawn despite the vehicle and path being correct, test with a gangster placed nearby. Some setups appear to depend on a nearby gangster, although the exact reason can vary by mod and map.</li>
+      </ul>
+
+      <h3>Native events vs custom scripted callouts</h3>
+      <p>The native freeplay event system is best for events the engine already supports. For a brand-new scenario with custom investigation stages, custom audio, special objectives, or unusual completion logic, use a scripted callout through <code>fp_freeplay.script</code>, an updater object, or a custom call scheduler.</p>
     `
   },
   {
-    category: "Testing a Map In Game",
+    category: "Map Testing",
     title: "Map Testing Checklist",
     tags: ["testing", "maps", "freeplay", "performance"],
     body: `
@@ -2794,7 +2850,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Reducing Lag from Polygons, Props, and Lights",
+    category: "Lag and Performance",
     title: "Map Performance and Poly Budget",
     tags: ["performance", "polygons", "models", "maps"],
     body: `
@@ -2812,7 +2868,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Emergency Roads and Civilian Traffic",
+    category: "Emergency Roads",
     title: "Roads, Streets, and Civilian Traffic",
     tags: ["roads", "streets", "traffic", "paths"],
     body: `
@@ -3462,81 +3518,27 @@ void OnTimer(const char *Timer, float Time)
   },
   {
     category: "Freeplay and Missions",
-    title: "Creating New Freeplay Events",
-    tags: ["freeplay", "events", "callouts", "fp_params", "freeplayparameters"],
+    title: "Freeplay Scripts vs Native Events",
+    tags: ["freeplay", "events", "callouts", "fp_params", "scripts"],
     body: `
-      <p>This article explains how native freeplay events are generated in Emergency 4 / 911: First Responders, and what map conditions must exist before the game can spawn those events.</p>
+      <p>Native freeplay events are controlled by parameter XML files and map requirements. Custom scripted callouts are controlled by scripts, updater objects, timers, and state checks. Use the map-making section for native event placement requirements such as shoplifting paths, car accident object names, fire traits, and stolen vehicle setup.</p>
 
-      <h3>Freeplay Parameters File</h3>
-      <p>Freeplay event behavior is controlled by the freeplay parameters file in the mod's <code>Specs</code> folder. Many mods use a path like <code>Mods/Mod Name/Specs/freeplay_endless_param.xml</code>. The base game also uses files such as <code>freeplayparameters.xml</code>, <code>fp_params_endless.xml</code>, and challenge or multiplayer variants.</p>
-      <p>The XML file can make an event possible, more frequent, less frequent, harder, or easier, but the map still has to contain the required conditions. If the required map objects, names, paths, traits, or persons are missing, the event will not spawn correctly.</p>
-
-      <h3>Basic medical events</h3>
-      <table>
-        <thead><tr><th>Event</th><th>Type</th><th>Required map condition</th></tr></thead>
-        <tbody>
-          <tr><td>Fall</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
-          <tr><td>Shock</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
-          <tr><td>Circulatory Collapse</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
-          <tr><td>Food Poisoning</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
-          <tr><td>Heart Attack</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
-          <tr><td>Stroke</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
-          <tr><td>Flash Strike</td><td>Ambulance</td><td>At least one person placed on the map.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Basic fire events</h3>
-      <table>
-        <thead><tr><th>Event</th><th>Type</th><th>Required map condition</th></tr></thead>
-        <tbody>
-          <tr><td>Random Fire</td><td>Fire</td><td>At least one object on the map with the <code>Fire</code> trait fully enabled in the traits menu.</td></tr>
-          <tr><td>Cigarette</td><td>Fire</td><td>At least one object on the map with the <code>Fire</code> trait fully enabled in the traits menu.</td></tr>
-        </tbody>
-      </table>
-
-      <h3>Shoplifting event</h3>
-      <p>Shoplifting is a randomly generated police event. It needs a person, a shop, and an escape path.</p>
+      <h3>When to use native freeplay events</h3>
       <ul>
-        <li>Place at least one person on the map.</li>
-        <li>Designate a house as a shop by naming the house object <code>shop</code>. The name should be lowercase.</li>
-        <li>Create at least one escape path from the shop. Use a path named <code>escapepath01</code>, set speed to about <code>2.4</code>, route it around the map, and set it to delete at end.</li>
+        <li>The event already exists in the base game.</li>
+        <li>The map can satisfy the required names, traits, paths, or accident objects.</li>
+        <li>You mainly want to adjust frequency, difficulty, money, or balance in <code>Specs</code>.</li>
       </ul>
 
-      <h3>Car accident event</h3>
-      <p>Car accidents are randomly generated fire, police, and ambulance events. A map can contain many accident setups, but the naming must be consistent.</p>
+      <h3>When to use custom scripted callouts</h3>
       <ul>
-        <li>Number accident setups in order, starting at <code>1</code> and continuing upward.</li>
-        <li>The first vehicle in each accident must be named <code>ccar_X</code>, where <code>X</code> is the accident number. Only one vehicle in that accident should use <code>ccar_X</code>.</li>
-        <li>Additional crashed vehicles, debris, glass, skid marks, or non-enclosed patients must be named <code>ccard_X</code>.</li>
-        <li>Only trapped persons enclosed inside vehicles should use <code>ccarp_Xa</code>, <code>ccarp_Xb</code>, and so on.</li>
-        <li>Persons outside the vehicle, such as ejected patients, should be named <code>ccard_X</code>, not <code>ccarp_Xa</code>.</li>
+        <li>The event needs several roleplay stages, such as dispatch, investigation, suspect search, transport, and completion.</li>
+        <li>The event needs custom audio, custom markers, or custom objectives.</li>
+        <li>The event should pause while another custom callout is active.</li>
+        <li>The event needs special cleanup logic after the player finishes it.</li>
       </ul>
 
-      <h3>Car accident naming key</h3>
-      <table>
-        <thead><tr><th>Part</th><th>Meaning</th></tr></thead>
-        <tbody>
-          <tr><td><code>c</code></td><td>Crashed.</td></tr>
-          <tr><td><code>car</code></td><td>Main accident car or vehicle.</td></tr>
-          <tr><td><code>d</code></td><td>Debris, extra vehicles, loose scene objects, or patients not enclosed in vehicles.</td></tr>
-          <tr><td><code>p</code></td><td>Patient enclosed inside a vehicle.</td></tr>
-          <tr><td><code>X</code></td><td>The accident number. Every object in the same accident uses the same number.</td></tr>
-          <tr><td><code>a-z</code></td><td>Letters for multiple enclosed patients in the same accident.</td></tr>
-        </tbody>
-      </table>
-      <p>Example: for accident 26, the main crashed vehicle is <code>ccar_26</code>. Glass, debris, skid marks, extra vehicles, and ejected patients are <code>ccard_26</code>. Trapped patients inside vehicles can be <code>ccarp_26a</code>, <code>ccarp_26b</code>, and so on.</p>
-
-      <h3>Car theft event</h3>
-      <p>Car theft is a randomly generated police event. You can place multiple possible car theft setups across a map.</p>
-      <ul>
-        <li>Place a vehicle on the map named <code>stolenvehicle</code>.</li>
-        <li>Create a path named <code>CarThief01</code>.</li>
-        <li>Additional possible car theft paths should continue upward as <code>CarThief02</code>, <code>CarThief03</code>, <code>CarThief04</code>, and so on.</li>
-        <li>If the event does not spawn despite the vehicle and path being correct, test with a gangster placed nearby. Some setups appear to depend on a nearby gangster, although the exact reason can vary by mod and map.</li>
-      </ul>
-
-      <h3>Native events vs custom scripted callouts</h3>
-      <p>The native freeplay event system is best for events the engine already supports. For a brand-new scenario with custom investigation stages, custom audio, special objectives, or unusual completion logic, use a scripted callout through <code>fp_freeplay.script</code>, an updater object, or a custom call scheduler.</p>
+      <p>Good custom callouts should track state clearly and tell the player the next step through ticker text, white help text, audio, and map markers when appropriate.</p>
     `
   },
   {
@@ -4113,19 +4115,19 @@ const categoryGroups = [
   {
     title: "Map Making",
     categories: [
-      "Map Editor Controls and Build Order",
-      "Starting a New Freeplay Map",
-      "Flattening Terrain and Removing Old Map Data",
-      "Ground Texture, TGA, and EFT Files",
-      "Drawing Roads, Grass, and Ground Detail",
-      "Detail Polygons and Decals",
-      "Map Entries, Exits, Boundaries, and Camera",
-      "Virtual Objects and Script Zones",
-      "Emergency Roads and Civilian Traffic",
-      "Civilian Paths, Spawn Points, and Map Exits",
-      "Freeplay Callout Map Requirements",
-      "Testing a Map In Game",
-      "Reducing Lag from Polygons, Props, and Lights"
+      "Map Basics",
+      "New Freeplay Map",
+      "Terrain Cleanup",
+      "Ground Texture Files",
+      "Road and Grass Art",
+      "Detail Polygons",
+      "Entries and Boundaries",
+      "Virtual Objects",
+      "Emergency Roads",
+      "Civilian Paths",
+      "Freeplay Events",
+      "Map Testing",
+      "Lag and Performance"
     ]
   },
   {
