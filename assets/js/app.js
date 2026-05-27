@@ -2421,7 +2421,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Map Editor Controls and Build Order",
     title: "Map Editor Tabs and Modes",
     tags: ["editor", "maps", "function keys", "tabs"],
     body: `
@@ -2449,7 +2449,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Map Editor Controls and Build Order",
     title: "Map Building Workflow",
     tags: ["maps", "workflow", "editor", "freeplay"],
     body: `
@@ -2482,7 +2482,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Starting a New Freeplay Map",
     title: "Creating a New Freeplay Map",
     tags: ["freeplay map", "fp_freeplay", "required objects", "map setup", "beginner"],
     body: `
@@ -2520,7 +2520,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Flattening Terrain and Removing Old Map Data",
     title: "Cleaning and Flattening a Base Map",
     tags: ["terrain", "flatten", "editor", "base map", "virtual objects"],
     body: `
@@ -2534,7 +2534,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
         <li>If prompted to save first, choose carefully. Do not overwrite a base map unless you already made a backup.</li>
       </ol>
 
-      <h3>Clear old map systems</h3>
+      <h3>Clear old objects, water, VOs, paths, and spawn setup</h3>
       <ul>
         <li>Move required startup objects aside instead of deleting them.</li>
         <li>Delete old decorative objects, old station props, old event props, and old map-specific scene objects.</li>
@@ -2561,7 +2561,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Ground Texture, TGA, and EFT Files",
     title: "Terrain Texture and EFT Workflow",
     tags: ["terrain texture", "EFT", "TGA", "EFTXplorer", "8192"],
     body: `
@@ -2604,11 +2604,10 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
       </figure>
 
       <p class="source-note">Tool reference: <a href="https://github.com/annabelsandford/EFTXplorer/releases" target="_blank" rel="noopener">EFTXplorer releases</a>.</p>
-      <p class="source-note">Ground texture reference: <a href="https://em-hub.de/lexicon/entry/39-eigene-bodentextur-erstellen/" target="_blank" rel="noopener">EM-Hub terrain texture article</a>.</p>
     `
   },
   {
-    category: "Maps",
+    category: "Drawing Roads, Grass, and Ground Detail",
     title: "Drawing Roads and Ground Textures",
     tags: ["Photoshop", "pattern overlay", "roads", "terrain art", "ground texture"],
     body: `
@@ -2641,7 +2640,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Detail Polygons and Decals",
     title: "Detail Polygons and Decals",
     tags: ["detail polygons", "decals", "detailpoly", "blend", "modulate", "detail"],
     body: `
@@ -2652,7 +2651,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
       <pre><code>Textures/Detailpoly/</code></pre>
 
       <figure class="article-figure">
-        <img src="assets/img/mapping/mapping-detail-polygons-emhub.webp" alt="Detail polygon example from EM-Hub" loading="lazy">
+        <img src="assets/img/mapping/mapping-detail-polygons-emhub.webp" alt="Detail polygon example" loading="lazy">
         <figcaption>Detail polygons add extra terrain texture detail without repainting the entire floor texture.</figcaption>
       </figure>
 
@@ -2678,11 +2677,10 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
       <pre><code>Data/Textures/Decals/</code></pre>
       <p>Use DDS textures for decals. Existing decals can be selected, moved, rotated, and scaled by width/height in the decal dialog.</p>
 
-      <p class="source-note">Detail polygon reference: <a href="https://em-hub.de/lexicon/entry/42-detailpolygone/" target="_blank" rel="noopener">EM-Hub DetailPolygone</a>.</p>
     `
   },
   {
-    category: "Maps",
+    category: "Map Entries, Exits, Boundaries, and Camera",
     title: "Map Properties and Playable Boundaries",
     tags: ["map properties", "entries", "exits", "boundaries", "camera", "radar"],
     body: `
@@ -2704,7 +2702,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Virtual Objects and Script Zones",
     title: "Virtual Objects",
     tags: ["VO", "map", "placement"],
     body: `
@@ -2731,7 +2729,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Civilian Paths, Spawn Points, and Map Exits",
     title: "Paths, Spawn Points, and Exits",
     tags: ["paths", "traffic", "return to base"],
     body: `
@@ -2752,7 +2750,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Freeplay Callout Map Requirements",
     title: "Freeplay Event Map Requirements",
     tags: ["freeplay events", "map conditions", "callouts", "VO"],
     body: `
@@ -2775,7 +2773,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Testing a Map In Game",
     title: "Map Testing Checklist",
     tags: ["testing", "maps", "freeplay", "performance"],
     body: `
@@ -2796,7 +2794,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Reducing Lag from Polygons, Props, and Lights",
     title: "Map Performance and Poly Budget",
     tags: ["performance", "polygons", "models", "maps"],
     body: `
@@ -2814,7 +2812,7 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     `
   },
   {
-    category: "Maps",
+    category: "Emergency Roads and Civilian Traffic",
     title: "Roads, Streets, and Civilian Traffic",
     tags: ["roads", "streets", "traffic", "paths"],
     body: `
@@ -2917,6 +2915,43 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
     title: "Dispatch and Radio Audio",
     tags: ["wav", "dispatch", "notifications"],
     body: `
+      <p>Emergency 4 audio should be exported as <strong>.wav</strong>. For command sounds, sirens, radio clips, dispatch clips, and voices, use <strong>mono PCM WAV</strong>. The safest export target is <strong>16-bit PCM, mono, 22050 Hz or 44100 Hz</strong>.</p>
+
+      <h3>Recommended export format</h3>
+      <table>
+        <thead><tr><th>Setting</th><th>Use this</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>File extension</td><td><code>.wav</code></td><td>Scripts and base game audio references expect WAV files.</td></tr>
+          <tr><td>Encoding</td><td><strong>PCM</strong>, not MP3 renamed to WAV</td><td>A file can end in <code>.wav</code> and still be the wrong internal format.</td></tr>
+          <tr><td>Channels</td><td><strong>Mono</strong> for sirens, voices, command sounds, and dispatch</td><td>Emergency 4 community siren documentation notes EM3/EM4 custom audio works as mono WAV.</td></tr>
+          <tr><td>Bit depth</td><td><strong>16-bit</strong></td><td>Base game WAV files inspected from <code>Data/Audio</code> use PCM 16-bit.</td></tr>
+          <tr><td>Sample rate</td><td><strong>22050 Hz</strong> or <strong>44100 Hz</strong></td><td>Base game sirens, voices, FX, and ambient files commonly use these rates.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Where audio files usually go</h3>
+      <ul>
+        <li><code>Audio/FX/Sirens</code>: siren WAV files used by siren scripts or vehicle siren setup.</li>
+        <li><code>Audio/FX</code>: command sounds, beeps, roleplay effects, UI-style confirmation sounds, and special effects.</li>
+        <li><code>Audio/FX/voices</code>: person/voice-style files when matching the base game voice structure.</li>
+        <li><code>Audio/Ambient</code>: longer map atmosphere loops or placed ambient sounds.</li>
+      </ul>
+
+      <h3>Script path examples</h3>
+      <pre><code>Audio::PlaySample("mod:Audio/FX/EM4Resource/Dispatch_First_Alarm.wav");
+Audio::PlaySample3D("mod:Audio/FX/Sirens/Emsiren01.wav", CarPos, true);</code></pre>
+
+      <h3>Common reasons audio does not play</h3>
+      <ul>
+        <li>The file is stereo when the command or siren expects mono.</li>
+        <li>The file is compressed audio renamed to <code>.wav</code> instead of real PCM WAV.</li>
+        <li>The path in the script does not match the folder or filename exactly.</li>
+        <li>The filename has spaces, typo differences, or capitalization differences.</li>
+        <li>Two audio clips are triggered at the same time and overlap.</li>
+        <li>The sound is positional/3D and the camera is too far away from the source.</li>
+      </ul>
+
+      <h3>Dispatch and radio advice</h3>
       <p>Short radio audio works best. A good script usually pairs audio with both a top ticker message and white on-screen help text. For global dispatch, use global playback functions rather than positional sound tied to the caller.</p>
       <ul>
         <li>Keep filenames clear, for example <code>Homicide_Suspect_In_Custody.wav</code>.</li>
@@ -3949,7 +3984,6 @@ object VcmdTutorialSiren : CommandScript
       </ul>
 
       <p>This issue is different from the White Map Bug. Fullscreen problems usually affect the window size, stretching, or black bars. The White Map Bug affects the rendered map and units.</p>
-      <p class="source-note">Reference: <a href="https://em-hub.de/lexicon/entry/49-fullscreen-in-windows-10/" target="_blank" rel="noopener">EM-Hub fullscreen article</a>.</p>
     `
   },
   {
@@ -4078,7 +4112,21 @@ const categoryGroups = [
   },
   {
     title: "Map Making",
-    categories: ["Maps"]
+    categories: [
+      "Map Editor Controls and Build Order",
+      "Starting a New Freeplay Map",
+      "Flattening Terrain and Removing Old Map Data",
+      "Ground Texture, TGA, and EFT Files",
+      "Drawing Roads, Grass, and Ground Detail",
+      "Detail Polygons and Decals",
+      "Map Entries, Exits, Boundaries, and Camera",
+      "Virtual Objects and Script Zones",
+      "Emergency Roads and Civilian Traffic",
+      "Civilian Paths, Spawn Points, and Map Exits",
+      "Freeplay Callout Map Requirements",
+      "Testing a Map In Game",
+      "Reducing Lag from Polygons, Props, and Lights"
+    ]
   },
   {
     title: "3D Modeling",
