@@ -1469,7 +1469,7 @@ const articles = [
     body: `
       <p>This video path is meant to give new modelers enough Blender knowledge to follow Emergency 4 modeling tutorials without getting lost in the interface. Watch the basics first, then move into vehicle modeling, UV mapping, topology, and painting.</p>
       <h3>Blender interface and object basics</h3>
-      <div class="resource-grid">
+      <div class="resource-grid blender-video-grid blender-video-grid-1">
         <a class="resource-link" href="https://www.youtube.com/watch?v=RqfSkU-Hp1A" target="_blank" rel="noreferrer"><strong>Interface and Navigation</strong><span>Viewport movement, panels, and beginner controls.</span></a>
         <a class="resource-link" href="https://youtu.be/_2Rq6PZf4bo" target="_blank" rel="noreferrer"><strong>Selecting Objects</strong><span>Object selection and scene interaction.</span></a>
         <a class="resource-link" href="https://youtu.be/lLJilYum_lQ" target="_blank" rel="noreferrer"><strong>Transforming Objects</strong><span>Move, rotate, scale, and transformation values.</span></a>
@@ -1479,7 +1479,7 @@ const articles = [
       </div>
 
       <h3>Mesh editing fundamentals</h3>
-      <div class="resource-grid">
+      <div class="resource-grid blender-video-grid blender-video-grid-2">
         <a class="resource-link" href="https://youtu.be/n1lCK8WH62k" target="_blank" rel="noreferrer"><strong>Edit Mode and Origins</strong><span>Understanding object origins and mesh editing.</span></a>
         <a class="resource-link" href="https://youtu.be/ENdGhAM3NzA" target="_blank" rel="noreferrer"><strong>Duplicate and Instance Objects</strong><span>Copying geometry safely.</span></a>
         <a class="resource-link" href="https://youtu.be/BE608WdFNCw" target="_blank" rel="noreferrer"><strong>Pivot, Snapping, Proportional Editing</strong><span>Precise positioning and shaping tools.</span></a>
@@ -1491,7 +1491,7 @@ const articles = [
       </div>
 
       <h3>Files, materials, lighting, and rendering</h3>
-      <div class="resource-grid">
+      <div class="resource-grid blender-video-grid blender-video-grid-3">
         <a class="resource-link" href="https://www.youtube.com/watch?v=o-QcLZcrg0U" target="_blank" rel="noreferrer"><strong>Object Modifiers</strong><span>Using modifiers without ruining export-ready geometry.</span></a>
         <a class="resource-link" href="https://youtu.be/JZQ7c9X11MU" target="_blank" rel="noreferrer"><strong>Splitting and Joining Editors</strong><span>Workspace organization.</span></a>
         <a class="resource-link" href="https://www.youtube.com/watch?v=R6j_f-uAH4E" target="_blank" rel="noreferrer"><strong>Working with Blend Files</strong><span>Saving, organizing, and managing Blender files.</span></a>
@@ -1500,7 +1500,7 @@ const articles = [
       </div>
 
       <h3>Vehicle modeling prep</h3>
-      <div class="resource-grid">
+      <div class="resource-grid blender-video-grid blender-video-grid-4">
         <a class="resource-link" href="https://youtu.be/bHLT5Xh_tzQ" target="_blank" rel="noreferrer"><strong>Basics of UV Mapping</strong><span>How model surfaces connect to texture images.</span></a>
         <a class="resource-link" href="https://www.youtube.com/watch?v=HGL6QpVRyXk" target="_blank" rel="noreferrer"><strong>Basics of Topology</strong><span>How clean geometry affects model quality.</span></a>
         <a class="resource-link" href="https://www.youtube.com/watch?v=SS2KL7Z18D4" target="_blank" rel="noreferrer"><strong>Painting and Color Layers</strong><span>Texture painting concepts in Blender.</span></a>
@@ -2479,6 +2479,228 @@ p.PushActionExecuteCommand(ACTION_APPEND, "DummyNextStep", &p, 0, false);</code>
 
       <h3>Beginner rule</h3>
       <p>Never build the entire map before testing pathing. Test one district, one station, and one road network early. Pathing problems become much harder to fix after the map is fully decorated.</p>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Creating a New Freeplay Map",
+    tags: ["freeplay map", "fp_freeplay", "required objects", "map setup", "beginner"],
+    body: `
+      <p>Creating a new Emergency 4 freeplay map is not only a terrain-art project. The map, mission script, freeplay parameters, station scripts, virtual objects, paths, entries, exits, and named objects all need to agree. A map can look finished in the editor and still crash or fail in freeplay if a required object is missing.</p>
+
+      <h3>Start by checking the freeplay script</h3>
+      <p>Before deleting anything from an existing map, open the mod's freeplay mission script:</p>
+      <pre><code>Mods/Your Mod/Scripts/Game/Mission/fp_freeplay.script</code></pre>
+      <p>Many mods use this script to check for required map objects at startup. If the script expects an object named <code>fire_station_controlpanel</code>, <code>spawn_check</code>, a station panel, a dispatcher object, or another script anchor, deleting that object can break freeplay even though the editor still loads.</p>
+
+      <figure class="article-figure">
+        <img src="assets/img/mapping/mapping-fp-freeplay-script.png" alt="fp_freeplay script showing required map object names" loading="lazy">
+        <figcaption>Always inspect <code>fp_freeplay.script</code> before clearing a map. Startup scripts often depend on exact object names.</figcaption>
+      </figure>
+
+      <h3>Required object rule</h3>
+      <p>A required object can be any placed object, but its object name must match what the script searches for. The object does not technically need to look like a control panel, although using a realistic panel is better for players.</p>
+
+      <div class="figure-grid">
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-required-object-name.png" alt="Required object name displayed on map" loading="lazy"><figcaption>Named objects show their object name in the editor when labels are visible.</figcaption></figure>
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-object-properties.png" alt="Object properties menu" loading="lazy"><figcaption>Select the object and open its properties to edit the name.</figcaption></figure>
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-change-object-name.png" alt="Changing an object name in the editor" loading="lazy"><figcaption>The name must match the script exactly, including spelling and capitalization.</figcaption></figure>
+      </div>
+
+      <h3>Safe beginner process</h3>
+      <ol>
+        <li>Load the mod in the editor through <strong>Modifications</strong>.</li>
+        <li>Load the map you want to use as a base, usually <code>Maps/freeplay.e4m</code>.</li>
+        <li>Find required script objects and move them together near the edge of the map.</li>
+        <li>Save a backup copy before deleting anything.</li>
+        <li>Clear old props, old VOs, liquids, paths, and map-specific setup only after you know what must be preserved.</li>
+        <li>Rebuild terrain, roads, streets, paths, VOs, entries, exits, and event requirements in passes.</li>
+        <li>Test in freeplay early, not after the entire map is decorated.</li>
+      </ol>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Cleaning and Flattening a Base Map",
+    tags: ["terrain", "flatten", "editor", "base map", "virtual objects"],
+    body: `
+      <p>Most beginner map projects start from an existing mod map. That is normal, but the first job is controlled demolition. You want to remove old map content without deleting required script objects or breaking the map's basic startup logic.</p>
+
+      <h3>Load the map</h3>
+      <ol>
+        <li>Open the editor.</li>
+        <li>Load the mod using <strong>Modifications</strong>.</li>
+        <li>Use <strong>Map -> Load Map</strong> and open the freeplay map.</li>
+        <li>If prompted to save first, choose carefully. Do not overwrite a base map unless you already made a backup.</li>
+      </ol>
+
+      <h3>Clear old map systems</h3>
+      <ul>
+        <li>Move required startup objects aside instead of deleting them.</li>
+        <li>Delete old decorative objects, old station props, old event props, and old map-specific scene objects.</li>
+        <li>Use <strong>Edit -> Liquids</strong> to remove old water surfaces.</li>
+        <li>Use <strong>Edit -> Virtual Objects</strong> to remove old VOs once you know they are not needed.</li>
+        <li>Clear paths, streets, spawn points, and entries only when you are ready to rebuild them.</li>
+      </ul>
+
+      <h3>Flattening terrain</h3>
+      <p>Use the Terrain tool's <strong>Set</strong> mode when you want a clean flat baseline. A common flat working level is around <code>20000</code>. The <strong>Set</strong> tool places terrain at a specific height, while <strong>Raise</strong>, <strong>Lower</strong>, and <strong>Soften</strong> modify terrain gradually.</p>
+
+      <figure class="article-figure">
+        <img src="assets/img/mapping/mapping-terrain-set-tool.png" alt="Terrain set tool configured for flattening" loading="lazy">
+        <figcaption>The Set tool is useful for resetting a map to a flat working height before rebuilding terrain.</figcaption>
+      </figure>
+
+      <h3>Virtual object cleanup</h3>
+      <p>Blue boxes on the map are virtual objects. They can define water, station bays, parking locations, scripted zones, search areas, terrain effects, and callout locations. A clean map usually means deleting old VOs and rebuilding only the ones your new scripts need.</p>
+
+      <figure class="article-figure">
+        <img src="assets/img/mapping/mapping-virtual-objects-cleanup.png" alt="Virtual objects visible on a map" loading="lazy">
+        <figcaption>Do not leave old VOs behind unless you know exactly what they do. Old names can accidentally trigger scripts.</figcaption>
+      </figure>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Terrain Texture and EFT Workflow",
+    tags: ["terrain texture", "EFT", "TGA", "EFTXplorer", "8192"],
+    body: `
+      <p>The large painted ground image under an EM4 map is not edited like a normal placed object. Emergency 4 uses floor textures that are imported from <code>.tga</code> and saved into the game's terrain texture format.</p>
+
+      <h3>Important texture rules</h3>
+      <ul>
+        <li>The terrain texture width and height must be multiples of <code>512</code> pixels.</li>
+        <li>The common full freeplay texture size is <code>8192 x 8192</code>.</li>
+        <li>At the usual EM4 scale of <strong>1 meter = 12.5 pixels</strong>, an <code>8192 x 8192</code> texture represents about <strong>655.36 meters by 655.36 meters</strong>.</li>
+        <li>The import file should be a <strong>24-bit TGA</strong>.</li>
+        <li>The texture should not be larger than <code>8192 x 8192</code>.</li>
+        <li>Save the map after importing. If you close the editor without saving, the map change is lost.</li>
+      </ul>
+
+      <h3>File relationship</h3>
+      <p>The editable artwork is normally a <code>.tga</code>. After import, the editor creates or updates the map's Emergency floor texture data. The playable map itself is still saved as an <code>.e4m</code>. In practice, a working map depends on both the map file and the converted floor texture data being present.</p>
+
+      <h3>Importing a new floor texture</h3>
+      <ol>
+        <li>Create or export your terrain image as a 24-bit <code>.tga</code>.</li>
+        <li>Open the editor and load your mod/map.</li>
+        <li>Go to <strong>Edit -> Terrain</strong> or press <code>F2</code>.</li>
+        <li>Choose <strong>Floor -> Import Texture</strong>.</li>
+        <li>Select the TGA file.</li>
+        <li>Save the map as <code>freeplay.e4m</code> or your chosen map name.</li>
+      </ol>
+
+      <div class="figure-grid">
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-ground-texture-import.webp" alt="Emergency 4 editor import terrain texture menu" loading="lazy"><figcaption>Import the 24-bit TGA through the editor terrain/floor texture tools.</figcaption></figure>
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-ground-texture-save-eft.webp" alt="Emergency 4 editor saving converted floor texture" loading="lazy"><figcaption>After import, save the map so the converted floor texture data and map file stay together.</figcaption></figure>
+      </div>
+
+      <h3>EFTXplorer</h3>
+      <p>EFTXplorer can read and convert Emergency floor textures when the original editable TGA is not available. This is useful when studying an existing map's road widths, sidewalks, alleys, highways, parking lots, and texture patterns.</p>
+
+      <figure class="article-figure">
+        <img src="assets/img/mapping/mapping-eftxplorer.gif" alt="EFTXplorer converting an Emergency floor texture" loading="lazy">
+        <figcaption>EFTXplorer helps inspect or convert existing <code>.eft</code> terrain textures for reference work.</figcaption>
+      </figure>
+
+      <p class="source-note">Tool reference: <a href="https://github.com/annabelsandford/EFTXplorer/releases" target="_blank" rel="noopener">EFTXplorer releases</a>.</p>
+      <p class="source-note">Ground texture reference: <a href="https://em-hub.de/lexicon/entry/39-eigene-bodentextur-erstellen/" target="_blank" rel="noopener">EM-Hub terrain texture article</a>.</p>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Drawing Roads and Ground Textures",
+    tags: ["Photoshop", "pattern overlay", "roads", "terrain art", "ground texture"],
+    body: `
+      <p>A believable EM4 map starts with a readable floor texture. Roads, sidewalks, shoulders, alleys, parking lots, grass, dirt, and pavement should be drawn before the map is filled with objects. The editor can place detail on top, but the base terrain texture carries the layout.</p>
+
+      <h3>Using existing maps as scale reference</h3>
+      <p>Use base game and mod maps as measurement references. Study how wide roads, lanes, sidewalks, intersections, alleys, parking rows, driveways, and medians are. EM4 is viewed from above, so clear readable shapes matter more than tiny real-world accuracy.</p>
+
+      <h3>Pattern overlay workflow</h3>
+      <p>One efficient Photoshop method is to sample a clean piece of grass, asphalt, dirt, or concrete and turn it into a repeatable pattern. Then you can paint that pattern onto a new layer instead of painting a flat color.</p>
+
+      <div class="figure-grid">
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-pattern-source-selection.png" alt="Selecting a clean grass texture area" loading="lazy"><figcaption>Select a clean texture patch that will repeat without obvious dark edges.</figcaption></figure>
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-pattern-layer-copy.png" alt="Copied texture area on a new layer" loading="lazy"><figcaption>Copy the selection to a new layer so it can become a reusable pattern.</figcaption></figure>
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-new-pattern-layer.png" alt="Creating a new pattern layer" loading="lazy"><figcaption>Create a new layer for pattern painting so the work remains editable.</figcaption></figure>
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-pattern-overlay-menu.png" alt="Pattern overlay layer style menu" loading="lazy"><figcaption>Use Pattern Overlay in the layer style settings.</figcaption></figure>
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-pattern-overlay-settings.png" alt="Pattern overlay settings" loading="lazy"><figcaption>Choose the created pattern and adjust scale/opacity.</figcaption></figure>
+        <figure class="article-figure"><img src="assets/img/mapping/mapping-pattern-painting.png" alt="Painting a terrain pattern" loading="lazy"><figcaption>Paint on the pattern layer to build grass, dirt, asphalt, or other surface areas.</figcaption></figure>
+      </div>
+
+      <h3>Beginner texture advice</h3>
+      <ul>
+        <li>Keep roads readable. Emergency vehicles need clear space, and players need to understand lanes quickly.</li>
+        <li>Avoid extreme contrast unless it is a marking, shadow, or intentional road feature.</li>
+        <li>Use separate layers for road base, lane markings, sidewalks, grass, dirt, shadows, and detail.</li>
+        <li>Export a test TGA and import it early before spending hours polishing the wrong scale.</li>
+      </ul>
+
+      <p>Extra video reference: <a href="https://youtu.be/xjmLdr0oX3k?si=6if5lb4Ce8lBsm8x" target="_blank" rel="noopener">Photoshop pattern overlay workflow</a>.</p>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Detail Polygons and Decals",
+    tags: ["detail polygons", "decals", "detailpoly", "blend", "modulate", "detail"],
+    body: `
+      <p>Detail polygons and decals are how a map gains close-up visual detail after the base floor texture is finished. Use them for dirt buildup, road edge wear, stains, painted markings, manhole covers, sidewalk details, and localized texture variation.</p>
+
+      <h3>Detail polygons</h3>
+      <p>Detail polygons are edited in <strong>DetailPolygon</strong> mode with <code>Shift + F4</code>. They place additional textures over terrain. These textures can overlap, and custom detail polygon textures can use alpha channels. The usual folder is:</p>
+      <pre><code>Textures/Detailpoly/</code></pre>
+
+      <figure class="article-figure">
+        <img src="assets/img/mapping/mapping-detail-polygons-emhub.webp" alt="Detail polygon example from EM-Hub" loading="lazy">
+        <figcaption>Detail polygons add extra terrain texture detail without repainting the entire floor texture.</figcaption>
+      </figure>
+
+      <h3>Blend modes</h3>
+      <table>
+        <thead><tr><th>Mode</th><th>Beginner meaning</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Blend</strong></td><td>Places the selected texture onto the terrain with a simple alpha border.</td></tr>
+          <tr><td><strong>Modulate</strong></td><td>Darkens the terrain texture using the selected texture.</td></tr>
+          <tr><td><strong>Detail</strong></td><td>Darkens color values below 127 and lightens values above 127, creating a detail-overlay effect.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Open vs closed polygons</h3>
+      <ul>
+        <li><strong>Closed</strong> polygons describe an area.</li>
+        <li><strong>Open</strong> polygons describe a line path.</li>
+      </ul>
+
+      <h3>Decals</h3>
+      <p>Decals are flat textures placed on terrain. They are useful for road arrows, parking lines, crosswalks, manhole covers, stains, scene markings, painted numbers, and other flat details that should stay sharper than the base terrain texture.</p>
+      <p>Custom decal textures are commonly placed under:</p>
+      <pre><code>Data/Textures/Decals/</code></pre>
+      <p>Use DDS textures for decals. Existing decals can be selected, moved, rotated, and scaled by width/height in the decal dialog.</p>
+
+      <p class="source-note">Detail polygon reference: <a href="https://em-hub.de/lexicon/entry/42-detailpolygone/" target="_blank" rel="noopener">EM-Hub DetailPolygone</a>.</p>
+    `
+  },
+  {
+    category: "Maps",
+    title: "Map Properties and Playable Boundaries",
+    tags: ["map properties", "entries", "exits", "boundaries", "camera", "radar"],
+    body: `
+      <p>Map Properties are accessed with <code>Shift + F9</code>. This is where a map becomes playable instead of just decorative. Entries, exits, boundaries, camera starts, weather/light effects, travel-map roads, and camera locations all live here.</p>
+
+      <table>
+        <thead><tr><th>Property area</th><th>What it controls</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Entries/exits</td><td>Land, air, and water entry/exit points.</td><td>Used when units enter the map, return to HQ, or leave after transport.</td></tr>
+          <tr><td>Boundaries</td><td>Playable map limits and camera limits.</td><td>Prevents the player from moving the camera outside the intended area.</td></tr>
+          <tr><td>Ingame map</td><td>Travel-map road data.</td><td>Helps the game understand usable roads and navigation presentation.</td></tr>
+          <tr><td>Light/weather</td><td>Map-wide atmosphere.</td><td>Controls how the map feels at different times or conditions.</td></tr>
+          <tr><td>Camera start</td><td>Initial view location.</td><td>Determines where the player starts looking when the map loads.</td></tr>
+          <tr><td>Camera locations</td><td>Named scripted camera positions.</td><td>Used by mission scripts and cutscenes.</td></tr>
+        </tbody>
+      </table>
+
+      <p>For freeplay maps, entries/exits are especially important. Scripts can call return-to-base behavior, but the map needs valid exits for that to work cleanly.</p>
     `
   },
   {
@@ -3696,6 +3918,41 @@ object VcmdTutorialSiren : CommandScript
     `
   },
   {
+    category: "Windows Fullscreen Fix",
+    title: "Fullscreen in Windows 10 and 11",
+    tags: ["fullscreen", "Windows 10", "Windows 11", "black bars", "stretched", "compatibility", "administrator"],
+    body: `
+      <p>Emergency 4 can sometimes stop using fullscreen correctly after Windows updates. The game may open in a strange size, appear stretched, show black bars, shift away from the center of the monitor, or refuse to respect the resolution set in the config.</p>
+
+      <h3>Most common fix</h3>
+      <ol>
+        <li>Go to the main Emergency 4 or <code>911 First Responders</code> install folder.</li>
+        <li>Find <code>Em4.exe</code>.</li>
+        <li>Right-click <code>Em4.exe</code> and choose <strong>Properties</strong>.</li>
+        <li>Open the <strong>Compatibility</strong> tab.</li>
+        <li>Enable <strong>Disable fullscreen optimizations</strong>.</li>
+        <li>Enable <strong>Run this program as an administrator</strong>.</li>
+        <li>Click <strong>Apply</strong>, then <strong>OK</strong>.</li>
+        <li>Start the game or editor again.</li>
+      </ol>
+
+      <figure class="article-figure">
+        <img src="assets/img/common-issues/windows10-fullscreen-compatibility.webp" alt="Windows compatibility settings for disabling fullscreen optimizations" loading="lazy">
+        <figcaption>Use the Compatibility tab on <code>Em4.exe</code> to disable fullscreen optimizations and run the game as administrator.</figcaption>
+      </figure>
+
+      <h3>If the screen is still shifted</h3>
+      <ul>
+        <li>Press <code>Alt + Enter</code> once or twice in game to toggle fullscreen/windowed behavior.</li>
+        <li>Check the game's resolution config and make sure it matches your monitor.</li>
+        <li>Restart the game after changing resolution or compatibility settings.</li>
+      </ul>
+
+      <p>This issue is different from the White Map Bug. Fullscreen problems usually affect the window size, stretching, or black bars. The White Map Bug affects the rendered map and units.</p>
+      <p class="source-note">Reference: <a href="https://em-hub.de/lexicon/entry/49-fullscreen-in-windows-10/" target="_blank" rel="noopener">EM-Hub fullscreen article</a>.</p>
+    `
+  },
+  {
     category: "Installing Mods",
     title: "Installing Mods Through Steam",
     tags: ["Steam", "mod install", "911 First Responders", "e4mod", "Mods folder"],
@@ -3813,11 +4070,15 @@ const categoryGroups = [
   },
   {
     title: "Common Issues",
-    categories: ["Cheats and Debugging", "Graphics and Shadows", "White Map Bug", "Packed and Locked V3O", "White Model Fixes", "Common Issues", "Troubleshooting"]
+    categories: ["Cheats and Debugging", "Graphics and Shadows", "Windows Fullscreen Fix", "White Map Bug", "Packed and Locked V3O", "White Model Fixes", "Common Issues", "Troubleshooting"]
   },
   {
     title: "Editor and Assets",
-    categories: ["Folder Structure", "Editor Manual", "Maps", "Models", "Prototypes", "Asset Workshop", "UI and Icons", "Audio"]
+    categories: ["Folder Structure", "Editor Manual", "Models", "Prototypes", "Asset Workshop", "UI and Icons", "Audio"]
+  },
+  {
+    title: "Map Making",
+    categories: ["Maps"]
   },
   {
     title: "3D Modeling",

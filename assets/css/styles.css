@@ -626,6 +626,73 @@ body {
   line-height: 1.45;
 }
 
+.blender-video-grid .resource-link {
+  border-color: var(--video-border);
+  background: linear-gradient(180deg, var(--video-bg-start) 0%, var(--video-bg-end) 100%);
+  box-shadow: 0 8px 18px var(--video-shadow);
+}
+
+.blender-video-grid .resource-link:hover {
+  border-color: var(--video-hover-border);
+  background: linear-gradient(180deg, var(--video-hover-start) 0%, var(--video-hover-end) 100%);
+}
+
+.blender-video-grid .resource-link strong {
+  color: var(--video-title);
+}
+
+.blender-video-grid .resource-link span {
+  color: var(--video-copy);
+}
+
+.blender-video-grid-1 {
+  --video-bg-start: #f2fbf1;
+  --video-bg-end: #e3f6df;
+  --video-border: #b8dfb4;
+  --video-hover-start: #e9f8e6;
+  --video-hover-end: #d7f0d1;
+  --video-hover-border: #89c984;
+  --video-shadow: rgba(64, 128, 64, 0.09);
+  --video-title: #216a2f;
+  --video-copy: #46624a;
+}
+
+.blender-video-grid-2 {
+  --video-bg-start: #e9f8e6;
+  --video-bg-end: #d4efce;
+  --video-border: #99d096;
+  --video-hover-start: #dff3da;
+  --video-hover-end: #c7e8bf;
+  --video-hover-border: #70b96d;
+  --video-shadow: rgba(47, 120, 54, 0.12);
+  --video-title: #185d27;
+  --video-copy: #3e5d42;
+}
+
+.blender-video-grid-3 {
+  --video-bg-start: #def2d8;
+  --video-bg-end: #c5e8bb;
+  --video-border: #7cbe76;
+  --video-hover-start: #d1ecc9;
+  --video-hover-end: #b7dfac;
+  --video-hover-border: #5ca858;
+  --video-shadow: rgba(31, 104, 42, 0.14);
+  --video-title: #0f5120;
+  --video-copy: #354f38;
+}
+
+.blender-video-grid-4 {
+  --video-bg-start: #d1ebca;
+  --video-bg-end: #afdca4;
+  --video-border: #63ac5d;
+  --video-hover-start: #c3e4bb;
+  --video-hover-end: #9fd391;
+  --video-hover-border: #428f40;
+  --video-shadow: rgba(20, 91, 35, 0.16);
+  --video-title: #0a451b;
+  --video-copy: #304b34;
+}
+
 .important-callout,
 .priority-resource {
   margin-top: 18px;
@@ -731,6 +798,36 @@ body {
 
 .figure-grid .modeling-figure {
   margin-top: 0;
+}
+
+.article-figure {
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.article-figure img {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.article-figure figcaption {
+  padding: 9px 11px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+  border-top: 1px solid var(--border);
+  background: #fff;
+}
+
+.source-note {
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .download-grid {
