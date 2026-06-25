@@ -62,6 +62,14 @@ const articles = [
           <a href="https://mega.nz/file/SzYE2YYT#hUZzr8w29YontW_HBHo_UqdTDj-0IYuunbqOxCqLOwk" target="_blank" rel="noreferrer">Download</a>
         </article>
 
+        <article class="download-card archived">
+          <div class="download-kicker">Previous Release</div>
+          <h3>Beaverhead County Modification V1</h3>
+          <p>Original Beaverhead County Modification V1 release, preserved for users who need the older build.</p>
+          <div class="download-meta">Released 5 Feb 2026</div>
+          <a href="https://mega.nz/file/ev5EzTSY#TBro-a3t3o8jnnduSZ5Q0NKZOgDJpivCu2w1ffuppzg" target="_blank" rel="noreferrer">Download</a>
+        </article>
+
         <article class="download-card">
           <div class="download-kicker">Latest Update</div>
           <h3>Elisa City Modification Update</h3>
