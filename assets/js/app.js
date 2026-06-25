@@ -3865,25 +3865,83 @@ object VcmdTutorialSiren : CommandScript
   },
   {
     category: "Freeplay and Missions",
-    title: "Freeplay Files Deep Dive",
+    title: "Freeplay Endless Parameters Deep Dive",
     tags: ["freeplayparameters", "fp_params", "events", "money", "weather"],
     body: `
-      <p>Freeplay behavior is controlled by several XML files in <code>Specs</code>. These files decide what events can happen, how often they happen, how much money the player has, how difficult events are, and which environment settings are active.</p>
+      <p><code>Specs/fp_params_endless.xml</code> is one of the main files that controls normal endless freeplay pacing. It does not create custom scripted callouts by itself, but it tells the base freeplay event system which native events are enabled, how often they should be considered, how much they are worth, how much money the player starts with, and how strict the freeplay difficulty/rating system should be.</p>
+      <p>Use this file when you want to tune the feel of freeplay: fewer random medical calls, more fires, longer gaps between incidents, more starting money, less financial pressure, or disabling a native event that does not work correctly on your map.</p>
       <table>
-        <thead><tr><th>File type</th><th>What it controls</th></tr></thead>
+        <thead><tr><th>File</th><th>Typical use</th><th>Notes</th></tr></thead>
         <tbody>
-          <tr><td>Endless/freeplay parameters</td><td>Normal freeplay event frequency, event difficulty, start money, rewards, penalties, and event settings.</td></tr>
-          <tr><td>Challenge parameters</td><td>Challenge-mode event pacing, scoring pressure, and difficulty values.</td></tr>
-          <tr><td>Multiplayer parameters</td><td>Multiplayer-specific freeplay setup, if the mod supports it.</td></tr>
-          <tr><td>Weather/environment settings</td><td>Weather chances, rain, storm behavior, and other environment values when supported by the file.</td></tr>
+          <tr><td><code>fp_params_endless.xml</code></td><td>Main single-player endless freeplay tuning.</td><td>Edit this first for normal freeplay.</td></tr>
+          <tr><td><code>fp_params_endless_d.xml</code></td><td>Deluxe endless freeplay tuning.</td><td>Only matters if the mod/game mode uses the Deluxe variant.</td></tr>
+          <tr><td><code>fp_params_endless_mp.xml</code></td><td>Multiplayer endless tuning.</td><td>Used for multiplayer freeplay.</td></tr>
+          <tr><td><code>fp_params_endless_2_mp.xml</code> / <code>fp_params_endless_3_mp.xml</code></td><td>Extra multiplayer player-count variants.</td><td>Usually smaller files that mainly adjust money and rating limits.</td></tr>
+          <tr><td><code>fp_params_challenge*.xml</code></td><td>Challenge-mode pacing and score pressure.</td><td>Do not assume challenge values affect normal endless freeplay.</td></tr>
         </tbody>
       </table>
-      <p>Parameter files only make events possible. The map still needs the correct event conditions. For example, a car theft event still needs the correct stolen vehicle setup and path, and a fire event still needs valid fire objects.</p>
+      <h3>How event frequency works</h3>
+      <p>There are two layers to event frequency: global pacing values near the top of the file, and per-event values inside the <code>&lt;events&gt;</code> section.</p>
+      <table>
+        <thead><tr><th>Setting</th><th>Plain-English meaning</th><th>How to change the pace</th></tr></thead>
+        <tbody>
+          <tr><td><code>MinDurationBetweenEvents</code></td><td>Minimum cooldown, in seconds, before another native event should be allowed.</td><td>Raise it for more breathing room. Lower it for faster back-to-back calls.</td></tr>
+          <tr><td><code>MaxIdleDuration</code></td><td>How long the game should tolerate being idle before trying to push activity again.</td><td>Lower values reduce quiet time. Higher values allow longer quiet stretches.</td></tr>
+          <tr><td><code>GlobalEventFrequencyFactor</code></td><td>A global multiplier applied across event frequencies.</td><td>Raise above <code>1.0</code> for a busier game. Lower below <code>1.0</code> for a calmer game.</td></tr>
+          <tr><td><code>InitialEventFrequencyBoost</code></td><td>Temporary early-game frequency boost.</td><td>Higher means the start of freeplay can ramp up faster.</td></tr>
+          <tr><td><code>InitialEventWaitDuration</code></td><td>How long, in seconds, the game waits before the first boosted event timing begins.</td><td>Raise it if players need more setup time at the start.</td></tr>
+          <tr><td><code>AverageFrequency</code></td><td>Per-event average number of that event per 10 minutes before other conditions/multipliers are considered.</td><td>Double the number to make that event roughly twice as likely relative to its old setting.</td></tr>
+        </tbody>
+      </table>
+      <p>Example: if <code>EFPEventCarAccident</code> has <code>&lt;AverageFrequency value="0.75" /&gt;</code>, changing it to <code>0.35</code> makes car accidents much less common. Changing it to <code>1.50</code> makes car accidents much more common. This is a weighting/average, not a guarantee that the event will fire exactly on a timer.</p>
+      <h3>How to disable or enable a native event</h3>
+      <p>Each native event block usually has an <code>Enabled</code> line. Set it to <code>0</code> to disable that event, or <code>1</code> to allow it.</p>
+      <pre><code>&lt;EFPEventCarTheft&gt;
+  &lt;Enabled value = "0" /&gt;
+  &lt;AverageFrequency value = "0.50" /&gt;
+&lt;/EFPEventCarTheft&gt;</code></pre>
+      <p>In that example, the car theft event is disabled even though it still has an <code>AverageFrequency</code>. The frequency value only matters when <code>Enabled</code> is set to <code>1</code>.</p>
+      <h3>Common event blocks in Beaverhead's endless file</h3>
+      <p>The Beaverhead endless file includes native events such as medical calls, random fires, cigarette fires, car accidents, traffic light failures, rowdy persons, bomber, hostage taking, arsonist, bank robbery, pickpocketing, suicide events, civil car defects, gas explosions, short circuits, running amok, becoming murderer, and earthquake. Some may be intentionally disabled if they do not fit the map or release balance.</p>
+      <table>
+        <thead><tr><th>Event entry</th><th>What to tune</th><th>Important warning</th></tr></thead>
+        <tbody>
+          <tr><td><code>EFPRandomFire</code>, <code>EFPEventCigarette</code>, <code>EFPEventShortCircuit</code></td><td>Fire frequency and fire-related pressure.</td><td>The map still needs burnable objects and valid fire behavior.</td></tr>
+          <tr><td><code>EFPEventFall</code>, <code>EFPEventHeartAttack</code>, <code>EFPEventStroke</code>, and other medical events</td><td>EMS call volume.</td><td>Too many medical events can overwhelm EMS-heavy mods quickly.</td></tr>
+          <tr><td><code>EFPEventCarAccident</code>, <code>EFPEventCivilcarDefect</code>, <code>EFPEventTrafficLightFailure</code></td><td>Traffic/roadway event volume.</td><td>These depend heavily on map paths, traffic behavior, and valid spawn conditions.</td></tr>
+          <tr><td><code>EFPBomber</code>, <code>EFPHostageTaking</code>, <code>EFPBankRobbery</code>, <code>EFPRunningAmok</code></td><td>Police-heavy event pressure.</td><td>Make changes slowly; these can spike difficulty fast.</td></tr>
+          <tr><td><code>EFPEarthquake</code>, <code>EFPGasExplosion</code></td><td>Major incident frequency.</td><td>Keep rare unless the mod is designed for frequent large incidents.</td></tr>
+        </tbody>
+      </table>
+      <h3>Money and economy values</h3>
+      <table>
+        <thead><tr><th>Setting</th><th>Meaning</th><th>Typical edit</th></tr></thead>
+        <tbody>
+          <tr><td><code>StartBudget</code></td><td>Money available when freeplay starts.</td><td>Raise this if players should start with more freedom.</td></tr>
+          <tr><td><code>MaxBudget</code></td><td>Maximum money the player can hold.</td><td>Raise if late-game rewards are being wasted by the cap.</td></tr>
+          <tr><td><code>Earnings</code></td><td>Recurring income/reward baseline used by freeplay economy.</td><td>Raise for easier economy, lower for tighter economy.</td></tr>
+          <tr><td><code>BuyFactor</code></td><td>Multiplier affecting purchase cost.</td><td>Higher makes buying units more expensive.</td></tr>
+          <tr><td><code>SellFactor</code></td><td>How much value is returned when selling.</td><td>Lower values punish selling more.</td></tr>
+          <tr><td><code>SquadPriceGrowth</code></td><td>How costs scale as the player expands.</td><td>Higher values make later purchases more expensive.</td></tr>
+          <tr><td><code>MaxParkingSpace</code></td><td>Freeplay base vehicle/parking capacity limit.</td><td>Raise only if the mod is built to support more units.</td></tr>
+        </tbody>
+      </table>
+      <h3>Difficulty, score, and event weight</h3>
+      <p>The <code>Rating</code> section is not the same as event frequency. It controls how the game evaluates scene pressure and difficulty. Values like <code>UpperLimitEasy</code>, <code>UpperLimitMedium</code>, and <code>UpperLimitHard</code> define thresholds for how much active danger the game considers acceptable for each difficulty level.</p>
+      <p>Inside each event, <code>Worth</code> is a value used by the game for event importance/difficulty/scoring logic. It should not be treated as a spawn-frequency control. If an event happens too often, edit <code>AverageFrequency</code>. If an event is too punishing or too light in scoring/difficulty balance, then inspect <code>Worth</code> and the rating factors.</p>
+      <h3>Why an enabled event still might not happen</h3>
+      <p>Parameter files only make events possible. The map still needs the correct event conditions. For example, a car theft event needs a valid stolen vehicle setup and traffic/path conditions, a fire event needs burnable objects, and a railway crossing failure needs the required railway/crossing setup. If the XML says an event is enabled but the map does not support it, the event may never spawn.</p>
+      <h3>Safe editing workflow</h3>
       <ol>
-        <li>Back up the XML file before editing.</li>
-        <li>Change one event or value at a time.</li>
-        <li>Keep XML tags properly closed.</li>
-        <li>Test in game after each meaningful change.</li>
+        <li>Back up <code>Specs/fp_params_endless.xml</code> before editing.</li>
+        <li>Use a plain text editor. Do not use Word or anything that may change quotes or encoding.</li>
+        <li>Change one event or one global value at a time.</li>
+        <li>Keep decimal values with periods, such as <code>0.35</code>, not commas.</li>
+        <li>Keep XML tags properly closed. A missing closing tag can stop the file from loading.</li>
+        <li>To reduce one event, lower only that event's <code>AverageFrequency</code>.</li>
+        <li>To reduce all native events, lower <code>GlobalEventFrequencyFactor</code> or raise <code>MinDurationBetweenEvents</code>.</li>
+        <li>To disable one event completely, set its <code>Enabled</code> value to <code>0</code>.</li>
+        <li>Load the mod and test in freeplay after each meaningful change.</li>
       </ol>
     `
   },
