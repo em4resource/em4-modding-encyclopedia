@@ -59,7 +59,7 @@ const articles = [
           <h3>Beaverhead County Modification Version 1.5</h3>
           <p>Official Beaverhead County Modification public release by EM4Resource. Read the included player guide before playing; the EM4 Memory Patcher is required for this release.</p>
           <div class="download-meta">Released 25 Jun 2026</div>
-          <a href="https://mega.nz/file/SzYE2YYT#hUZzr8w29YontW_HBHo_UqdTDj-0IYuunbqOxCqLOwk" target="_blank" rel="noreferrer">Download</a>
+          <a href="https://mega.nz/file/W3xUQD6J#klTgZvjQDZqTNS_S0uDSiA5xZhOoNi_tJxlVxsQbbkY" target="_blank" rel="noreferrer">Download</a>
         </article>
 
         <article class="download-card archived">
