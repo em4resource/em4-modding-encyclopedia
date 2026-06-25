@@ -56,10 +56,10 @@ const articles = [
       <div class="download-grid">
         <article class="download-card featured">
           <div class="download-kicker">Featured Release</div>
-          <h3>Beaverhead County Modification V1</h3>
-          <p>Normally the player operates in Monida Pass with mutual aid assistance from the Beaverhead County Fire Department. This release reverses that setup: the player covers Beaverhead County territory using the full resources of the Beaverhead County Fire Department.</p>
-          <div class="download-meta">Released 5 Feb 2026</div>
-          <a href="https://mega.nz/file/ev5EzTSY#TBro-a3t3o8jnnduSZ5Q0NKZOgDJpivCu2w1ffuppzg" target="_blank" rel="noreferrer">Download</a>
+          <h3>Beaverhead County Modification Version 1.5</h3>
+          <p>Official Beaverhead County Modification public release by EM4Resource. Read the included player guide before playing; the EM4 Memory Patcher is required for this release.</p>
+          <div class="download-meta">Released 25 Jun 2026</div>
+          <a href="https://mega.nz/file/SzYE2YYT#hUZzr8w29YontW_HBHo_UqdTDj-0IYuunbqOxCqLOwk" target="_blank" rel="noreferrer">Download</a>
         </article>
 
         <article class="download-card">
@@ -246,6 +246,7 @@ const articles = [
           <tr class="em4resource-release"><td>5 Feb 2026</td><td>Beaverhead County Modification V1 released.</td><td>EM4Resource release. Beaverhead County modification version 1.</td></tr>
           <tr><td>22 Feb 2026</td><td>Valkeakoski Mod 1.1 released.</td><td>Finnish EM4 modification release showing the geographic spread of modern filebase activity.</td></tr>
           <tr class="em4resource-release"><td>25 May 2026</td><td>Elisa City EM4Resource Edit released.</td><td>EM4Resource release. Elisa City modification update and edit release.</td></tr>
+          <tr class="em4resource-release"><td>25 Jun 2026</td><td>Beaverhead County Modification Version 1.5 released.</td><td>EM4Resource public release. Player guide and EM4 Memory Patcher required setup information are included with the download.</td></tr>
         </tbody>
       </table>
     `
